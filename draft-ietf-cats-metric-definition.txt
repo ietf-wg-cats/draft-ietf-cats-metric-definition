@@ -5,22 +5,22 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Informational                                    H. Shi
-Expires: 26 May 2025                                               C. Li
+Expires: 14 July 2025                                              C. Li
                                                      Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                        22 November 2024
+                                                         10 January 2025
 
 
                         CATS Metrics Definition
-                draft-ysl-cats-metric-definition-latest
+                draft-ietf-cats-metric-definition-latest
 
 Abstract
 
    This document defines a set of computing metrics used for Computing-
-   Aware Traffic Steering(CATS).
+   Aware Traffic Steering (CATS).
 
 Discussion Venues
 
@@ -48,11 +48,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 May 2025.
+   This Internet-Draft will expire on 14 July 2025.
 
 Copyright Notice
 
-   Copyright (c) 2024 IETF Trust and the persons identified as the
+   Copyright (c) 2025 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -135,11 +135,11 @@ Table of Contents
    This document uses the following terms defined in
    [I-D.ietf-cats-framework]:
 
-   *  Computing-Aware Traffic Steering (CATS).
+   *  Computing-Aware Traffic Steering (CATS)
 
-   *  Service.
+   *  Service
 
-   *  Service contact instance.
+   *  Service contact instance
 
 3.  Definition of Metrics
 
