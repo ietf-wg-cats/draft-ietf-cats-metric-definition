@@ -4,8 +4,8 @@ title: "CATS Metrics Definition"
 abbrev: "CATS Metrics"
 category: info
 
-docname: draft-ysl-cats-metric-definition-latest
-submissiontype: IETF  # also: "independent", "IAB", or "IRTF"
+docname: draft-ietf-cats-metric-definition-latest
+submissiontype: IETF
 number:
 date:
 consensus:
@@ -64,7 +64,7 @@ informative:
 
 --- abstract
 
-This document defines a set of computing metrics used for Computing-Aware Traffic Steering(CATS).
+This document defines a set of computing metrics used for Computing-Aware Traffic Steering (CATS).
 
 --- middle
 
@@ -82,11 +82,11 @@ Various considerations for metric definition are proposed in {{?I-D.du-cats-comp
 
 This document uses the following terms defined in {{!I-D.ietf-cats-framework}}:
 
-- Computing-Aware Traffic Steering (CATS).
+- Computing-Aware Traffic Steering (CATS)
 
-- Service.
+- Service
 
-- Service contact instance.
+- Service contact instance
 
 # Definition of Metrics
 
