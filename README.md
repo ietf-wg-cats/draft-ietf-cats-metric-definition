@@ -1,17 +1,17 @@
 # CATS metric Definition
 
-This is the working area for the individual Internet-Draft, "CATS metric Definition".
+This is the working area for the CATS WG Internet-Draft, "CATS metric Definition".
 
-* [Editor's Copy](https://VMatrix1900.github.io/draft-cats-metric-definition/#go.draft-ysl-cats-metric-definition.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ysl-cats-metric-definition)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ysl-cats-metric-definition)
-* [Compare Editor's Copy to Individual Draft](https://VMatrix1900.github.io/draft-cats-metric-definition/#go.draft-ysl-cats-metric-definition.diff)
+* [Editor's Copy](https://ietf-wg-cats.github.io/draft-ietf-cats-metric-definition/#go.draft-ietf-cats-metric-definition.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-ietf-cats-metric-definition)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition)
+* [Compare Editor's Copy to Individual Draft](https://ietf-wg-cats.github.io/draft-ietf-cats-metric-definition/#go.draft-ietf-cats-metric-definition.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/VMatrix1900/draft-cats-metric-definition/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
