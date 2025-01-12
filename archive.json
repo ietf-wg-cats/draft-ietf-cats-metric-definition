@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-09T00:37:09.384135+00:00",
-  "repo": "VMatrix1900/draft-cats-metric-definition",
+  "timestamp": "2025-01-12T00:40:57.265663+00:00",
+  "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
       "name": "bug",
@@ -59,7 +59,7 @@
       "number": 1,
       "id": "I_kwDOMTaH-s6ebj93",
       "title": "On the need for storage metrics",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/1",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/1",
       "state": "OPEN",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -77,7 +77,7 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: Add example text. ",
           "createdAt": "2024-11-20T09:58:22Z",
           "updatedAt": "2024-11-20T09:58:22Z"
@@ -88,7 +88,7 @@
       "number": 2,
       "id": "I_kwDOMTaH-s6ebkmE",
       "title": "On other routing metrics",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/2",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/2",
       "state": "OPEN",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -103,7 +103,7 @@
       "comments": [
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "We have a draft in IDR https://datatracker.ietf.org/doc/html/draft-ll-idr-cats-bgp-extension-00, which defines the solution of using BGP for cats. In the basic mode, it uses the extensions in https://datatracker.ietf.org/doc/html/draft-ietf-idr-5g-edge-service-metadata-24.  5G-edge draft defines a general mechanism with several TLVs. CATS may use some of them but not all. ",
           "createdAt": "2024-11-18T17:11:42Z",
           "updatedAt": "2024-11-18T17:11:42Z"
@@ -117,14 +117,14 @@
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: AIGP draft is not mature. ",
           "createdAt": "2024-11-20T09:57:02Z",
           "updatedAt": "2024-11-20T09:57:02Z"
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "some info FYI.\r\n[1]. https://mailarchive.ietf.org/arch/browse/idr/?q=draft-ssangli-idr-bgp-generic-metric-aigp\r\n[2]. https://datatracker.ietf.org/doc/html/draft-ssangli-idr-bgp-generic-metric-aigp-08#section-13\r\n[3]. https://datatracker.ietf.org/meeting/119/materials/slides-119-idr-sessa-1-1-generic-metric-for-the-aigp-attribute-00 \r\n[4]. https://mailarchive.ietf.org/arch/msg/idr/HmvVM33WIrzEJ87U5QkWGjfvvNY/\r\n[5]. https://datatracker.ietf.org/doc/draft-ietf-idr-entropy-label/\r\n",
           "createdAt": "2024-11-20T10:01:14Z",
           "updatedAt": "2024-11-20T10:01:14Z"
@@ -135,7 +135,7 @@
       "number": 3,
       "id": "I_kwDOMTaH-s6eblsK",
       "title": "On L0 metrics for decision making",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/3",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/3",
       "state": "OPEN",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -150,7 +150,7 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: L2 contains L1, L1 contains L0. It is already considered. ",
           "createdAt": "2024-11-20T09:52:12Z",
           "updatedAt": "2024-11-20T09:52:12Z"
@@ -161,7 +161,7 @@
       "number": 4,
       "id": "I_kwDOMTaH-s6ebqsh",
       "title": "On the normalization of L2 metrics",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/4",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/4",
       "state": "OPEN",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -176,7 +176,7 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "The service influences the traffic steering decisions of the network through the normalized metric. It does not matter how the service calculate the metric, as long as the metric is comparable. ",
           "createdAt": "2024-11-19T08:11:35Z",
           "updatedAt": "2024-11-19T08:11:35Z"
@@ -190,7 +190,7 @@
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: more discussion needed. ",
           "createdAt": "2024-11-20T09:50:20Z",
           "updatedAt": "2024-11-20T09:50:20Z"
@@ -201,7 +201,7 @@
       "number": 5,
       "id": "I_kwDOMTaH-s6ebvZJ",
       "title": "On energy and security metrics",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/5",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/5",
       "state": "OPEN",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -216,7 +216,7 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "I am not familiar with any security metric. Gree metric can be useful. ",
           "createdAt": "2024-11-19T08:12:26Z",
           "updatedAt": "2024-11-19T08:12:26Z"
@@ -230,14 +230,14 @@
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: put GREEN metric in L1. trigger discussion in ML. ",
           "createdAt": "2024-11-20T09:48:24Z",
           "updatedAt": "2024-11-20T09:48:24Z"
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "We also need to have the security metric. This will trigger more discussion as well",
           "createdAt": "2024-11-20T09:49:00Z",
           "updatedAt": "2024-11-20T09:49:00Z"
@@ -248,10 +248,10 @@
       "number": 6,
       "id": "I_kwDOMTaH-s6fGS62",
       "title": "Unit of metrics in examples.",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/6",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/6",
       "state": "OPEN",
       "author": "muzixing",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "1. \r\nThough it is example. \r\nWe should specify one data unit/format instead of providing two formats,  See below.\r\n\r\nInteger or FP8, choose one. Also, we might not use GHZ as unit, may use MHZ? so that the format can be an integer?\r\n\r\nBasic fields:\r\n      Metric type: \u201ccompute type_CPU\u201d\r\n      Format: integer, FP8\r\n      Bits occupation: 4 octets\r\nSpecial fields:\r\n      Frequency unit: GHZ\r\n      Compute capabilities unit: FLOPs\r\nSource:\r\n      Direct measurement\r\nStatistics:\r\n      Mean\r\n\r\n\r\nSame for Storage and Network, GB or GB/s seems a too big unit. Better to use a MB\uff0c MB/s to allow the data value as a integer instead of a FP8\uff1f or  we can choose GB, GB/s\uff0c and make the value as a float type. \r\n\r\n2. what is the score in the example of L1 Metric definition ? suggest to delete it. unless we have good reason to have it.\r\n3. same question to L2 metric, why do we have score? \r\n\r\n\r\n\r\n",
@@ -261,28 +261,28 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "1. I am fine with whatever units in the example.\r\n2. I think the score in the example means the value. Like value in TLV. ",
           "createdAt": "2024-11-19T07:55:37Z",
           "updatedAt": "2024-11-19T07:55:37Z"
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: Only keep one format in example. Follow DMTF. What is the basic fields, special fields? Need to check consistency of all example in the draft.",
           "createdAt": "2024-11-20T09:40:24Z",
           "updatedAt": "2024-11-20T09:40:24Z"
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Score is the value of the metric. We do not need a score as a new K:V",
           "createdAt": "2024-11-20T09:44:26Z",
           "updatedAt": "2024-11-20T09:44:26Z"
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: add new field: unit.",
           "createdAt": "2024-11-20T09:46:08Z",
           "updatedAt": "2024-11-20T09:46:08Z"
@@ -293,10 +293,10 @@
       "number": 7,
       "id": "I_kwDOMTaH-s6fGTwA",
       "title": "section 4.2.5 needs better wording",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/7",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/7",
       "state": "OPEN",
       "author": "muzixing",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "[4.2.5. ](https://datatracker.ietf.org/doc/html/draft-ysl-cats-metric-definition-02#section-4.2.5)[Considerations on the Sources of Metrics and the Statistics](https://datatracker.ietf.org/doc/html/draft-ysl-cats-metric-definition-02#name-considerations-on-the-source)\r\nThe sources of L1 metrics is normalized. Based on L0 metrics, service providers design their own algorithms to normalize metrics. For example, assigning different cost values to each raw metric and do summation. L1 metric do not need further statistical values.\r\n\r\nit is confusing to me when reading the above text. We need to rewrite it?",
@@ -313,7 +313,7 @@
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discuss 11.20: rewrite the first sentence by Kehan Yao. Jordi will review the section 4 in detail. Maybe create a term definition section. ",
           "createdAt": "2024-11-20T09:34:49Z",
           "updatedAt": "2024-11-20T09:34:49Z"
@@ -324,10 +324,10 @@
       "number": 9,
       "id": "I_kwDOMTaH-s6fJpYt",
       "title": "No service metrics defined yet",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/9",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/9",
       "state": "OPEN",
       "author": "luismcontreras",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "By now we are covering resource-related metrics (CPU, storage, etc).\r\n\r\nI wonder if service-related metrics can be also part of the picture. For instance number of sessions, etc.",
@@ -337,14 +337,14 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "This is a good suggestion. Number of sessions can help determine the load of a service instance.",
           "createdAt": "2024-11-19T07:47:28Z",
           "updatedAt": "2024-11-19T07:47:28Z"
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "Will number of sessions impact the resource in the end? should we describe the final status of resources or a transit state of resource? I will like to avoid to use number of sessions. Because we can not tell how much resource is occupied by a session. Even they are not equal for each session. ",
           "createdAt": "2024-11-19T09:54:34Z",
           "updatedAt": "2024-11-19T09:54:34Z"
@@ -358,7 +358,7 @@
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: sessions are inaccurate to measure the utilization.",
           "createdAt": "2024-11-20T10:27:55Z",
           "updatedAt": "2024-11-20T10:27:55Z"
@@ -369,10 +369,10 @@
       "number": 10,
       "id": "I_kwDOMTaH-s6fJyGd",
       "title": "L2 metric: just one aggregated metric or one for compute and one for network?",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/10",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/10",
       "state": "OPEN",
       "author": "luismcontreras",
-      "authorAssociation": "NONE",
+      "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "With the current definition of L2 metric, the generation of such L2 metric can only be performed on an element consolidating both network and compute metrics. That is, the C-PS (or the Ingress C-Forwader), according to the current framework definition. It could be maybe more practical if we can consider L2 metrics per domain so that both C-SMA and C-NMA can generate L2 metrics per domain that later on can be consolidated in C-PS (or the Ingress C-Forwader), but avoiding the burden of transmitting all the L1 metrics up to C-PS (or the Ingress C-Forwader). ",
@@ -382,7 +382,7 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "My understanding of metric in this document is all about compute domain metric, not network domain metric. ",
           "createdAt": "2024-11-19T07:45:34Z",
           "updatedAt": "2024-11-19T07:45:34Z"
@@ -396,14 +396,14 @@
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "By domain I mean the source of the metric. That is to say, the metric defined in this document comes from computing side, not network side. Is that correct?",
           "createdAt": "2024-11-20T06:53:32Z",
           "updatedAt": "2024-11-20T06:53:32Z"
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion @11.20: Do we need to separate the network domain metric and computing domain metric? They should follow the same absctration principle.",
           "createdAt": "2024-11-20T09:22:33Z",
           "updatedAt": "2024-11-20T09:22:33Z"
@@ -414,7 +414,7 @@
       "number": 11,
       "id": "I_kwDOMTaH-s6fao7n",
       "title": "Considerations on IANA registry and standard track of CATS metrics ",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/issues/11",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/11",
       "state": "OPEN",
       "author": "bpatient78",
       "authorAssociation": "NONE",
@@ -427,7 +427,7 @@
       "comments": [
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "+1 for standard track.",
           "createdAt": "2024-11-20T06:54:33Z",
           "updatedAt": "2024-11-20T06:54:33Z"
@@ -441,14 +441,14 @@
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "agree. I proposed this idea long time ago, let's try it.",
           "createdAt": "2024-11-20T09:27:09Z",
           "updatedAt": "2024-11-20T09:27:09Z"
         },
         {
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "body": "Discussion 11.20: Move to standard track. IANA section only contains L2 metric. ",
           "createdAt": "2024-11-20T09:27:11Z",
           "updatedAt": "2024-11-20T09:27:11Z"
@@ -462,12 +462,60 @@
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "IANA may only focus on the Categories of L1 metrics, and only one L2 metric. MUST not define any IANA registries for L0 metrics.",
           "createdAt": "2024-12-04T17:06:06Z",
           "updatedAt": "2024-12-04T17:06:06Z"
         }
       ]
+    },
+    {
+      "number": 13,
+      "id": "I_kwDOMTaH-s6lq8QY",
+      "title": "CFA Comments from Med",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/13",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/cats/Opb-mpqF2-36e1MsvTx0HKuu2lo/",
+      "createdAt": "2025-01-10T07:37:51Z",
+      "updatedAt": "2025-01-10T07:37:51Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 14,
+      "id": "I_kwDOMTaH-s6lq8aJ",
+      "title": "CFA Comments from Joel",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/14",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/cats/_AR5_zq4eWs0a8sNfa7d4nvNRkg/",
+      "createdAt": "2025-01-10T07:38:14Z",
+      "updatedAt": "2025-01-10T07:38:14Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 15,
+      "id": "I_kwDOMTaH-s6lq8hZ",
+      "title": "CFA Comments from Adrian",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/15",
+      "state": "OPEN",
+      "author": "boucadair",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "https://mailarchive.ietf.org/arch/msg/cats/HYTSkC4tFv9sdWU_1RxSJTLcta0/",
+      "createdAt": "2025-01-10T07:38:33Z",
+      "updatedAt": "2025-01-10T07:38:33Z",
+      "closedAt": null,
+      "comments": []
     }
   ],
   "pulls": [
@@ -475,7 +523,7 @@
       "number": 8,
       "id": "PR_kwDOMTaH-s6CR-zR",
       "title": "JRG: revisision of text up to section 3",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/pull/8",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/8",
       "state": "MERGED",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -484,7 +532,7 @@
       "body": "I made an initial partial revision of the draft, up to Section 3. Please feel free to comment further. I plan to continue reviewing the rest of the sections. Thanks.",
       "createdAt": "2024-11-18T17:49:05Z",
       "updatedAt": "2024-11-22T05:35:00Z",
-      "baseRepository": "VMatrix1900/draft-cats-metric-definition",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "dd13c0eec3c0e0bc2339bb83565ad11cac9af77d",
       "headRepository": "giralt/draft-cats-metric-definition",
@@ -513,7 +561,7 @@
         },
         {
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "body": "LGTM, we can merge this PR\r\n",
           "createdAt": "2024-11-19T09:51:07Z",
           "updatedAt": "2024-11-19T09:51:07Z"
@@ -540,7 +588,7 @@
             "abbreviatedOid": "f57599d"
           },
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-18T18:59:10Z",
@@ -560,7 +608,7 @@
             "abbreviatedOid": "f57599d"
           },
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-18T19:01:27Z",
@@ -580,7 +628,7 @@
             "abbreviatedOid": "f57599d"
           },
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "we can merge this PR when address my comment of \" necessitates balancing \"",
           "createdAt": "2024-11-18T19:03:01Z",
@@ -664,7 +712,7 @@
             "abbreviatedOid": "f57599d"
           },
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-18T21:41:41Z",
@@ -684,7 +732,7 @@
             "abbreviatedOid": "f57599d"
           },
           "author": "muzixing",
-          "authorAssociation": "NONE",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-18T21:41:54Z",
@@ -704,7 +752,7 @@
             "abbreviatedOid": "f57599d"
           },
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-19T07:25:59Z",
@@ -724,7 +772,7 @@
             "abbreviatedOid": "7db2334"
           },
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-19T07:28:39Z",
@@ -744,7 +792,7 @@
             "abbreviatedOid": "7db2334"
           },
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-19T07:33:52Z",
@@ -764,7 +812,7 @@
             "abbreviatedOid": "7db2334"
           },
           "author": "VMatrix1900",
-          "authorAssociation": "OWNER",
+          "authorAssociation": "COLLABORATOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-19T07:36:20Z",
@@ -910,7 +958,7 @@
       "number": 12,
       "id": "PR_kwDOMTaH-s6DIYIw",
       "title": "Jrg rev 20241122",
-      "url": "https://github.com/VMatrix1900/draft-cats-metric-definition/pull/12",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/12",
       "state": "OPEN",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
@@ -918,8 +966,8 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-26T05:31:58Z",
-      "updatedAt": "2024-12-10T13:13:47Z",
-      "baseRepository": "VMatrix1900/draft-cats-metric-definition",
+      "updatedAt": "2025-01-09T14:58:32Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82",
       "headRepository": "giralt/draft-cats-metric-definition",
@@ -972,6 +1020,46 @@
               "body": "The fields and examples below looks good to me.  \r\nFor the question on whether to standardize them, it looks like L1 and L2 metrics also need these fields for representation.  So maybe we should standardize them, And also it relates to where the normalization should be implemented. If it's implemented in the CATS domain, then these fields should be recognized and propagated.  Look for more feedback.",
               "createdAt": "2024-12-10T13:13:10Z",
               "updatedAt": "2024-12-10T13:13:47Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6XZh_4",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "jrosgiralt",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-09T14:19:53Z",
+          "updatedAt": "2025-01-09T14:19:54Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "I think we can.",
+              "createdAt": "2025-01-09T14:19:54Z",
+              "updatedAt": "2025-01-09T14:19:54Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6XZ7xQ",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "jrosgiralt",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-09T14:58:32Z",
+          "updatedAt": "2025-01-09T14:58:32Z",
+          "comments": [
+            {
+              "originalPosition": 89,
+              "body": "OK, makes sense I will add direct measurement in the next commit. ",
+              "createdAt": "2025-01-09T14:58:32Z",
+              "updatedAt": "2025-01-09T14:58:32Z"
             }
           ]
         }
