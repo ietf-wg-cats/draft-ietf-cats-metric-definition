@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-14T00:35:07.918103+00:00",
+  "timestamp": "2025-01-16T00:36:20.498773+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -211,7 +211,7 @@
       ],
       "body": "Should some of security and green metrics be scoped whithin CATS metric? (This was asked by Julien during IETF 121)",
       "createdAt": "2024-11-14T08:45:51Z",
-      "updatedAt": "2024-11-20T09:49:01Z",
+      "updatedAt": "2025-01-14T19:47:11Z",
       "closedAt": null,
       "comments": [
         {
@@ -241,6 +241,13 @@
           "body": "We also need to have the security metric. This will trigger more discussion as well",
           "createdAt": "2024-11-20T09:49:00Z",
           "updatedAt": "2024-11-20T09:49:00Z"
+        },
+        {
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Callback: Adding an energy metric in L1 may help. Money talks",
+          "createdAt": "2025-01-14T19:47:11Z",
+          "updatedAt": "2025-01-14T19:47:11Z"
         }
       ]
     },
@@ -966,7 +973,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-26T05:31:58Z",
-      "updatedAt": "2025-01-09T14:58:32Z",
+      "updatedAt": "2025-01-14T16:23:33Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82",
@@ -1060,6 +1067,44 @@
               "body": "OK, makes sense I will add direct measurement in the next commit. ",
               "createdAt": "2025-01-09T14:58:32Z",
               "updatedAt": "2025-01-09T14:58:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6YAa_p",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-14T16:11:35Z",
+          "updatedAt": "2025-01-14T16:23:33Z",
+          "comments": [
+            {
+              "originalPosition": 33,
+              "body": "I think we should address Adrian's comment on this figure. ",
+              "createdAt": "2025-01-14T16:11:36Z",
+              "updatedAt": "2025-01-14T16:23:33Z"
+            },
+            {
+              "originalPosition": 89,
+              "body": "please also look into the comments from Adrian on the metrics representation. I summarized his commets into follows:\r\n* need to explain whether to encode floating point into the fields of packets.(section 4.1.1)\r\n* If so, should provide examples as well as references for the use of floating points, for example FP8. (section 4.1.1)\r\n* Consider more carefully on the field space for each unit. (section 4.1.2)\r\n* Explain whether integers should be signed or unsigned. (section 4.2) \r\n",
+              "createdAt": "2025-01-14T16:17:23Z",
+              "updatedAt": "2025-01-14T16:23:33Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "maybe remove storage capacity, but depends on the discussion in the interim meeting on whether we should include storage metrics or we should create a category for storage metrics. ",
+              "createdAt": "2025-01-14T16:19:16Z",
+              "updatedAt": "2025-01-14T16:23:33Z"
+            },
+            {
+              "originalPosition": 119,
+              "body": "Agree with the additional explanation on each field from the above. Thanks Jordi! ",
+              "createdAt": "2025-01-14T16:23:08Z",
+              "updatedAt": "2025-01-14T16:23:33Z"
             }
           ]
         }
