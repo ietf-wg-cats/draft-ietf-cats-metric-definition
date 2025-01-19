@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-16T00:36:20.498773+00:00",
+  "timestamp": "2025-01-19T00:38:53.976514+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -973,7 +973,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2024-11-26T05:31:58Z",
-      "updatedAt": "2025-01-14T16:23:33Z",
+      "updatedAt": "2025-01-17T17:01:01Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82",
@@ -984,7 +984,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi Kehan @bpatient78 ,\r\n\r\nThanks for your comments. I think Adrian makes great comments in #15 but I think it is best that we address them in a separate PR dedicated to his comments, since there are quite a few number of comments there. This will help keep the conversations more organized.\r\n\r\nIf you agree, and since I think I resolved all the other comments, do you think we can go ahead and merge this PR? After we close this PR, then we can focus the next PR on Adrian's comments and address them all in one PR if possible.\r\n\r\nThanks.",
+          "createdAt": "2025-01-17T05:50:27Z",
+          "updatedAt": "2025-01-17T05:50:45Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOMTaH-s6Ui3uA",
@@ -1105,6 +1113,88 @@
               "body": "Agree with the additional explanation on each field from the above. Thanks Jordi! ",
               "createdAt": "2025-01-14T16:23:08Z",
               "updatedAt": "2025-01-14T16:23:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6YeAXz",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-01-17T05:31:36Z",
+          "updatedAt": "2025-01-17T06:09:29Z",
+          "comments": [
+            {
+              "originalPosition": 124,
+              "body": "A unitless metric is just a specific type of metric, so I think that not allowing vendors to specify unitless L0 metrics could be too restrictive. For instance, a vendor/implementation may want to expose a metric that just grades the overall performance of a resource, from 1 to 5, with 5 being the highest performance. Allowing L0 metrics to also have the option to be unitless, would allow implementors to specify such type of metrics and not be forced to always use metrics that have units.\r\n",
+              "createdAt": "2025-01-17T05:31:36Z",
+              "updatedAt": "2025-01-17T06:09:29Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "There was a nice discussion during the interim on storage:\r\n\r\nhttps://datatracker.ietf.org/doc/minutes-interim-2025-cats-01-202501151300/#:~:text=%5BMed%5D%20On%20the%20storage%20part%2C%20do%20we%20have%20a%20case%20to%20illustrate%20how\r\n\r\nIn addition to the CDN case mentioned in the conversation, I think the case of distributed AI (e.g., federated learning) also requires storage, since the models can be quite large, and they require storing checkpoints in the storage. So let me suggest to keep storage. In a newer version, we can add the justification, alongside all the other metrics.",
+              "createdAt": "2025-01-17T05:34:20Z",
+              "updatedAt": "2025-01-17T06:09:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6YjnJA",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "Thanks for you contribution, Jordi! Please see my comments below. ",
+          "createdAt": "2025-01-17T16:40:41Z",
+          "updatedAt": "2025-01-17T17:01:01Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "We can provide an example, like a weighted function, but no need to add any details.",
+              "createdAt": "2025-01-17T16:40:41Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
+            },
+            {
+              "originalPosition": 89,
+              "body": "It will be ok to have this as a common formatted info to describe a metric. However, in a protocol design, we may not need so much fields. A type can be mapped to the {format, length, unit, value, and level}. Type: {format, length, unit, value, and level}. For example, Type 0 is the L2 fully normalized metric, with length 4 bytes, no unit, value X, and format in Int32.  Type 1 is the L1 normalized categorized metric, with category of Computing, length 4 bytes, unit in GHZ, value X in format of floating. \r\n\r\nIn a nutshell, it is ok to have a basic model like this, which can be encoded by YANG MODEL, xml, Jason, etc, but no need to require a protocol to have all fields in this model.",
+              "createdAt": "2025-01-17T16:48:28Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
+            },
+            {
+              "originalPosition": 91,
+              "body": "agree, hard to specify what is SLA here. delete it please\r\n",
+              "createdAt": "2025-01-17T16:49:17Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
+            },
+            {
+              "originalPosition": 96,
+              "body": "may rephrase the text to replace Next? ",
+              "createdAt": "2025-01-17T16:49:48Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "let's keep storage as a L1 metric.",
+              "createdAt": "2025-01-17T16:50:29Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "why we have this? seems redundant with the above ones. Do we only have more explanation here comparing to the above model?",
+              "createdAt": "2025-01-17T16:51:35Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
+            },
+            {
+              "originalPosition": 124,
+              "body": "we do not need to discuss any L0 metrics, leave it to implementation. Not in the scope of this document.",
+              "createdAt": "2025-01-17T16:52:33Z",
+              "updatedAt": "2025-01-17T17:01:01Z"
             }
           ]
         }
