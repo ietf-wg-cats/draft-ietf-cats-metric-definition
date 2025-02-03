@@ -117,7 +117,7 @@ Regarding network-related information, the IPPM WG has defined various types of 
 
 L1 metrics are organized into distinct categories, such as computing, networking, storage, and delay. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an *aggregation function* and normalized to a unitless score that represents the performance of the underlying resources according to that category. Potential categories include:
 
-<!-- JRG Note: TODO, define aggregation function -->
+<!-- JRG Note: TODO, define aggregation and normalization function -->
 
 - **Computing:** A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU metrics.
 
@@ -208,11 +208,6 @@ A CATS metric is represented using a set of fields, each describing a property o
 ~~~
 {: #fig-metric-def title="CATS Metric Definition"}
 
-<!-- JRG Note: I think nominal and direct measurement are the same (according to the definition of nominal in RFC9439), so i am suggesting using nominal instead of direct measurement. If we convinced each other oterhwise, we can add it back. -->
-
-<!-- JRG Note: I am suggesting removing the sla because that seems to be an application level metric requirement, rather than a resource metric, which is the focus of CATS. If we convinced each other oterhwise, we can add it back. -->
-
-
 Next, we describe each field in more detail:
 
 - **Type (type)**: This field specifies the category or kind of CATS metric being measured, such as computational resources, storage capacity, or network bandwidth. It serves as a label for network devices to recognize what the metric is.
@@ -229,6 +224,7 @@ Next, we describe each field in more detail:
 
     - 'nominal'. Similarly to {{?RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  Not all metrics have reasonable "nominal" values.  For example, throughput can have a nominal value, which indicates the configured transmission rate of the involved devices; latency typically does not have a nominal value."
     - 'estimation'. The 'estimation' source indicates that the metric value is computed through an estimation process.
+    - 'directly measured'. This source indicates that the metric can be obtained directly from the underlying device. The value can be dynamic and it does not need to be estimated.
     - 'normalization'. The 'normalization' source indicates that the metric value was normalized. For instance, a metric could be normalized to take a value from 0 to 1, from 0 to 10, or to take a percentage value. This type of metrics do not have units.
     - 'aggregation'. This source indicates that the metric value was obtained by using an aggregation function.
 
@@ -237,8 +233,6 @@ Next, we describe each field in more detail:
 - **Value (value)**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
 ## Level 0 Metric Representation
-
-<!-- Note JRG: It is possible for a L0 metric to be unitless, isn't it? That is, an implementor could decide to provide a score as an L0 metric.  -->
 
 Several definitions have been developed within the compute and communication industry and through various standardizations, such as those by the {{DMTF}}, that could be used as L0 metrics. In this section, we provide examples.
 
