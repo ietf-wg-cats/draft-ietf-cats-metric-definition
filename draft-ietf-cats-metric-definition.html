@@ -13,11 +13,11 @@
 <meta content="
        This document defines a set of computing metrics used for Computing-Aware Traffic Steering (CATS). 
     " name="description">
-<meta content="xml2rfc 3.25.0" name="generator">
+<meta content="xml2rfc 3.26.0" name="generator">
 <meta content="CATS, metric" name="keyword">
 <meta content="draft-ietf-cats-metric-definition-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.25.0
+  xml2rfc 3.26.0
     Python 3.12.8
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
@@ -1048,11 +1048,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">CATS Metrics</td>
-<td class="right">January 2025</td>
+<td class="right">February 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kehan, et al.</td>
-<td class="center">Expires 14 July 2025</td>
+<td class="center">Expires 9 August 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1065,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-cats-metric-definition-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-01-10" class="published">10 January 2025</time>
+<time datetime="2025-02-05" class="published">5 February 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-07-14">14 July 2025</time></dd>
+<dd class="expires"><time datetime="2025-08-09">9 August 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1131,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 July 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 9 August 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1184,47 +1184,50 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-representation-of-metrics" class="internal xref">Representation of Metrics</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-level-0-metric-representati" class="internal xref">Level 0 Metric Representation</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.1">
-                    <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="auto internal xref">4.1.1</a>.  <a href="#name-compute-raw-metrics" class="internal xref">Compute Raw Metrics</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.2">
-                    <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="auto internal xref">4.1.2</a>.  <a href="#name-storage-raw-metrics" class="internal xref">Storage Raw Metrics</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.3">
-                    <p id="section-toc.1-1.4.2.1.2.3.1"><a href="#section-4.1.3" class="auto internal xref">4.1.3</a>.  <a href="#name-network-raw-metrics" class="internal xref">Network Raw Metrics</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.4">
-                    <p id="section-toc.1-1.4.2.1.2.4.1"><a href="#section-4.1.4" class="auto internal xref">4.1.4</a>.  <a href="#name-delay-raw-metrics" class="internal xref">Delay Raw Metrics</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1.2.5">
-                    <p id="section-toc.1-1.4.2.1.2.5.1"><a href="#section-4.1.5" class="auto internal xref">4.1.5</a>.  <a href="#name-considerations-on-the-sourc" class="internal xref">Considerations on the Sources of Metrics and the Statistics</a></p>
-</li>
-                </ul>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-definition-of-cats-metric" class="internal xref">Definition of CATS Metric</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-level-1-metric-representati" class="internal xref">Level 1 Metric Representation</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-level-0-metric-representati" class="internal xref">Level 0 Metric Representation</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
-                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-normalized-compute-metrics" class="internal xref">Normalized Compute Metrics</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-compute-raw-metrics" class="internal xref">Compute Raw Metrics</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
-                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-normalized-storage-metrics" class="internal xref">Normalized Storage Metrics</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-storage-raw-metrics" class="internal xref">Storage Raw Metrics</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
-                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-normalized-network-metrics" class="internal xref">Normalized Network Metrics</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-network-raw-metrics" class="internal xref">Network Raw Metrics</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.4">
-                    <p id="section-toc.1-1.4.2.2.2.4.1"><a href="#section-4.2.4" class="auto internal xref">4.2.4</a>.  <a href="#name-normalized-delay" class="internal xref">Normalized Delay</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.4.1"><a href="#section-4.2.4" class="auto internal xref">4.2.4</a>.  <a href="#name-delay-raw-metrics" class="internal xref">Delay Raw Metrics</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.5">
-                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-considerations-on-the-source" class="internal xref">Considerations on the Sources of Metrics and the Statistics</a></p>
+                    <p id="section-toc.1-1.4.2.2.2.5.1"><a href="#section-4.2.5" class="auto internal xref">4.2.5</a>.  <a href="#name-considerations-on-the-sourc" class="internal xref">Considerations on the Sources of Metrics and the Statistics</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-level-2-metric-representati" class="internal xref">Level 2 Metric Representation</a></p>
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-level-1-metric-representati" class="internal xref">Level 1 Metric Representation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
+                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="auto internal xref">4.3.1</a>.  <a href="#name-normalized-compute-metrics" class="internal xref">Normalized Compute Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.2">
+                    <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="auto internal xref">4.3.2</a>.  <a href="#name-normalized-storage-metrics" class="internal xref">Normalized Storage Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.3">
+                    <p id="section-toc.1-1.4.2.3.2.3.1"><a href="#section-4.3.3" class="auto internal xref">4.3.3</a>.  <a href="#name-normalized-network-metrics" class="internal xref">Normalized Network Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.4">
+                    <p id="section-toc.1-1.4.2.3.2.4.1"><a href="#section-4.3.4" class="auto internal xref">4.3.4</a>.  <a href="#name-normalized-delay" class="internal xref">Normalized Delay</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.5">
+                    <p id="section-toc.1-1.4.2.3.2.5.1"><a href="#section-4.3.5" class="auto internal xref">4.3.5</a>.  <a href="#name-considerations-on-the-source" class="internal xref">Considerations on the Sources of Metrics and the Statistics</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-level-2-metric-representati" class="internal xref">Level 2 Metric Representation</a></p>
 </li>
             </ul>
 </li>
@@ -1367,7 +1370,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3.3-1">The L2 metric is a single score value derived from the lower level metrics (L0 or L1) using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <p id="section-3.3-2">TODO: Some implementations may support configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the affection from the L1 or L0 metrics.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
 <p id="section-3.3-3">Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
-<span id="name-logic-of-cats-metrics-in-le"></span><div id="fig-cats-metric">
+<span id="name-logic-of-cats-metrics-in-le"></span><div id="fig-metric-levels">
 <figure id="figure-1">
           <div class="alignLeft art-text artwork" id="section-3.3-4.1">
 <pre>
@@ -1378,13 +1381,13 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
                          +-----------------+---------------+
                          |                 |               |
                      +---+----+        +---+----+      +---+----+
-         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | (...)
+         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | ...
                      +---^----+        +---^----+      +----^---+
                          |                 |                |
               +--------+-+-------+       +-+-------+        |
               |        |         |       |         |        |
            +--+---+ +--+---+ +---+--+ +--+---+ +---+--+  +--+---+
-L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | (...)
+L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | ...
            +------+ +------+ +------+ +------+ +------+  +------+
 
 </pre>
@@ -1402,29 +1405,120 @@ L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | (...)
       <h2 id="name-representation-of-metrics">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-representation-of-metrics" class="section-name selfRef">Representation of Metrics</a>
       </h2>
-<p id="section-4-1">This section includes the detailed representation of metrics. <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span> gives a good way to show the representation of some network metrics which is used for network capabilities exposure to applications. This document further describes the representation of CATS metrics.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">Basically, in each metric level and for each metric, there will be some common fields for representation, including metric type, unit, and precision.  Metric type is a label for network devices to recognize what the metric is. "unit" and "precision" are usually associated with the metric.  How many bits a metric occupies in protocols is also required.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Beyond these basic representations, the source of the metrics must also be declared, since there are multiple levels of metrics and their sources are different.  As defined in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, there are three cost-sources, nominal, sla, and estimation.  This document further divide the estimation type into three sub-types, direct measurement, aggregation, and normalization, since different levels of metrics require different sources to acquire CATS metrics.  Directly measured metrics have physical meanings and units without any processing. Aggregated metrics can be either physically meaningful or not, and they maintain their meanings compared to the directly measured metrics.  Normalized metrics can have physical meanings or not, but they do not have units, and they are just numbers that used for routing decision making.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">To be more fine-grained, this document refers to the definition of <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>  on the metrics statistics.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<div id="level-0-metric-representation">
+<p id="section-4-1">The representation of metrics is a key component of the CATS architecture. It defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate different types of metrics and their associated units and precisions.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">This section includes the detailed representation of the CATS metrics. The design follows similar principles used in other similar IETF specifications, such as the network performance metrics defined in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<div id="definition-of-cats-metric">
 <section id="section-4.1">
-        <h3 id="name-level-0-metric-representati">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-level-0-metric-representati" class="section-name selfRef">Level 0 Metric Representation</a>
+        <h3 id="name-definition-of-cats-metric">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-definition-of-cats-metric" class="section-name selfRef">Definition of CATS Metric</a>
         </h3>
-<p id="section-4.1-1">Raw metrics have exact physical meanings and units.  They are directly measured from the underlying computing resources providers.
-   Lots of definition on this level of metrics have been defined in IT industry and other standardizations<span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span>, and this document only show some examples for different categories of metrics for reference.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">A CATS metric is represented using a set of fields, each describing a property of the metric. The following fields are introduced:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<span id="name-cats-metric-definition"></span><div id="fig-metric-def">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-4.1-2.1">
+<pre>
+- cats_metric:
+      - type:
+            The type of the CATS metric.
+            Examples: compute_cpu, storage_disk_size, network_bw,
+            compute_delay, network_delay, compute_norm,
+            storage_norm, network_norm, delay_norm.
+      - format_std (optional):
+            The standard used to encode and decode the value
+            field according to the format field. This field is
+            optional and only required if the value field is
+            encoded using a standard, and knowing the standard
+            is necessary to decode the value field.
+            Example: ieee_754, ascii.
+      - format:
+            The encoding format of the metric.
+            Examples: int, float.
+      - length:
+            The size of the value field measured in octets.
+            Examples: 4, 8, 16, 32, 64.
+      - units:
+            The units of this metric.
+            Examples: mhz, ghz, byte, kbyte, mbyte,
+            gbyte, bps, kbps, mbps, gbps, tbps, tflops, none.
+      - source (optional):
+            The source of information used to obtain.
+            Examples: nominal, estimation, normalization,
+            aggregation.
+      - level:
+            The level this metric belongs to.
+            Examples: L0, L1, L2.
+      - value:
+            The value of this metric.
+            Examples: 12, 3.2.
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-cats-metric-definition" class="selfRef">CATS Metric Definition</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.1-3">Next, we describe each field in more detail:<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-4.1">
+            <p id="section-4.1-4.1.1"><strong>Type (type)</strong>: This field specifies the category or kind of CATS metric being measured, such as computational resources, storage capacity, or network bandwidth. It serves as a label for network devices to recognize what the metric is.<a href="#section-4.1-4.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.2">
+            <p id="section-4.1-4.2.1"><strong>Format standard (format_std, optional)</strong>: This optional field indicates the standard used to encode and decode the value field according to the format field. It is only required if the value field is encoded using a specific standard, and knowing this standard is necessary to decode the value field. Examples of format standards include ieee_754 and ascii. This field ensures that the value can be accurately interpreted by specifying the encoding method used.<a href="#section-4.1-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.3">
+            <p id="section-4.1-4.3.1"><strong>Format (format)</strong>: This field indicates the data encoding format of the metric, such as whether the value is represented as an integer, a floating-point number, or has no specific format.<a href="#section-4.1-4.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.4">
+            <p id="section-4.1-4.4.1"><strong>Length (length)</strong>: This field indicates the size of the value field measured in octets (bytes). It specifies how many bytes are used to store the value of the metric. Examples include 4, 8, 16, 32, and 64. The length field is important for memory allocation and data handling, ensuring that the value is stored and retrieved correctly.<a href="#section-4.1-4.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.5">
+            <p id="section-4.1-4.5.1"><strong>Units (units):</strong> This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.<a href="#section-4.1-4.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.6">
+            <p id="section-4.1-4.6.1"><strong>Source (source, optional)</strong>: This field describes the origin of the information used to obtain the metric:<a href="#section-4.1-4.6.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-4.6.2.1">
+                <p id="section-4.1-4.6.2.1.1">'nominal'. Similarly to <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  Not all metrics have reasonable "nominal" values.  For example, throughput can have a nominal value, which indicates the configured transmission rate of the involved devices; latency typically does not have a nominal value."<a href="#section-4.1-4.6.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-4.6.2.2">
+                <p id="section-4.1-4.6.2.2.1">'estimation'. The 'estimation' source indicates that the metric value is computed through an estimation process.<a href="#section-4.1-4.6.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-4.6.2.3">
+                <p id="section-4.1-4.6.2.3.1">'directly measured'. This source indicates that the metric can be obtained directly from the underlying device. The value can be dynamic and it does not need to be estimated.<a href="#section-4.1-4.6.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-4.6.2.4">
+                <p id="section-4.1-4.6.2.4.1">'normalization'. The 'normalization' source indicates that the metric value was normalized. For instance, a metric could be normalized to take a value from 0 to 1, from 0 to 10, or to take a percentage value. This type of metrics do not have units.<a href="#section-4.1-4.6.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-4.6.2.5">
+                <p id="section-4.1-4.6.2.5.1">'aggregation'. This source indicates that the metric value was obtained by using an aggregation function.<a href="#section-4.1-4.6.2.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+<p id="section-4.1-4.6.3">
+Nominal metrics have inherent physical meanings and specific units without any additional processing. Aggregated metrics may or may not have physical meanings, but they retain their significance relative to the directly measured metrics. Normalized metrics, on the other hand, might have physical meanings but lack units; they are simply numerical values used for making node and path selection decisions.<a href="#section-4.1-4.6.3" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-4.7">
+            <p id="section-4.1-4.7.1"><strong>Value (value)</strong>: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.<a href="#section-4.1-4.7.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="level-0-metric-representation">
+<section id="section-4.2">
+        <h3 id="name-level-0-metric-representati">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-level-0-metric-representati" class="section-name selfRef">Level 0 Metric Representation</a>
+        </h3>
+<p id="section-4.2-1">Several definitions have been developed within the compute and communication industry and through various standardizations, such as those by the <span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span>, that could be used as L0 metrics. In this section, we provide examples.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
 <div id="compute-raw-metrics">
-<section id="section-4.1.1">
+<section id="section-4.2.1">
           <h4 id="name-compute-raw-metrics">
-<a href="#section-4.1.1" class="section-number selfRef">4.1.1. </a><a href="#name-compute-raw-metrics" class="section-name selfRef">Compute Raw Metrics</a>
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-compute-raw-metrics" class="section-name selfRef">Compute Raw Metrics</a>
           </h4>
-<p id="section-4.1.1-1">The metric type of compute resources are named as “compute_type:
+<p id="section-4.2.1-1">The metric type of compute resources are named as “compute_type:
    CPU” or “compute_type: GPU”. Their frequency unit is GHZ, the compute
    capabilities unit is FLOPS.  Format should support integer and FP8.
-   It will occupy 4 octets. Example:<a href="#section-4.1.1-1" class="pilcrow">¶</a></p>
+   It will occupy 4 octets. Example:<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-compute-raw-"></span><div id="fig-compute-raw-metric">
-<figure id="figure-2">
-            <div class="alignLeft art-text artwork" id="section-4.1.1-2.1">
+<figure id="figure-3">
+            <div class="alignLeft art-text artwork" id="section-4.2.1-2.1">
 <pre>
 Basic fields:
       Metric type: “compute type_CPU”
@@ -1439,24 +1533,24 @@ Statistics:
       Mean
 </pre>
 </div>
-<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
 <a href="#name-an-example-for-compute-raw-" class="selfRef">An Example for Compute Raw Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="storage-raw-metrics">
-<section id="section-4.1.2">
+<section id="section-4.2.2">
           <h4 id="name-storage-raw-metrics">
-<a href="#section-4.1.2" class="section-number selfRef">4.1.2. </a><a href="#name-storage-raw-metrics" class="section-name selfRef">Storage Raw Metrics</a>
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-storage-raw-metrics" class="section-name selfRef">Storage Raw Metrics</a>
           </h4>
-<p id="section-4.1.2-1">The metric type of storage resources like SSD are named as
+<p id="section-4.2.2-1">The metric type of storage resources like SSD are named as
    “storage_type: SSD”. The storage space unit is megaBytes(MBs).
    Format is integer.  It will occupy 2 octets.  The unit of read or
-   write speed is denoted as MB per second. Example:<a href="#section-4.1.2-1" class="pilcrow">¶</a></p>
+   write speed is denoted as MB per second. Example:<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-storage-raw-"></span><div id="fig-storage-raw-metric">
-<figure id="figure-3">
-            <div class="alignLeft art-text artwork" id="section-4.1.2-2.1">
+<figure id="figure-4">
+            <div class="alignLeft art-text artwork" id="section-4.2.2-2.1">
 <pre>
 Basic fields:
       Metric type: “storage type_SSD”
@@ -1469,24 +1563,24 @@ Statistics:
       cur
 </pre>
 </div>
-<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
 <a href="#name-an-example-for-storage-raw-" class="selfRef">An Example for Storage Raw Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="network-raw-metrics">
-<section id="section-4.1.3">
+<section id="section-4.2.3">
           <h4 id="name-network-raw-metrics">
-<a href="#section-4.1.3" class="section-number selfRef">4.1.3. </a><a href="#name-network-raw-metrics" class="section-name selfRef">Network Raw Metrics</a>
+<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-network-raw-metrics" class="section-name selfRef">Network Raw Metrics</a>
           </h4>
-<p id="section-4.1.3-1">The metric type of network resources like bandwidth are named as
+<p id="section-4.2.3-1">The metric type of network resources like bandwidth are named as
    "network_type: Bandwidth”. The unit is gigabits per second(Gb/s).
    Format is integer.  It will occupy 2 octets.  The unit of TXBytes and
-   RXBytes is denoted as MB per second. Example:<a href="#section-4.1.3-1" class="pilcrow">¶</a></p>
+   RXBytes is denoted as MB per second. Example:<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-network-raw-"></span><div id="fig-network-raw-metric">
-<figure id="figure-4">
-            <div class="alignLeft art-text artwork" id="section-4.1.3-2.1">
+<figure id="figure-5">
+            <div class="alignLeft art-text artwork" id="section-4.2.3-2.1">
 <pre>
 Basic fields:
       Metric type: “network type_Bandwidth”
@@ -1499,24 +1593,24 @@ Statistics:
       cur
 </pre>
 </div>
-<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
 <a href="#name-an-example-for-network-raw-" class="selfRef">An Example for Network Raw Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="delay-raw-metrics">
-<section id="section-4.1.4">
+<section id="section-4.2.4">
           <h4 id="name-delay-raw-metrics">
-<a href="#section-4.1.4" class="section-number selfRef">4.1.4. </a><a href="#name-delay-raw-metrics" class="section-name selfRef">Delay Raw Metrics</a>
+<a href="#section-4.2.4" class="section-number selfRef">4.2.4. </a><a href="#name-delay-raw-metrics" class="section-name selfRef">Delay Raw Metrics</a>
           </h4>
-<p id="section-4.1.4-1">Delay is a kind of synthesized metric which is influenced by
+<p id="section-4.2.4-1">Delay is a kind of synthesized metric which is influenced by
    computing, storage access, and network transmission.  It is named as
    “delay_raw”. Format should support integer and FP8.  Its unit is
-   microsecond.  It will occupy 4 octets. Example:<a href="#section-4.1.4-1" class="pilcrow">¶</a></p>
+   microsecond.  It will occupy 4 octets. Example:<a href="#section-4.2.4-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-delay-raw-me"></span><div id="fig-delay-raw-metric">
-<figure id="figure-5">
-            <div class="alignLeft art-text artwork" id="section-4.1.4-2.1">
+<figure id="figure-6">
+            <div class="alignLeft art-text artwork" id="section-4.2.4-2.1">
 <pre>
 Basic fields:
       Metric type: “delay_raw”
@@ -1529,41 +1623,41 @@ Statistics:
       max
 </pre>
 </div>
-<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
 <a href="#name-an-example-for-delay-raw-me" class="selfRef">An Example for Delay Raw Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="considerations-on-the-sources-of-metrics-and-the-statistics">
-<section id="section-4.1.5">
+<section id="section-4.2.5">
           <h4 id="name-considerations-on-the-sourc">
-<a href="#section-4.1.5" class="section-number selfRef">4.1.5. </a><a href="#name-considerations-on-the-sourc" class="section-name selfRef">Considerations on the Sources of Metrics and the Statistics</a>
+<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-considerations-on-the-sourc" class="section-name selfRef">Considerations on the Sources of Metrics and the Statistics</a>
           </h4>
-<p id="section-4.1.5-1">The sources of L0 metrics can be nominal, directly measured, or aggregated.  Nominal L0 metrics are provided initially by resource
+<p id="section-4.2.5-1">The sources of L0 metrics can be nominal, directly measured, or aggregated.  Nominal L0 metrics are provided initially by resource
    providers.  Dynamic L0 metrics are measured and updated during service stage.  L0 metrics also support aggregation, in case that
-   there are multiple service instances.<a href="#section-4.1.5-1" class="pilcrow">¶</a></p>
-<p id="section-4.1.5-2">The statistics of L0 metrics will follow the definition of Section 3.2 of <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>.<a href="#section-4.1.5-2" class="pilcrow">¶</a></p>
+   there are multiple service instances.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.2.5-2">The statistics of L0 metrics will follow the definition of Section 3.2 of <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>.<a href="#section-4.2.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="level-1-metric-representation">
-<section id="section-4.2">
+<section id="section-4.3">
         <h3 id="name-level-1-metric-representati">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-level-1-metric-representati" class="section-name selfRef">Level 1 Metric Representation</a>
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-level-1-metric-representati" class="section-name selfRef">Level 1 Metric Representation</a>
         </h3>
-<p id="section-4.2-1">Normalized metrics in categories have physical meanings but they do not have unit.  They are numbers after some ways of abstraction, but they can represent their type, in case that in some use cases, some specific types of metrics require more attention.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">Normalized metrics in categories have physical meanings but they do not have unit.  They are numbers after some ways of abstraction, but they can represent their type, in case that in some use cases, some specific types of metrics require more attention.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 <div id="normalized-compute-metrics">
-<section id="section-4.2.1">
+<section id="section-4.3.1">
           <h4 id="name-normalized-compute-metrics">
-<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-normalized-compute-metrics" class="section-name selfRef">Normalized Compute Metrics</a>
+<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-normalized-compute-metrics" class="section-name selfRef">Normalized Compute Metrics</a>
           </h4>
-<p id="section-4.2.1-1">The metric type of normalized compute metrics is “compute_norm”,
-   and its format is integer.  It has no unit.  It will occupy an octet. Example:<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.1-1">The metric type of normalized compute metrics is “compute_norm”,
+   and its format is integer.  It has no unit.  It will occupy an octet. Example:<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-normalized-c"></span><div id="fig-normalized-compute-metric">
-<figure id="figure-6">
-            <div class="alignLeft art-text artwork" id="section-4.2.1-2.1">
+<figure id="figure-7">
+            <div class="alignLeft art-text artwork" id="section-4.3.1-2.1">
 <pre>
 Basic fields:
       Metric type: “compute_norm”
@@ -1574,21 +1668,21 @@ Source:
       normalization
 </pre>
 </div>
-<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
 <a href="#name-an-example-for-normalized-c" class="selfRef">An Example for Normalized Compute Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="normalized-storage-metrics">
-<section id="section-4.2.2">
+<section id="section-4.3.2">
           <h4 id="name-normalized-storage-metrics">
-<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-normalized-storage-metrics" class="section-name selfRef">Normalized Storage Metrics</a>
+<a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-normalized-storage-metrics" class="section-name selfRef">Normalized Storage Metrics</a>
           </h4>
-<p id="section-4.2.2-1">The metric type of normalized compute metrics is “storage_norm”, and its format is integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.2-1">The metric type of normalized compute metrics is “storage_norm”, and its format is integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-normalized-s"></span><div id="fig-normalized-storage-metric">
-<figure id="figure-7">
-            <div class="alignLeft art-text artwork" id="section-4.2.2-2.1">
+<figure id="figure-8">
+            <div class="alignLeft art-text artwork" id="section-4.3.2-2.1">
 <pre>
 Basic fields:
       Metric type: “storage_norm”
@@ -1599,21 +1693,21 @@ Source:
       normalization
 </pre>
 </div>
-<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
 <a href="#name-an-example-for-normalized-s" class="selfRef">An Example for Normalized Storage Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="normalized-network-metrics">
-<section id="section-4.2.3">
+<section id="section-4.3.3">
           <h4 id="name-normalized-network-metrics">
-<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-normalized-network-metrics" class="section-name selfRef">Normalized Network Metrics</a>
+<a href="#section-4.3.3" class="section-number selfRef">4.3.3. </a><a href="#name-normalized-network-metrics" class="section-name selfRef">Normalized Network Metrics</a>
           </h4>
-<p id="section-4.2.3-1">The metric type of normalized compute metrics is “network_norm”, and its format is integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.3-1">The metric type of normalized compute metrics is “network_norm”, and its format is integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.3.3-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-normalized-n"></span><div id="fig-normalized-network-metric">
-<figure id="figure-8">
-            <div class="alignLeft art-text artwork" id="section-4.2.3-2.1">
+<figure id="figure-9">
+            <div class="alignLeft art-text artwork" id="section-4.3.3-2.1">
 <pre>
 Basic fields:
       Metric type: “network_norm”
@@ -1624,21 +1718,21 @@ Source:
       normalization
 </pre>
 </div>
-<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
 <a href="#name-an-example-for-normalized-n" class="selfRef">An Example for Normalized Network Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="normalized-delay">
-<section id="section-4.2.4">
+<section id="section-4.3.4">
           <h4 id="name-normalized-delay">
-<a href="#section-4.2.4" class="section-number selfRef">4.2.4. </a><a href="#name-normalized-delay" class="section-name selfRef">Normalized Delay</a>
+<a href="#section-4.3.4" class="section-number selfRef">4.3.4. </a><a href="#name-normalized-delay" class="section-name selfRef">Normalized Delay</a>
           </h4>
-<p id="section-4.2.4-1">The metric type of normalized compute metrics is “delay_norm”, and its format is integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.4-1">The metric type of normalized compute metrics is “delay_norm”, and its format is integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.3.4-1" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-normalized-d"></span><div id="fig-normalized-metric">
-<figure id="figure-9">
-            <div class="alignLeft art-text artwork" id="section-4.2.4-2.1">
+<figure id="figure-10">
+            <div class="alignLeft art-text artwork" id="section-4.3.4-2.1">
 <pre>
 Basic fields:
       Metric type: “delay_norm”
@@ -1649,32 +1743,32 @@ Source:
       normalization
 </pre>
 </div>
-<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
 <a href="#name-an-example-for-normalized-d" class="selfRef">An Example for Normalized Delay Metrics</a>
             </figcaption></figure>
 </div>
 </section>
 </div>
 <div id="considerations-on-the-sources-of-metrics-and-the-statistics-1">
-<section id="section-4.2.5">
+<section id="section-4.3.5">
           <h4 id="name-considerations-on-the-source">
-<a href="#section-4.2.5" class="section-number selfRef">4.2.5. </a><a href="#name-considerations-on-the-source" class="section-name selfRef">Considerations on the Sources of Metrics and the Statistics</a>
+<a href="#section-4.3.5" class="section-number selfRef">4.3.5. </a><a href="#name-considerations-on-the-source" class="section-name selfRef">Considerations on the Sources of Metrics and the Statistics</a>
           </h4>
-<p id="section-4.2.5-1">The sources of L1 metrics is normalized. Based on L0 metrics, service providers design their own algorithms to normalize metrics.  For example, assigning different cost values to each raw metric and do summation.  L1 metric do not need further statistical values.<a href="#section-4.2.5-1" class="pilcrow">¶</a></p>
+<p id="section-4.3.5-1">The sources of L1 metrics is normalized. Based on L0 metrics, service providers design their own algorithms to normalize metrics.  For example, assigning different cost values to each raw metric and do summation.  L1 metric do not need further statistical values.<a href="#section-4.3.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="level-2-metric-representation">
-<section id="section-4.3">
+<section id="section-4.4">
         <h3 id="name-level-2-metric-representati">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-level-2-metric-representati" class="section-name selfRef">Level 2 Metric Representation</a>
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-level-2-metric-representati" class="section-name selfRef">Level 2 Metric Representation</a>
         </h3>
-<p id="section-4.3-1">A fully normalized metric is a single value which does not have any physical meaning or unit.  Each provider may have its own methods to derive the value, but all providers must follow the definition in this section to represent the fully normalized value.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.3-2">Metric type is “norm_fi”. The format of the value is non-negative integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">A fully normalized metric is a single value which does not have any physical meaning or unit.  Each provider may have its own methods to derive the value, but all providers must follow the definition in this section to represent the fully normalized value.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">Metric type is “norm_fi”. The format of the value is non-negative integer.  It has no unit.  It will occupy a octet. Example:<a href="#section-4.4-2" class="pilcrow">¶</a></p>
 <span id="name-an-example-for-fully-normal"></span><div id="fig-level-2-metric">
-<figure id="figure-10">
-          <div class="alignLeft art-text artwork" id="section-4.3-3.1">
+<figure id="figure-11">
+          <div class="alignLeft art-text artwork" id="section-4.4-3.1">
 <pre>
 Basic fields:
       Metric type: “norm_fi”
@@ -1685,11 +1779,11 @@ Source:
       normalization
 </pre>
 </div>
-<figcaption><a href="#figure-10" class="selfRef">Figure 10</a>:
+<figcaption><a href="#figure-11" class="selfRef">Figure 11</a>:
 <a href="#name-an-example-for-fully-normal" class="selfRef">An Example for Fully Normalized Metric</a>
           </figcaption></figure>
 </div>
-<p id="section-4.3-4">The fully normalized value also supports aggregation when there are multiple service instances providing these fully normalized values. When providing fully normalized values, service instances do not need to do further statistics.<a href="#section-4.3-4" class="pilcrow">¶</a></p>
+<p id="section-4.4-4">The fully normalized value also supports aggregation when there are multiple service instances providing these fully normalized values. When providing fully normalized values, service instances do not need to do further statistics.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
