@@ -117,6 +117,8 @@ Regarding network-related information, the IPPM WG has defined various types of 
 
 L1 metrics are organized into distinct categories, such as computing, networking, storage, and delay. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an *aggregation function* and normalized to a unitless score that represents the performance of the underlying resources according to that category. Potential categories include:
 
+<!-- JRG Note: TODO, define aggregation and normalization function -->
+
 - **Computing:** A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU metrics.
 
 - **Networking:** A normalized value derived from network-related L0 metrics.
@@ -137,9 +139,6 @@ TODO: Some implementations may support configuration of Ingress CATS-Forwarders 
 
 Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.
 
-<!-- Comment JRG: I would like to suggest some changes to this diagram. Seems like M1 is repeated at level 0 and level 1, same for M2, M3, so this can be confusing. Also the words Raw are repeated for all boxes, which seems redudant. Same for the word Category. Also the edges seem unidirectional, from bottom to top, so we can add an arrow to reflect the direction. I am suggesting the following adjustments: -->
-
-
 ~~~
                                        +--------+
                             L2 Metric: |   M2   |
@@ -148,34 +147,96 @@ Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.
                          +-----------------+---------------+
                          |                 |               |
                      +---+----+        +---+----+      +---+----+
-         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | (...)
+         L1 Metrics: |  M1-1  |        |  M1-2  |      |  M1-3  | ...
                      +---^----+        +---^----+      +----^---+
                          |                 |                |
               +--------+-+-------+       +-+-------+        |
               |        |         |       |         |        |
            +--+---+ +--+---+ +---+--+ +--+---+ +---+--+  +--+---+
-L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | (...)
+L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 |  | M0-6 | ...
            +------+ +------+ +------+ +------+ +------+  +------+
 
 ~~~
-{: #fig-cats-metric title="Logic of CATS Metrics in levels"}
-
+{: #fig-metric-levels title="Logic of CATS Metrics in levels"}
 
 
 # Representation of Metrics
 
-This section includes the detailed representation of metrics. [RFC9439] gives a good way to show the representation of some network metrics which is used for network capabilities exposure to applications. This document further describes the representation of CATS metrics.
+The representation of metrics is a key component of the CATS architecture. It defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate different types of metrics and their associated units and precisions.
 
-Basically, in each metric level and for each metric, there will be some common fields for representation, including metric type, unit, and precision.  Metric type is a label for network devices to recognize what the metric is. "unit" and "precision" are usually associated with the metric.  How many bits a metric occupies in protocols is also required.
+This section includes the detailed representation of the CATS metrics. The design follows similar principles used in other similar IETF specifications, such as the network performance metrics defined in {{?RFC9439}}.
 
-Beyond these basic representations, the source of the metrics must also be declared, since there are multiple levels of metrics and their sources are different.  As defined in [RFC9439], there are three cost-sources, nominal, sla, and estimation.  This document further divide the estimation type into three sub-types, direct measurement, aggregation, and normalization, since different levels of metrics require different sources to acquire CATS metrics.  Directly measured metrics have physical meanings and units without any processing. Aggregated metrics can be either physically meaningful or not, and they maintain their meanings compared to the directly measured metrics.  Normalized metrics can have physical meanings or not, but they do not have units, and they are just numbers that used for routing decision making.
+## Definition of CATS Metric
 
-To be more fine-grained, this document refers to the definition of [RFC9439]  on the metrics statistics.
+A CATS metric is represented using a set of fields, each describing a property of the metric. The following fields are introduced:
+
+<!-- JRG Note and TODO: Define each of the types, formats, etc.. Do we need to standardize them? -->
+~~~
+- cats_metric:
+      - type:
+            The type of the CATS metric.
+            Examples: compute_cpu, storage_disk_size, network_bw,
+            compute_delay, network_delay, compute_norm,
+            storage_norm, network_norm, delay_norm.
+      - format_std (optional):
+            The standard used to encode and decode the value
+            field according to the format field. This field is
+            optional and only required if the value field is
+            encoded using a standard, and knowing the standard
+            is necessary to decode the value field.
+            Example: ieee_754, ascii.
+      - format:
+            The encoding format of the metric.
+            Examples: int, float.
+      - length:
+            The size of the value field measured in octets.
+            Examples: 4, 8, 16, 32, 64.
+      - units:
+            The units of this metric.
+            Examples: mhz, ghz, byte, kbyte, mbyte,
+            gbyte, bps, kbps, mbps, gbps, tbps, tflops, none.
+      - source (optional):
+            The source of information used to obtain.
+            Examples: nominal, estimation, normalization,
+            aggregation.
+      - level:
+            The level this metric belongs to.
+            Examples: L0, L1, L2.
+      - value:
+            The value of this metric.
+            Examples: 12, 3.2.
+~~~
+{: #fig-metric-def title="CATS Metric Definition"}
+
+Next, we describe each field in more detail:
+
+- **Type (type)**: This field specifies the category or kind of CATS metric being measured, such as computational resources, storage capacity, or network bandwidth. It serves as a label for network devices to recognize what the metric is.
+
+- **Format standard (format_std, optional)**: This optional field indicates the standard used to encode and decode the value field according to the format field. It is only required if the value field is encoded using a specific standard, and knowing this standard is necessary to decode the value field. Examples of format standards include ieee_754 and ascii. This field ensures that the value can be accurately interpreted by specifying the encoding method used.
+
+- **Format (format)**: This field indicates the data encoding format of the metric, such as whether the value is represented as an integer, a floating-point number, or has no specific format.
+
+- **Length (length)**: This field indicates the size of the value field measured in octets (bytes). It specifies how many bytes are used to store the value of the metric. Examples include 4, 8, 16, 32, and 64. The length field is important for memory allocation and data handling, ensuring that the value is stored and retrieved correctly.
+
+- **Units (units):** This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.
+
+- **Source (source, optional)**: This field describes the origin of the information used to obtain the metric:
+
+    - 'nominal'. Similarly to {{?RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  Not all metrics have reasonable "nominal" values.  For example, throughput can have a nominal value, which indicates the configured transmission rate of the involved devices; latency typically does not have a nominal value."
+    - 'estimation'. The 'estimation' source indicates that the metric value is computed through an estimation process.
+    - 'directly measured'. This source indicates that the metric can be obtained directly from the underlying device. The value can be dynamic and it does not need to be estimated.
+    - 'normalization'. The 'normalization' source indicates that the metric value was normalized. For instance, a metric could be normalized to take a value from 0 to 1, from 0 to 10, or to take a percentage value. This type of metrics do not have units.
+    - 'aggregation'. This source indicates that the metric value was obtained by using an aggregation function.
+
+    Nominal metrics have inherent physical meanings and specific units without any additional processing. Aggregated metrics may or may not have physical meanings, but they retain their significance relative to the directly measured metrics. Normalized metrics, on the other hand, might have physical meanings but lack units; they are simply numerical values used for making node and path selection decisions.
+
+- **Value (value)**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
 ## Level 0 Metric Representation
 
-Raw metrics have exact physical meanings and units.  They are directly measured from the underlying computing resources providers.
-   Lots of definition on this level of metrics have been defined in IT industry and other standardizations[DMTF], and this document only show some examples for different categories of metrics for reference.
+Several definitions have been developed within the compute and communication industry and through various standardizations, such as those by the {{DMTF}}, that could be used as L0 metrics. In this section, we provide examples.
+
+<!-- TODO: next step would be to update the examples once we agree with (and update as necessary) the above changes regarding the CATS metric specification. -->
 
 ### Compute Raw Metrics
 
@@ -198,8 +259,6 @@ Statistics:
       Mean
 ~~~
 {: #fig-compute-raw-metric title="An Example for Compute Raw Metrics"}
-
-
 
 ### Storage Raw Metrics
 
@@ -268,7 +327,7 @@ The sources of L0 metrics can be nominal, directly measured, or aggregated.  Nom
    providers.  Dynamic L0 metrics are measured and updated during service stage.  L0 metrics also support aggregation, in case that
    there are multiple service instances.
 
-The statistics of L0 metrics will follow the definition of Section 3.2 of [RFC9439].
+The statistics of L0 metrics will follow the definition of Section 3.2 of {{?RFC9439}}.
 
 ## Level 1 Metric Representation
 
