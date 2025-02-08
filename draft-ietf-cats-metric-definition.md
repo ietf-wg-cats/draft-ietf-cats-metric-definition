@@ -449,8 +449,6 @@ Similarly, when considering extensibility, new services can define their own new
 
 Regarding Stability, new Level 0 raw metrics may require new extension in protocol, which brings unstable format for protocol, therefore, this document does not recommend to standardize Level 0 metrics in protocol. Level 1 metrics request only few categories, and Level 2 Metric only introduce one metric to the protocol, so they are preferred from the stability aspect.
 
-On the other hand, in terms of accuracy 
-
 In conclusion, for CATS, it is recommended to use L2 metrics due to its simplicity. If advanced scheduling is needed, L1 metrics can be used. L0 metrics are the most comprehensive and dynamic, therefore transferring them to network devices is discouraged due to their high overhead.
 
 # Implementation Guidance for CATS Metrics
@@ -464,6 +462,7 @@ The intuition is to put the normalization and aggregation functions away from th
 Since C-SMA maybe co-located with CATS-Forwarders where there are limited resources for processing, the placement of normalization functions in C-SMA will incur much overhead and may influence the routing efficiency. This document suggest that the aggregation functions be placed at C-SMA while normalization functions as well as aggregation functions can be both placed at service contact instances.    
 
 Since service contact instances and C-SMAs may be provided by different vendors. There is a need to agree on a common normalization function and aggregation functions that are used for traffic steering, otherwise it might not be accurate for instance selection.  
+
 <note: should this document provide an algorithm as an example for metric normalization and aggregation?>
 
 Editor notes: 
