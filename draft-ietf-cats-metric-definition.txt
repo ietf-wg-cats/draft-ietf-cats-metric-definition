@@ -5,13 +5,13 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Informational                                    H. Shi
-Expires: 9 August 2025                                             C. Li
+Expires: 20 August 2025                                            C. Li
                                                      Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                         5 February 2025
+                                                        16 February 2025
 
 
                         CATS Metrics Definition
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 9 August 2025.
+   This Internet-Draft will expire on 20 August 2025.
 
 Copyright Notice
 
@@ -672,9 +672,9 @@ Table of Contents
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
               Drake, "A Framework for Computing-Aware Traffic Steering
               (CATS)", Work in Progress, Internet-Draft, draft-ietf-
-              cats-framework-04, 17 October 2024,
+              cats-framework-05, 10 February 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
-              framework-04>.
+              framework-05>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
