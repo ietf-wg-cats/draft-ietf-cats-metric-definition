@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-01-30T00:35:22.520096+00:00",
+  "timestamp": "2025-02-18T00:36:30.363743+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -966,24 +966,26 @@
       "id": "PR_kwDOMTaH-s6DIYIw",
       "title": "Jrg rev 20241122",
       "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/12",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2024-11-26T05:31:58Z",
-      "updatedAt": "2025-01-17T17:01:01Z",
+      "updatedAt": "2025-02-05T08:49:46Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "95ae990c2abdb44b3aaecdbfd2e79d57e8e54f82",
       "headRepository": "giralt/draft-cats-metric-definition",
       "headRefName": "JRG-rev-20241122",
-      "headRefOid": "cea8fda37c05a5272298a7610914cee11e874509",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "47eda4197544ff96c85808ea44f812035c854b42",
+      "closedAt": "2025-02-05T08:49:46Z",
+      "mergedAt": "2025-02-05T08:49:46Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "83609bf92de90cf074706480d2b13ea850de99e4"
+      },
       "comments": [
         {
           "author": "giralt",
@@ -1195,6 +1197,233 @@
               "body": "we do not need to discuss any L0 metrics, leave it to implementation. Not in the scope of this document.",
               "createdAt": "2025-01-17T16:52:33Z",
               "updatedAt": "2025-01-17T17:01:01Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6aTuv2",
+          "commit": {
+            "abbreviatedOid": "47eda41"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-03T04:11:34Z",
+          "updatedAt": "2025-02-04T09:39:39Z",
+          "comments": [
+            {
+              "originalPosition": 4,
+              "body": "Agreed. I added this in the same TODO and will address in a future PR. I want to avoid branching out too much in this PR.",
+              "createdAt": "2025-02-03T04:11:34Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            },
+            {
+              "originalPosition": 33,
+              "body": "See my comment here https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/12#issuecomment-2597486993, let's address Adrian's comments in another PR this way we keep things organized and avoid mixing several tickets in the same PR.",
+              "createdAt": "2025-02-03T04:13:40Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            },
+            {
+              "originalPosition": 89,
+              "body": "See my comment here https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/12#issuecomment-2597486993, let's address Adrian's comments in another PR this way we keep things organized and avoid mixing several tickets in the same PR.\r\n\r\nAlso, I updated the suggestion above to have 'directly measured' sources and included it in the latest commit.",
+              "createdAt": "2025-02-03T04:21:27Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            },
+            {
+              "originalPosition": 91,
+              "body": "Done, removed SLA from the draft.",
+              "createdAt": "2025-02-03T04:22:14Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            },
+            {
+              "originalPosition": 99,
+              "body": "Done, kept. Text can be improved in future iterations.",
+              "createdAt": "2025-02-03T04:24:03Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            },
+            {
+              "originalPosition": 118,
+              "body": "This, as it says above, adds more details. The table above is meant to be a quick reference table for ease of use. The follow up text is meant to provide a description in more detail. Tables are good at summarizing items, but they are not good for providing many details. Text separated from the table allows us to extend the descriptions, add more detail, and clarify specific properties or descriptions for each item.",
+              "createdAt": "2025-02-03T04:28:33Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            },
+            {
+              "originalPosition": 124,
+              "body": "Agreed, the text is just providing examples of L0 metrics (this was not included in this PR, but it was already there), it is not telling vendors how to implement them.",
+              "createdAt": "2025-02-03T04:30:52Z",
+              "updatedAt": "2025-02-04T09:39:39Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6aguOX",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T09:42:50Z",
+          "updatedAt": "2025-02-04T09:42:50Z",
+          "comments": [
+            {
+              "originalPosition": 118,
+              "body": "OK\r\n",
+              "createdAt": "2025-02-04T09:42:50Z",
+              "updatedAt": "2025-02-04T09:42:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6agumc",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T09:43:26Z",
+          "updatedAt": "2025-02-04T09:43:26Z",
+          "comments": [
+            {
+              "originalPosition": 89,
+              "body": "ok",
+              "createdAt": "2025-02-04T09:43:26Z",
+              "updatedAt": "2025-02-04T09:43:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6agutN",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T09:43:36Z",
+          "updatedAt": "2025-02-04T09:43:36Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "ok",
+              "createdAt": "2025-02-04T09:43:36Z",
+              "updatedAt": "2025-02-04T09:43:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6agu8Y",
+          "commit": {
+            "abbreviatedOid": "cea8fda"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-04T09:43:59Z",
+          "updatedAt": "2025-02-04T09:43:59Z",
+          "comments": [
+            {
+              "originalPosition": 124,
+              "body": "ok ",
+              "createdAt": "2025-02-04T09:43:59Z",
+              "updatedAt": "2025-02-04T09:43:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6apMTa",
+          "commit": {
+            "abbreviatedOid": "47eda41"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-02-05T02:36:53Z",
+          "updatedAt": "2025-02-05T02:36:53Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6aqKqd",
+          "commit": {
+            "abbreviatedOid": "47eda41"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "APPROVED",
+          "body": "LGTM",
+          "createdAt": "2025-02-05T06:32:44Z",
+          "updatedAt": "2025-02-05T06:32:44Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "id": "PR_kwDOMTaH-s6Khhn3",
+      "title": "Try to address comments from Adrian ",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/16",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
+      "createdAt": "2025-02-08T16:13:31Z",
+      "updatedAt": "2025-02-14T16:15:43Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
+      "headRepository": "bpatient78/draft-cats-metric-definition",
+      "headRefName": "main",
+      "headRefOid": "fa2e9fd53c5006fd851c8ee3358ce437c7ff0e26",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMTaH-s6cDrYH",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-14T16:01:14Z",
+          "updatedAt": "2025-02-14T16:15:43Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "Thanks for making the adjustments according to Adrian's feedback.\r\n\r\nOne comment is that I find it more appropriate to talk about \"communication metrics\" rather than \"network metrics\". A network is a specific object. Networks also could involve several devices, some of them not related to communication. The key properties here compute and communication. So I find it more appropriate to talk about \"compute metrics\" and \"communication metrics\".",
+              "createdAt": "2025-02-14T16:01:14Z",
+              "updatedAt": "2025-02-14T16:15:43Z"
+            },
+            {
+              "originalPosition": 67,
+              "body": "I feel that computing, networking and delay are metrics that operate at different levels (so it's like comparing apples to oranges). For instance, computing refers to a general class of metrics (CPU clock rate, tflops, etc.), but \"delay\" is a specific type of metric. Further, delay could be applicable to both compute and communication metrics, so it overlaps with them, confusing the taxonomy.\r\n\r\nI like to think of metrics organized on three broad types of classes depending on the \"state of data\":\r\n\r\n(1) Data can be processed using a compute resource.\r\n(2) Data can be transferred using a communication resource.\r\n(3) Data can be at rest (not being processed and not being transferred) by keeping it in a storage device.\r\n\r\nThis leads to 3 broad classes of metrics IMO:\r\n\r\n(1) Compute metrics.\r\n(2) Communication metrics.\r\n(3) Storage metrics.\r\n\r\nDelay is a specific property, so it does not belong to the same level of the above three classes. That is, delay could be applicable to compute and communication resources.",
+              "createdAt": "2025-02-14T16:10:19Z",
+              "updatedAt": "2025-02-14T16:15:43Z"
+            },
+            {
+              "originalPosition": 76,
+              "body": "I am not sure about removing storage here, we need more discussion I think. See my comment above about the possible states of data (processed, transferred, at rest)",
+              "createdAt": "2025-02-14T16:11:08Z",
+              "updatedAt": "2025-02-14T16:15:43Z"
+            },
+            {
+              "originalPosition": 119,
+              "body": "I think M0-3 should connect directly with M2, as follows (this is what Adrian was suggesting):\r\n\r\n```\r\n                                    +--------+\r\n                         L2 Metric: |   M2   |\r\n                                    +---^----+\r\n                                        |\r\n                    +-------------+-----+-----+------------+\r\n                    |             |           |            |\r\n                +---+----+        |       +---+----+   +---+----+\r\n    L1 Metrics: |  M1-1  |        |       |  M1-2  |   |  M1-3  | (...)\r\n                +---^----+        |       +---^----+   +----^---+\r\n                    |             |           |             |\r\n               +----+---+         |       +---+----+        |\r\n               |        |         |       |        |        |\r\n            +--+---+ +--+---+ +---+--+ +--+---+ +--+---+ +--+---+\r\n L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 | | M0-6 | (...)\r\n            +------+ +------+ +------+ +------+ +------+ +------+\r\n```",
+              "createdAt": "2025-02-14T16:15:12Z",
+              "updatedAt": "2025-02-14T16:15:43Z"
             }
           ]
         }
