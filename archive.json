@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-18T00:36:30.363743+00:00",
+  "timestamp": "2025-02-20T00:37:12.749754+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -1376,7 +1376,7 @@
       "labels": [],
       "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
       "createdAt": "2025-02-08T16:13:31Z",
-      "updatedAt": "2025-02-14T16:15:43Z",
+      "updatedAt": "2025-02-18T11:55:09Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
@@ -1424,6 +1424,86 @@
               "body": "I think M0-3 should connect directly with M2, as follows (this is what Adrian was suggesting):\r\n\r\n```\r\n                                    +--------+\r\n                         L2 Metric: |   M2   |\r\n                                    +---^----+\r\n                                        |\r\n                    +-------------+-----+-----+------------+\r\n                    |             |           |            |\r\n                +---+----+        |       +---+----+   +---+----+\r\n    L1 Metrics: |  M1-1  |        |       |  M1-2  |   |  M1-3  | (...)\r\n                +---^----+        |       +---^----+   +----^---+\r\n                    |             |           |             |\r\n               +----+---+         |       +---+----+        |\r\n               |        |         |       |        |        |\r\n            +--+---+ +--+---+ +---+--+ +--+---+ +--+---+ +--+---+\r\n L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 | | M0-6 | (...)\r\n            +------+ +------+ +------+ +------+ +------+ +------+\r\n```",
               "createdAt": "2025-02-14T16:15:12Z",
               "updatedAt": "2025-02-14T16:15:43Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6cXCvQ",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:46:19Z",
+          "updatedAt": "2025-02-18T11:46:19Z",
+          "comments": [
+            {
+              "originalPosition": 154,
+              "body": "In the line above, suggest the following text/small improvements:\r\n\r\n\"This field provides additional details about the metrics, particularly if there is any pre-computation performed on the metrics before they are collected. It is useful for services that require specific statistics for service instance selection.\"",
+              "createdAt": "2025-02-18T11:46:19Z",
+              "updatedAt": "2025-02-18T11:46:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6cXDkd",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:47:52Z",
+          "updatedAt": "2025-02-18T11:47:52Z",
+          "comments": [
+            {
+              "originalPosition": 169,
+              "body": "I suggest the following text/small improvements:\r\n\r\n\"The sources of L0 metrics can be nominal, directly measured, estimated, or aggregated. Nominal L0 metrics are initially provided by resource providers. Dynamic L0 metrics are measured or estimated during the service stage. Additionally, L0 metrics support aggregation when there are multiple service instances.\"",
+              "createdAt": "2025-02-18T11:47:52Z",
+              "updatedAt": "2025-02-18T11:47:52Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6cXD49",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:48:28Z",
+          "updatedAt": "2025-02-18T11:48:28Z",
+          "comments": [
+            {
+              "originalPosition": 180,
+              "body": "Nit: add space before parenthesis \r\n\r\n\"number (FP8)\"",
+              "createdAt": "2025-02-18T11:48:28Z",
+              "updatedAt": "2025-02-18T11:48:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6cXH1v",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-18T11:55:09Z",
+          "updatedAt": "2025-02-18T11:55:09Z",
+          "comments": [
+            {
+              "originalPosition": 213,
+              "body": "\r\nsuggest:\r\n\r\n\"It is named \"delay_raw\". The format should support both integer and FP8. Its unit is microseconds, and it occupies 4 octets. For example:\"\r\n",
+              "createdAt": "2025-02-18T11:55:09Z",
+              "updatedAt": "2025-02-18T11:55:10Z"
             }
           ]
         }
