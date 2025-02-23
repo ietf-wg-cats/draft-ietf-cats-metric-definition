@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-20T00:37:12.749754+00:00",
+  "timestamp": "2025-02-23T00:40:09.552740+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -1376,7 +1376,7 @@
       "labels": [],
       "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
       "createdAt": "2025-02-08T16:13:31Z",
-      "updatedAt": "2025-02-18T11:55:09Z",
+      "updatedAt": "2025-02-20T13:58:46Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
@@ -1504,6 +1504,26 @@
               "body": "\r\nsuggest:\r\n\r\n\"It is named \"delay_raw\". The format should support both integer and FP8. Its unit is microseconds, and it occupies 4 octets. For example:\"\r\n",
               "createdAt": "2025-02-18T11:55:09Z",
               "updatedAt": "2025-02-18T11:55:10Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6cwdZO",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-20T13:58:39Z",
+          "updatedAt": "2025-02-20T13:58:46Z",
+          "comments": [
+            {
+              "originalPosition": 232,
+              "body": "I think the above paragraph is  a bit confusing. Could you clarify a bit the meaning of this sentence? thanks:\r\n\r\nThey are numbers after some ways of abstraction, but they can represent their type, in case that in some use cases, some specific types of metrics require more attention.",
+              "createdAt": "2025-02-20T13:58:40Z",
+              "updatedAt": "2025-02-20T13:58:46Z"
             }
           ]
         }
