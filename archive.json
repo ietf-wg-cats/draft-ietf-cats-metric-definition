@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-25T00:38:20.667307+00:00",
+  "timestamp": "2025-02-27T00:37:33.817545+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -1376,7 +1376,7 @@
       "labels": [],
       "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
       "createdAt": "2025-02-08T16:13:31Z",
-      "updatedAt": "2025-02-20T13:58:46Z",
+      "updatedAt": "2025-02-26T19:12:11Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
@@ -1387,7 +1387,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I will be in another meeting for MWC, sorry that I can not join this meeting, Hang Shi will represent our team. Thanks.",
+          "createdAt": "2025-02-26T09:02:00Z",
+          "updatedAt": "2025-02-26T09:02:00Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOMTaH-s6cDrYH",
@@ -1403,9 +1411,9 @@
           "comments": [
             {
               "originalPosition": 35,
-              "body": "Thanks for making the adjustments according to Adrian's feedback.\r\n\r\nOne comment is that I find it more appropriate to talk about \"communication metrics\" rather than \"network metrics\". A network is a specific object. Networks also could involve several devices, some of them not related to communication. The key properties here compute and communication. So I find it more appropriate to talk about \"compute metrics\" and \"communication metrics\".",
+              "body": "Thanks for making the adjustments according to Adrian's feedback.\r\n\r\nOne comment is that I find it more appropriate to talk about \"communication metrics\" rather than \"network metrics\". A network is a specific object. Networks also could involve several devices, some of them not related to communication. The key properties here are compute and communication. So I find it more appropriate to talk about \"compute metrics\" and \"communication metrics\".",
               "createdAt": "2025-02-14T16:01:14Z",
-              "updatedAt": "2025-02-14T16:15:43Z"
+              "updatedAt": "2025-02-26T07:13:52Z"
             },
             {
               "originalPosition": 67,
@@ -1524,6 +1532,296 @@
               "body": "I think the above paragraph is  a bit confusing. Could you clarify a bit the meaning of this sentence? thanks:\r\n\r\nThey are numbers after some ways of abstraction, but they can represent their type, in case that in some use cases, some specific types of metrics require more attention.",
               "createdAt": "2025-02-20T13:58:40Z",
               "updatedAt": "2025-02-20T13:58:46Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dSpuE",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-25T01:54:15Z",
+          "updatedAt": "2025-02-25T01:54:15Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "Sounds reasonable",
+              "createdAt": "2025-02-25T01:54:15Z",
+              "updatedAt": "2025-02-25T01:54:16Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dStPR",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-25T02:03:55Z",
+          "updatedAt": "2025-02-25T02:03:55Z",
+          "comments": [
+            {
+              "originalPosition": 154,
+              "body": "Thanks for the improvement.",
+              "createdAt": "2025-02-25T02:03:55Z",
+              "updatedAt": "2025-02-25T02:03:55Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dStP_",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-25T02:03:58Z",
+          "updatedAt": "2025-02-25T02:03:58Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "I think mine is the same as yours. The only difference is M0-4 pointing to M2. ",
+              "createdAt": "2025-02-25T02:03:58Z",
+              "updatedAt": "2025-02-25T02:03:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dSvld",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-25T02:10:18Z",
+          "updatedAt": "2025-02-25T02:51:38Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "Yes.  Need further discussion. Considering there is some storage related use cases added into the CATS uc & reqs doc. And also, please see comments above",
+              "createdAt": "2025-02-25T02:10:18Z",
+              "updatedAt": "2025-02-25T02:51:38Z"
+            },
+            {
+              "originalPosition": 67,
+              "body": "Hi, Jordi, thanks for your further clarification on data-oriented classfication. In the third category you mentioned\"storage device\". Here \"storage device\", does it refer to a storage server or storage unit inside a server? And what do you think \"memory\" should belong to? Does it belong to compute metrics or storage metrics? because the word \"process\" itself is complicated to define. if following a Von Neumann pattern, then memory should be part of the \"processing\", right?\r\n\r\nIn terms of delay, yes, it doesn't belong to the three categories above. It's special, because it can be applied to describe metrics from other categories. For example, FLOPS, if it is multiplied by a delay, you can count the total number of operations. So I'm thinking if we can treat delay as well as any other metric that can be described by delay, can be a pair **<metric_1, delay>**. Even the storage metric can also be paired with delay to calculate how much space it will be occupied.  \r\n\r\nThe metric pair describes: \r\n* The capability of the object--<metric_1>\r\n* How long it will be useful-- < delay >\r\n* The total amount--< product of metric_1 and delay>  serves as a further factor for instance selection decision making \r\n\r\nGoing back to the metric framework, L0 doesn't need to be classified. The only question is should we put delay at L1. Just as I have described, maybe we can put delay as a seperate class which can be paired with other classes. We may need some text to explain it. Do you think it reasonable?",
+              "createdAt": "2025-02-25T02:37:24Z",
+              "updatedAt": "2025-02-25T02:51:38Z"
+            },
+            {
+              "originalPosition": 169,
+              "body": "Thanks for the improvement.",
+              "createdAt": "2025-02-25T02:38:30Z",
+              "updatedAt": "2025-02-25T02:51:38Z"
+            },
+            {
+              "originalPosition": 180,
+              "body": "Thanks.",
+              "createdAt": "2025-02-25T02:42:56Z",
+              "updatedAt": "2025-02-25T02:51:38Z"
+            },
+            {
+              "originalPosition": 213,
+              "body": "Thanks.",
+              "createdAt": "2025-02-25T02:43:37Z",
+              "updatedAt": "2025-02-25T02:51:38Z"
+            },
+            {
+              "originalPosition": 232,
+              "body": "Hi Jordi, sorry for making it ambiguious, I think it's because I'm not a native English speaker. I try to explain a bit more.\r\n\"They are numbers after some ways of abstraction\" --- means L1 metrics are normalized from L0 metrics.\r\n\"but they can represent their type\" -- even though L1 metrics don't have unit, they still can be classied(compute, communication or storage)\r\n\"in case that in some use cases, some specific types of metrics require more attention.\" -- This sentence wants to explain why L1 metrics are meaningful, compared to why not just normalized all L0 metrics directly into the L2 metric. The reason I think is that the category of L1 metrics can be useful for instance selection.",
+              "createdAt": "2025-02-25T02:51:15Z",
+              "updatedAt": "2025-02-25T02:51:38Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dhyV6",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "VMatrix1900",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T02:30:27Z",
+          "updatedAt": "2025-02-26T02:30:28Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "+1 on communication metric.",
+              "createdAt": "2025-02-26T02:30:28Z",
+              "updatedAt": "2025-02-26T02:30:28Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dkxqr",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T08:59:57Z",
+          "updatedAt": "2025-02-26T08:59:58Z",
+          "comments": [
+            {
+              "originalPosition": 67,
+              "body": "Delay should has its own class. We need it because it can not be generated from Computing metrics or networking metrics directly. Therefore, a Delay as a category in L1 makes sense to me.",
+              "createdAt": "2025-02-26T08:59:58Z",
+              "updatedAt": "2025-02-26T08:59:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dkyVJ",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T09:00:50Z",
+          "updatedAt": "2025-02-26T09:00:50Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "do not agree to remove storage metrics. Since this is an important metrics for some services. ",
+              "createdAt": "2025-02-26T09:00:50Z",
+              "updatedAt": "2025-02-26T09:00:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dlF5D",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T09:22:48Z",
+          "updatedAt": "2025-02-26T09:22:48Z",
+          "comments": [
+            {
+              "originalPosition": 35,
+              "body": "communication / connectivity / network metrics? for further discussion in IETF 122. Need agreement on terms.",
+              "createdAt": "2025-02-26T09:22:48Z",
+              "updatedAt": "2025-02-26T09:22:48Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dkqMu",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T08:50:07Z",
+          "updatedAt": "2025-02-26T09:46:40Z",
+          "comments": [
+            {
+              "originalPosition": 119,
+              "body": "Yeah, they are semantically the same. Adrian's diagram seemed a bit more balanced :)",
+              "createdAt": "2025-02-26T08:50:07Z",
+              "updatedAt": "2025-02-26T09:46:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dlgG4",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T09:54:29Z",
+          "updatedAt": "2025-02-26T09:54:30Z",
+          "comments": [
+            {
+              "originalPosition": 241,
+              "body": "depending on metrics, normalized metrics, unsigned, just score from 0 - X.",
+              "createdAt": "2025-02-26T09:54:30Z",
+              "updatedAt": "2025-02-26T09:54:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dlnRZ",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T10:03:20Z",
+          "updatedAt": "2025-02-26T10:03:21Z",
+          "comments": [
+            {
+              "originalPosition": 284,
+              "body": "Luis: provide some options, not solution-specific;\r\nJordi: will look through framework draft and then comment.",
+              "createdAt": "2025-02-26T10:03:21Z",
+              "updatedAt": "2025-02-26T10:03:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6drAYy",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T17:33:39Z",
+          "updatedAt": "2025-02-26T17:34:24Z",
+          "comments": [
+            {
+              "originalPosition": 232,
+              "body": "Thanks for explaining. Based on your description, I would suggest using this text (or similar):\r\n\r\n\"L1 metrics are normalized from L0 metrics. Although they don't have units, they can still be classified into types such as compute and communication. This classification is useful because it makes L1 metrics semantically meaningful.\"",
+              "createdAt": "2025-02-26T17:33:40Z",
+              "updatedAt": "2025-02-26T17:34:24Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dsOlj",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-26T19:11:34Z",
+          "updatedAt": "2025-02-26T19:12:11Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "I would suggest the following improvement on paragraph 87:\r\n\r\n\"Network resource metrics, as defined in previous documents such as RFC 9439, RFC 8912, and RFC 8911, have been in use in network systems for a long time. This document further categorizes the relevant computing metrics for CATS into three levels based on their complexity and granularity.\"",
+              "createdAt": "2025-02-26T19:11:35Z",
+              "updatedAt": "2025-02-26T19:12:11Z"
             }
           ]
         }
