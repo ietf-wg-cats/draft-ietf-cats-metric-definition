@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-02-27T00:37:33.817545+00:00",
+  "timestamp": "2025-03-02T00:40:44.115209+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -1376,7 +1376,7 @@
       "labels": [],
       "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
       "createdAt": "2025-02-08T16:13:31Z",
-      "updatedAt": "2025-02-26T19:12:11Z",
+      "updatedAt": "2025-02-28T09:54:20Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
@@ -1819,9 +1819,91 @@
           "comments": [
             {
               "originalPosition": 34,
-              "body": "I would suggest the following improvement on paragraph 87:\r\n\r\n\"Network resource metrics, as defined in previous documents such as RFC 9439, RFC 8912, and RFC 8911, have been in use in network systems for a long time. This document further categorizes the relevant computing metrics for CATS into three levels based on their complexity and granularity.\"",
+              "body": "I would suggest the following improvement on paragraph 87:\r\n\r\n\"Network resource metrics, as defined in documents such as RFC 9439, RFC 8912, and RFC 8911, have been in use in network systems for a long time. This document focuses on categorizing the relevant computing metrics for CATS into three levels based on their complexity and granularity.\"",
               "createdAt": "2025-02-26T19:11:35Z",
-              "updatedAt": "2025-02-26T19:12:11Z"
+              "updatedAt": "2025-02-27T06:32:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dwkp_",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T06:37:21Z",
+          "updatedAt": "2025-02-27T06:48:51Z",
+          "comments": [
+            {
+              "originalPosition": 57,
+              "body": "Suggest the following improvement for line 120:\r\n\r\n\"L0 metrics serve as foundational data and do not require classification. They provide basic information that supports higher-level metrics, which will be detailed in the following sections.\"",
+              "createdAt": "2025-02-27T06:37:21Z",
+              "updatedAt": "2025-02-27T06:48:51Z"
+            },
+            {
+              "originalPosition": 67,
+              "body": "As we discussed yesterday, the challenge with delay is that it is not a category at the same level as \"compute\" and \"communication\". If we classify it directly as an L1 metric, the taxonomy will appear ill-defined. For instance, how about bandwidth? and others?\r\n\r\nSince delay is a property of both compute and communication resources and can be aggregated (e.g., end-to-end delay as the sum of all delays from all compute and communication resources along the path), yesterday we discussed incorporating a new L1 class called 'composed metric.' Within 'composed metrics,' we would include 'delay' (end-to-end delay, computed using the aggregation function 'sum of all delays along the path') and 'bandwidth' (end-to-end bandwidth, computed using the aggregation function 'minimum of all resource bandwidths along the path'). Therefore, the proposal is to have three L1 categories:\r\n\r\n- Compute metric\r\n- Communication metric\r\n- Composed metric, under which we would have delay and bandwidth.",
+              "createdAt": "2025-02-27T06:45:14Z",
+              "updatedAt": "2025-02-27T06:48:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6dy9QK",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-27T10:51:25Z",
+          "updatedAt": "2025-02-28T09:54:20Z",
+          "comments": [
+            {
+              "originalPosition": 76,
+              "body": "Yesterday we discussed the option of incorporating storage as a metric inside the compute side, since based on the von Neumann machine argument, storage (memory) is an integral part of compute. ",
+              "createdAt": "2025-02-27T10:51:25Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
+            },
+            {
+              "originalPosition": 82,
+              "body": "s/weighted summary/weighted sum/",
+              "createdAt": "2025-02-27T10:52:33Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
+            },
+            {
+              "originalPosition": 128,
+              "body": "The title above seems slightly convoluted. Maybe I would simplify and just say \"CATS Metric Fields\"",
+              "createdAt": "2025-02-27T10:54:59Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
+            },
+            {
+              "originalPosition": 146,
+              "body": "Just curious, why latency cannot have a nominal value? For instance, a link (a wired cable) could have a nominal propagation delay value (vendor provided).",
+              "createdAt": "2025-02-27T10:56:56Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
+            },
+            {
+              "originalPosition": 158,
+              "body": "s/avarage/average",
+              "createdAt": "2025-02-27T10:58:33Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
+            },
+            {
+              "originalPosition": 234,
+              "body": "Suggest the following slightly improved text for line 350:\r\n\r\n\"L1 metrics are derived from the normalization of one or more L0 metrics. Service providers can design their own algorithms to normalize L0 metrics. For example, they might assign different cost values to each raw metric and perform a weighted summation.\"",
+              "createdAt": "2025-02-27T11:20:53Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
+            },
+            {
+              "originalPosition": 260,
+              "body": "For line 433, suggest: \"Comparison between the Metric Levels\"",
+              "createdAt": "2025-02-27T11:43:06Z",
+              "updatedAt": "2025-02-28T09:54:20Z"
             }
           ]
         }
