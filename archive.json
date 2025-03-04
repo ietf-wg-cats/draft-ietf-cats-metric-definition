@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-02T00:40:44.115209+00:00",
+  "timestamp": "2025-03-04T00:38:26.537716+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -1376,13 +1376,13 @@
       "labels": [],
       "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
       "createdAt": "2025-02-08T16:13:31Z",
-      "updatedAt": "2025-02-28T09:54:20Z",
+      "updatedAt": "2025-03-03T08:20:06Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
       "headRepository": "bpatient78/draft-cats-metric-definition",
       "headRefName": "main",
-      "headRefOid": "fa2e9fd53c5006fd851c8ee3358ce437c7ff0e26",
+      "headRefOid": "0cba7f21fdf9ecc6701160693cfaba7af61f7188",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -1904,6 +1904,86 @@
               "body": "For line 433, suggest: \"Comparison between the Metric Levels\"",
               "createdAt": "2025-02-27T11:43:06Z",
               "updatedAt": "2025-02-28T09:54:20Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6eG9GC",
+          "commit": {
+            "abbreviatedOid": "fa2e9fd"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-02T03:29:58Z",
+          "updatedAt": "2025-03-02T03:29:59Z",
+          "comments": [
+            {
+              "originalPosition": 146,
+              "body": "yes. you're right, I will delete the last sentence in this graph.",
+              "createdAt": "2025-03-02T03:29:58Z",
+              "updatedAt": "2025-03-02T03:29:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6d-D3N",
+          "commit": {
+            "abbreviatedOid": "0cba7f2"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-02-28T09:57:17Z",
+          "updatedAt": "2025-03-03T07:31:30Z",
+          "comments": [
+            {
+              "originalPosition": 263,
+              "body": "Suggest improving line 435 as follows:\r\n\r\n\"Metrics are consolidated from L0 to L1 to L2, with different levels of abstraction meeting the requirements of various services. Table 1 provides a comparison among the metric levels.\"",
+              "createdAt": "2025-02-28T09:57:17Z",
+              "updatedAt": "2025-03-03T07:31:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6eJcl7",
+          "commit": {
+            "abbreviatedOid": "0cba7f2"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T07:36:04Z",
+          "updatedAt": "2025-03-03T07:36:45Z",
+          "comments": [
+            {
+              "originalPosition": 322,
+              "body": "s/weighted summation/weighted sum/",
+              "createdAt": "2025-03-03T07:36:04Z",
+              "updatedAt": "2025-03-03T07:36:45Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6eJxus",
+          "commit": {
+            "abbreviatedOid": "0cba7f2"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-03-03T08:20:06Z",
+          "updatedAt": "2025-03-03T08:20:06Z",
+          "comments": [
+            {
+              "originalPosition": 322,
+              "body": "Thanks. ",
+              "createdAt": "2025-03-03T08:20:06Z",
+              "updatedAt": "2025-03-03T08:20:06Z"
             }
           ]
         }
