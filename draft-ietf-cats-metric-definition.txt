@@ -26,7 +26,7 @@ Abstract
    a system needs to share information (metrics) that describes the
    state of the resources.  Metrics from network domain have been in use
    in network systems for a long time.  This document defines a set of
-   metrics from computing domain used for CATS.>
+   metrics from the computing domain used for CATS.>
 
 Discussion Venues
 
@@ -122,8 +122,8 @@ Table of Contents
    Metrics from network domain have already been defined in previous
    documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in
    network systems for a long time.  This document focuses on
-   categorizing the relevant metrics at computing domain for CATS into
-   three levels based on their complexity and granularity.
+   categorizing the relevant metrics at the computing domain for CATS
+   into three levels based on their complexity and granularity.
 
 2.  Conventions and Definitions
 
