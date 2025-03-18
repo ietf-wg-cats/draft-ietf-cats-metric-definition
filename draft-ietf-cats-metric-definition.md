@@ -71,7 +71,7 @@ informative:
 
 --- abstract
 
-Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from computing domain used for CATS.>
+Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.>
 
 --- middle
 
@@ -81,7 +81,7 @@ Service providers are deploying computing capabilities across the network for ho
 
 CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.
 
-Metrics from network domain have already been defined in previous documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at computing domain for CATS into three levels based on their complexity and granularity.
+Metrics from network domain have already been defined in previous documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.
 
 # Conventions and Definitions
 
