@@ -140,7 +140,7 @@ The L0 metrics, such as those defined in {{?RFC8911}}, {{?RFC8912}}, {{?RFC9439}
 
 The L2 metric is a single score value derived from the lower level metrics (L0 or L1) using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.
 
-TODO: Some implementations may support configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the information from the L1 or L0 metrics. 
+TODO: Some implementations may support configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the information from the L1 or L0 metrics.
 
 Figure 1 shows the logic of metrics in Level 0, Level 1, and Level 2.
 
@@ -239,9 +239,9 @@ Next, we describe each field in more detail:
     Nominal metrics have inherent physical meanings and specific units without any additional processing. Aggregated metrics may or may not have physical meanings, but they retain their significance relative to the directly measured metrics. Normalized metrics, on the other hand, might have physical meanings but lack units; they are simply numerical values used for making node and path selection decisions.
 
 - **Statistics (statistics, optional)**: This field provides additional details about the metrics, particularly if there is any pre-computation performed on the metrics before they are collected. It is useful for services that require specific statistics for service instance selection.
-      
+
     - 'max'. The maximum value of the data collected over intervals.
-    - 'min'. The minimum value of the data collected over intervals. 
+    - 'min'. The minimum value of the data collected over intervals.
     - 'mean'. The average value of the data collected over intervals.
     - 'cur'. The current value of the data collected.
 
@@ -253,7 +253,7 @@ Several definitions have been developed within the compute and communication ind
 
 The sources of L0 metrics can be nominal, directly measured, estimated, or aggregated. Nominal L0 metrics are initially provided by resource providers. Dynamic L0 metrics are measured or estimated during the service stage. Additionally, L0 metrics support aggregation when there are multiple service instances.
 
-L0 metrics also support the statistics defined in section 4.1. 
+L0 metrics also support the statistics defined in section 4.1.
 
 <!-- TODO: next step would be to update the examples once we agree with (and update as necessary) the above changes regarding the CATS metric specification. -->
 
@@ -273,7 +273,7 @@ Source:
       nominal
 
 |Metric Type|Level|Format| Unit|Length| Value|Source|
-    8bits    2bits  1bit  4bits  3bits 32bits  3bits   
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits
 ~~~
 {: #fig-compute-raw-metric title="An Example for Compute Raw Metrics"}
 
@@ -296,7 +296,7 @@ Statistics:
       mean
 
 |Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
-    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits   
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
 ~~~
 {: #fig-network-raw-metric title="An Example for Communication Raw Metrics"}
 
@@ -318,7 +318,7 @@ Statistics:
       max
 
 |Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
-    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits   
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
 ~~~
 {: #fig-delay-raw-metric title="An Example for Delay Raw Metrics"}
 
@@ -344,7 +344,7 @@ Source:
 
 
 |Metric Type|Level|Format|Length|Value|Source|
-    8bits    2bits  1bit   3bits 8bits  3bits   
+    8bits    2bits  1bit   3bits 8bits  3bits
 ~~~
 {: #fig-normalized-compute-metric title="An Example for Normalized Compute Metrics"}
 
@@ -364,7 +364,7 @@ Source:
       normalization
 
 |Metric Type|Level|Format|Length|Value|Source|
-    8bits    2bits  1bit   3bits 8bits  3bits 
+    8bits    2bits  1bit   3bits 8bits  3bits
 
 ~~~
 {: #fig-normalized-communication-metric title="An Example for Normalized Communication Metrics"}
@@ -384,7 +384,7 @@ Source:
       normalization
 
 |Metric Type|Level|Format|Length|Value|Source|
-    8bits    2bits  1bit   3bits 8bits  3bits 
+    8bits    2bits  1bit   3bits 8bits  3bits
 ~~~
 {: #fig-normalized-metric title="An Example for Normalized Composed Metrics"}
 
@@ -405,7 +405,7 @@ Source:
       normalization
 
 |Metric Type|Level|Format|Length|Value|Source|
-    8bits    2bits  1bit   3bits 8bits  3bits 
+    8bits    2bits  1bit   3bits 8bits  3bits
 ~~~
 {: #fig-level-2-metric title="An Example for Fully Normalized Metric"}
 
@@ -438,14 +438,14 @@ This section gives some implementation guidance and provide some options for dif
 
 As is shown in CATS framework {{!I-D.ietf-cats-framework}},  there are multiple CATS components. In addition to their different functionalities, their resources and processing capabilities differ a lot as well. All of these factors must be taken into considerations when choosing where to locate the normalization functions and aggregation functions that are used to derive L2 metrics.
 
-The intuition is to put the normalization and aggregation functions away from the decision maker, CATS Path Selector (C-PS), especially when C-PS is co-located with CATS-Forwarders. With this in mind, the normalization and aggregation functions of CATS metrics can be placed at Service contact instance or CATS Service Metric Agent (C-SMA). 
+The intuition is to put the normalization and aggregation functions away from the decision maker, CATS Path Selector (C-PS), especially when C-PS is co-located with CATS-Forwarders. With this in mind, the normalization and aggregation functions of CATS metrics can be placed at Service contact instance or CATS Service Metric Agent (C-SMA).
 
-Since C-SMA maybe co-located with CATS-Forwarders where there are limited resources for processing, the placement of normalization functions in C-SMA will incur much overhead and may influence the routing efficiency. This document suggest that the aggregation functions be placed at C-SMA while normalization functions as well as aggregation functions can be both placed at service contact instances.    
+Since C-SMA maybe co-located with CATS-Forwarders where there are limited resources for processing, the placement of normalization functions in C-SMA will incur much overhead and may influence the routing efficiency. This document suggest that the aggregation functions be placed at C-SMA while normalization functions as well as aggregation functions can be both placed at service contact instances.
 
-Since service contact instances and C-SMAs may be provided by different vendors. There is a need to agree on a common normalization function and aggregation functions that are used for traffic steering, otherwise it might not be accurate for instance selection.  
+Since service contact instances and C-SMAs may be provided by different vendors. There is a need to agree on a common normalization function and aggregation functions that are used for traffic steering, otherwise it might not be accurate for instance selection.
 
 
-Editor notes: 
+Editor notes:
 Other considerations on the implementation guidance will be supplemented progressively. this draft can be updated according to the discussion of metric definition in CATS WG.
 
 
