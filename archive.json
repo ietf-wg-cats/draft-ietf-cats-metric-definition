@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-03-18T00:38:38.602350+00:00",
+  "timestamp": "2025-03-20T00:38:10.915784+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -52,6 +52,11 @@
       "name": "IETF121",
       "description": "Tickets generated from IETF 121 conversations",
       "color": "FBCA04"
+    },
+    {
+      "name": "IETF122",
+      "description": "",
+      "color": "d93f0b"
     }
   ],
   "issues": [
@@ -110,7 +115,7 @@
         },
         {
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Hi, all, I've reviewed two drafts mentioned from Ketan, https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-generic-metric/ and https://www.ietf.org/archive/id/draft-ietf-lsr-flex-algo-bw-con-15.html#section-2 \r\n\r\nThe first draft is an extension of RFC 7311 AIGP which is a set of accumulated cost metrics used in IGP domain, to inter domain usage by leverging BGP extensions for generic metrics defined in the second draft. It names the new mechanism AMetric. \r\nSome should be noted that:\r\n\r\n- these generic metrics typically refer to network metrics as described in Section 2 of draft-ietf-lsr-flex-algo-bw-con-15:\r\n\"The Traffic Engineering Default Metric is defined in [RFC5305] and [RFC3630] and the Min Unidirectional delay metric is defined in [RFC8570] and [RFC7471]. Other metrics, such as jitter, reliability, and fiscal cost may be helpful, depending on the traffic class.\"\r\n\r\n- These two drafts are more on metric exposure and metric distribution rather than the definition of new metrics.\r\n- As mentioned in https://datatracker.ietf.org/doc/draft-ietf-idr-bgp-generic-metric/ , it keeps emphasizing accumulation which should be compared with aggregation that mentioned in our drafts. \r\n- Similarly, it has a definition on normalized bit(Section 5) and which component does normalization(Section 8), and the way to use this normalized value(Section 8 and 9). I think we should refer to this part when we consider to define our normalized CATS metrics.\r\n- As Cheng mentioned above and also Lindar mentioned in the list, there are some other documents describing CATS related metrics and ways to exposure. We should also look into these docs and put them into the same discussion thread.    ",
           "createdAt": "2024-11-20T02:52:56Z",
           "updatedAt": "2024-11-20T02:52:56Z"
@@ -183,7 +188,7 @@
         },
         {
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Should we add a subsection for recommending a way for normalization? I think in CATS it is more important and more complex, since different components can do normalization. (BGP speaker, sevice contact instance, or edge cloud management system, at compute domain and network controller at network domain) They  may use different methods for normalization depending on what metrics they use.",
           "createdAt": "2024-11-20T03:41:39Z",
           "updatedAt": "2024-11-20T03:41:39Z"
@@ -223,7 +228,7 @@
         },
         {
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I'm also not familiar with security metrics, from the  slide\r\n![Uploading image.png\u2026]()\r\n\r\nIt looks like these security capability information and status information are very hard to categorize, so I sugguest may be we should avoid security related metrics. \r\n\r\nFor green metrics, let's keep an eye on how GREEN WG define on the metrics. If they only care about green metrics on network side, and they don't care IT green metrics(e.g., data center green metrics.) Maybe we can consider green metrics in CATS. But right now, I don't think we should include them in the next version.",
           "createdAt": "2024-11-20T03:21:59Z",
           "updatedAt": "2024-11-20T03:21:59Z"
@@ -313,7 +318,7 @@
       "comments": [
         {
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "For example\uff1f",
           "createdAt": "2024-11-20T03:14:04Z",
           "updatedAt": "2024-11-20T03:14:04Z"
@@ -358,7 +363,7 @@
         },
         {
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "Sometimes number of sessions is important, when it does not have a linear relationship with CPU resource occupation. Since handling different service sessions may take up different compute resources. In such case, maybe we should consider them, but it is very hard to give it cost when doing normalization.",
           "createdAt": "2024-11-20T03:13:06Z",
           "updatedAt": "2024-11-20T03:13:06Z"
@@ -396,7 +401,7 @@
         },
         {
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "body": "I think Luis's comment makes sense, we should consider separately when generating the L2 metrics. But will it be a L3 metric if these L2 metrics generated from different agents and domain. L2 from C-NMA is for path selection considering network domain metrics only. L2 from C-SMA is for instance selection considering compute domain metrics only. So can they be simply summed up at the Ingress(C-PS)? If not, will there be a simple derivation and generation of another value(L3 metric)?. I'm not recommending we should have a L3 abstraction, but try to understand such case. Welcome for discussion.:) \r\n\r\n> My understanding of metric in this document is all about compute domain metric, not network domain metric.\r\n\r\nto Vincent, this document is about CATS metrics, so it will cover both network and compute domain, even if we may not define new network metrics, considering large amout of work in network metrics definition. Metrics in network domain is for the derivation of CATS metrics. ",
           "createdAt": "2024-11-20T03:08:59Z",
           "updatedAt": "2024-11-20T03:08:59Z"
@@ -424,7 +429,7 @@
       "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/11",
       "state": "OPEN",
       "author": "bpatient78",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Hi co-authors,\r\n\r\nI find that no matter ALTO cost metrics or IGP cost metrics, they all have IANA registries. \r\nSince CATS metrics are newly proposed and may further be officially referred by other SDOs like 3GPP, ORAN, etc.\r\n\r\nI'm thinking if we could ask CATS AD and chairs to change the type of our draft to be standard track before adoption, and also maybe we should add some text in IANA considerations and apply for IANA registries when these metrics are stable.\r\n\r\nHow do you think?\r\n\r\nKehan",
@@ -521,6 +526,24 @@
       "body": "https://mailarchive.ietf.org/arch/msg/cats/HYTSkC4tFv9sdWU_1RxSJTLcta0/",
       "createdAt": "2025-01-10T07:38:33Z",
       "updatedAt": "2025-01-10T07:38:33Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 17,
+      "id": "I_kwDOMTaH-s6uiZKQ",
+      "title": "Need to provide an explanation as to why 3 levels (comment from Julien)",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/issues/17",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [
+        "IETF122"
+      ],
+      "body": "Provide an explanation justifying the approach to the proposed metrics abstraction based on the 3-level design.",
+      "createdAt": "2025-03-18T11:54:12Z",
+      "updatedAt": "2025-03-18T11:54:12Z",
       "closedAt": null,
       "comments": []
     }
@@ -899,7 +922,7 @@
             "abbreviatedOid": "fb64318"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-11-20T06:30:48Z",
@@ -1002,7 +1025,7 @@
             "abbreviatedOid": "cea8fda"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2024-12-10T12:22:19Z",
@@ -1086,7 +1109,7 @@
             "abbreviatedOid": "cea8fda"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-01-14T16:11:35Z",
@@ -1342,7 +1365,7 @@
             "abbreviatedOid": "47eda41"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "APPROVED",
           "body": "",
           "createdAt": "2025-02-05T02:36:53Z",
@@ -1369,24 +1392,26 @@
       "id": "PR_kwDOMTaH-s6Khhn3",
       "title": "Try to address comments from Adrian ",
       "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/16",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bpatient78",
-      "authorAssociation": "NONE",
+      "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "Try to address comments from Adrian, issue #15 , but there are still some points that need further discussions, especially in section 4. Some of them are labelled with <note: > \r\n",
       "createdAt": "2025-02-08T16:13:31Z",
-      "updatedAt": "2025-03-03T08:20:06Z",
+      "updatedAt": "2025-03-18T11:49:02Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "6d12ac223d4e985ed3c28a646da56dc19bced959",
       "headRepository": "bpatient78/draft-cats-metric-definition",
       "headRefName": "main",
       "headRefOid": "0cba7f21fdf9ecc6701160693cfaba7af61f7188",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-03-18T11:49:02Z",
+      "mergedAt": "2025-03-18T11:49:02Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "c7267d2a7468b5d23dad6195c32659f5502458e2"
+      },
       "comments": [
         {
           "author": "muzixing",
@@ -1541,7 +1566,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-25T01:54:15Z",
@@ -1561,7 +1586,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-25T02:03:55Z",
@@ -1581,7 +1606,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-25T02:03:58Z",
@@ -1601,7 +1626,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-25T02:10:18Z",
@@ -1711,7 +1736,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-26T09:22:48Z",
@@ -1751,7 +1776,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-26T09:54:29Z",
@@ -1771,7 +1796,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-02-26T10:03:20Z",
@@ -1913,7 +1938,7 @@
             "abbreviatedOid": "fa2e9fd"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-03-02T03:29:58Z",
@@ -1973,7 +1998,7 @@
             "abbreviatedOid": "0cba7f2"
           },
           "author": "bpatient78",
-          "authorAssociation": "NONE",
+          "authorAssociation": "CONTRIBUTOR",
           "state": "COMMENTED",
           "body": "",
           "createdAt": "2025-03-03T08:20:06Z",
