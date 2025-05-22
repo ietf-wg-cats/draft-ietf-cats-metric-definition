@@ -1,0 +1,1964 @@
+<!DOCTYPE html>
+<html lang="en" class="Internet-Draft">
+<head>
+<meta charset="utf-8">
+<meta content="Common,Latin" name="scripts">
+<meta content="initial-scale=1.0" name="viewport">
+<title>CATS Metrics Definition</title>
+<meta content="Kehan Yao" name="author">
+<meta content="Hang Shi" name="author">
+<meta content="Cheng Li" name="author">
+<meta content="L. M. Contreras" name="author">
+<meta content="Jordi Ros-Giralt" name="author">
+<meta content="
+       Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.&gt; 
+    " name="description">
+<meta content="xml2rfc 3.28.1" name="generator">
+<meta content="CATS, metric" name="keyword">
+<meta content="draft-ietf-cats-metric-definition-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.28.1
+    Python 3.12.10
+    ConfigArgParse 1.7
+    google-i18n-address 3.1.1
+    intervaltree 3.1.0
+    Jinja2 3.1.6
+    lxml 5.3.0
+    platformdirs 4.3.8
+    pycountry 24.6.1
+    PyYAML 6.0.2
+    requests 2.32.3
+    setuptools 70.3.0
+    wcwidth 0.2.13
+-->
+<link href="draft-ietf-cats-metric-definition.xml" rel="alternate" type="application/rfc+xml">
+<link href="#copyright" rel="license">
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: italic;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-greek.woff2') format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Sofia Sans Semi Condensed';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url('https://martinthomson.github.io/rfc-css/fonts/sofiasanssemicondensed-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
+  --background-color: #fff;
+  --text-color: #222;
+  --title-color: #191919;
+  --link-color: #2a6496;
+  --highlight-color: #f9f9f9;
+  --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
+  --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  --font-title: "Sofia Sans Semi Condensed", sans-serif;
+  scrollbar-color: #bbb #eee;
+}
+body {
+  max-width: 600px;
+  margin: 75px auto;
+  padding: 0 5px;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font: 16px/22px "Lora", serif;
+  scroll-behavior: smooth;
+}
+
+.ears {
+  display: none;
+}
+
+/* headings */
+section {
+  clear: both;
+}
+.section-number {
+  padding-right: 0.5em;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 680;
+  margin: 0.8em 0 0.3em;
+  font-size-adjust: 0.5;
+  color: var(--title-color);
+}
+h1#title {
+  font-size: 32px;
+  line-height: 40px;
+  clear: both;
+}
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
+h1, h2, h3 {
+  font-size: 22px;
+  line-height: 27px;
+}
+h4, h5, h6 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+/* general structure */
+.author {
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+#abstract+p {
+  font-size: 18px;
+  line-height: 24px;
+}
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
+p {
+  padding: 0;
+  margin: 0.5em 0;
+  text-align: left;
+}
+div {
+  margin: 0;
+}
+.alignRight.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignRight.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignRight {
+  margin: 1em 0;
+}
+.alignRight > *:first-child {
+  border: none;
+  margin: 0;
+  float: right;
+  clear: both;
+}
+.alignRight > *:nth-child(2) {
+  clear: both;
+  display: block;
+  border: none;
+}
+svg {
+  display: block;
+}
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
+.alignCenter.art-text {
+  background-color: var(--highlight-color);
+  border: 1px solid var(--line-color);
+  border-radius: 3px;
+  padding: 0.5em 1em 0;
+  margin-bottom: 0.5em;
+}
+.alignCenter.art-text pre {
+  padding: 0;
+  width: auto;
+}
+.alignCenter {
+  margin: 1em 0;
+}
+.alignCenter > *:first-child {
+  border: none;
+  /* this isn't optimal, but it's an existence proof.  PrinceXML doesn't
+     support flexbox yet.
+  */
+  display: table;
+  margin: 0 auto;
+}
+
+/* lists */
+ol, ul {
+  padding: 0;
+  margin: 0 0 0.5em 2em;
+  & :is(ol, ul) {
+    margin-left: 1em;
+  }
+}
+li {
+  margin: 0 0 0.25em 0;
+}
+ul.empty, .ulEmpty {
+  list-style-type: none;
+  & li {
+    margin-top: 0.5em;
+  }
+}
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  margin: 0 0 0 2em;
+  & li {
+    margin: 0;
+    & :first-child { margin-top: 0; }
+    & :last-child { margin-bottom: 0; }
+  }
+}
+
+/* definition lists */
+dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+  &.olPercent {
+    --indent: 5ch;
+    & > dt {
+      min-width: calc(var(--indent) - 2ch);
+    }
+  }
+  &.olPercent > dt {
+    float: none;
+  }
+
+  dl > dd > & {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+}
+dl:not(.dlNewline) > dt {
+  float: left;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl > dd {
+  margin-bottom: .8em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+  & > :is(:first-child, .break:first-child + *) {
+    margin-top: 0;
+  }
+  & > :is(:last-child) {
+    margin-bottom: 0;
+  }
+}
+:is(dd, span).break {
+  display: none;
+}
+
+/* links */
+a, a[href].selfRef:hover {
+  text-decoration: none;
+}
+a[href] {
+  color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
+}
+a[href]:hover {
+  text-decoration: underline;
+}
+a[href].selfRef:hover {
+  background-color: var(--highlight-color);
+}
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
+
+/* Figures */
+tt, code, pre {
+  background-color: var(--highlight-color);
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
+pre {
+  border: 1px solid var(--line-color);
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  margin: 5px;
+  padding: 5px;
+}
+img {
+  max-width: 100%;
+}
+figure {
+  margin: 0.5em 0;
+  padding: 0;
+}
+figure blockquote {
+  margin: 0.8em 0.4em 0.4em;
+}
+figcaption, caption {
+  font-style: italic;
+  margin: 0.5em 1.5em;
+  text-align: left;
+  caption-side: bottom;
+}
+@media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
+    display: inline-block;
+    /* In the horizontal direction, sometimes people make over-sized figures.
+       Scrollbars for those is therefore necessary: auto adds them as necessary..
+       In the vertical direction, the line-height can combine with the font
+       asender/descender height to produce scrollbars: hidden avoids that. */
+    overflow: auto hidden;
+  }
+  pre {
+    max-width: 100%;
+    width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
+  }
+  figure pre {
+    display: block;
+    width: calc(100% - 25px);
+  }
+  :is(pre, svg) + .pilcrow {
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-bottom: 8px;
+  }
+}
+
+/* aside, blockquote */
+aside, blockquote {
+  margin-left: 0;
+  padding: 0 2em;
+  font-style: italic;
+}
+blockquote {
+  margin: 1em 0;
+}
+cite {
+  display: block;
+  text-align: right;
+  font-style: italic;
+}
+
+/* tables */
+table {
+  width: auto;
+  max-width: 100%;
+  margin: 0 0 1em;
+  border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+table .text-left {
+  text-align: left;
+}
+table .text-center {
+  text-align: center;
+}
+table .text-right {
+  text-align: right;
+}
+
+thead, tbody {
+  border: 1px solid var(--line-color);
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 5px 10px;
+}
+th {
+  background-color: var(--line-color);
+}
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
+  background-color: var(--background-color);
+}
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
+  background-color: var(--highlight-color);
+}
+table caption {
+  margin: 0;
+  padding: 3px 0 3px 1em;
+}
+table p {
+  margin: 0;
+}
+
+/* pilcrow */
+a.pilcrow {
+  margin-left: 3px;
+  opacity: 0.2;
+  user-select: none;
+  &[href] {
+    color: var(--pilcrow-weak);
+    &:hover { text-decoration: none; }
+  }
+}
+@media not print {
+  :hover > a.pilcrow {
+    opacity: 1;
+  }
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
+    background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
+  }
+}
+
+/* misc */
+hr {
+  border: 0;
+  border-top: 1px solid var(--line-color);
+}
+.bcp14 {
+  font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
+}
+.role {
+  font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
+}
+
+/* info block */
+#identifiers {
+  margin: 0;
+  font-size: var(--small-font-size);
+  line-height: 18px;
+  --identifier-width: 15ch;
+  & dt {
+    width: var(--identifier-width);
+    min-width: var(--identifier-width);
+    clear: left;
+    float: left;
+    text-align: right;
+    margin-right: 1ch;
+  }
+  & dd {
+    margin: 0;
+    margin-left: calc(1em + var(--identifier-width)) !important;
+    min-width: 5em;
+  }
+  & .authors {
+    & .author {
+      display: inline-block;
+      margin-right: 1.5em;
+    }
+    & .org {
+      font-style: italic;
+    }
+  }
+}
+
+/* The prepared/rendered info at the very bottom of the page */
+.docInfo {
+  color: #999;
+  font-size: 0.9em;
+  font-style: italic;
+  margin-top: 2em;
+}
+.docInfo .prepared {
+  float: right;
+}
+
+/* table of contents */
+#toc {
+  padding: 0.75em 0 2em 0;
+  margin-bottom: 1em;
+
+  & nav {
+    & ul {
+      margin: 0 0.5em 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    & li {
+      line-height: 1.3em;
+      margin: 2px 0;
+      padding-left: 1.2em;
+      text-indent: -1.2em;
+    }
+  }
+  & a.xref {
+    white-space: normal;
+  }
+}
+
+.references {
+  & > dt {
+    text-align: right;
+    font-weight: bold;
+    min-width: 10ch;
+    margin-right: 1.5ch;
+    &:target::before {
+      content: "⇒";
+      margin: 0 10px 0 -25px;
+    }
+  }
+  & > dd {
+    margin-left: 12ch !important;
+    overflow: visible;
+    & .refInstance {
+      margin-bottom: 0.8em;
+    }
+    & .ascii {
+      margin-bottom: 0.25em;
+    }
+  }
+}
+
+#rfc\.index\.index + ul {
+  margin-left: 0;
+}
+
+/* authors */
+address.vcard {
+  font-style: normal;
+  max-width: 20em;
+  margin: 1em auto 1em 0;
+
+  & .nameRole {
+    font-weight: 700;
+    margin-left: 0;
+  }
+  & .label {
+    margin: 0.5em 0;
+  }
+  & .type {
+    display: none;
+  }
+  & .alternative-contact {
+    margin: 0.5em 0 0.25em 0;
+  }
+  & .non-ascii {
+    margin: 0 0 0 2em;
+  }
+  & div.left {
+    text-align: left;
+  }
+  & div.right {
+    text-align: right;
+  }
+}
+
+hr.addr {
+  border-top: 1px dashed;
+  margin: 0;
+  color: #ddd;
+  max-width: calc(100% - 16px);
+}
+@media (min-width: 500px) {
+  #authors-addresses > section {
+    column-count: 2;
+    column-gap: 20px;
+  }
+  #authors-addresses > section > h2 {
+    column-span: all;
+  }
+  /* hack for break-inside: avoid-column */
+  #authors-addresses address {
+    display: inline-block;
+    break-inside: avoid-column;
+  }
+}
+
+/* Comments */
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
+}
+.cref {
+  background-color: rgba(249, 232, 105, 0.3);
+  padding: 2px 4px;
+}
+.crefSource {
+  font-style: italic;
+}
+
+@media screen {
+  #toc nav {
+    font-family: var(--font-title);
+    font-weight: 360;
+    & > ul { margin-bottom: 2em; }
+    & ul {
+      margin: 0 0 0 4px;
+      & :is(p, li) {
+        margin: 2px 0;
+      }
+    }
+  }
+  #toc a.toplink {
+    float: right;
+  }
+}
+@media not screen {
+  #toc a.toplink {
+    display: none;
+  }
+}
+
+
+/* TOC layout for smaller screens */
+@media screen and (max-width: 929px) {
+  #toc {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    padding: 1px 0 0 0;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    opacity: 0.6;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 2px 0 2px 6px;
+    padding-right: 1em;
+    font-size: 18px;
+    line-height: 24px;
+    min-width: 190px;
+    text-align: right;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    &::before { /* css hamburger */
+      float: right;
+      position: relative;
+      width: 1em;
+      height: 1px;
+      left: -164px;
+      margin: 8px 0 0 0;
+      background: white none repeat scroll 0 0;
+      box-shadow: 0 4px 0 0 white, 0 8px 0 0 white;
+      content: "";
+    }
+  }
+  #toc nav {
+    display: none;
+    background-color: var(--background-color);
+    padding: 0.5em 1em 1em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    height: calc(100vh - 48px);
+    border-left: 1px solid #ddd;
+  }
+  #toc.active {
+    opacity: 1;
+    & nav { display: block; }
+  }
+  /* Make the collapsed ToC header render white on gray also when it's a link */
+  #toc h2 a,
+  #toc h2 a:is(:link, :focus, :hover),
+  #toc a.toplink,
+  #toc a.toplink:hover {
+    color: white;
+    background-color: #444;
+    text-decoration: none;
+  }
+  #toc a.toplink {
+    margin: 2px 0.5em 0;
+  }
+}
+
+/* TOC layout for wide screens */
+@media screen and (min-width: 930px) {
+  body {
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
+  }
+  #toc {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    right: calc(50vw - 480px);
+    width: 312px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  #toc h2 {
+    margin: 0;
+    padding: 0.25em 1em 1em 0;
+  }
+  #toc nav {
+    display: block;
+    height: calc(90vh - 84px);
+    bottom: 0;
+    padding: 0.5em 0 2em;
+    overflow: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  img { /* future proofing */
+    max-width: 100%;
+    height: auto;
+  }
+  #toc a.toplink {
+    margin: 8px 0.5em 0;
+  }
+}
+
+/* pagination */
+@media print {
+  body {
+    width: 100%;
+  }
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+  #n-copyright-notice {
+    border-bottom: none;
+  }
+  #toc, #n-introduction {
+    page-break-before: always;
+  }
+  #toc {
+    border-top: none;
+    padding-top: 0;
+  }
+  figure, pre, .vcard {
+    page-break-inside: avoid;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+  :is(h2, h3, h4, h5, h6)+*, dd {
+    page-break-before: avoid;
+  }
+  pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 10pt;
+  }
+  table {
+    border: 1px solid #ddd;
+  }
+  td {
+    border-top: 1px solid #ddd;
+  }
+}
+
+@page :first {
+  padding-top: 0;
+  @top-left {
+    content: normal;
+    border: none;
+  }
+  @top-center {
+    content: normal;
+    border: none;
+  }
+  @top-right {
+    content: normal;
+    border: none;
+  }
+}
+
+@page {
+  size: A4;
+  margin-bottom: 45mm;
+  padding-top: 20px;
+}
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
+}
+</style>
+
+</head>
+<body class="xml2rfc">
+<table class="ears">
+<thead><tr>
+<td class="left">Internet-Draft</td>
+<td class="center">CATS Metrics</td>
+<td class="right">May 2025</td>
+</tr></thead>
+<tfoot><tr>
+<td class="left">Kehan, et al.</td>
+<td class="center">Expires 23 November 2025</td>
+<td class="right">[Page]</td>
+</tr></tfoot>
+</table>
+<div id="external-metadata" class="document-information"></div>
+<div id="internal-metadata" class="document-information">
+<dl id="identifiers">
+<dt class="label-workgroup">Workgroup:</dt>
+<dd class="workgroup">Computing-Aware Traffic Steering</dd>
+<dt class="label-internet-draft">Internet-Draft:</dt>
+<dd class="internet-draft">draft-ietf-cats-metric-definition-latest</dd>
+<dt class="label-published">Published:</dt>
+<dd class="published">
+<time datetime="2025-05-22" class="published">22 May 2025</time>
+    </dd>
+<dt class="label-intended-status">Intended Status:</dt>
+<dd class="intended-status">Informational</dd>
+<dt class="label-expires">Expires:</dt>
+<dd class="expires"><time datetime="2025-11-23">23 November 2025</time></dd>
+<dt class="label-authors">Authors:</dt>
+<dd class="authors">
+<div class="author">
+      <div class="author-name">Y. Kehan</div>
+<div class="org">China Mobile</div>
+</div>
+<div class="author">
+      <div class="author-name">H. Shi</div>
+<div class="org">Huawei Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">C. Li</div>
+<div class="org">Huawei Technologies</div>
+</div>
+<div class="author">
+      <div class="author-name">L. M. Contreras</div>
+<div class="org">Telefonica</div>
+</div>
+<div class="author">
+      <div class="author-name">J. Ros-Giralt</div>
+<div class="org">Qualcomm Europe, Inc.</div>
+</div>
+</dd>
+</dl>
+</div>
+<h1 id="title">CATS Metrics Definition</h1>
+<section id="section-abstract">
+      <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
+<p id="section-abstract-1">Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.&gt;<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+</section>
+<section class="note rfcEditorRemove" id="section-note.1">
+      <h2 id="name-discussion-venues">
+<a href="#name-discussion-venues" class="section-name selfRef">Discussion Venues</a>
+      </h2>
+<p id="section-note.1-1">This note is to be removed before publishing as an RFC.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+<p id="section-note.1-2">Discussion of this document takes place on the
+    Computing-Aware Traffic Steering Working Group mailing list (cats@ietf.org),
+    which is archived at <span><a href="https://mailarchive.ietf.org/arch/browse/cats/">https://mailarchive.ietf.org/arch/browse/cats/</a></span>.<a href="#section-note.1-2" class="pilcrow">¶</a></p>
+<p id="section-note.1-3">Source for this draft and an issue tracker can be found at
+    <span><a href="https://github.com/VMatrix1900/draft-cats-metric-definition">https://github.com/VMatrix1900/draft-cats-metric-definition</a></span>.<a href="#section-note.1-3" class="pilcrow">¶</a></p>
+</section>
+<div id="status-of-memo">
+<section id="section-boilerplate.1">
+        <h2 id="name-status-of-this-memo">
+<a href="#name-status-of-this-memo" class="section-name selfRef">Status of This Memo</a>
+        </h2>
+<p id="section-boilerplate.1-1">
+        This Internet-Draft is submitted in full conformance with the
+        provisions of BCP 78 and BCP 79.<a href="#section-boilerplate.1-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-2">
+        Internet-Drafts are working documents of the Internet Engineering Task
+        Force (IETF). Note that other groups may also distribute working
+        documents as Internet-Drafts. The list of current Internet-Drafts is
+        at <span><a href="https://datatracker.ietf.org/drafts/current/">https://datatracker.ietf.org/drafts/current/</a></span>.<a href="#section-boilerplate.1-2" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-3">
+        Internet-Drafts are draft documents valid for a maximum of six months
+        and may be updated, replaced, or obsoleted by other documents at any
+        time. It is inappropriate to use Internet-Drafts as reference
+        material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.1-4">
+        This Internet-Draft will expire on 23 November 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="copyright">
+<section id="section-boilerplate.2">
+        <h2 id="name-copyright-notice">
+<a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
+        </h2>
+<p id="section-boilerplate.2-1">
+            Copyright (c) 2025 IETF Trust and the persons identified as the
+            document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
+<p id="section-boilerplate.2-2">
+            This document is subject to BCP 78 and the IETF Trust's Legal
+            Provisions Relating to IETF Documents
+            (<span><a href="https://trustee.ietf.org/license-info">https://trustee.ietf.org/license-info</a></span>) in effect on the date of
+            publication of this document. Please review these documents
+            carefully, as they describe your rights and restrictions with
+            respect to this document. Code Components extracted from this
+            document must include Revised BSD License text as described in
+            Section 4.e of the Trust Legal Provisions and are provided without
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="toc">
+<section id="section-toc.1">
+        <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
+<a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
+        </h2>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-conventions-and-definitions" class="internal xref">Conventions and Definitions</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-definition-of-metrics" class="internal xref">Definition of Metrics</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-level-0-raw-metrics" class="internal xref">Level 0: Raw Metrics</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-level-1-normalized-metrics-" class="internal xref">Level 1: Normalized Metrics in Categories</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-level-2-fully-normalized-me" class="internal xref">Level 2: Fully Normalized Metric.</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-representation-of-metrics" class="internal xref">Representation of Metrics</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-cats-metric-fields" class="internal xref">CATS Metric Fields</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-level-0-metric-representati" class="internal xref">Level 0 Metric Representation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.1">
+                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="auto internal xref">4.2.1</a>.  <a href="#name-compute-raw-metrics" class="internal xref">Compute Raw Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.2">
+                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="auto internal xref">4.2.2</a>.  <a href="#name-communication-raw-metrics" class="internal xref">Communication Raw Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2.2.3">
+                    <p id="section-toc.1-1.4.2.2.2.3.1"><a href="#section-4.2.3" class="auto internal xref">4.2.3</a>.  <a href="#name-delay-raw-metrics" class="internal xref">Delay Raw Metrics</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="auto internal xref">4.3</a>.  <a href="#name-level-1-metric-representati" class="internal xref">Level 1 Metric Representation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.1">
+                    <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="auto internal xref">4.3.1</a>.  <a href="#name-normalized-compute-metrics" class="internal xref">Normalized Compute Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.2">
+                    <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="auto internal xref">4.3.2</a>.  <a href="#name-normalized-communication-me" class="internal xref">Normalized Communication Metrics</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.3.2.3">
+                    <p id="section-toc.1-1.4.2.3.2.3.1"><a href="#section-4.3.3" class="auto internal xref">4.3.3</a>.  <a href="#name-normalized-composed-metrics" class="internal xref">Normalized Composed Metrics</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="auto internal xref">4.4</a>.  <a href="#name-level-2-metric-representati" class="internal xref">Level 2 Metric Representation</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-comparison-among-metric-lev" class="internal xref">Comparison among Metric Levels</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-implementation-guidance-on-" class="internal xref">Implementation Guidance on Using CATS Metrics</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-security-considerations" class="internal xref">Security Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
+</li>
+            </ul>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
+</nav>
+</section>
+</div>
+<div id="introduction">
+<section id="section-1">
+      <h2 id="name-introduction">
+<a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
+      </h2>
+<p id="section-1-1">Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application. To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
+<p id="section-1-2">CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.<a href="#section-1-2" class="pilcrow">¶</a></p>
+<p id="section-1-3">Metrics from network domain have already been defined in previous documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.<a href="#section-1-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="conventions-and-definitions">
+<section id="section-2">
+      <h2 id="name-conventions-and-definitions">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-conventions-and-definitions" class="section-name selfRef">Conventions and Definitions</a>
+      </h2>
+<p id="section-2-1">This document uses the following terms defined in <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>:<a href="#section-2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-2-2.1">
+          <p id="section-2-2.1.1">Computing-Aware Traffic Steering (CATS)<a href="#section-2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-2.2">
+          <p id="section-2-2.2.1">Service<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-2-2.3">
+          <p id="section-2-2.3.1">Service contact instance<a href="#section-2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+</section>
+</div>
+<div id="definition-of-metrics">
+<section id="section-3">
+      <h2 id="name-definition-of-metrics">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-definition-of-metrics" class="section-name selfRef">Definition of Metrics</a>
+      </h2>
+<p id="section-3-1">Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the metrics distribution protocol. (See <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span> for a discussion of metrics distribution protocols.) Conversely, if the metrics are too coarse-grained, they may not have sufficient information to enable proper operational decisions. To ensure scalability while providing sufficient detail for effective decision-making, this document provides a definition of metrics that incorporates three levels of abstraction:<a href="#section-3-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3-2.1">
+          <p id="section-3-2.1.1"><strong>Level 0 (L0): Raw metrics.</strong> These metrics are presented without abstraction, with each metric using its own unit and format as defined by the underlying resource.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.2">
+          <p id="section-3-2.2.1"><strong>Level 1 (L1): Metrics normalized within categories.</strong> These metrics are derived by aggregating L0 metrics into multiple categories, such as network and computing. Each category is summarized with a single L1 metric by normalizing it into a value within a defined range of scores.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
+</li>
+        <li class="normal" id="section-3-2.3">
+          <p id="section-3-2.3.1"><strong>Level 2 (L2): Fully normalized metric.</strong> These metrics are derived by aggregating lower level metrics (L0 or L1) into a single L2 metric, which is then normalized into a value within a defined range of scores.<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+</li>
+      </ul>
+<div id="level-0-raw-metrics">
+<section id="section-3.1">
+        <h3 id="name-level-0-raw-metrics">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-level-0-raw-metrics" class="section-name selfRef">Level 0: Raw Metrics</a>
+        </h3>
+<p id="section-3.1-1">Level 0 metrics encompass detailed, raw metrics, including but not limitted to:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-2.1">
+            <p id="section-3.1-2.1.1">CPU: Base Frequency, boosted frequency, number of cores, core utilization, memory bandwidth, memory size, memory utilization, power consumption.<a href="#section-3.1-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-2.2">
+            <p id="section-3.1-2.2.1">GPU: Frequency, number of render units, memory bandwidth, memory size, memory utilization, core utilization, power consumption.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-2.3">
+            <p id="section-3.1-2.3.1">NPU: Computing power, utilization, power consumption.<a href="#section-3.1-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-2.4">
+            <p id="section-3.1-2.4.1">Network: Bandwidth, capacity, throughput, bytes transmitted, bytes received, host bus utilization.<a href="#section-3.1-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-2.5">
+            <p id="section-3.1-2.5.1">Storage: Available space, read speed, write speed.<a href="#section-3.1-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.1-2.6">
+            <p id="section-3.1-2.6.1">Delay: Time taken to process a request.<a href="#section-3.1-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.1-3">L0 metrics serve as foundational data and do not require classification. They provide basic information to support higher-level metrics, as detailed in the following sections.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">L0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1-5">Regarding network-related information, <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span> and <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span> define various performance metrics and their registries. Additionally, in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, the ALTO WG introduced an extended set of metrics related to network performance, such as throughput and delay. For compute metrics, <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span> lists a set of cloud resource metrics.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="level-1-normalized-metrics-in-categories">
+<section id="section-3.2">
+        <h3 id="name-level-1-normalized-metrics-">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-level-1-normalized-metrics-" class="section-name selfRef">Level 1: Normalized Metrics in Categories</a>
+        </h3>
+<p id="section-3.2-1">L1 metrics are organized into distinct categories, such as computing, communication, and composed metrics. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an <em>aggregation function</em> and normalized to a unitless score that represents the performance of the underlying resources according to that category. Potential categories include:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-2.1">
+            <p id="section-3.2-2.1.1"><strong>Computing:</strong> A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU utilization.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.2">
+            <p id="section-3.2-2.2.1"><strong>Communication:</strong> A normalized value derived from communication-related L0 metrics, such as throughput and latency.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.3">
+            <p id="section-3.2-2.3.1"><strong>Composed:</strong> A normalized value derived from an end-to-end aggregation function by levaraging both computing and communication metrics. For example, end-to-end delay computed as the sum of all delays along a path.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-3">Editor note: detailed categories can be updated according to the CATS WG discussion.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">L0 metrics, such as those defined in <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, and <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span>, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="level-2-fully-normalized-metric">
+<section id="section-3.3">
+        <h3 id="name-level-2-fully-normalized-me">
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-level-2-fully-normalized-me" class="section-name selfRef">Level 2: Fully Normalized Metric.</a>
+        </h3>
+<p id="section-3.3-1">The L2 metric is a single score value derived from the lower level metrics (L0 or L1) using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">TODO: Some implementations may support the configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the information from the L1 or L0 metrics.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Figure 1 provides a summary of the logical relationships between metrics across the three levels of abstraction.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<span id="name-logic-of-cats-metrics-in-le"></span><div id="fig-metric-levels">
+<figure id="figure-1">
+          <div class="alignLeft art-text artwork" id="section-3.3-4.1">
+<pre>
+                                    +--------+
+                         L2 Metric: |   M2   |
+                                    +---^----+
+                                        |
+                    +-------------+-----+-----+------------+
+                    |             |           |            |
+                +---+----+        |       +---+----+   +---+----+
+    L1 Metrics: |  M1-1  |        |       |  M1-2  |   |  M1-3  | (...)
+                +---^----+        |       +---^----+   +----^---+
+                    |             |           |             |
+               +----+---+         |       +---+----+        |
+               |        |         |       |        |        |
+            +--+---+ +--+---+ +---+--+ +--+---+ +--+---+ +--+---+
+ L0 Metrics:| M0-1 | | M0-2 | | M0-3 | | M0-4 | | M0-5 | | M0-6 | (...)
+            +------+ +------+ +------+ +------+ +------+ +------+
+
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-logic-of-cats-metrics-in-le" class="selfRef">Logic of CATS Metrics in levels</a>
+          </figcaption></figure>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="representation-of-metrics">
+<section id="section-4">
+      <h2 id="name-representation-of-metrics">
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-representation-of-metrics" class="section-name selfRef">Representation of Metrics</a>
+      </h2>
+<p id="section-4-1">The representation of metrics is a key component of the CATS architecture. It defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate various types of metrics along with their respective units and precision levels, yet simple enough to enable easy implementation and deployment across heterogeneous edge environments.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="cats-metric-fields">
+<section id="section-4.1">
+        <h3 id="name-cats-metric-fields">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-cats-metric-fields" class="section-name selfRef">CATS Metric Fields</a>
+        </h3>
+<p id="section-4.1-1">This section presents the detailed representation of CATS metrics. The design aligns with principles established in similar IETF specifications, such as the network performance metrics defined in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">A CATS metric is represented using a set of fields, each describing a property of the metric. This document introduces the following CATS metrics fields:<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<span id="name-cats-metric-fields-2"></span><div id="fig-metric-def">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="section-4.1-3.1">
+<pre>
+- Cats_metric:
+      - Metric_type:
+            The type of the CATS metric.
+            Examples: compute_cpu, storage_disk_size, network_bw,
+            compute_delay, network_delay, compute_norm,
+            storage_norm, network_norm, delay_norm.
+      - Format:
+            The encoding format of the metric.
+            Examples: int, float.
+      - Format_std (optional):
+            The standard used to encode and decode the value
+            field according to the format field.
+            Example: ieee_754, ascii.
+      - Length:
+            The size of the value field measured in octets.
+            Examples: 2, 4, 8, 16, 32, 64.
+      - Unit:
+            The unit of this metric.
+            Examples: mhz, ghz, byte, kbyte, mbyte,
+            gbyte, bps, kbps, mbps, gbps, tbps, tflops, none.
+      - Source (optional):
+            The source of information used to obtain the value field.
+            Examples: nominal, estimation, normalization,
+            aggregation.
+      - Statistics(optional):
+            The statistical function used to obtain the value field.
+            Examples: max, min, mean, cur.
+      - Level:
+            The level this metric belongs to.
+            Examples: L0, L1, L2.
+      - Value:
+            The value of this metric.
+            Examples: 12, 3.2.
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-cats-metric-fields-2" class="selfRef">CATS Metric Fields</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.1-4">Next, we describe each field in more detail:<a href="#section-4.1-4" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-5.1">
+            <p id="section-4.1-5.1.1"><strong>Metric_Type (type)</strong>: This field specifies the category or kind of CATS metric being measured, such as computational resources, storage capacity, or network bandwidth. It acts as a label that enables network devices to identify the purpose of the metric.<a href="#section-4.1-5.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.2">
+            <p id="section-4.1-5.2.1"><strong>Format (format)</strong>: This field indicates the data encoding format of the metric, such as whether the value is represented as an integer, a floating-point number, or has no specific format.<a href="#section-4.1-5.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.3">
+            <p id="section-4.1-5.3.1"><strong>Format standard (format_std, optional)</strong>: This optional field indicates the standard used to encode and decode the value field according to the format field. It is only required if the value field is encoded using a specific standard, and knowing this standard is necessary to decode the value field. Examples of format standards include ieee_754 and ascii. This field ensures that the value can be accurately interpreted by specifying the encoding method used.<a href="#section-4.1-5.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.4">
+            <p id="section-4.1-5.4.1"><strong>Length (length)</strong>: This field indicates the size of the value field measured in octets (bytes). It specifies how many bytes are used to store the value of the metric. Examples include 4, 8, 16, 32, and 64. The length field is important for memory allocation and data handling, ensuring that the value is stored and retrieved correctly.<a href="#section-4.1-5.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.5">
+            <p id="section-4.1-5.5.1"><strong>Unit (unit)</strong>: This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.<a href="#section-4.1-5.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.6">
+            <p id="section-4.1-5.6.1"><strong>Source (source, optional)</strong>: This field describes the origin of the information used to obtain the metric. It can take the following values:<a href="#section-4.1-5.6.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-5.6.2.1">
+                <p id="section-4.1-5.6.2.1.1">'nominal'. Similar to <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.<a href="#section-4.1-5.6.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.6.2.2">
+                <p id="section-4.1-5.6.2.2.1">'estimation'. The 'estimation' source indicates that the metric value is computed through an estimation process.<a href="#section-4.1-5.6.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.6.2.3">
+                <p id="section-4.1-5.6.2.3.1">'directly measured'. This source indicates that the metric can be obtained directly from the underlying device and it does not need to be estimated.<a href="#section-4.1-5.6.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.6.2.4">
+                <p id="section-4.1-5.6.2.4.1">'normalization'. The 'normalization' source indicates that the metric value was normalized. For instance, a metric could be normalized to take a value from 0 to 1, from 0 to 10, or to take a percentage value. This type of metrics do not have units.<a href="#section-4.1-5.6.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.6.2.5">
+                <p id="section-4.1-5.6.2.5.1">'aggregation'. This source indicates that the metric value was obtained by using an aggregation function.<a href="#section-4.1-5.6.2.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+<p id="section-4.1-5.6.3">
+Nominal metrics have inherent physical meanings and specific units without any additional processing. Aggregated metrics may or may not have physical meanings, but they retain their significance relative to the directly measured metrics. Normalized metrics, on the other hand, might have physical meanings but lack units.<a href="#section-4.1-5.6.3" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.7">
+            <p id="section-4.1-5.7.1"><strong>Statistics (statistics, optional)</strong>: This field provides additional details about the metrics, particularly if there is any pre-computation performed on the metrics before they are collected. It is useful for services that require specific statistics for service instance selection.<a href="#section-4.1-5.7.1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.1-5.7.2.1">
+                <p id="section-4.1-5.7.2.1.1">'max'. The maximum value of the data collected over intervals.<a href="#section-4.1-5.7.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.7.2.2">
+                <p id="section-4.1-5.7.2.2.1">'min'. The minimum value of the data collected over intervals.<a href="#section-4.1-5.7.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.7.2.3">
+                <p id="section-4.1-5.7.2.3.1">'mean'. The average value of the data collected over intervals.<a href="#section-4.1-5.7.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-4.1-5.7.2.4">
+                <p id="section-4.1-5.7.2.4.1">'cur'. The current value of the data collected.<a href="#section-4.1-5.7.2.4.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="normal" id="section-4.1-5.8">
+            <p id="section-4.1-5.8.1"><strong>Level (level)</strong>: This field specifies the level at which the metric is measured. It is used to categorize the metric based on its granularity and scope. Examples include L0, L1, and L2. The level field helps in understanding the level of detail and specificity of the metric being measured.<a href="#section-4.1-5.8.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-4.1-5.9">
+            <p id="section-4.1-5.9.1"><strong>Value (value)</strong>: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.<a href="#section-4.1-5.9.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+</section>
+</div>
+<div id="level-0-metric-representation">
+<section id="section-4.2">
+        <h3 id="name-level-0-metric-representati">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-level-0-metric-representati" class="section-name selfRef">Level 0 Metric Representation</a>
+        </h3>
+<p id="section-4.2-1">Several definitions have been developed within the compute and communication industries, as well as through various standardization efforts---such as those by the <span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span>---that can serve as L0 metrics. This section provides illustrative examples.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<div id="compute-raw-metrics">
+<section id="section-4.2.1">
+          <h4 id="name-compute-raw-metrics">
+<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-compute-raw-metrics" class="section-name selfRef">Compute Raw Metrics</a>
+          </h4>
+<p id="section-4.2.1-1">This section uses CPU frequency as an example to illustrate the representation of raw compute metrics. The metric type is labeled as compute_CPU_frequency, with the unit specified in GHz. The format should support both unsigned integers and floating-point values. The corresponding metric fields are defined as follows:<a href="#section-4.2.1-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-compute-raw-"></span><div id="fig-compute-raw-metric">
+<figure id="figure-3">
+            <div class="alignLeft art-text artwork" id="section-4.2.1-2.1">
+<pre>
+Basic fields:
+      Metric Type: compute_CPU_frequency
+      Level: L0
+      Format: unsigned integer, floating point
+      Unit: GHz
+      Length: four octets
+      Value: 2.2
+Source:
+      nominal
+
+|Metric Type|Level|Format| Unit|Length| Value|Source|
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits
+</pre>
+</div>
+<figcaption><a href="#figure-3" class="selfRef">Figure 3</a>:
+<a href="#name-an-example-for-compute-raw-" class="selfRef">An Example for Compute Raw Metrics</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="communication-raw-metrics">
+<section id="section-4.2.2">
+          <h4 id="name-communication-raw-metrics">
+<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-communication-raw-metrics" class="section-name selfRef">Communication Raw Metrics</a>
+          </h4>
+<p id="section-4.2.2-1">This section takes the total transmitted bytes (TxBytes) as an example to show the representation of communication raw metrics. TxBytes are named as "communication type_TxBytes”. The unit is Mega Bytes (MB). Format is unsigned integer or floating point. It will occupy 4 octets. The source of the metric is "Directly measured" and the statistics is "mean". Example:<a href="#section-4.2.2-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-communicatio"></span><div id="fig-network-raw-metric">
+<figure id="figure-4">
+            <div class="alignLeft art-text artwork" id="section-4.2.2-2.1">
+<pre>
+Basic fields:
+      Metric type: “communication type_TXBytes”
+      Level: L0
+      Format: unsigned integer, floating point
+      Unit: MB
+      Length: four octets
+      Value: 100
+Source:
+      Directly measured
+Statistics:
+      mean
+
+|Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
+</pre>
+</div>
+<figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
+<a href="#name-an-example-for-communicatio" class="selfRef">An Example for Communication Raw Metrics</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="delay-raw-metrics">
+<section id="section-4.2.3">
+          <h4 id="name-delay-raw-metrics">
+<a href="#section-4.2.3" class="section-number selfRef">4.2.3. </a><a href="#name-delay-raw-metrics" class="section-name selfRef">Delay Raw Metrics</a>
+          </h4>
+<p id="section-4.2.3-1">Delay is a kind of synthesized metric which is influenced by computing, storage access, and network transmission. Usually delay refers to the overal processing duration between the arrival time of a specific service request and the departure time of the corresponding service response. It is named as "delay_raw". The format should support both unsigned integer or floating point. Its unit is microseconds, and it occupies 4 octets. For example:<a href="#section-4.2.3-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-delay-raw-me"></span><div id="fig-delay-raw-metric">
+<figure id="figure-5">
+            <div class="alignLeft art-text artwork" id="section-4.2.3-2.1">
+<pre>
+Basic fields:
+      Metric type: “delay_raw”
+      Level: L0
+      Format: unsigned integer, floating point
+      Unit: Microsecond(us)
+      Length: four octets
+      Value: 231.5
+Source:
+      aggregation
+Statistics:
+      max
+
+|Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
+</pre>
+</div>
+<figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
+<a href="#name-an-example-for-delay-raw-me" class="selfRef">An Example for Delay Raw Metrics</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="level-1-metric-representation">
+<section id="section-4.3">
+        <h3 id="name-level-1-metric-representati">
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-level-1-metric-representati" class="section-name selfRef">Level 1 Metric Representation</a>
+        </h3>
+<p id="section-4.3-1">L1 metrics are normalized from L0 metrics. Although they don't have units, they can still be classified into types such as compute, communication and composed metrics. This classification is useful because it makes L1 metrics semantically meaningful.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-2">The sources of L1 metrics is normalization. Based on L0 metrics, service providers design their own algorithms to normalize metrics. For example, assigning different cost values to each raw metric and do weighted summation. L1 metrics do not need further statistical values.<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<div id="normalized-compute-metrics">
+<section id="section-4.3.1">
+          <h4 id="name-normalized-compute-metrics">
+<a href="#section-4.3.1" class="section-number selfRef">4.3.1. </a><a href="#name-normalized-compute-metrics" class="section-name selfRef">Normalized Compute Metrics</a>
+          </h4>
+<p id="section-4.3.1-1">The metric type of normalized compute metrics is “compute_norm”, and its format is unsigned integer. It has no unit. It will occupy an octet. Example:<a href="#section-4.3.1-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-normalized-c"></span><div id="fig-normalized-compute-metric">
+<figure id="figure-6">
+            <div class="alignLeft art-text artwork" id="section-4.3.1-2.1">
+<pre>
+Basic fields:
+      Metric type: “compute_norm”
+      Level: L1
+      Format: unsigned integer
+      Length: one octet
+      Value: 5
+Source:
+      normalization
+
+
+|Metric Type|Level|Format|Length|Value|Source|
+    8bits    2bits  1bit   3bits 8bits  3bits
+</pre>
+</div>
+<figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
+<a href="#name-an-example-for-normalized-c" class="selfRef">An Example for Normalized Compute Metrics</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="normalized-communication-metrics">
+<section id="section-4.3.2">
+          <h4 id="name-normalized-communication-me">
+<a href="#section-4.3.2" class="section-number selfRef">4.3.2. </a><a href="#name-normalized-communication-me" class="section-name selfRef">Normalized Communication Metrics</a>
+          </h4>
+<p id="section-4.3.2-1">The metric type of normalized communication metrics is “communication_norm”, and its format is unsigned integer. It has no unit. It will occupy an octet. Example:<a href="#section-4.3.2-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-normalized-co"></span><div id="fig-normalized-communication-metric">
+<figure id="figure-7">
+            <div class="alignLeft art-text artwork" id="section-4.3.2-2.1">
+<pre>
+Basic fields:
+      Metric type: “communication_norm”
+      Level: L1
+      Format: unsigned integer
+      Length: one octet
+      Value: 1
+Source:
+      normalization
+
+|Metric Type|Level|Format|Length|Value|Source|
+    8bits    2bits  1bit   3bits 8bits  3bits
+
+</pre>
+</div>
+<figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
+<a href="#name-an-example-for-normalized-co" class="selfRef">An Example for Normalized Communication Metrics</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+<div id="normalized-composed-metrics">
+<section id="section-4.3.3">
+          <h4 id="name-normalized-composed-metrics">
+<a href="#section-4.3.3" class="section-number selfRef">4.3.3. </a><a href="#name-normalized-composed-metrics" class="section-name selfRef">Normalized Composed Metrics</a>
+          </h4>
+<p id="section-4.3.3-1">The metric type of normalized composed metrics is “delay_norm”, and its format is unsigned integer.  It has no unit.  It will occupy an octet. Example:<a href="#section-4.3.3-1" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-normalized-com"></span><div id="fig-normalized-metric">
+<figure id="figure-8">
+            <div class="alignLeft art-text artwork" id="section-4.3.3-2.1">
+<pre>
+Basic fields:
+      Metric type: “composed_norm”
+      Level: L1
+      Format: unsigned integer
+      Length: an octet
+      Value: 8
+Source:
+      normalization
+
+|Metric Type|Level|Format|Length|Value|Source|
+    8bits    2bits  1bit   3bits 8bits  3bits
+</pre>
+</div>
+<figcaption><a href="#figure-8" class="selfRef">Figure 8</a>:
+<a href="#name-an-example-for-normalized-com" class="selfRef">An Example for Normalized Composed Metrics</a>
+            </figcaption></figure>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="level-2-metric-representation">
+<section id="section-4.4">
+        <h3 id="name-level-2-metric-representati">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-level-2-metric-representati" class="section-name selfRef">Level 2 Metric Representation</a>
+        </h3>
+<p id="section-4.4-1">A fully normalized metric is a single value which does not have any physical meaning or unit.  Each provider may have its own methods to derive the value, but all providers must follow the definition in this section to represent the fully normalized value.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-2">Metric type is “norm_fi”. The format of the value is unsigned integer. It has no unit. It will occupy an octet. Example:<a href="#section-4.4-2" class="pilcrow">¶</a></p>
+<span id="name-an-example-for-fully-normal"></span><div id="fig-level-2-metric">
+<figure id="figure-9">
+          <div class="alignLeft art-text artwork" id="section-4.4-3.1">
+<pre>
+Basic fields:
+      Metric type: “norm_fi”
+      Level: L2
+      Format: unsigned integer
+      Length: an octet
+      Value: 1
+Source:
+      normalization
+
+|Metric Type|Level|Format|Length|Value|Source|
+    8bits    2bits  1bit   3bits 8bits  3bits
+</pre>
+</div>
+<figcaption><a href="#figure-9" class="selfRef">Figure 9</a>:
+<a href="#name-an-example-for-fully-normal" class="selfRef">An Example for Fully Normalized Metric</a>
+          </figcaption></figure>
+</div>
+<p id="section-4.4-4">The fully normalized value also supports aggregation when there are multiple service instances providing these fully normalized values. When providing fully normalized values, service instances do not need to do further statistics.<a href="#section-4.4-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="comparison-among-metric-levels">
+<section id="section-5">
+      <h2 id="name-comparison-among-metric-lev">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-comparison-among-metric-lev" class="section-name selfRef">Comparison among Metric Levels</a>
+      </h2>
+<p id="section-5-1">Metrics are progressively consolidated from L0 to L1 to L2, with each level offering a different degree of abstraction to address the diverse requirements of various services. Table 1 provides a comparative overview of these metric levels.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<span id="name-comparison-among-metrics-le"></span><div id="comparison">
+<table class="center" id="table-1">
+        <caption>
+<a href="#table-1" class="selfRef">Table 1</a>:
+<a href="#name-comparison-among-metrics-le" class="selfRef">Comparison among Metrics Levels</a>
+        </caption>
+<thead>
+          <tr>
+            <th class="text-center" rowspan="1" colspan="1">Level</th>
+            <th class="text-left" rowspan="1" colspan="1">Encoding Complexity</th>
+            <th class="text-left" rowspan="1" colspan="1">Extensibility</th>
+            <th class="text-left" rowspan="1" colspan="1">Stability</th>
+            <th class="text-left" rowspan="1" colspan="1">Accuracy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center" rowspan="1" colspan="1">Level 0</td>
+            <td class="text-left" rowspan="1" colspan="1">Complicated</td>
+            <td class="text-left" rowspan="1" colspan="1">Bad</td>
+            <td class="text-left" rowspan="1" colspan="1">Bad</td>
+            <td class="text-left" rowspan="1" colspan="1">Good</td>
+          </tr>
+          <tr>
+            <td class="text-center" rowspan="1" colspan="1">Level 1</td>
+            <td class="text-left" rowspan="1" colspan="1">Medium</td>
+            <td class="text-left" rowspan="1" colspan="1">Medium</td>
+            <td class="text-left" rowspan="1" colspan="1">Medium</td>
+            <td class="text-left" rowspan="1" colspan="1">Medium</td>
+          </tr>
+          <tr>
+            <td class="text-center" rowspan="1" colspan="1">Level 2</td>
+            <td class="text-left" rowspan="1" colspan="1">Simple</td>
+            <td class="text-left" rowspan="1" colspan="1">Good</td>
+            <td class="text-left" rowspan="1" colspan="1">Good</td>
+            <td class="text-left" rowspan="1" colspan="1">Medium</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<p id="section-5-3">Since Level 0 metrics are raw and service-specific, different services may define their own sets—potentially resulting in hundreds or even thousands of unique metrics. This diversity introduces significant complexity in protocol encoding and standardization. Consequently, L0 metrics are generally confined to bespoke implementations tailored to specific service needs, rather than being standardized for broad protocol use. In contrast, Level 1 metrics organize raw data into standardized categories, each normalized into a single value. This structure makes them more suitable for protocol encoding and standardization. Level 2 metrics take simplification a step further by consolidating all relevant information into a single normalized value, making them the easiest to encode, transmit, and standardize.<a href="#section-5-3" class="pilcrow">¶</a></p>
+<p id="section-5-4">Therefore, from the perspective of encoding complexity, Level 1 and Level 2 metrics are recommended.<a href="#section-5-4" class="pilcrow">¶</a></p>
+<p id="section-5-5">When considering extensibility, Level 0 metrics allow new services to define their own custom metrics. However, this flexibility requires corresponding protocol extensions, and the proliferation of metric types can introduce significant overhead, ultimately reducing the protocol’s extensibility. In contrast, Level 1 metrics introduce only a limited set of standardized categories, making protocol extensions more manageable. Level 2 metrics go even further by consolidating all information into a single normalized value, placing the least burden on the protocol.<a href="#section-5-5" class="pilcrow">¶</a></p>
+<p id="section-5-6">Therefore, from an extensibility standpoint, Level 1 and Level 2 metrics are recommended.<a href="#section-5-6" class="pilcrow">¶</a></p>
+<p id="section-5-7">Regarding stability, Level 0 raw metrics may require frequent protocol extensions as new metrics are introduced, leading to an unstable and evolving protocol format. For this reason, standardizing L0 metrics within the protocol is not recommended. In contrast, Level 1 metrics involve only a limited set of predefined categories, and Level 2 metrics rely on a single consolidated value, both of which contribute to a more stable and maintainable protocol design.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-8">Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferred.<a href="#section-5-8" class="pilcrow">¶</a></p>
+<p id="section-5-9">In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.<a href="#section-5-9" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="implementation-guidance-on-using-cats-metrics">
+<section id="section-6">
+      <h2 id="name-implementation-guidance-on-">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-implementation-guidance-on-" class="section-name selfRef">Implementation Guidance on Using CATS Metrics</a>
+      </h2>
+<p id="section-6-1">This section provides implementation guidance and outlines options for service providers and vendors on how to utilize CATS metrics effectively. The goal is to promote interoperability while ensuring optimal performance, particularly when L2 metrics are used for decision-making.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<p id="section-6-2">As described in the CATS framework <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, the architecture includes multiple CATS components with varying functionalities, resource constraints, and processing capabilities. These differences must be carefully considered when determining where to place the normalization and aggregation functions used to derive L2 metrics.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<p id="section-6-3">A key design principle is to offload normalization and aggregation functions from the decision-making component---the CATS Path Selector (C-PS)---especially when the C-PS is co-located with CATS-Forwarders. Based on this principle, normalization and aggregation functions can be deployed at the Service Contact Instance or the CATS Service Metric Agent (C-SMA).<a href="#section-6-3" class="pilcrow">¶</a></p>
+<p id="section-6-4">However, since the C-SMA may be co-located with CATS-Forwarders, which often have limited processing resources, placing normalization functions there could introduce significant overhead and negatively impact routing efficiency. Therefore, this document recommends placing aggregation functions at the C-SMA, while both normalization and aggregation functions can be implemented at the Service Contact Instance.<a href="#section-6-4" class="pilcrow">¶</a></p>
+<p id="section-6-5">Given that Service Contact Instances and C-SMAs may be provided by different vendors, it is essential to agree on common normalization and aggregation functions for traffic steering. Without such alignment, instance selection may become inconsistent or inaccurate.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<p id="section-6-6">Editor's Note: Additional implementation considerations will be added progressively. This draft will be updated in alignment with ongoing discussions on metric definitions within the CATS Working Group.<a href="#section-6-6" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="security-considerations">
+<section id="section-7">
+      <h2 id="name-security-considerations">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+      </h2>
+<p id="section-7-1">TBD<a href="#section-7-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="iana-considerations">
+<section id="section-8">
+      <h2 id="name-iana-considerations">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+      </h2>
+<p id="section-8-1">TBD<a href="#section-8-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sec-combined-references">
+<section id="section-9">
+      <h2 id="name-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+      </h2>
+<div id="sec-normative-references">
+<section id="section-9.1">
+        <h3 id="name-normative-references">
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+        </h3>
+<dl class="references">
+<dt id="I-D.ietf-cats-framework">[I-D.ietf-cats-framework]</dt>
+      <dd>
+<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-framework-07</span>, <time datetime="2025-04-30" class="refDate">30 April 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-07">https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-07</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+<div id="sec-informative-references">
+<section id="section-9.2">
+        <h3 id="name-informative-references">
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+        </h3>
+<dl class="references">
+<dt id="DMTF">[DMTF]</dt>
+        <dd>
+<span class="refTitle">"DMTF"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.dmtf.org/">https://www.dmtf.org/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="I-D.rcr-opsawg-operational-compute-metrics">[I-D.rcr-opsawg-operational-compute-metrics]</dt>
+        <dd>
+<span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, and <span class="refAuthor">R. Schott</span>, <span class="refTitle">"Joint Exposure of Network and Compute Information for Infrastructure-Aware Service Deployment"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rcr-opsawg-operational-compute-metrics-08</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rcr-opsawg-operational-compute-metrics-08">https://datatracker.ietf.org/doc/html/draft-rcr-opsawg-operational-compute-metrics-08</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="performance-metrics">[performance-metrics]</dt>
+        <dd>
+<span class="refTitle">"performance-metrics"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml">https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8911">[RFC8911]</dt>
+        <dd>
+<span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Eardley, P.</span>, <span class="refAuthor">Morton, A.</span>, and <span class="refAuthor">A. Akhter</span>, <span class="refTitle">"Registry for Performance Metrics"</span>, <span class="seriesInfo">RFC 8911</span>, <span class="seriesInfo">DOI 10.17487/RFC8911</span>, <time datetime="2021-11" class="refDate">November 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8911">https://www.rfc-editor.org/rfc/rfc8911</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8912">[RFC8912]</dt>
+        <dd>
+<span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Eardley, P.</span>, and <span class="refAuthor">K. D'Souza</span>, <span class="refTitle">"Initial Performance Metrics Registry Entries"</span>, <span class="seriesInfo">RFC 8912</span>, <span class="seriesInfo">DOI 10.17487/RFC8912</span>, <time datetime="2021-11" class="refDate">November 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8912">https://www.rfc-editor.org/rfc/rfc8912</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC9439">[RFC9439]</dt>
+      <dd>
+<span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Yang, Y.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Randriamasy, S.</span>, and <span class="refAuthor">L. Contreras</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Performance Cost Metrics"</span>, <span class="seriesInfo">RFC 9439</span>, <span class="seriesInfo">DOI 10.17487/RFC9439</span>, <time datetime="2023-08" class="refDate">August 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9439">https://www.rfc-editor.org/rfc/rfc9439</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+</dl>
+</section>
+</div>
+</section>
+</div>
+<div id="contributors">
+<section id="appendix-A">
+      <h2 id="name-contributors">
+<a href="#name-contributors" class="section-name selfRef">Contributors</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Mohamed Boucadair</span></div>
+<div dir="auto" class="left"><span class="org">Orange</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:mohamed.boucadair@orange.com" class="email">mohamed.boucadair@orange.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Zongpeng Du</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:duzongpeng@chinamobile.com" class="email">duzongpeng@chinamobile.com</a>
+</div>
+</address>
+</section>
+</div>
+<div id="authors-addresses">
+<section id="appendix-B">
+      <h2 id="name-authors-addresses">
+<a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
+      </h2>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Kehan Yao</span></div>
+<div dir="auto" class="left"><span class="org">China Mobile</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:yaokehan@chinamobile.com" class="email">yaokehan@chinamobile.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Hang Shi</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:shihang9@huawei.com" class="email">shihang9@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Cheng Li</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:c.l@huawei.com" class="email">c.l@huawei.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">L. M. Contreras</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:luismiguel.contrerasmurillo@telefonica.com" class="email">luismiguel.contrerasmurillo@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Jordi Ros-Giralt</span></div>
+<div dir="auto" class="left"><span class="org">Qualcomm Europe, Inc.</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:jros@qti.qualcomm.com" class="email">jros@qti.qualcomm.com</a>
+</div>
+</address>
+</section>
+</div>
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
+});
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
+</script>
+</body>
+</html>
