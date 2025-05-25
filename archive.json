@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-01T00:45:18.688285+00:00",
+  "timestamp": "2025-05-25T00:47:45.025478+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2013,6 +2013,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 18,
+      "id": "PR_kwDOMTaH-s6XOVBR",
+      "title": "JRG Rev 20250521",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/18",
+      "state": "OPEN",
+      "author": "giralt",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "This commit makes additional text improvements. No major changes on the flow, just focusing on grammar and clarity of the text.",
+      "createdAt": "2025-05-22T12:52:10Z",
+      "updatedAt": "2025-05-22T12:52:10Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "da4bef455edb826b9fcc17449e11994e2d082624",
+      "headRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
+      "headRefName": "giralt-JRG-rev-20250521",
+      "headRefOid": "082e7da62e28ffdc59bf4863ddeae72e8edcfc0e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
