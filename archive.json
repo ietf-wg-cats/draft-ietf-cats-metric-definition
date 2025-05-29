@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-25T00:47:45.025478+00:00",
+  "timestamp": "2025-05-29T00:42:47.201659+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2026,7 +2026,7 @@
       "labels": [],
       "body": "This commit makes additional text improvements. No major changes on the flow, just focusing on grammar and clarity of the text.",
       "createdAt": "2025-05-22T12:52:10Z",
-      "updatedAt": "2025-05-22T12:52:10Z",
+      "updatedAt": "2025-05-27T09:55:51Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "da4bef455edb826b9fcc17449e11994e2d082624",
@@ -2038,7 +2038,52 @@
       "mergedBy": null,
       "mergeCommit": null,
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOMTaH-s6rFjkt",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-27T09:29:13Z",
+          "updatedAt": "2025-05-27T09:55:51Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "throughput and latency/delay also belong to composed metrics, should we limit them in just composed metrics? Or we define two types of these metric\uff1f",
+              "createdAt": "2025-05-27T09:29:14Z",
+              "updatedAt": "2025-05-27T09:55:51Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "throughput and latency/delay also belong to composed metrics, should we limit them in just composed metrics? Or we define two types of these metric\uff1f",
+              "createdAt": "2025-05-27T09:30:04Z",
+              "updatedAt": "2025-05-27T09:55:51Z"
+            },
+            {
+              "originalPosition": 142,
+              "body": "'aggregation' and others may be not mutually exclusive. It may co-exist with other sources, I think. ",
+              "createdAt": "2025-05-27T09:45:15Z",
+              "updatedAt": "2025-05-27T09:55:51Z"
+            },
+            {
+              "originalPosition": 215,
+              "body": "Should we define another service-related category, maybe in L1? Service-related metrics like Queries per second(QPS), tokens per second(TPS), can be normalized into these category.",
+              "createdAt": "2025-05-27T09:47:53Z",
+              "updatedAt": "2025-05-27T09:55:51Z"
+            },
+            {
+              "originalPosition": 238,
+              "body": "\"particularly L2\", why only L2?",
+              "createdAt": "2025-05-27T09:54:48Z",
+              "updatedAt": "2025-05-27T09:55:51Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
