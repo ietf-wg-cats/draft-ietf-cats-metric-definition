@@ -105,7 +105,7 @@ Introducing a definition of metrics requires balancing the following trade-off: 
 
 ## Level 0: Raw Metrics
 
-Level 0 metrics encompass detailed, raw metrics, including but not limitted to:
+Level 0 metrics encompass detailed, raw metrics, including but not limited to:
 
 - CPU: Base Frequency, boosted frequency, number of cores, core utilization, memory bandwidth, memory size, memory utilization, power consumption.
 - GPU: Frequency, number of render units, memory bandwidth, memory size, memory utilization, core utilization, power consumption.
@@ -128,7 +128,7 @@ L1 metrics are organized into distinct categories, such as computing, communicat
 
 - **Computing:** A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU utilization.
 
-- **Communication:** A normalized value derived from communication-related L0 metrics, such as throughput and latency.
+- **Communication:** A normalized value derived from communication-related L0 metrics, such as communication throughput.
 
 - **Composed:** A normalized value derived from an end-to-end aggregation function by levaraging both computing and communication metrics. For example, end-to-end delay computed as the sum of all delays along a path.
 
@@ -227,8 +227,7 @@ Next, we describe each field in more detail:
 - **Unit (unit)**: This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.
 
 
-- **Source (source, optional)**: This field describes the origin of the information used to obtain the metric. It can take the following values:
-<!-- JRG: Are these values mutually exclusive? -->
+- **Source (source, optional)**: This field describes the origin of the information used to obtain the metric. It may include one or more of the following non-mutually exclusive values:
 
     - 'nominal'. Similar to {{?RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.
 
