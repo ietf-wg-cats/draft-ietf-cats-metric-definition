@@ -5,13 +5,13 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Informational                                    H. Shi
-Expires: 23 November 2025                                          C. Li
+Expires: 4 December 2025                                           C. Li
                                                      Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                             22 May 2025
+                                                             2 June 2025
 
 
                         CATS Metrics Definition
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 November 2025.
+   This Internet-Draft will expire on 4 December 2025.
 
 Copyright Notice
 
@@ -168,7 +168,7 @@ Table of Contents
 3.1.  Level 0: Raw Metrics
 
    Level 0 metrics encompass detailed, raw metrics, including but not
-   limitted to:
+   limited to:
 
    *  CPU: Base Frequency, boosted frequency, number of cores, core
       utilization, memory bandwidth, memory size, memory utilization,
@@ -217,7 +217,7 @@ Table of Contents
       metrics, such as CPU, GPU, and NPU utilization.
 
    *  *Communication:* A normalized value derived from communication-
-      related L0 metrics, such as throughput and latency.
+      related L0 metrics, such as communication throughput.
 
    *  *Composed:* A normalized value derived from an end-to-end
       aggregation function by levaraging both computing and
@@ -359,8 +359,8 @@ Table of Contents
       value.
 
    *  *Source (source, optional)*: This field describes the origin of
-      the information used to obtain the metric.  It can take the
-      following values:
+      the information used to obtain the metric.  It may include one or
+      more of the following non-mutually exclusive values:
 
       -  'nominal'.  Similar to [RFC9439], "a 'nominal' metric indicates
          that the metric value is statically configured by the
