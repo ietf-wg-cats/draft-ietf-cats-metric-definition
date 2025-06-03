@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-05-29T00:42:47.201659+00:00",
+  "timestamp": "2025-06-03T00:43:50.334228+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2026,13 +2026,13 @@
       "labels": [],
       "body": "This commit makes additional text improvements. No major changes on the flow, just focusing on grammar and clarity of the text.",
       "createdAt": "2025-05-22T12:52:10Z",
-      "updatedAt": "2025-05-27T09:55:51Z",
+      "updatedAt": "2025-06-02T14:36:31Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "da4bef455edb826b9fcc17449e11994e2d082624",
       "headRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "headRefName": "giralt-JRG-rev-20250521",
-      "headRefOid": "082e7da62e28ffdc59bf4863ddeae72e8edcfc0e",
+      "headRefOid": "72a2c17b29eaee9628fbea9f99d89173a0466137",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -2080,6 +2080,56 @@
               "body": "\"particularly L2\", why only L2?",
               "createdAt": "2025-05-27T09:54:48Z",
               "updatedAt": "2025-05-27T09:55:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6qiWp2",
+          "commit": {
+            "abbreviatedOid": "72a2c17"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-05-22T12:58:53Z",
+          "updatedAt": "2025-06-02T14:36:31Z",
+          "comments": [
+            {
+              "originalPosition": 191,
+              "body": "Why do we grouped these fields into \"Basic fields\" ?\r\n\r\nAnd why the field \"Source\" is outside \"Basic fields\"?",
+              "createdAt": "2025-05-22T12:58:53Z",
+              "updatedAt": "2025-06-02T14:36:31Z"
+            },
+            {
+              "originalPosition": 200,
+              "body": "Are we planning on standardizing the size of each field according to the following lines?\r\n````\r\n|Metric Type|Level|Format| Unit|Length| Value|Source|\r\n    8bits    2bits  1bit  4bits  3bits 32bits  3bits\r\n````\r\nIf so, then I think this should not go here in the examples section.\r\n\r\nIf not, then why do we need to show here examples of field lengths?",
+              "createdAt": "2025-05-22T13:06:27Z",
+              "updatedAt": "2025-06-02T14:36:31Z"
+            },
+            {
+              "originalPosition": 46,
+              "body": "OK, I changed it to just communication throughput.",
+              "createdAt": "2025-06-02T14:28:36Z",
+              "updatedAt": "2025-06-02T14:36:31Z"
+            },
+            {
+              "originalPosition": 142,
+              "body": "I agree. I updated the text to explicitly mention that they are non mutually exclusive.",
+              "createdAt": "2025-06-02T14:29:17Z",
+              "updatedAt": "2025-06-02T14:36:31Z"
+            },
+            {
+              "originalPosition": 238,
+              "body": "It was there before I made the change, do you no longer want it to be L2 for the decision making process in this comment?\r\n\r\nThis was the text before: \"when L2 metrics are used for making decisions\"",
+              "createdAt": "2025-06-02T14:30:56Z",
+              "updatedAt": "2025-06-02T14:36:31Z"
+            },
+            {
+              "originalPosition": 215,
+              "body": "Right now L1 metrics can be computing, communication, and composed metrics. Are you suggesting to add a 4th metric category?",
+              "createdAt": "2025-06-02T14:34:31Z",
+              "updatedAt": "2025-06-02T14:36:31Z"
             }
           ]
         }
