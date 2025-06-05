@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-03T00:43:50.334228+00:00",
+  "timestamp": "2025-06-05T00:43:01.763499+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2026,7 +2026,7 @@
       "labels": [],
       "body": "This commit makes additional text improvements. No major changes on the flow, just focusing on grammar and clarity of the text.",
       "createdAt": "2025-05-22T12:52:10Z",
-      "updatedAt": "2025-06-02T14:36:31Z",
+      "updatedAt": "2025-06-03T14:54:58Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "da4bef455edb826b9fcc17449e11994e2d082624",
@@ -2037,7 +2037,15 @@
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Generally\uff0cI am ok with the update. But, regarding adding service-related metric, we might need more discussion. So we can update this revision without this. And update one more time to add service-related metric in L1.",
+          "createdAt": "2025-06-03T14:54:56Z",
+          "updatedAt": "2025-06-03T14:54:56Z"
+        }
+      ],
       "reviews": [
         {
           "id": "PRR_kwDOMTaH-s6rFjkt",
@@ -2130,6 +2138,126 @@
               "body": "Right now L1 metrics can be computing, communication, and composed metrics. Are you suggesting to add a 4th metric category?",
               "createdAt": "2025-06-02T14:34:31Z",
               "updatedAt": "2025-06-02T14:36:31Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6sSFCp",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-03T02:47:49Z",
+          "updatedAt": "2025-06-03T02:47:50Z",
+          "comments": [
+            {
+              "originalPosition": 215,
+              "body": "Yes. Recently, we got some feedback from the CDN team in ChinaMobile(MIGU applications). Their applications usually grasp some kinds of these service related metrics for instance selection, health check, or monitoring. They told us these service-related metrics are useful. So beyond resource level metrics(computing, communication, and composed metrics), these service-related metrics are also worthy to be added. So I sugguest to add 4th metric category in L1.  ",
+              "createdAt": "2025-06-03T02:47:50Z",
+              "updatedAt": "2025-06-03T02:47:50Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6sSGiL",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-03T02:53:29Z",
+          "updatedAt": "2025-06-03T02:53:30Z",
+          "comments": [
+            {
+              "originalPosition": 238,
+              "body": "Sorry. I got it. I thought it would preclude L1. But it does not. I think the current description is ok. ",
+              "createdAt": "2025-06-03T02:53:29Z",
+              "updatedAt": "2025-06-03T02:53:30Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6sSJqS",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-03T03:02:19Z",
+          "updatedAt": "2025-06-03T03:02:19Z",
+          "comments": [
+            {
+              "originalPosition": 191,
+              "body": "Previously I thought that field like \"statistics\" doesn't belong to some metric levels, like L1 and L2. So I set other mandatory fields to be basic fields. But you're right, we don't need to further group these fields into \"basic fields\", and \"Source\" can be treated the same as others. ",
+              "createdAt": "2025-06-03T03:02:19Z",
+              "updatedAt": "2025-06-03T03:02:19Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6sSLBr",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-03T03:05:34Z",
+          "updatedAt": "2025-06-03T03:05:34Z",
+          "comments": [
+            {
+              "originalPosition": 200,
+              "body": "I think we should standardize the size of each field for better guidance on the implementation and interoperobility.\r\nBut sure, if it's not good to show it in the example section, where do you think should it be placed? A new section on format?",
+              "createdAt": "2025-06-03T03:05:34Z",
+              "updatedAt": "2025-06-03T03:05:34Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6saDRh",
+          "commit": {
+            "abbreviatedOid": "72a2c17"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-03T13:55:40Z",
+          "updatedAt": "2025-06-03T13:55:40Z",
+          "comments": [
+            {
+              "originalPosition": 200,
+              "body": "I think this should be an example. If we need to standardize it, then I will avoid to use 2 bits, 1 bit as length of a field, too limited.",
+              "createdAt": "2025-06-03T13:55:40Z",
+              "updatedAt": "2025-06-03T13:55:40Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6sbPtO",
+          "commit": {
+            "abbreviatedOid": "72a2c17"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-06-03T14:47:19Z",
+          "updatedAt": "2025-06-03T14:47:20Z",
+          "comments": [
+            {
+              "originalPosition": 215,
+              "body": "QPS, TPS look like L0 metrics. If we add a L1 Service-related category, what should be the name? is the category is independent with the existing categories?",
+              "createdAt": "2025-06-03T14:47:19Z",
+              "updatedAt": "2025-06-03T14:47:20Z"
             }
           ]
         }
