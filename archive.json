@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-06-05T00:43:01.763499+00:00",
+  "timestamp": "2025-07-03T00:44:00.404088+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2019,24 +2019,26 @@
       "id": "PR_kwDOMTaH-s6XOVBR",
       "title": "JRG Rev 20250521",
       "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/18",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "giralt",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "This commit makes additional text improvements. No major changes on the flow, just focusing on grammar and clarity of the text.",
       "createdAt": "2025-05-22T12:52:10Z",
-      "updatedAt": "2025-06-03T14:54:58Z",
+      "updatedAt": "2025-07-01T06:34:18Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "da4bef455edb826b9fcc17449e11994e2d082624",
       "headRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "headRefName": "giralt-JRG-rev-20250521",
       "headRefOid": "72a2c17b29eaee9628fbea9f99d89173a0466137",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2025-07-01T06:33:37Z",
+      "mergedAt": "2025-07-01T06:33:37Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "11c6b4c2707061cedccee4314227f6f34a6a05b8"
+      },
       "comments": [
         {
           "author": "muzixing",
@@ -2044,6 +2046,13 @@
           "body": "Generally\uff0cI am ok with the update. But, regarding adding service-related metric, we might need more discussion. So we can update this revision without this. And update one more time to add service-related metric in L1.",
           "createdAt": "2025-06-03T14:54:56Z",
           "updatedAt": "2025-06-03T14:54:56Z"
+        },
+        {
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "body": "> Generally\uff0cI am ok with the update. But, regarding adding service-related metric, we might need more discussion. So we can update this revision without this. And update one more time to add service-related metric in L1.\r\n\r\nHi all, it looks like this PR is ready to be committed and that we need to bring to the CATS mailing list two questions:\r\n\r\n(1) Do folks agree that we should be adding a 4th L1 metric class called Service Metrics?\r\n(2) Do we agree that we should standardize field sizes?\r\n\r\n@bpatient78 , would you like to post these two questions to the mailing list?",
+          "createdAt": "2025-07-01T06:05:20Z",
+          "updatedAt": "2025-07-01T06:05:20Z"
         }
       ],
       "reviews": [
@@ -2260,6 +2269,99 @@
               "updatedAt": "2025-06-03T14:47:20Z"
             }
           ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6xPaHG",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-01T05:53:42Z",
+          "updatedAt": "2025-07-01T05:53:42Z",
+          "comments": [
+            {
+              "originalPosition": 46,
+              "body": "I resolved this by changing it to just communication throughput.",
+              "createdAt": "2025-07-01T05:53:42Z",
+              "updatedAt": "2025-07-01T05:53:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6xPcw7",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-01T05:57:53Z",
+          "updatedAt": "2025-07-01T05:57:54Z",
+          "comments": [
+            {
+              "originalPosition": 215,
+              "body": "It looks like the name would be \"Service Metrics\" and that yes, it would be independent from the other metrics. @bpatient78, can you confirm this?\r\n\r\n@bpatient78 , do you want to bring this question to the mailing list and collect feedback from people to see if there is consensus on adding the L1 Service Metric class?",
+              "createdAt": "2025-07-01T05:57:54Z",
+              "updatedAt": "2025-07-01T06:01:25Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6xPfiA",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-01T06:02:40Z",
+          "updatedAt": "2025-07-01T06:02:41Z",
+          "comments": [
+            {
+              "originalPosition": 200,
+              "body": "Makes sense to me. \r\n\r\nShould we also bring this to the CATS mailing list and collect feedback to see if there is consensus on the direction of standardizing the size of each field?",
+              "createdAt": "2025-07-01T06:02:40Z",
+              "updatedAt": "2025-07-01T06:02:41Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6xPuF5",
+          "commit": {
+            "abbreviatedOid": "082e7da"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-01T06:25:33Z",
+          "updatedAt": "2025-07-01T06:25:33Z",
+          "comments": [
+            {
+              "originalPosition": 215,
+              "body": "Yes. I think there need another L1 type called \"Service Metrics\", it is aggregated or normalized from L0 service metrics like TPS or QPS. ",
+              "createdAt": "2025-07-01T06:25:33Z",
+              "updatedAt": "2025-07-01T06:25:33Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6xPu0R",
+          "commit": {
+            "abbreviatedOid": "72a2c17"
+          },
+          "author": "bpatient78",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2025-07-01T06:26:38Z",
+          "updatedAt": "2025-07-01T06:26:38Z",
+          "comments": []
         }
       ]
     }
