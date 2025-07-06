@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-03T00:44:00.404088+00:00",
+  "timestamp": "2025-07-06T00:50:14.958606+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2364,6 +2364,139 @@
           "comments": []
         }
       ]
+    },
+    {
+      "number": 19,
+      "id": "PR_kwDOMTaH-s6dO6FL",
+      "title": " add some considerations on why define 3 metric levels",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/19",
+      "state": "CLOSED",
+      "author": "bpatient78",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-03T09:25:54Z",
+      "updatedAt": "2025-07-05T06:12:36Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "11c6b4c2707061cedccee4314227f6f34a6a05b8",
+      "headRepository": "bpatient78/draft-cats-metric-definition",
+      "headRefName": "main",
+      "headRefOid": "11c6b4c2707061cedccee4314227f6f34a6a05b8",
+      "closedAt": "2025-07-05T06:12:35Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Hi Kehan, thanks for this update. I added comments and suggestions to improve the text. \r\n\r\nIt looks like you applied your changes on an older version of the draft, and this leads to merge conflicts. There is a risk that if you merge this PR to the main branch, that we lose some of the previous changes.\r\n\r\nTo avoid this, can I ask you to please get a new clone of the whole repo, and manually update your changes to the latest version of the repo, and then resubmit a new PR? This will resolve the merge conflict and allow a clean merge.\r\n\r\nAfter that, we can abandone this PR. Let me know if any questions, thanks.",
+          "createdAt": "2025-07-04T10:53:22Z",
+          "updatedAt": "2025-07-04T10:53:22Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOMTaH-s6xxP-T",
+          "commit": {
+            "abbreviatedOid": "d42bfb2"
+          },
+          "author": "muzixing",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-03T09:38:43Z",
+          "updatedAt": "2025-07-03T09:38:44Z",
+          "comments": [
+            {
+              "originalPosition": 71,
+              "body": "it is hard to say what is the meaning of useful, but I can understand. Good for now, we can review it later.",
+              "createdAt": "2025-07-03T09:38:43Z",
+              "updatedAt": "2025-07-03T09:38:44Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOMTaH-s6yBCGl",
+          "commit": {
+            "abbreviatedOid": "d42bfb2"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-04T10:46:27Z",
+          "updatedAt": "2025-07-04T10:50:03Z",
+          "comments": [
+            {
+              "originalPosition": 71,
+              "body": "Thanks Kehan, some folks may want to see a more extended explanation as to why this design was followed, but the above is ok as a starting point. I would suggest the following small improvements on the above text:\r\n\r\n\"As outlined in {{I-D.ietf-cats-usecases-requirements}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. Additionally, it MUST be useful in practice. To that end, a CATS system should select the most appropriate metric(s) for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.\"",
+              "createdAt": "2025-07-04T10:46:27Z",
+              "updatedAt": "2025-07-04T10:50:03Z"
+            },
+            {
+              "originalPosition": 76,
+              "body": "I suggest using the following improved text:\r\n\r\n\"Conceptually, it is necessary to define at least two fundamental levels of metrics: one comprising all raw metrics, and another representing a simplified form\u2014consisting of a single value that encapsulates the overall capability of a service instance.\r\n\r\nHowever, such a definition may, to some extent, constrain implementation flexibility across diverse CATS use cases. Implementers often seek balanced approaches that consider trade-offs among encoding complexity, accuracy, scalability, and extensibility.\"",
+              "createdAt": "2025-07-04T10:48:58Z",
+              "updatedAt": "2025-07-04T10:50:03Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "id": "PR_kwDOMTaH-s6diBVy",
+      "title": "add considerations on why define three metric levels - solve merge conflict",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/20",
+      "state": "CLOSED",
+      "author": "bpatient78",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-05T06:34:33Z",
+      "updatedAt": "2025-07-05T06:37:47Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "11c6b4c2707061cedccee4314227f6f34a6a05b8",
+      "headRepository": "bpatient78/draft-cats-metric-definition",
+      "headRefName": "main",
+      "headRefOid": "d199f60c09e3aac1537006aa4deaa91cb6801c07",
+      "closedAt": "2025-07-05T06:37:47Z",
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 21,
+      "id": "PR_kwDOMTaH-s6diEe0",
+      "title": "add considerations on why 3 metric levels",
+      "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/21",
+      "state": "OPEN",
+      "author": "bpatient78",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-07-05T06:41:08Z",
+      "updatedAt": "2025-07-05T06:41:08Z",
+      "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
+      "baseRefName": "main",
+      "baseRefOid": "11c6b4c2707061cedccee4314227f6f34a6a05b8",
+      "headRepository": "bpatient78/draft-cats-metric-definition",
+      "headRefName": "main",
+      "headRefOid": "44eda38db7b6ffdd7db8da67a200e55029b7f2a0",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
