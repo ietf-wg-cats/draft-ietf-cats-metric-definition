@@ -102,7 +102,7 @@ This document uses the following terms defined in {{I-D.ietf-cats-framework}}:
 
 # Definition of Metrics
 
-## Problem Statement - Why Three Metric Levels?
+## Design Principles - Why Three Metric Levels?
 
 As outlined in {{I-D.ietf-cats-usecases-requirements}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. Additionally, it MUST be useful in practice. To that end, a CATS system should select the most appropriate metric(s) for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.
 
@@ -463,6 +463,9 @@ Regarding stability, Level 0 raw metrics may require frequent protocol extension
 Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferred.
 
 In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.
+
+# Implementation Guidance on Using CATS Metrics
+<Authors Note: This part has been moved to {{I-D.ietf-cats-framework}}, according to he chairs' sugguestion. Since this document is primarily on metric definition, rather than real implementations.>
 
 # Security Considerations
 
