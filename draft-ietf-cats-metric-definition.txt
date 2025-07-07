@@ -4,14 +4,15 @@
 
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
-Intended status: Informational                                    H. Shi
-Expires: 2 January 2026                                            C. Li
-                                                     Huawei Technologies
+Intended status: Informational                                     C. Li
+Expires: 8 January 2026                              Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                             1 July 2025
+                                                                  H. Shi
+                                                     Huawei Technologies
+                                                             7 July 2025
 
 
                         CATS Metrics Definition
@@ -26,7 +27,7 @@ Abstract
    a system needs to share information (metrics) that describes the
    state of the resources.  Metrics from network domain have been in use
    in network systems for a long time.  This document defines a set of
-   metrics from the computing domain used for CATS.>
+   metrics from the computing domain used for CATS.
 
 Discussion Venues
 
@@ -54,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 January 2026.
+   This Internet-Draft will expire on 8 January 2026.
 
 Copyright Notice
 
@@ -75,9 +76,10 @@ Table of Contents
    1.  Introduction
    2.  Conventions and Definitions
    3.  Definition of Metrics
-     3.1.  Level 0: Raw Metrics
-     3.2.  Level 1: Normalized Metrics in Categories
-     3.3.  Level 2: Fully Normalized Metric.
+     3.1.  Design Principles - Why Three Metric Levels?
+     3.2.  Level 0: Raw Metrics
+     3.3.  Level 1: Normalized Metrics in Categories
+     3.4.  Level 2: Fully Normalized Metric.
    4.  Representation of Metrics
      4.1.  CATS Metric Fields
      4.2.  Level 0 Metric Representation
@@ -93,9 +95,7 @@ Table of Contents
    6.  Implementation Guidance on Using CATS Metrics
    7.  Security Considerations
    8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   9.  Informative References
    Contributors
    Authors' Addresses
 
@@ -120,8 +120,8 @@ Table of Contents
    resource utilization and enhancing overall system performance.
 
    Metrics from network domain have already been defined in previous
-   documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in
-   network systems for a long time.  This document focuses on
+   documents, e.g., [RFC9439], [RFC8912]，and [RFC8911], and been in use
+   in network systems for a long time.  This document focuses on
    categorizing the relevant metrics at the computing domain for CATS
    into three levels based on their complexity and granularity.
 
@@ -138,6 +138,16 @@ Table of Contents
 
 3.  Definition of Metrics
 
+3.1.  Design Principles - Why Three Metric Levels?
+
+   As outlined in [I-D.ietf-cats-usecases-requirements], the resource
+   model that defines CATS metrics MUST be scalable, ensuring that its
+   implementation remains within a reasonable and sustainable cost.
+   Additionally, it MUST be useful in practice.  To that end, a CATS
+   system should select the most appropriate metric(s) for instance
+   selection, recognizing that different metrics may influence outcomes
+   in distinct ways depending on the specific use case.
+
    Introducing a definition of metrics requires balancing the following
    trade-off: if the metrics are too fine-grained, they become
    unscalable due to the excessive number of metrics that must be
@@ -145,10 +155,21 @@ Table of Contents
    [I-D.rcr-opsawg-operational-compute-metrics] for a discussion of
    metrics distribution protocols.)  Conversely, if the metrics are too
    coarse-grained, they may not have sufficient information to enable
-   proper operational decisions.  To ensure scalability while providing
-   sufficient detail for effective decision-making, this document
-   provides a definition of metrics that incorporates three levels of
-   abstraction:
+   proper operational decisions.
+
+   Conceptually, it is necessary to define at least two fundamental
+   levels of metrics: one comprising all raw metrics, and the other
+   representing a simplified form—consisting of a single value that
+   encapsulates the overall capability of a service instance.
+
+   However, such a definition may, to some extent, constrain
+   implementation flexibility across diverse CATS use cases.
+   Implementers often seek balanced approaches that consider trade-offs
+   among encoding complexity, accuracy, scalability, and extensibility.
+
+   To ensure scalability while providing sufficient detail for effective
+   decision-making, this document provides a definition of metrics that
+   incorporates three levels of abstraction:
 
    *  *Level 0 (L0): Raw metrics.* These metrics are presented without
       abstraction, with each metric using its own unit and format as
@@ -165,7 +186,7 @@ Table of Contents
       metric, which is then normalized into a value within a defined
       range of scores.
 
-3.1.  Level 0: Raw Metrics
+3.2.  Level 0: Raw Metrics
 
    Level 0 metrics encompass detailed, raw metrics, including but not
    limited to:
@@ -204,7 +225,7 @@ Table of Contents
    metrics, [I-D.rcr-opsawg-operational-compute-metrics] lists a set of
    cloud resource metrics.
 
-3.2.  Level 1: Normalized Metrics in Categories
+3.3.  Level 1: Normalized Metrics in Categories
 
    L1 metrics are organized into distinct categories, such as computing,
    communication, and composed metrics.  Each L0 metric is classified
@@ -235,7 +256,7 @@ Table of Contents
    on the metric categories and their normalized values, thereby
    avoiding the need to process solution-specific detailed metrics.
 
-3.3.  Level 2: Fully Normalized Metric.
+3.4.  Level 2: Fully Normalized Metric.
 
    The L2 metric is a single score value derived from the lower level
    metrics (L0 or L1) using an aggregation function.  Different
@@ -675,42 +696,9 @@ Table of Contents
 
 6.  Implementation Guidance on Using CATS Metrics
 
-   This section provides implementation guidance and outlines options
-   for service providers and vendors on how to utilize CATS metrics
-   effectively.  The goal is to promote interoperability while ensuring
-   optimal performance, particularly when L2 metrics are used for
-   decision-making.
-
-   As described in the CATS framework [I-D.ietf-cats-framework], the
-   architecture includes multiple CATS components with varying
-   functionalities, resource constraints, and processing capabilities.
-   These differences must be carefully considered when determining where
-   to place the normalization and aggregation functions used to derive
-   L2 metrics.
-
-   A key design principle is to offload normalization and aggregation
-   functions from the decision-making component---the CATS Path Selector
-   (C-PS)---especially when the C-PS is co-located with CATS-Forwarders.
-   Based on this principle, normalization and aggregation functions can
-   be deployed at the Service Contact Instance or the CATS Service
-   Metric Agent (C-SMA).
-
-   However, since the C-SMA may be co-located with CATS-Forwarders,
-   which often have limited processing resources, placing normalization
-   functions there could introduce significant overhead and negatively
-   impact routing efficiency.  Therefore, this document recommends
-   placing aggregation functions at the C-SMA, while both normalization
-   and aggregation functions can be implemented at the Service Contact
-   Instance.
-
-   Given that Service Contact Instances and C-SMAs may be provided by
-   different vendors, it is essential to agree on common normalization
-   and aggregation functions for traffic steering.  Without such
-   alignment, instance selection may become inconsistent or inaccurate.
-
-   Editor's Note: Additional implementation considerations will be added
-   progressively.  This draft will be updated in alignment with ongoing
-   discussions on metric definitions within the CATS Working Group.
+   <Authors Note: This part has been moved to [I-D.ietf-cats-framework],
+   according to he chairs' sugguestion.  Since this document is
+   primarily on metric definition, rather than real implementations.>
 
 7.  Security Considerations
 
@@ -720,9 +708,9 @@ Table of Contents
 
    TBD
 
-9.  References
+9.  Informative References
 
-9.1.  Normative References
+   [DMTF]     "DMTF", n.d., <https://www.dmtf.org/>.
 
    [I-D.ietf-cats-framework]
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
@@ -732,9 +720,13 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
               framework-10>.
 
-9.2.  Informative References
-
-   [DMTF]     "DMTF", n.d., <https://www.dmtf.org/>.
+   [I-D.ietf-cats-usecases-requirements]
+              Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
+              "Computing-Aware Traffic Steering (CATS) Problem
+              Statement, Use Cases, and Requirements", Work in Progress,
+              Internet-Draft, draft-ietf-cats-usecases-requirements-07,
+              10 June 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-cats-usecases-requirements-07>.
 
    [I-D.rcr-opsawg-operational-compute-metrics]
               Randriamasy, S., Contreras, L. M., Ros-Giralt, J., and R.
@@ -786,12 +778,6 @@ Authors' Addresses
    Email: yaokehan@chinamobile.com
 
 
-   Hang Shi
-   Huawei Technologies
-   China
-   Email: shihang9@huawei.com
-
-
    Cheng Li
    Huawei Technologies
    China
@@ -806,3 +792,9 @@ Authors' Addresses
    Jordi Ros-Giralt
    Qualcomm Europe, Inc.
    Email: jros@qti.qualcomm.com
+
+
+   Hang Shi
+   Huawei Technologies
+   China
+   Email: shihang9@huawei.com

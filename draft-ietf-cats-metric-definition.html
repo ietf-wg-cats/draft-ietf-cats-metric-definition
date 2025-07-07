@@ -6,12 +6,12 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>CATS Metrics Definition</title>
 <meta content="Kehan Yao" name="author">
-<meta content="Hang Shi" name="author">
 <meta content="Cheng Li" name="author">
 <meta content="L. M. Contreras" name="author">
 <meta content="Jordi Ros-Giralt" name="author">
+<meta content="Hang Shi" name="author">
 <meta content="
-       Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.&gt; 
+       Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS. 
     " name="description">
 <meta content="xml2rfc 3.29.0" name="generator">
 <meta content="CATS, metric" name="keyword">
@@ -1052,7 +1052,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kehan, et al.</td>
-<td class="center">Expires 2 January 2026</td>
+<td class="center">Expires 8 January 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,21 +1065,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-cats-metric-definition-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-07-01" class="published">1 July 2025</time>
+<time datetime="2025-07-07" class="published">7 July 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-01-02">2 January 2026</time></dd>
+<dd class="expires"><time datetime="2026-01-08">8 January 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
       <div class="author-name">Y. Kehan</div>
 <div class="org">China Mobile</div>
-</div>
-<div class="author">
-      <div class="author-name">H. Shi</div>
-<div class="org">Huawei Technologies</div>
 </div>
 <div class="author">
       <div class="author-name">C. Li</div>
@@ -1093,13 +1089,17 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <div class="author-name">J. Ros-Giralt</div>
 <div class="org">Qualcomm Europe, Inc.</div>
 </div>
+<div class="author">
+      <div class="author-name">H. Shi</div>
+<div class="org">Huawei Technologies</div>
+</div>
 </dd>
 </dl>
 </div>
 <h1 id="title">CATS Metrics Definition</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
-<p id="section-abstract-1">Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.&gt;<a href="#section-abstract-1" class="pilcrow">¶</a></p>
+<p id="section-abstract-1">Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-discussion-venues">
@@ -1131,7 +1131,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 2 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 January 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1170,13 +1170,16 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-definition-of-metrics" class="internal xref">Definition of Metrics</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-level-0-raw-metrics" class="internal xref">Level 0: Raw Metrics</a></p>
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-design-principles-why-three" class="internal xref">Design Principles - Why Three Metric Levels?</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-level-1-normalized-metrics-" class="internal xref">Level 1: Normalized Metrics in Categories</a></p>
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-level-0-raw-metrics" class="internal xref">Level 0: Raw Metrics</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
-                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-level-2-fully-normalized-me" class="internal xref">Level 2: Fully Normalized Metric.</a></p>
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-level-1-normalized-metrics-" class="internal xref">Level 1: Normalized Metrics in Categories</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.4">
+                <p id="section-toc.1-1.3.2.4.1"><a href="#section-3.4" class="auto internal xref">3.4</a>.  <a href="#name-level-2-fully-normalized-me" class="internal xref">Level 2: Fully Normalized Metric.</a></p>
 </li>
             </ul>
 </li>
@@ -1232,15 +1235,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-iana-considerations" class="internal xref">IANA Considerations</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-references" class="internal xref">References</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
-                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="auto internal xref">9.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
-                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="auto internal xref">9.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
-</li>
-            </ul>
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="auto internal xref">9</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-contributors" class="internal xref">Contributors</a></p>
@@ -1259,7 +1254,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
       </h2>
 <p id="section-1-1">Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application. To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.<a href="#section-1-2" class="pilcrow">¶</a></p>
-<p id="section-1-3">Metrics from network domain have already been defined in previous documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-3">Metrics from network domain have already been defined in previous documents, e.g., <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>，and <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.<a href="#section-1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1286,81 +1281,92 @@ svg :is([fill="white"], [fill^="#fff"]) {
       <h2 id="name-definition-of-metrics">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-definition-of-metrics" class="section-name selfRef">Definition of Metrics</a>
       </h2>
-<p id="section-3-1">Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the metrics distribution protocol. (See <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span> for a discussion of metrics distribution protocols.) Conversely, if the metrics are too coarse-grained, they may not have sufficient information to enable proper operational decisions. To ensure scalability while providing sufficient detail for effective decision-making, this document provides a definition of metrics that incorporates three levels of abstraction:<a href="#section-3-1" class="pilcrow">¶</a></p>
-<ul class="normal">
-<li class="normal" id="section-3-2.1">
-          <p id="section-3-2.1.1"><strong>Level 0 (L0): Raw metrics.</strong> These metrics are presented without abstraction, with each metric using its own unit and format as defined by the underlying resource.<a href="#section-3-2.1.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-3-2.2">
-          <p id="section-3-2.2.1"><strong>Level 1 (L1): Metrics normalized within categories.</strong> These metrics are derived by aggregating L0 metrics into multiple categories, such as network and computing. Each category is summarized with a single L1 metric by normalizing it into a value within a defined range of scores.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
-</li>
-        <li class="normal" id="section-3-2.3">
-          <p id="section-3-2.3.1"><strong>Level 2 (L2): Fully normalized metric.</strong> These metrics are derived by aggregating lower level metrics (L0 or L1) into a single L2 metric, which is then normalized into a value within a defined range of scores.<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
-</li>
-      </ul>
-<div id="level-0-raw-metrics">
+<div id="design-principles-why-three-metric-levels">
 <section id="section-3.1">
-        <h3 id="name-level-0-raw-metrics">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-level-0-raw-metrics" class="section-name selfRef">Level 0: Raw Metrics</a>
+        <h3 id="name-design-principles-why-three">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-design-principles-why-three" class="section-name selfRef">Design Principles - Why Three Metric Levels?</a>
         </h3>
-<p id="section-3.1-1">Level 0 metrics encompass detailed, raw metrics, including but not limited to:<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-1">As outlined in <span>[<a href="#I-D.ietf-cats-usecases-requirements" class="cite xref">I-D.ietf-cats-usecases-requirements</a>]</span>, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. Additionally, it MUST be useful in practice. To that end, a CATS system should select the most appropriate metric(s) for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the metrics distribution protocol. (See <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span> for a discussion of metrics distribution protocols.) Conversely, if the metrics are too coarse-grained, they may not have sufficient information to enable proper operational decisions.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Conceptually, it is necessary to define at least two fundamental levels of metrics: one comprising all raw metrics, and the other representing a simplified form—consisting of a single value that encapsulates the overall capability of a service instance.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">However, such a definition may, to some extent, constrain implementation flexibility across diverse CATS use cases. Implementers often seek balanced approaches that consider trade-offs among encoding complexity, accuracy, scalability, and extensibility.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<p id="section-3.1-5">To ensure scalability while providing sufficient detail for effective decision-making, this document provides a definition of metrics that incorporates three levels of abstraction:<a href="#section-3.1-5" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.1-2.1">
-            <p id="section-3.1-2.1.1">CPU: Base Frequency, boosted frequency, number of cores, core utilization, memory bandwidth, memory size, memory utilization, power consumption.<a href="#section-3.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.1-6.1">
+            <p id="section-3.1-6.1.1"><strong>Level 0 (L0): Raw metrics.</strong> These metrics are presented without abstraction, with each metric using its own unit and format as defined by the underlying resource.<a href="#section-3.1-6.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.1-2.2">
-            <p id="section-3.1-2.2.1">GPU: Frequency, number of render units, memory bandwidth, memory size, memory utilization, core utilization, power consumption.<a href="#section-3.1-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.1-6.2">
+            <p id="section-3.1-6.2.1"><strong>Level 1 (L1): Metrics normalized within categories.</strong> These metrics are derived by aggregating L0 metrics into multiple categories, such as network and computing. Each category is summarized with a single L1 metric by normalizing it into a value within a defined range of scores.<a href="#section-3.1-6.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.1-2.3">
-            <p id="section-3.1-2.3.1">NPU: Computing power, utilization, power consumption.<a href="#section-3.1-2.3.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.1-2.4">
-            <p id="section-3.1-2.4.1">Network: Bandwidth, capacity, throughput, bytes transmitted, bytes received, host bus utilization.<a href="#section-3.1-2.4.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.1-2.5">
-            <p id="section-3.1-2.5.1">Storage: Available space, read speed, write speed.<a href="#section-3.1-2.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li class="normal" id="section-3.1-2.6">
-            <p id="section-3.1-2.6.1">Delay: Time taken to process a request.<a href="#section-3.1-2.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.1-6.3">
+            <p id="section-3.1-6.3.1"><strong>Level 2 (L2): Fully normalized metric.</strong> These metrics are derived by aggregating lower level metrics (L0 or L1) into a single L2 metric, which is then normalized into a value within a defined range of scores.<a href="#section-3.1-6.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.1-3">L0 metrics serve as foundational data and do not require classification. They provide basic information to support higher-level metrics, as detailed in the following sections.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">L0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).<a href="#section-3.1-4" class="pilcrow">¶</a></p>
-<p id="section-3.1-5">Regarding network-related information, <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span> and <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span> define various performance metrics and their registries. Additionally, in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, the ALTO WG introduced an extended set of metrics related to network performance, such as throughput and delay. For compute metrics, <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span> lists a set of cloud resource metrics.<a href="#section-3.1-5" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="level-0-raw-metrics">
+<section id="section-3.2">
+        <h3 id="name-level-0-raw-metrics">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-level-0-raw-metrics" class="section-name selfRef">Level 0: Raw Metrics</a>
+        </h3>
+<p id="section-3.2-1">Level 0 metrics encompass detailed, raw metrics, including but not limited to:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.2-2.1">
+            <p id="section-3.2-2.1.1">CPU: Base Frequency, boosted frequency, number of cores, core utilization, memory bandwidth, memory size, memory utilization, power consumption.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.2">
+            <p id="section-3.2-2.2.1">GPU: Frequency, number of render units, memory bandwidth, memory size, memory utilization, core utilization, power consumption.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.3">
+            <p id="section-3.2-2.3.1">NPU: Computing power, utilization, power consumption.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.4">
+            <p id="section-3.2-2.4.1">Network: Bandwidth, capacity, throughput, bytes transmitted, bytes received, host bus utilization.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.5">
+            <p id="section-3.2-2.5.1">Storage: Available space, read speed, write speed.<a href="#section-3.2-2.5.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="normal" id="section-3.2-2.6">
+            <p id="section-3.2-2.6.1">Delay: Time taken to process a request.<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
+</li>
+        </ul>
+<p id="section-3.2-3">L0 metrics serve as foundational data and do not require classification. They provide basic information to support higher-level metrics, as detailed in the following sections.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">L0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.2-5">Regarding network-related information, <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span> and <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span> define various performance metrics and their registries. Additionally, in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, the ALTO WG introduced an extended set of metrics related to network performance, such as throughput and delay. For compute metrics, <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span> lists a set of cloud resource metrics.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="level-1-normalized-metrics-in-categories">
-<section id="section-3.2">
+<section id="section-3.3">
         <h3 id="name-level-1-normalized-metrics-">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-level-1-normalized-metrics-" class="section-name selfRef">Level 1: Normalized Metrics in Categories</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-level-1-normalized-metrics-" class="section-name selfRef">Level 1: Normalized Metrics in Categories</a>
         </h3>
-<p id="section-3.2-1">L1 metrics are organized into distinct categories, such as computing, communication, and composed metrics. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an <em>aggregation function</em> and normalized to a unitless score that represents the performance of the underlying resources according to that category. Potential categories include:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-1">L1 metrics are organized into distinct categories, such as computing, communication, and composed metrics. Each L0 metric is classified into one of these categories. Within each category, a single L1 metric is computed using an <em>aggregation function</em> and normalized to a unitless score that represents the performance of the underlying resources according to that category. Potential categories include:<a href="#section-3.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-2.1">
-            <p id="section-3.2-2.1.1"><strong>Computing:</strong> A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU utilization.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.3-2.1">
+            <p id="section-3.3-2.1.1"><strong>Computing:</strong> A normalized value derived from computing-related L0 metrics, such as CPU, GPU, and NPU utilization.<a href="#section-3.3-2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1"><strong>Communication:</strong> A normalized value derived from communication-related L0 metrics, such as communication throughput.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.3-2.2">
+            <p id="section-3.3-2.2.1"><strong>Communication:</strong> A normalized value derived from communication-related L0 metrics, such as communication throughput.<a href="#section-3.3-2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.3">
-            <p id="section-3.2-2.3.1"><strong>Composed:</strong> A normalized value derived from an end-to-end aggregation function by levaraging both computing and communication metrics. For example, end-to-end delay computed as the sum of all delays along a path.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.3-2.3">
+            <p id="section-3.3-2.3.1"><strong>Composed:</strong> A normalized value derived from an end-to-end aggregation function by levaraging both computing and communication metrics. For example, end-to-end delay computed as the sum of all delays along a path.<a href="#section-3.3-2.3.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.2-3">Editor note: detailed categories can be updated according to the CATS WG discussion.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.2-4">L0 metrics, such as those defined in <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, and <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span>, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-3">Editor note: detailed categories can be updated according to the CATS WG discussion.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.3-4">L0 metrics, such as those defined in <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>, and <span>[<a href="#I-D.rcr-opsawg-operational-compute-metrics" class="cite xref">I-D.rcr-opsawg-operational-compute-metrics</a>]</span>, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="level-2-fully-normalized-metric">
-<section id="section-3.3">
+<section id="section-3.4">
         <h3 id="name-level-2-fully-normalized-me">
-<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-level-2-fully-normalized-me" class="section-name selfRef">Level 2: Fully Normalized Metric.</a>
+<a href="#section-3.4" class="section-number selfRef">3.4. </a><a href="#name-level-2-fully-normalized-me" class="section-name selfRef">Level 2: Fully Normalized Metric.</a>
         </h3>
-<p id="section-3.3-1">The L2 metric is a single score value derived from the lower level metrics (L0 or L1) using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
-<p id="section-3.3-2">TODO: Some implementations may support the configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the information from the L1 or L0 metrics.<a href="#section-3.3-2" class="pilcrow">¶</a></p>
-<p id="section-3.3-3">Figure 1 provides a summary of the logical relationships between metrics across the three levels of abstraction.<a href="#section-3.3-3" class="pilcrow">¶</a></p>
+<p id="section-3.4-1">The L2 metric is a single score value derived from the lower level metrics (L0 or L1) using an aggregation function. Different implementations may employ different aggregation functions to characterize the overall performance of the underlying compute and communication resources. The definition of the L2 metric simplifies the complexity of collecting and distributing numerous lower-level metrics by consolidating them into a single, unified score.<a href="#section-3.4-1" class="pilcrow">¶</a></p>
+<p id="section-3.4-2">TODO: Some implementations may support the configuration of Ingress CATS-Forwarders with the metric normalizing method so that it can decode the information from the L1 or L0 metrics.<a href="#section-3.4-2" class="pilcrow">¶</a></p>
+<p id="section-3.4-3">Figure 1 provides a summary of the logical relationships between metrics across the three levels of abstraction.<a href="#section-3.4-3" class="pilcrow">¶</a></p>
 <span id="name-logic-of-cats-metrics-in-le"></span><div id="fig-metric-levels">
 <figure id="figure-1">
-          <div class="alignLeft art-text artwork" id="section-3.3-4.1">
+          <div class="alignLeft art-text artwork" id="section-3.4-4.1">
 <pre>
                                     +--------+
                          L2 Metric: |   M2   |
@@ -1802,12 +1808,7 @@ Source:
       <h2 id="name-implementation-guidance-on-">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-implementation-guidance-on-" class="section-name selfRef">Implementation Guidance on Using CATS Metrics</a>
       </h2>
-<p id="section-6-1">This section provides implementation guidance and outlines options for service providers and vendors on how to utilize CATS metrics effectively. The goal is to promote interoperability while ensuring optimal performance, particularly when L2 metrics are used for decision-making.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">As described in the CATS framework <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, the architecture includes multiple CATS components with varying functionalities, resource constraints, and processing capabilities. These differences must be carefully considered when determining where to place the normalization and aggregation functions used to derive L2 metrics.<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">A key design principle is to offload normalization and aggregation functions from the decision-making component---the CATS Path Selector (C-PS)---especially when the C-PS is co-located with CATS-Forwarders. Based on this principle, normalization and aggregation functions can be deployed at the Service Contact Instance or the CATS Service Metric Agent (C-SMA).<a href="#section-6-3" class="pilcrow">¶</a></p>
-<p id="section-6-4">However, since the C-SMA may be co-located with CATS-Forwarders, which often have limited processing resources, placing normalization functions there could introduce significant overhead and negatively impact routing efficiency. Therefore, this document recommends placing aggregation functions at the C-SMA, while both normalization and aggregation functions can be implemented at the Service Contact Instance.<a href="#section-6-4" class="pilcrow">¶</a></p>
-<p id="section-6-5">Given that Service Contact Instances and C-SMAs may be provided by different vendors, it is essential to agree on common normalization and aggregation functions for traffic steering. Without such alignment, instance selection may become inconsistent or inaccurate.<a href="#section-6-5" class="pilcrow">¶</a></p>
-<p id="section-6-6">Editor's Note: Additional implementation considerations will be added progressively. This draft will be updated in alignment with ongoing discussions on metric definitions within the CATS Working Group.<a href="#section-6-6" class="pilcrow">¶</a></p>
+<p id="section-6-1">&lt;Authors Note: This part has been moved to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, according to he chairs' sugguestion. Since this document is primarily on metric definition, rather than real implementations.&gt;<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1826,57 +1827,45 @@ Source:
 <p id="section-8-1">TBD<a href="#section-8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="sec-combined-references">
+<div id="sec-informative-references">
 <section id="section-9">
-      <h2 id="name-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-references" class="section-name selfRef">References</a>
+      <h2 id="name-informative-references">
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
       </h2>
-<div id="sec-normative-references">
-<section id="section-9.1">
-        <h3 id="name-normative-references">
-<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
-        </h3>
 <dl class="references">
+<dt id="DMTF">[DMTF]</dt>
+      <dd>
+<span class="refTitle">"DMTF"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.dmtf.org/">https://www.dmtf.org/</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-cats-framework">[I-D.ietf-cats-framework]</dt>
       <dd>
 <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-framework-10</span>, <time datetime="2025-06-24" class="refDate">24 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-10">https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-10</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-</dl>
-</section>
-</div>
-<div id="sec-informative-references">
-<section id="section-9.2">
-        <h3 id="name-informative-references">
-<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
-        </h3>
-<dl class="references">
-<dt id="DMTF">[DMTF]</dt>
-        <dd>
-<span class="refTitle">"DMTF"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.dmtf.org/">https://www.dmtf.org/</a>&gt;</span>. </dd>
+<dt id="I-D.ietf-cats-usecases-requirements">[I-D.ietf-cats-usecases-requirements]</dt>
+      <dd>
+<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Shi, H.</span>, <span class="refAuthor">Zhang, S.</span>, and <span class="refAuthor">Q. An</span>, <span class="refTitle">"Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-usecases-requirements-07</span>, <time datetime="2025-06-10" class="refDate">10 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-07">https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.rcr-opsawg-operational-compute-metrics">[I-D.rcr-opsawg-operational-compute-metrics]</dt>
-        <dd>
+      <dd>
 <span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, and <span class="refAuthor">R. Schott</span>, <span class="refTitle">"Joint Exposure of Network and Compute Information for Infrastructure-Aware Service Deployment"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-rcr-opsawg-operational-compute-metrics-08</span>, <time datetime="2024-10-21" class="refDate">21 October 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-rcr-opsawg-operational-compute-metrics-08">https://datatracker.ietf.org/doc/html/draft-rcr-opsawg-operational-compute-metrics-08</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="performance-metrics">[performance-metrics]</dt>
-        <dd>
+      <dd>
 <span class="refTitle">"performance-metrics"</span>, <span>n.d.</span>, <span>&lt;<a href="https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml">https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8911">[RFC8911]</dt>
-        <dd>
+      <dd>
 <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Claise, B.</span>, <span class="refAuthor">Eardley, P.</span>, <span class="refAuthor">Morton, A.</span>, and <span class="refAuthor">A. Akhter</span>, <span class="refTitle">"Registry for Performance Metrics"</span>, <span class="seriesInfo">RFC 8911</span>, <span class="seriesInfo">DOI 10.17487/RFC8911</span>, <time datetime="2021-11" class="refDate">November 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8911">https://www.rfc-editor.org/rfc/rfc8911</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8912">[RFC8912]</dt>
-        <dd>
+      <dd>
 <span class="refAuthor">Morton, A.</span>, <span class="refAuthor">Bagnulo, M.</span>, <span class="refAuthor">Eardley, P.</span>, and <span class="refAuthor">K. D'Souza</span>, <span class="refTitle">"Initial Performance Metrics Registry Entries"</span>, <span class="seriesInfo">RFC 8912</span>, <span class="seriesInfo">DOI 10.17487/RFC8912</span>, <time datetime="2021-11" class="refDate">November 2021</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8912">https://www.rfc-editor.org/rfc/rfc8912</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC9439">[RFC9439]</dt>
-      <dd>
+    <dd>
 <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Yang, Y.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Dhody, D.</span>, <span class="refAuthor">Randriamasy, S.</span>, and <span class="refAuthor">L. Contreras</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Performance Cost Metrics"</span>, <span class="seriesInfo">RFC 9439</span>, <span class="seriesInfo">DOI 10.17487/RFC9439</span>, <time datetime="2023-08" class="refDate">August 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9439">https://www.rfc-editor.org/rfc/rfc9439</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
-</section>
-</div>
 </section>
 </div>
 <div id="contributors">
@@ -1917,15 +1906,6 @@ Source:
 </div>
 </address>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Hang Shi</span></div>
-<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
-<div dir="auto" class="left"><span class="country-name">China</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:shihang9@huawei.com" class="email">shihang9@huawei.com</a>
-</div>
-</address>
-<address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Cheng Li</span></div>
 <div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
 <div dir="auto" class="left"><span class="country-name">China</span></div>
@@ -1948,6 +1928,15 @@ Source:
 <div class="email">
 <span>Email:</span>
 <a href="mailto:jros@qti.qualcomm.com" class="email">jros@qti.qualcomm.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Hang Shi</span></div>
+<div dir="auto" class="left"><span class="org">Huawei Technologies</span></div>
+<div dir="auto" class="left"><span class="country-name">China</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:shihang9@huawei.com" class="email">shihang9@huawei.com</a>
 </div>
 </address>
 </section>
