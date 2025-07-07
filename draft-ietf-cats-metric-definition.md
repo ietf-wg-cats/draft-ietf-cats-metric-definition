@@ -22,12 +22,6 @@ author:
     email: yaokehan@chinamobile.com
     country: China
  -
-    ins: H. Shi
-    fullname: Hang Shi
-    organization: Huawei Technologies
-    email: shihang9@huawei.com
-    country: China
- -
     ins: C. Li
     fullname: Cheng Li
     organization: Huawei Technologies
@@ -43,6 +37,12 @@ author:
     fullname: Jordi Ros-Giralt
     organization: Qualcomm Europe, Inc.
     email: jros@qti.qualcomm.com
+ -
+    ins: H. Shi
+    fullname: Hang Shi
+    organization: Huawei Technologies
+    email: shihang9@huawei.com
+    country: China
 
 contributor:
 - name: Mohamed Boucadair
@@ -53,8 +53,15 @@ contributor:
   email: duzongpeng@chinamobile.com
 
 normative:
+  RFC 8911:
+  RFC 8912:
+  RFC 9439:
 
 informative:
+  I-D.ietf-cats-usecases-requirements:
+  I-D.ietf-cats-framework:
+  I-D.rcr-opsawg-operational-compute-metrics:
+    
   performance-metrics:
     title: performance-metrics
     author:
@@ -71,21 +78,21 @@ informative:
 
 --- abstract
 
-Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.>
+Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.
 
 --- middle
 
 # Introduction
 
-Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application. To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in {{!I-D.ietf-cats-framework}}.
+Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application. To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in {{I-D.ietf-cats-framework}}.
 
 CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.
 
-Metrics from network domain have already been defined in previous documents, e.g., RFC 9439, RFC 8912，and RFC 8911, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.
+Metrics from network domain have already been defined in previous documents, e.g., {{RFC9439}}, {{RFC8912}}，and {{RFC8911}}, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.
 
 # Conventions and Definitions
 
-This document uses the following terms defined in {{!I-D.ietf-cats-framework}}:
+This document uses the following terms defined in {{I-D.ietf-cats-framework}}:
 
 - Computing-Aware Traffic Steering (CATS)
 
@@ -95,7 +102,17 @@ This document uses the following terms defined in {{!I-D.ietf-cats-framework}}:
 
 # Definition of Metrics
 
-Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the metrics distribution protocol. (See {{?I-D.rcr-opsawg-operational-compute-metrics}} for a discussion of metrics distribution protocols.) Conversely, if the metrics are too coarse-grained, they may not have sufficient information to enable proper operational decisions. To ensure scalability while providing sufficient detail for effective decision-making, this document provides a definition of metrics that incorporates three levels of abstraction:
+## Design Principles - Why Three Metric Levels?
+
+As outlined in {{I-D.ietf-cats-usecases-requirements}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. Additionally, it MUST be useful in practice. To that end, a CATS system should select the most appropriate metric(s) for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.
+
+Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the metrics distribution protocol. (See {{I-D.rcr-opsawg-operational-compute-metrics}} for a discussion of metrics distribution protocols.) Conversely, if the metrics are too coarse-grained, they may not have sufficient information to enable proper operational decisions. 
+
+Conceptually, it is necessary to define at least two fundamental levels of metrics: one comprising all raw metrics, and the other representing a simplified form—consisting of a single value that encapsulates the overall capability of a service instance.
+
+However, such a definition may, to some extent, constrain implementation flexibility across diverse CATS use cases. Implementers often seek balanced approaches that consider trade-offs among encoding complexity, accuracy, scalability, and extensibility.
+
+To ensure scalability while providing sufficient detail for effective decision-making, this document provides a definition of metrics that incorporates three levels of abstraction:
 
 - **Level 0 (L0): Raw metrics.** These metrics are presented without abstraction, with each metric using its own unit and format as defined by the underlying resource.
 
@@ -448,18 +465,7 @@ Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferre
 In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.
 
 # Implementation Guidance on Using CATS Metrics
-
-This section provides implementation guidance and outlines options for service providers and vendors on how to utilize CATS metrics effectively. The goal is to promote interoperability while ensuring optimal performance, particularly when L2 metrics are used for decision-making.
-
-As described in the CATS framework {{!I-D.ietf-cats-framework}}, the architecture includes multiple CATS components with varying functionalities, resource constraints, and processing capabilities. These differences must be carefully considered when determining where to place the normalization and aggregation functions used to derive L2 metrics.
-
-A key design principle is to offload normalization and aggregation functions from the decision-making component---the CATS Path Selector (C-PS)---especially when the C-PS is co-located with CATS-Forwarders. Based on this principle, normalization and aggregation functions can be deployed at the Service Contact Instance or the CATS Service Metric Agent (C-SMA).
-
-However, since the C-SMA may be co-located with CATS-Forwarders, which often have limited processing resources, placing normalization functions there could introduce significant overhead and negatively impact routing efficiency. Therefore, this document recommends placing aggregation functions at the C-SMA, while both normalization and aggregation functions can be implemented at the Service Contact Instance.
-
-Given that Service Contact Instances and C-SMAs may be provided by different vendors, it is essential to agree on common normalization and aggregation functions for traffic steering. Without such alignment, instance selection may become inconsistent or inaccurate.
-
-Editor's Note: Additional implementation considerations will be added progressively. This draft will be updated in alignment with ongoing discussions on metric definitions within the CATS Working Group.
+<Authors Note: This part has been moved to {{I-D.ietf-cats-framework}}, according to he chairs' sugguestion. Since this document is primarily on metric definition, rather than real implementations.>
 
 # Security Considerations
 
