@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-07-06T00:50:14.958606+00:00",
+  "timestamp": "2025-07-08T00:44:14.367334+00:00",
   "repo": "ietf-wg-cats/draft-ietf-cats-metric-definition",
   "labels": [
     {
@@ -2477,26 +2477,55 @@
       "id": "PR_kwDOMTaH-s6diEe0",
       "title": "add considerations on why 3 metric levels",
       "url": "https://github.com/ietf-wg-cats/draft-ietf-cats-metric-definition/pull/21",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "bpatient78",
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2025-07-05T06:41:08Z",
-      "updatedAt": "2025-07-05T06:41:08Z",
+      "updatedAt": "2025-07-07T11:34:30Z",
       "baseRepository": "ietf-wg-cats/draft-ietf-cats-metric-definition",
       "baseRefName": "main",
       "baseRefOid": "11c6b4c2707061cedccee4314227f6f34a6a05b8",
       "headRepository": "bpatient78/draft-cats-metric-definition",
       "headRefName": "main",
-      "headRefOid": "44eda38db7b6ffdd7db8da67a200e55029b7f2a0",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "9a6d11afcfdd9ec201e1e3c919a9cc2732df4739",
+      "closedAt": "2025-07-07T11:34:30Z",
+      "mergedAt": "2025-07-07T11:34:30Z",
+      "mergedBy": "giralt",
+      "mergeCommit": {
+        "oid": "0d0d9d3cef2aea09858c8b288271374af307d7a6"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOMTaH-s6yZwug",
+          "commit": {
+            "abbreviatedOid": "44eda38"
+          },
+          "author": "giralt",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2025-07-07T10:10:34Z",
+          "updatedAt": "2025-07-07T10:12:09Z",
+          "comments": [
+            {
+              "originalPosition": 91,
+              "body": "@bpatient78, just for the record, could you explain why this section is being removed from the document? thanks.",
+              "createdAt": "2025-07-07T10:10:35Z",
+              "updatedAt": "2025-07-07T10:12:09Z"
+            },
+            {
+              "originalPosition": 73,
+              "body": "Instead of \"Problem Statement - Why Three Metric Levels?\"\r\n\r\nsuggest the following heading:\r\n\r\n\"Design Principles: Why Three Metric Levels?\"",
+              "createdAt": "2025-07-07T10:12:03Z",
+              "updatedAt": "2025-07-07T10:12:09Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
