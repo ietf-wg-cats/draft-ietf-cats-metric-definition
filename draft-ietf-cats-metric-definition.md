@@ -270,7 +270,7 @@ Next, we describe each field in more detail:
 
 - **Value (value)**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
-## Level 0 Metric Representation 
+## Level 0 Metric Representation
 
 Several definitions have been developed within the compute and communication industries, as well as through various standardization efforts---such as those by the {{DMTF}}---that can serve as L0 metrics. L0 metrics contain all raw metrics which are not considered to be standardized in this document, considering about their diversity and many other existing work. Some typical L0 metrics examples have been attached in Appendix A.
 
