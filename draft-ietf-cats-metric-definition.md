@@ -2,7 +2,7 @@
 
 title: "CATS Metrics Definition"
 abbrev: "CATS Metrics"
-category: info
+category: std
 
 docname: draft-ietf-cats-metric-definition-latest
 submissiontype: IETF
@@ -147,6 +147,8 @@ L1 metrics are organized into distinct categories, such as computing, communicat
 
 - **Communication:** A normalized value derived from communication-related L0 metrics, such as communication throughput.
 
+- **Service:** A normalized value derived from service-related L0 metrics, such as query per second(QPS), token per second(TPS).
+
 - **Composed:** A normalized value derived from an end-to-end aggregation function by levaraging both computing and communication metrics. For example, end-to-end delay computed as the sum of all delays along a path.
 
 Editor note: detailed categories can be updated according to the CATS WG discussion.
@@ -185,7 +187,6 @@ Figure 1 provides a summary of the logical relationships between metrics across 
 # Representation of Metrics
 
 The representation of metrics is a key component of the CATS architecture. It defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate various types of metrics along with their respective units and precision levels, yet simple enough to enable easy implementation and deployment across heterogeneous edge environments.
-
 
 ## CATS Metric Fields
 
@@ -243,7 +244,6 @@ Next, we describe each field in more detail:
 
 - **Unit (unit)**: This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.
 
-
 - **Source (source, optional)**: This field describes the origin of the information used to obtain the metric. It may include one or more of the following non-mutually exclusive values:
 
     - 'nominal'. Similar to {{?RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.
@@ -270,83 +270,9 @@ Next, we describe each field in more detail:
 
 - **Value (value)**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
-## Level 0 Metric Representation
+## Level 0 Metric Representation 
 
-Several definitions have been developed within the compute and communication industries, as well as through various standardization efforts---such as those by the {{DMTF}}---that can serve as L0 metrics. This section provides illustrative examples.
-
-<!-- JRG: The following two paragraphs seem redundants, as we have
-already explained it in the previous section. So I suggest to remove them. -->
-
-<!-- The sources of L0 metrics can be nominal, directly measured, estimated, or aggregated. Nominal L0 metrics are initially provided by resource providers. Dynamic L0 metrics are measured or estimated during the service stage. Additionally, L0 metrics support aggregation when there are multiple service instances.
-
-L0 metrics also support the statistics defined in section 4.1. -->
-
-<!-- TODO: next step would be to update the examples once we agree with (and update as necessary) the above changes regarding the CATS metric specification. -->
-
-### Compute Raw Metrics
-
-This section uses CPU frequency as an example to illustrate the representation of raw compute metrics. The metric type is labeled as compute_CPU_frequency, with the unit specified in GHz. The format should support both unsigned integers and floating-point values. The corresponding metric fields are defined as follows:
-
-~~~
-Basic fields:
-      Metric Type: compute_CPU_frequency
-      Level: L0
-      Format: unsigned integer, floating point
-      Unit: GHz
-      Length: four octets
-      Value: 2.2
-Source:
-      nominal
-
-|Metric Type|Level|Format| Unit|Length| Value|Source|
-    8bits    2bits  1bit  4bits  3bits 32bits  3bits
-~~~
-{: #fig-compute-raw-metric title="An Example for Compute Raw Metrics"}
-
-
-###  Communication Raw Metrics
-
-This section takes the total transmitted bytes (TxBytes) as an example to show the representation of communication raw metrics. TxBytes are named as "communication type_TxBytes”. The unit is Mega Bytes (MB). Format is unsigned integer or floating point. It will occupy 4 octets. The source of the metric is "Directly measured" and the statistics is "mean". Example:
-
-~~~
-Basic fields:
-      Metric type: “communication type_TXBytes”
-      Level: L0
-      Format: unsigned integer, floating point
-      Unit: MB
-      Length: four octets
-      Value: 100
-Source:
-      Directly measured
-Statistics:
-      mean
-
-|Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
-    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
-~~~
-{: #fig-network-raw-metric title="An Example for Communication Raw Metrics"}
-
-###  Delay Raw Metrics
-
-Delay is a kind of synthesized metric which is influenced by computing, storage access, and network transmission. Usually delay refers to the overal processing duration between the arrival time of a specific service request and the departure time of the corresponding service response. It is named as "delay_raw". The format should support both unsigned integer or floating point. Its unit is microseconds, and it occupies 4 octets. For example:
-
-~~~
-Basic fields:
-      Metric type: “delay_raw”
-      Level: L0
-      Format: unsigned integer, floating point
-      Unit: Microsecond(us)
-      Length: four octets
-      Value: 231.5
-Source:
-      aggregation
-Statistics:
-      max
-
-|Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
-    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
-~~~
-{: #fig-delay-raw-metric title="An Example for Delay Raw Metrics"}
+Several definitions have been developed within the compute and communication industries, as well as through various standardization efforts---such as those by the {{DMTF}}---that can serve as L0 metrics. L0 metrics contain all raw metrics which are not considered to be standardized in this document, considering about their diversity and many other existing work. Some typical L0 metrics examples have been attached in Appendix A.
 
 ## Level 1 Metric Representation
 
@@ -477,3 +403,84 @@ TBD
 
 
 --- back
+
+
+# Appendix A
+
+## Level 0 Metric Representation Examples
+
+Several definitions have been developed within the compute and communication industries, as well as through various standardization efforts---such as those by the {{DMTF}}---that can serve as L0 metrics. This section provides illustrative examples.
+
+<!-- JRG: The following two paragraphs seem redundants, as we have
+already explained it in the previous section. So I suggest to remove them. -->
+
+<!-- The sources of L0 metrics can be nominal, directly measured, estimated, or aggregated. Nominal L0 metrics are initially provided by resource providers. Dynamic L0 metrics are measured or estimated during the service stage. Additionally, L0 metrics support aggregation when there are multiple service instances.
+
+L0 metrics also support the statistics defined in section 4.1. -->
+
+<!-- TODO: next step would be to update the examples once we agree with (and update as necessary) the above changes regarding the CATS metric specification. -->
+
+### Compute Raw Metrics
+
+This section uses CPU frequency as an example to illustrate the representation of raw compute metrics. The metric type is labeled as compute_CPU_frequency, with the unit specified in GHz. The format should support both unsigned integers and floating-point values. The corresponding metric fields are defined as follows:
+
+~~~
+Basic fields:
+      Metric Type: compute_CPU_frequency
+      Level: L0
+      Format: unsigned integer, floating point
+      Unit: GHz
+      Length: four octets
+      Value: 2.2
+Source:
+      nominal
+
+|Metric Type|Level|Format| Unit|Length| Value|Source|
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits
+~~~
+{: #fig-compute-raw-metric title="An Example for Compute Raw Metrics"}
+
+
+###  Communication Raw Metrics
+
+This section takes the total transmitted bytes (TxBytes) as an example to show the representation of communication raw metrics. TxBytes are named as "communication type_TxBytes”. The unit is Mega Bytes (MB). Format is unsigned integer or floating point. It will occupy 4 octets. The source of the metric is "Directly measured" and the statistics is "mean". Example:
+
+~~~
+Basic fields:
+      Metric type: “communication type_TXBytes”
+      Level: L0
+      Format: unsigned integer, floating point
+      Unit: MB
+      Length: four octets
+      Value: 100
+Source:
+      Directly measured
+Statistics:
+      mean
+
+|Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
+~~~
+{: #fig-network-raw-metric title="An Example for Communication Raw Metrics"}
+
+###  Delay Raw Metrics
+
+Delay is a kind of synthesized metric which is influenced by computing, storage access, and network transmission. Usually delay refers to the overal processing duration between the arrival time of a specific service request and the departure time of the corresponding service response. It is named as "delay_raw". The format should support both unsigned integer or floating point. Its unit is microseconds, and it occupies 4 octets. For example:
+
+~~~
+Basic fields:
+      Metric type: “delay_raw”
+      Level: L0
+      Format: unsigned integer, floating point
+      Unit: Microsecond(us)
+      Length: four octets
+      Value: 231.5
+Source:
+      aggregation
+Statistics:
+      max
+
+|Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
+    8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
+~~~
+{: #fig-delay-raw-metric title="An Example for Delay Raw Metrics"}
