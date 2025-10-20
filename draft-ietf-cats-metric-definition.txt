@@ -510,7 +510,7 @@ Table of Contents
       | Metric 1 |---->| Normalization Function |---->| Metric 2 |
       +----------+     +------------------------+     +----------+
 
-      Input:  Value with or without units         Output: Unitless score
+      Input:  Value with or without units         Output: Unitless value
 
                    Figure 4: Normalization function
 
