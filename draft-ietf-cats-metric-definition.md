@@ -318,7 +318,7 @@ Normalized metrics facilitate composite scoring and ranking, and can be used to 
       | Metric 1 |---->| Normalization Function |---->| Metric 2 |
       +----------+     +------------------------+     +----------+
 
-      Input:  Value with or without units         Output: Unitless score
+      Input:  Value with or without units         Output: Unitless value
 
 ~~~
 {: #fig-norm-funct title="Normalization function"}
