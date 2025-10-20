@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 17 April 2026                               Huawei Technologies
+Expires: 23 April 2026                               Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                   H. Shi
                                                      Huawei Technologies
-                                                         14 October 2025
+                                                         20 October 2025
 
 
                         CATS Metrics Definition
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 April 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
@@ -510,7 +510,7 @@ Table of Contents
       | Metric 1 |---->| Normalization Function |---->| Metric 2 |
       +----------+     +------------------------+     +----------+
 
-      Input:  Value with or without units         Output: Unitless score
+      Input:  Value with or without units         Output: Unitless value
 
                    Figure 4: Normalization function
 
@@ -759,9 +759,9 @@ Table of Contents
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
               Drake, "A Framework for Computing-Aware Traffic Steering
               (CATS)", Work in Progress, Internet-Draft, draft-ietf-
-              cats-framework-15, 15 September 2025,
+              cats-framework-16, 16 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
-              framework-15>.
+              framework-16>.
 
    [I-D.ietf-cats-usecases-requirements]
               Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
