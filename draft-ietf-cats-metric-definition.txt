@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 17 April 2026                               Huawei Technologies
+Expires: 23 April 2026                               Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                   H. Shi
                                                      Huawei Technologies
-                                                         14 October 2025
+                                                         20 October 2025
 
 
                         CATS Metrics Definition
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 April 2026.
+   This Internet-Draft will expire on 23 April 2026.
 
 Copyright Notice
 
@@ -75,19 +75,21 @@ Table of Contents
 
    1.  Introduction
    2.  Conventions and Definitions
-   3.  Definition of Metrics
-     3.1.  Design Principles - Why Three Metric Levels?
+   3.  Design Principles
+     3.1.  Three-Level Metrics
      3.2.  Level 0: Raw Metrics
      3.3.  Level 1: Normalized Metrics in Categories
-     3.4.  Level 2: Fully Normalized Metric.
-   4.  Representation of Metrics
+     3.4.  Level 2: Single Normalized Metric.
+   4.  CATS Metrics Framework and Specification
      4.1.  CATS Metric Fields
-     4.2.  Level 0 Metric Representation
-     4.3.  Level 1 Metric Representation
-       4.3.1.  Normalized Compute Metrics
-       4.3.2.  Normalized Communication Metrics
-       4.3.3.  Normalized Composed Metrics
-     4.4.  Level 2 Metric Representation
+     4.2.  Aggregation and Normalization Functions
+       4.2.1.  Aggregation
+       4.2.2.  Normalization
+     4.3.  On the Meaning of Scores in Heterogeneous Metrics Systems
+     4.4.  Level Metric Representations
+       4.4.1.  Level 0 Metrics
+       4.4.2.  Level 1 Metrics
+       4.4.3.  Level 2 Metrics
    5.  Comparison among Metric Levels
    6.  Implementation Guidance on Using CATS Metrics
    7.  Security Considerations
@@ -138,9 +140,9 @@ Table of Contents
 
    *  Service contact instance
 
-3.  Definition of Metrics
+3.  Design Principles
 
-3.1.  Design Principles - Why Three Metric Levels?
+3.1.  Three-Level Metrics
 
    As outlined in [I-D.ietf-cats-usecases-requirements], the resource
    model that defines CATS metrics MUST be scalable, ensuring that its
@@ -161,7 +163,7 @@ Table of Contents
 
    Conceptually, it is necessary to define at least two fundamental
    levels of metrics: one comprising all raw metrics, and the other
-   representing a simplified form—consisting of a single value that
+   representing a simplified form---consisting of a single value that
    encapsulates the overall capability of a service instance.
 
    However, such a definition may, to some extent, constrain
@@ -183,10 +185,10 @@ Table of Contents
       summarized with a single L1 metric by normalizing it into a value
       within a defined range of scores.
 
-   *  *Level 2 (L2): Fully normalized metric.* These metrics are derived
-      by aggregating lower level metrics (L0 or L1) into a single L2
-      metric, which is then normalized into a value within a defined
-      range of scores.
+   *  *Level 2 (L2): Single normalized metric.* These metrics are
+      derived by aggregating lower level metrics (L0 or L1) into a
+      single L2 metric, which is then normalized into a value within a
+      defined range of scores.
 
 3.2.  Level 0: Raw Metrics
 
@@ -230,11 +232,12 @@ Table of Contents
 3.3.  Level 1: Normalized Metrics in Categories
 
    L1 metrics are organized into distinct categories, such as computing,
-   communication, and composed metrics.  Each L0 metric is classified
-   into one of these categories.  Within each category, a single L1
-   metric is computed using an _aggregation function_ and normalized to
-   a unitless score that represents the performance of the underlying
-   resources according to that category.  Potential categories include:
+   communication, service, and composed metrics.  Each L0 metric is
+   classified into one of these categories.  Within each category, a
+   single L1 metric is computed using an _aggregation function_ and
+   normalized to a unitless score that represents the performance of the
+   underlying resources according to that category.  Potential
+   categories include:
 
    *  *Computing:* A normalized value derived from computing-related L0
       metrics, such as CPU, GPU, and NPU utilization.
@@ -243,7 +246,7 @@ Table of Contents
       related L0 metrics, such as communication throughput.
 
    *  *Service:* A normalized value derived from service-related L0
-      metrics, such as query per second(QPS), token per second(TPS).
+      metrics, such as tokens per second and service availability
 
    *  *Composed:* A normalized value derived from an end-to-end
       aggregation function by levaraging both computing and
@@ -261,7 +264,7 @@ Table of Contents
    on the metric categories and their normalized values, thereby
    avoiding the need to process solution-specific detailed metrics.
 
-3.4.  Level 2: Fully Normalized Metric.
+3.4.  Level 2: Single Normalized Metric.
 
    The L2 metric is a single score value derived from the lower level
    metrics (L0 or L1) using an aggregation function.  Different
@@ -296,9 +299,9 @@ Table of Contents
 
                Figure 1: Logic of CATS Metrics in levels
 
-4.  Representation of Metrics
+4.  CATS Metrics Framework and Specification
 
-   The representation of metrics is a key component of the CATS
+   The CATS metrics framework is a key component of the CATS
    architecture.  It defines how metrics are encoded and transmitted
    over the network.  The representation should be flexible enough to
    accommodate various types of metrics along with their respective
@@ -307,14 +310,15 @@ Table of Contents
 
 4.1.  CATS Metric Fields
 
-   This section presents the detailed representation of CATS metrics.
-   The design aligns with principles established in similar IETF
-   specifications, such as the network performance metrics defined in
+   This section defines the detailed structure used to represent CATS
+   metrics.  The design follows principles established in related IETF
+   specifications, such as the network performance metrics outlined in
    [RFC9439].
 
-   A CATS metric is represented using a set of fields, each describing a
-   property of the metric.  This document introduces the following CATS
-   metrics fields:
+   Each CATS metric is expressed as a structured set of fields, with
+   each field describing a specific property of the metric.  The
+   following definition introduces the fields used in the CATS metric
+   representations.
 
    - Cats_metric:
          - Metric_type:
@@ -440,22 +444,126 @@ Table of Contents
       of the metric being measured.  It provides the specific data point
       for the metric in question.
 
-4.2.  Level 0 Metric Representation
+4.2.  Aggregation and Normalization Functions
+
+   In the context of CATS metric processing, aggregation and
+   normalization are two fundamental operations that transform raw and
+   derived metrics into forms suitable for decision-making and
+   comparison across heterogeneous systems.
+
+4.2.1.  Aggregation
+
+   Aggregation functions combine multiple metric values into a single
+   representative value.  This is particularly useful when metrics are
+   collected from multiple sources or over time intervals.  For example,
+   CPU usage metrics from multiple service instances may be aggregated
+   to produce a single load indicator for a service.  Common aggregation
+   functions include:
+
+   *  Mean average: Computes the arithmetic average of a set of values.
+
+   *  Minimum/maximum: Selects the lowest or highest value from a set.
+
+   *  Weighted average: Applies weights to values based on relevance or
+      priority.
+
+   The output of an aggregation function is typically a Level 2 metric,
+   derived from multiple Level 0 metrics, or a level 2 metric, derived
+   from multiple Level 0 or 1 metrics.
+
+         +------------+     +-------------------+
+         | Metric 1.1 |---->|                   |
+         +------------+     |    Aggregation    |     +----------+
+              ...           |     Function      |---->| Metric 2 |
+         +------------+     |                   |     +----------+
+         | Metric 1.n |---->|                   |
+         +------------+     +-------------------+
+
+         Input: Multiple values                   Output: Single value
+
+                       Figure 3: Aggregation function
+
+4.2.2.  Normalization
+
+   Normalization functions convert metric values with or without units
+   into unitless scores, enabling comparison across different types of
+   metrics and systems.  This is essential when combining metrics from a
+   heterogeneous set of resources (e.g, latency measured in milliseconds
+   with CPU usage measured in percentage) into a unified decision model.
+
+   Normalization functions often map values into a bounded range, such
+   as integers fron 0, to 5, or real numbers from 0 to 1, using
+   techniques like:
+
+   *  Sigmoid function: Smoothly maps input values to a bounded range.
+
+   *  Min-max scaling: Rescales values based on known minimum and
+      maximum bounds.
+
+   *  Z-score normalization: Standardizes values based on statistical
+      distribution.
+
+   Normalized metrics facilitate composite scoring and ranking, and can
+   be used to produce Level 1 and Level 2 metrics.
+
+      +----------+     +------------------------+     +----------+
+      | Metric 1 |---->| Normalization Function |---->| Metric 2 |
+      +----------+     +------------------------+     +----------+
+
+      Input:  Value with or without units         Output: Unitless score
+
+                   Figure 4: Normalization function
+
+4.3.  On the Meaning of Scores in Heterogeneous Metrics Systems
+
+   In a system like CATS, where metrics originate from heterogeneous
+   resources---such as compute, communication, and storage---the
+   interpretation of scores requires careful consideration.  While
+   normalization functions can convert raw metrics into unitless scores
+   to enable comparison, these scores may not be directly comparable
+   across different implementations.  For example, a score of 4 on a
+   scale from 1 to 5 may represent a high-quality resource in one
+   implementation, but only an average one in another.
+
+   This ambiguity arises because different implementations may apply
+   distinct normalization strategies, scaling methods, or semantic
+   interpretations.  As a result, relying solely on unitless scores for
+   decision-making can lead to inconsistent or suboptimal outcomes,
+   especially when metrics are aggregated from multiple sources.
+
+   To mitigate this, implementors of CATS metrics SHOULD provide clear
+   and precise definitions of their metrics---particularly for unitless
+   scores---and explain how these scores should be interpreted.  This
+   documentation should be designed to support operators in making
+   informed decisions, even when comparing metrics from different
+   implementations.
+
+   Similarly, operators SHOULD exercise caution when making potentially
+   impactful decisions based on unitless metrics whose definitions are
+   unclear or underspecified.  In such cases, especially when decisions
+   are critical or sensitive, operators MAY choose to rely on Level 0
+   (L0) metrics with units, which typically offer a more direct and
+   unambiguous understanding of resource conditions.
+
+4.4.  Level Metric Representations
+
+4.4.1.  Level 0 Metrics
 
    Several definitions have been developed within the compute and
    communication industries, as well as through various standardization
    efforts---such as those by the [DMTF]---that can serve as L0 metrics.
    L0 metrics contain all raw metrics which are not considered to be
    standardized in this document, considering about their diversity and
-   many other existing work.  Some typical L0 metrics examples have been
-   attached in Appendix A.
+   many other existing work.
 
-4.3.  Level 1 Metric Representation
+   See Appendix A for examples of L0 metrics.
+
+4.4.2.  Level 1 Metrics
 
    L1 metrics are normalized from L0 metrics.  Although they don't have
    units, they can still be classified into types such as compute,
-   communication and composed metrics.  This classification is useful
-   because it makes L1 metrics semantically meaningful.
+   communication, service and composed metrics.  This classification is
+   useful because it makes L1 metrics semantically meaningful.
 
    The sources of L1 metrics is normalization.  Based on L0 metrics,
    service providers design their own algorithms to normalize metrics.
@@ -463,14 +571,14 @@ Table of Contents
    do weighted summation.  L1 metrics do not need further statistical
    values.
 
-4.3.1.  Normalized Compute Metrics
+4.4.2.1.  Normalized Compute Metrics
 
-   The metric type of normalized compute metrics is “compute_norm”, and
+   The metric type of normalized compute metrics is "compute_norm", and
    its format is unsigned integer.  It has no unit.  It will occupy an
    octet.  Example:
 
    Basic fields:
-         Metric type: “compute_norm”
+         Metric type: compute_norm
          Level: L1
          Format: unsigned integer
          Length: one octet
@@ -482,16 +590,16 @@ Table of Contents
    |Metric Type|Level|Format|Length|Value|Source|
        8bits    2bits  1bit   3bits 8bits  3bits
 
-            Figure 3: An Example for Normalized Compute Metrics
+            Figure 5: Example of a normalized L1 compute metric
 
-4.3.2.  Normalized Communication Metrics
+4.4.2.2.  Normalized Communication Metrics
 
    The metric type of normalized communication metrics is
-   “communication_norm”, and its format is unsigned integer.  It has no
+   "communication_norm", and its format is unsigned integer.  It has no
    unit.  It will occupy an octet.  Example:
 
    Basic fields:
-         Metric type: “communication_norm”
+         Metric type: communication_norm
          Level: L1
          Format: unsigned integer
          Length: one octet
@@ -502,16 +610,16 @@ Table of Contents
    |Metric Type|Level|Format|Length|Value|Source|
        8bits    2bits  1bit   3bits 8bits  3bits
 
-         Figure 4: An Example for Normalized Communication Metrics
+         Figure 6: Example of a normalized L1 communication metric
 
-4.3.3.  Normalized Composed Metrics
+4.4.2.3.  Normalized Composed Metrics
 
-   The metric type of normalized composed metrics is “delay_norm”, and
+   The metric type of normalized composed metrics is "delay_norm", and
    its format is unsigned integer.  It has no unit.  It will occupy an
    octet.  Example:
 
    Basic fields:
-         Metric type: “composed_norm”
+         Metric type: composed_norm
          Level: L1
          Format: unsigned integer
          Length: an octet
@@ -522,20 +630,21 @@ Table of Contents
    |Metric Type|Level|Format|Length|Value|Source|
        8bits    2bits  1bit   3bits 8bits  3bits
 
-            Figure 5: An Example for Normalized Composed Metrics
+            Figure 7: Example of a normalized L1 composed metric
 
-4.4.  Level 2 Metric Representation
+4.4.3.  Level 2 Metrics
 
-   A fully normalized metric is a single value which does not have any
-   physical meaning or unit.  Each provider may have its own methods to
-   derive the value, but all providers must follow the definition in
-   this section to represent the fully normalized value.
+   A Level 2 metric is a single-value, normalized metric that does not
+   carry any inherent physical unit or meaning.  While each provider may
+   employ its own internal methods to compute this value, all providers
+   must adhere to the representation guidelines defined in this section
+   to ensure consistency and interoperability of the normalized output.
 
-   Metric type is “norm_fi”. The format of the value is unsigned
+   Metric type is "norm_fi".  The format of the value is unsigned
    integer.  It has no unit.  It will occupy an octet.  Example:
 
    Basic fields:
-         Metric type: “norm_fi”
+         Metric type: norm_fi
          Level: L2
          Format: unsigned integer
          Length: an octet
@@ -546,12 +655,14 @@ Table of Contents
    |Metric Type|Level|Format|Length|Value|Source|
        8bits    2bits  1bit   3bits 8bits  3bits
 
-              Figure 6: An Example for Fully Normalized Metric
+                Figure 8: Example of a normalized L2 metric
 
-   The fully normalized value also supports aggregation when there are
-   multiple service instances providing these fully normalized values.
-   When providing fully normalized values, service instances do not need
-   to do further statistics.
+   The single normalized value also facilitates aggregation across
+   multiple service instances.  When each instance provides its own
+   normalized value, no additional statistical processing is required at
+   the instance level.  Instead, aggregation can be performed externally
+   using standardized methods, enabling scalable and consistent
+   interpretation of metrics across distributed environments.
 
 5.  Comparison among Metric Levels
 
@@ -560,35 +671,35 @@ Table of Contents
    diverse requirements of various services.  Table 1 provides a
    comparative overview of these metric levels.
 
-      +=======+=============+===============+===========+==========+
-      | Level | Encoding    | Extensibility | Stability | Accuracy |
-      |       | Complexity  |               |           |          |
-      +=======+=============+===============+===========+==========+
-      | Level | Complicated | Bad           | Bad       | Good     |
-      |   0   |             |               |           |          |
-      +-------+-------------+---------------+-----------+----------+
-      | Level | Medium      | Medium        | Medium    | Medium   |
-      |   1   |             |               |           |          |
-      +-------+-------------+---------------+-----------+----------+
-      | Level | Simple      | Good          | Good      | Medium   |
-      |   2   |             |               |           |          |
-      +-------+-------------+---------------+-----------+----------+
+       +=======+============+===============+===========+==========+
+       | Level | Encoding   | Extensibility | Stability | Accuracy |
+       |       | Complexity |               |           |          |
+       +=======+============+===============+===========+==========+
+       | Level | High       | Low           | Low       | High     |
+       |   0   |            |               |           |          |
+       +-------+------------+---------------+-----------+----------+
+       | Level | Medium     | Medium        | Medium    | Medium   |
+       |   1   |            |               |           |          |
+       +-------+------------+---------------+-----------+----------+
+       | Level | Low        | High          | High      | Medium   |
+       |   2   |            |               |           |          |
+       +-------+------------+---------------+-----------+----------+
 
-                 Table 1: Comparison among Metrics Levels
+                  Table 1: Comparison among Metrics Levels
 
    Since Level 0 metrics are raw and service-specific, different
-   services may define their own sets—potentially resulting in hundreds
-   or even thousands of unique metrics.  This diversity introduces
-   significant complexity in protocol encoding and standardization.
-   Consequently, L0 metrics are generally confined to bespoke
-   implementations tailored to specific service needs, rather than being
-   standardized for broad protocol use.  In contrast, Level 1 metrics
-   organize raw data into standardized categories, each normalized into
-   a single value.  This structure makes them more suitable for protocol
-   encoding and standardization.  Level 2 metrics take simplification a
-   step further by consolidating all relevant information into a single
-   normalized value, making them the easiest to encode, transmit, and
-   standardize.
+   services may define their own sets---potentially resulting in
+   hundreds or even thousands of unique metrics.  This diversity
+   introduces significant complexity in protocol encoding and
+   standardization.  Consequently, L0 metrics are generally confined to
+   bespoke implementations tailored to specific service needs, rather
+   than being standardized for broad protocol use.  In contrast, Level 1
+   metrics organize raw data into standardized categories, each
+   normalized into a single value.  This structure makes them more
+   suitable for protocol encoding and standardization.  Level 2 metrics
+   take simplification a step further by consolidating all relevant
+   information into a single normalized value, making them the easiest
+   to encode, transmit, and standardize.
 
    Therefore, from the perspective of encoding complexity, Level 1 and
    Level 2 metrics are recommended.
@@ -648,9 +759,9 @@ Table of Contents
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
               Drake, "A Framework for Computing-Aware Traffic Steering
               (CATS)", Work in Progress, Internet-Draft, draft-ietf-
-              cats-framework-15, 15 September 2025,
+              cats-framework-16, 16 October 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
-              framework-15>.
+              framework-16>.
 
    [I-D.ietf-cats-usecases-requirements]
               Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
@@ -720,19 +831,19 @@ A.1.1.  Compute Raw Metrics
    |Metric Type|Level|Format| Unit|Length| Value|Source|
        8bits    2bits  1bit  4bits  3bits 32bits  3bits
 
-                Figure 7: An Example for Compute Raw Metrics
+                Figure 9: An Example for Compute Raw Metrics
 
 A.1.2.  Communication Raw Metrics
 
    This section takes the total transmitted bytes (TxBytes) as an
    example to show the representation of communication raw metrics.
-   TxBytes are named as "communication type_TxBytes”. The unit is Mega
+   TxBytes are named as "communication type_TxBytes".  The unit is Mega
    Bytes (MB).  Format is unsigned integer or floating point.  It will
    occupy 4 octets.  The source of the metric is "Directly measured" and
    the statistics is "mean".  Example:
 
    Basic fields:
-         Metric type: “communication type_TXBytes”
+         Metric type: "communication type_TXBytes"
          Level: L0
          Format: unsigned integer, floating point
          Unit: MB
@@ -746,7 +857,7 @@ A.1.2.  Communication Raw Metrics
    |Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
        8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
 
-             Figure 8: An Example for Communication Raw Metrics
+            Figure 10: An Example for Communication Raw Metrics
 
 A.1.3.  Delay Raw Metrics
 
@@ -759,7 +870,7 @@ A.1.3.  Delay Raw Metrics
    unit is microseconds, and it occupies 4 octets.  For example:
 
    Basic fields:
-         Metric type: “delay_raw”
+         Metric type: "delay_raw"
          Level: L0
          Format: unsigned integer, floating point
          Unit: Microsecond(us)
@@ -773,7 +884,7 @@ A.1.3.  Delay Raw Metrics
    |Metric Type|Level|Format| Unit|Length| Value|Source|Statistics|
        8bits    2bits  1bit  4bits  3bits 32bits  3bits   2bits
 
-                 Figure 9: An Example for Delay Raw Metrics
+                Figure 11: An Example for Delay Raw Metrics
 
 Contributors
 
