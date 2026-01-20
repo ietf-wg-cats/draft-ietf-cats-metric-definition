@@ -149,7 +149,7 @@ L1 metrics are organized into distinct categories, such as computing, communicat
 
 - **Service:** A normalized value derived from service-related L0 metrics, such as tokens per second and service availability
 
-- **Composed:** A normalized value derived from an end-to-end aggregation function by levaraging both computing and communication metrics. For example, end-to-end delay computed as the sum of all delays along a path.
+- **Composed:** A normalized value derived from an aggregation function that takes as input a combination of computing, communication and service metrics. For example, end-to-end delay computed as the sum of all delays along a path.
 
 Editor note: detailed categories can be updated according to the CATS WG discussion.
 
