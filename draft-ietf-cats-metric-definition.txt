@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 23 April 2026                               Huawei Technologies
+Expires: 24 July 2026                                Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                   H. Shi
                                                      Huawei Technologies
-                                                         20 October 2025
+                                                         20 January 2026
 
 
                         CATS Metrics Definition
@@ -55,11 +55,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 April 2026.
+   This Internet-Draft will expire on 24 July 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -248,10 +248,10 @@ Table of Contents
    *  *Service:* A normalized value derived from service-related L0
       metrics, such as tokens per second and service availability
 
-   *  *Composed:* A normalized value derived from an end-to-end
-      aggregation function by levaraging both computing and
-      communication metrics.  For example, end-to-end delay computed as
-      the sum of all delays along a path.
+   *  *Composed:* A normalized value derived from an aggregation
+      function that takes as input a combination of computing,
+      communication and service metrics.  For example, end-to-end delay
+      computed as the sum of all delays along a path.
 
    Editor note: detailed categories can be updated according to the CATS
    WG discussion.
@@ -759,17 +759,17 @@ Table of Contents
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
               Drake, "A Framework for Computing-Aware Traffic Steering
               (CATS)", Work in Progress, Internet-Draft, draft-ietf-
-              cats-framework-16, 16 October 2025,
+              cats-framework-19, 20 November 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
-              framework-16>.
+              framework-19>.
 
    [I-D.ietf-cats-usecases-requirements]
               Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
               "Computing-Aware Traffic Steering (CATS) Problem
               Statement, Use Cases, and Requirements", Work in Progress,
-              Internet-Draft, draft-ietf-cats-usecases-requirements-08,
-              12 October 2025, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-cats-usecases-requirements-08>.
+              Internet-Draft, draft-ietf-cats-usecases-requirements-12,
+              12 January 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-cats-usecases-requirements-12>.
 
    [I-D.rcr-opsawg-operational-compute-metrics]
               Randriamasy, S., Contreras, L. M., Ros-Giralt, J., and R.
