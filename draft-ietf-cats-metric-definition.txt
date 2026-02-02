@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 24 July 2026                                Huawei Technologies
+Expires: 6 August 2026                               Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
-                                                                  H. Shi
+                                                                 G. Zeng
                                                      Huawei Technologies
-                                                         20 January 2026
+                                                         2 February 2026
 
 
                         CATS Metrics Definition
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 July 2026.
+   This Internet-Draft will expire on 6 August 2026.
 
 Copyright Notice
 
@@ -91,10 +91,41 @@ Table of Contents
        4.4.2.  Level 1 Metrics
        4.4.3.  Level 2 Metrics
    5.  Comparison among Metric Levels
-   6.  Implementation Guidance on Using CATS Metrics
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  Informative References
+   6.  CATS L2 Metric Registry Entry
+     6.1.  Summary
+       6.1.1.  ID (Identifier)
+       6.1.2.  Name
+       6.1.3.  URI
+       6.1.4.  Description
+       6.1.5.  Change Controller
+       6.1.6.  Version
+     6.2.  Metric Definition
+       6.2.1.  Reference Definition
+       6.2.2.  Fixed Parameters
+     6.3.  Method of Measurement
+       6.3.1.  Reference Methods
+       6.3.2.  Packet Stream Generation
+       6.3.3.  Traffic Filtering (Observation) Details
+       6.3.4.  Sampling Distribution
+       6.3.5.  Runtime Parameters and Data Format
+       6.3.6.  Roles
+     6.4.  Output
+       6.4.1.  Type
+       6.4.2.  Reference Definition
+       6.4.3.  Metric Units
+       6.4.4.  Calibration
+     6.5.  Administrative Items
+       6.5.1.  Status
+       6.5.2.  Requester
+       6.5.3.  Revision
+       6.5.4.  Revision Date
+       6.5.5.  Comments and Remarks
+   7.  Implementation Guidance on Using CATS Metrics
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Appendix A
      A.1.  Level 0 Metric Representation Examples
        A.1.1.  Compute Raw Metrics
@@ -124,7 +155,7 @@ Table of Contents
    resource utilization and enhancing overall system performance.
 
    Metrics from network domain have already been defined in previous
-   documents, e.g., [RFC9439], [RFC8912]，and [RFC8911], and been in use
+   documents, e.g., [RFC9439], [RFC8912], and [RFC8911], and been in use
    in network systems for a long time.  This document focuses on
    categorizing the relevant metrics at the computing domain for CATS
    into three levels based on their complexity and granularity.
@@ -138,7 +169,15 @@ Table of Contents
 
    *  Service
 
+   *  Service site
+
    *  Service contact instance
+
+   *  CATS Service Contact Instance ID (CSCI-ID)
+
+   *  CATS Service Metric Agent (C-SMA)
+
+   *  CATS Network Metric Agent (C-NMA)
 
 3.  Design Principles
 
@@ -708,7 +747,7 @@ Table of Contents
    define their own custom metrics.  However, this flexibility requires
    corresponding protocol extensions, and the proliferation of metric
    types can introduce significant overhead, ultimately reducing the
-   protocol’s extensibility.  In contrast, Level 1 metrics introduce
+   protocol's extensibility.  In contrast, Level 1 metrics introduce
    only a limited set of standardized categories, making protocol
    extensions more manageable.  Level 2 metrics go even further by
    consolidating all information into a single normalized value, placing
@@ -737,23 +776,205 @@ Table of Contents
    unsuitable for direct transmission to network devices and thus not
    recommended for standard protocol integration.
 
-6.  Implementation Guidance on Using CATS Metrics
+6.  CATS L2 Metric Registry Entry
 
-   <Authors Note: This part has been moved to [I-D.ietf-cats-framework],
-   according to he chairs' sugguestion.  Since this document is
-   primarily on metric definition, rather than real implementations.>
+   This section gives an initial Registry Entry for the CATS L2 metric.
 
-7.  Security Considerations
+6.1.  Summary
+
+   This category includes multiple indexes to the Registry Entry: the
+   element ID, Metric Name, URI, Metric Description, Metric Controller,
+   and Metric Version.
+
+6.1.1.  ID (Identifier)
+
+   IANA has allocated the Identifier 1 for the Named Metric Entry in
+   Section 5.  See Section 5.1.2 for mapping to Names.
+
+6.1.2.  Name
+
+   Norm_Passive_CATS-L2_RFCXXXXsecY_Unitless_Singleton
+
+   Naming Rule Explanation
+
+   *  Norm: Metric type (Normalized Score)
+
+   *  Passive: Measurement method
+
+   *  CATS-L2: Metric level (CATS Metric Framework Level 2)
+
+   *  RFCXXXXsecY: Specification reference (To-be-assigned RFC number
+      and section number)
+
+   *  Unitless: Metric has not units
+
+   *  Singleton: Metric is a single value
+
+6.1.3.  URI
+
+   To-be-assigned.
+
+6.1.4.  Description
+
+   This metric represents a single normalized score used within CATS.
+   It is derived by aggregating one or more CATS L0 and/or L1 metrics,
+   followed by a normalization process that produces a unitless value.
+   The resulting score provides a concise assessment of the overall
+   capability of a service instance, enabling rapid comparison across
+   instances and supporting efficient traffic steering decisions.
+
+6.1.5.  Change Controller
+
+   IETF
+
+6.1.6.  Version
+
+   1.0
+
+6.2.  Metric Definition
+
+6.2.1.  Reference Definition
+
+   [I-D.ietf-cats-metric-definition] Core referenced sections:
+   Section 3.4 (L2 Level Metric Definition), Section 4.2 (Aggregation
+   and Normalization Functions)
+
+6.2.2.  Fixed Parameters
+
+   *  Normalization score range: 0-10 (0 indicates the poorest
+      capability, 10 indicates the optimal capability)
+
+   *  Data precision: decimal number (unsigned integer)
+
+6.3.  Method of Measurement
+
+   This category includes columns for references to relevant sections of
+   the RFC(s) and any supplemental information needed to ensure an
+   unambiguous method for implementations.
+
+6.3.1.  Reference Methods
+
+   Raw Metrics collection: Collect L0 service and compute raw metrics
+   using platform-specific management protocols or tools (e.g.,
+   Prometheus [Prometheus] in Kubernetes).  Collect L0 network
+   performance raw metrics using existing standardized protocols (e.g.,
+   NETCONF [RFC6241], IPFIX [RFC7011]).
+
+   Aggregation logic: Refer to [I-D.ietf-cats-metric-definition]
+   Section 4.2.1 (e.g., Weighted Average Aggregation).
+
+   Normalization logic: Refer to [I-D.ietf-cats-metric-definition]
+   Section 4.2.2 (e.g., Sigmoid Normalization).
+
+   The reference method aggregates and normalizes L0 metrics to generate
+   L1 metrics in different categories, and further calculates a L2
+   singleton score for full normalization.
+
+6.3.2.  Packet Stream Generation
+
+   N/A
+
+6.3.3.  Traffic Filtering (Observation) Details
+
+   N/A
+
+6.3.4.  Sampling Distribution
+
+   Sampling method: Continuous sampling (e.g., collect L0 metrics every
+   10 seconds)
+
+6.3.5.  Runtime Parameters and Data Format
+
+   CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS
+   service contact instance.  According to [I-D.ietf-cats-framework], a
+   unicast IP address can be an example of identifier. (format: ipv4-
+   address-no-zone or ipv6-address-no-zone, complying with [RFC6991])
+
+   Service_Instance_IP: Service instance IP address (format: ipv4-
+   address-no-zone or ipv6-address-no-zone, complying with [RFC6991])
+
+   Measurement_Window: Metric measurement time window (Units: seconds,
+   milliseconds; Format: uint64; Default: 10 seconds)
+
+6.3.6.  Roles
+
+   C-SMA: Collects L0 service and compute raw metrics, and optionally
+   calculates L1 and L2 metrics according to service-specific
+   strategies.
+
+   C-NMA: Collects L0 network performance raw metrics, and optionally
+   calculates L1 and L2 metrics according to service-specific
+   strategies.
+
+6.4.  Output
+
+   This category specifies all details of the output of measurements
+   using the metric.
+
+6.4.1.  Type
+
+   Singleton value
+
+6.4.2.  Reference Definition
+
+   Output format: Refer to [I-D.ietf-cats-metric-definition]
+   Section 4.4.3
+
+   Score semantics: 0-3 (Low capability, not recommended for steering),
+   4-7 (Medium capability, optional for steering), 8-10 (High
+   capability, priority for steering)
+
+6.4.3.  Metric Units
+
+   Unitless
+
+6.4.4.  Calibration
+
+   Calibration method: Conduct benchmark calibration based on standard
+   test sets (fixed workload) to ensure the output score deviation of
+   C-SMA and C-NMA is lower than 0.1 (one abnormal score in every ten
+   test rounds).
+
+6.5.  Administrative Items
+
+6.5.1.  Status
+
+   Current
+
+6.5.2.  Requester
+
+   To-be-assgined
+
+6.5.3.  Revision
+
+   1.0
+
+6.5.4.  Revision Date
+
+   2026-01-20
+
+6.5.5.  Comments and Remarks
+
+   None
+
+7.  Implementation Guidance on Using CATS Metrics
+
+   <Authors’ Note: This section has been moved to
+   [I-D.ietf-cats-framework] at the suggestion of the chairs, since this
+   document focuses primarily on metric definitions rather than
+   implementation details.>
+
+8.  Security Considerations
 
    TBD
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    TBD
 
-9.  Informative References
+10.  References
 
-   [DMTF]     "DMTF", n.d., <https://www.dmtf.org/>.
+10.1.  Normative References
 
    [I-D.ietf-cats-framework]
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
@@ -763,13 +984,24 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-ietf-cats-
               framework-19>.
 
+   [I-D.ietf-cats-metric-definition]
+              Yao, K., Li, C., Contreras, L. M., Ros-Giralt, J., and H.
+              Shi, "CATS Metrics Definition", Work in Progress,
+              Internet-Draft, draft-ietf-cats-metric-definition-04, 20
+              October 2025, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-cats-metric-definition-04>.
+
+10.2.  Informative References
+
+   [DMTF]     "DMTF", n.d., <https://www.dmtf.org/>.
+
    [I-D.ietf-cats-usecases-requirements]
               Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
               "Computing-Aware Traffic Steering (CATS) Problem
               Statement, Use Cases, and Requirements", Work in Progress,
-              Internet-Draft, draft-ietf-cats-usecases-requirements-12,
-              12 January 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-cats-usecases-requirements-12>.
+              Internet-Draft, draft-ietf-cats-usecases-requirements-13,
+              28 January 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-cats-usecases-requirements-13>.
 
    [I-D.rcr-opsawg-operational-compute-metrics]
               Randriamasy, S., Contreras, L. M., Ros-Giralt, J., and R.
@@ -784,6 +1016,24 @@ Table of Contents
               "performance-metrics", n.d.,
               <https://www.iana.org/assignments/performance-metrics/
               performance-metrics.xhtml>.
+
+   [Prometheus]
+              "Prometheus", n.d., <https://prometheus.io/>.
+
+   [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
+              and A. Bierman, Ed., "Network Configuration Protocol
+              (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
+              <https://www.rfc-editor.org/rfc/rfc6241>.
+
+   [RFC6991]  Schoenwaelder, J., Ed., "Common YANG Data Types",
+              RFC 6991, DOI 10.17487/RFC6991, July 2013,
+              <https://www.rfc-editor.org/rfc/rfc6991>.
+
+   [RFC7011]  Claise, B., Ed., Trammell, B., Ed., and P. Aitken,
+              "Specification of the IP Flow Information Export (IPFIX)
+              Protocol for the Exchange of Flow Information", STD 77,
+              RFC 7011, DOI 10.17487/RFC7011, September 2013,
+              <https://www.rfc-editor.org/rfc/rfc7011>.
 
    [RFC8911]  Bagnulo, M., Claise, B., Eardley, P., Morton, A., and A.
               Akhter, "Registry for Performance Metrics", RFC 8911,
@@ -898,6 +1148,11 @@ Contributors
    Email: duzongpeng@chinamobile.com
 
 
+   Hang Shi
+   Huawei
+   Email: shihang9@huawei.com
+
+
 Authors' Addresses
 
    Kehan Yao
@@ -922,7 +1177,7 @@ Authors' Addresses
    Email: jros@qti.qualcomm.com
 
 
-   Hang Shi
+   Guanming Zeng
    Huawei Technologies
    China
-   Email: shihang9@huawei.com
+   Email: zengguanming@huawei.com
