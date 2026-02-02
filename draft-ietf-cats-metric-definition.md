@@ -38,10 +38,10 @@ author:
     organization: Qualcomm Europe, Inc.
     email: jros@qti.qualcomm.com
  -
-    ins: H. Shi
-    fullname: Hang Shi
+    ins: G.Zeng
+    fullname: Guanming Zeng
     organization: Huawei Technologies
-    email: shihang9@huawei.com
+    email: zengguanming@huawei.com
     country: China
 
 contributor:
@@ -51,15 +51,21 @@ contributor:
 - name: Zongpeng Du
   org: China Mobile
   email: duzongpeng@chinamobile.com
+- name: Hang Shi
+  org: Huawei
+  email: shihang9@huawei.com
 
 normative:
+  RFC 6241:
+  RFC 6991:
+  RFC 7011:
   RFC 8911:
   RFC 8912:
   RFC 9439:
-
+  I-D.ietf-cats-framework:
+  
 informative:
   I-D.ietf-cats-usecases-requirements:
-  I-D.ietf-cats-framework:
   I-D.rcr-opsawg-operational-compute-metrics:
 
   performance-metrics:
@@ -76,6 +82,13 @@ informative:
     date:
     target: https://www.dmtf.org/
 
+  Prometheus:
+    title: Prometheus
+    author:
+    org:
+    date:
+    target: https://prometheus.io/
+
 --- abstract
 
 Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS.
@@ -88,7 +101,7 @@ Service providers are deploying computing capabilities across the network for ho
 
 CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.
 
-Metrics from network domain have already been defined in previous documents, e.g., {{RFC9439}}, {{RFC8912}}，and {{RFC8911}}, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.
+Metrics from network domain have already been defined in previous documents, e.g., {{RFC9439}}, {{RFC8912}}, and {{RFC8911}}, and been in use in network systems for a long time. This document focuses on categorizing the relevant metrics at the computing domain for CATS into three levels based on their complexity and granularity.
 
 # Conventions and Definitions
 
@@ -98,7 +111,15 @@ This document uses the following terms defined in {{I-D.ietf-cats-framework}}:
 
 - Service
 
+- Service site
+
 - Service contact instance
+
+- CATS Service Contact Instance ID (CSCI-ID)
+
+- CATS Service Metric Agent (C-SMA)
+
+- CATS Network Metric Agent (C-NMA)
 
 # Design Principles
 
@@ -447,7 +468,7 @@ Since Level 0 metrics are raw and service-specific, different services may defin
 
 Therefore, from the perspective of encoding complexity, Level 1 and Level 2 metrics are recommended.
 
-When considering extensibility, Level 0 metrics allow new services to define their own custom metrics. However, this flexibility requires corresponding protocol extensions, and the proliferation of metric types can introduce significant overhead, ultimately reducing the protocol’s extensibility. In contrast, Level 1 metrics introduce only a limited set of standardized categories, making protocol extensions more manageable. Level 2 metrics go even further by consolidating all information into a single normalized value, placing the least burden on the protocol.
+When considering extensibility, Level 0 metrics allow new services to define their own custom metrics. However, this flexibility requires corresponding protocol extensions, and the proliferation of metric types can introduce significant overhead, ultimately reducing the protocol's extensibility. In contrast, Level 1 metrics introduce only a limited set of standardized categories, making protocol extensions more manageable. Level 2 metrics go even further by consolidating all information into a single normalized value, placing the least burden on the protocol.
 
 Therefore, from an extensibility standpoint, Level 1 and Level 2 metrics are recommended.
 
@@ -456,6 +477,96 @@ Regarding stability, Level 0 raw metrics may require frequent protocol extension
 Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferred.
 
 In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.
+
+# CATS L2 Metric Registry Entry
+This section gives an initial Registry Entry for the CATS L2 metric. 
+## Summary
+This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.
+### ID (Identifier)
+IANA has allocated the Identifier 1 for the Named Metric Entry in Section 5. See Section 5.1.2 for mapping to Names.
+### Name
+Norm_Passive_CATS-L2_RFCXXXXsecY_Unitless_Singleton
+
+Naming Rule Explanation
+* Norm: Metric type (Normalized Score)
+* Passive: Measurement method
+* CATS-L2: Metric level (CATS Metric Framework Level 2)
+* RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
+* Unitless: Metric has not units
+* Singleton: Metric is a single value
+### URI
+To-be-assigned.
+###  Description
+This metric represents a single normalized score used within CATS. It is derived by aggregating one or more CATS L0 and/or L1 metrics, followed by a normalization process that produces a unitless value. The resulting score provides a concise assessment of the overall capability of a service instance, enabling rapid comparison across instances and supporting efficient traffic steering decisions.
+### Change Controller
+IETF
+### Version
+1.0
+
+## Metric Definition
+### Reference Definition
+{{I-D.ietf-cats-metric-definition}}
+Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions)
+### Fixed Parameters
+- Normalization score range: 0-10 (0 indicates the poorest capability, 10 indicates the optimal capability)
+
+- Data precision: decimal number (unsigned integer)
+
+## Method of Measurement
+This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.
+### Reference Methods
+Raw Metrics collection: Collect L0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes). Collect L0 network performance raw metrics using existing standardized protocols (e.g., NETCONF {{?RFC6241}}, IPFIX {{?RFC7011}}).   
+
+Aggregation logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.1 (e.g., Weighted Average Aggregation).
+
+Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 (e.g., Sigmoid Normalization).
+
+The reference method aggregates and normalizes L0 metrics to generate L1 metrics in different categories, and further calculates a L2 singleton score for full normalization.
+
+### Packet Stream Generation
+N/A
+### Traffic Filtering (Observation) Details
+N/A
+### Sampling Distribution
+Sampling method: Continuous sampling (e.g., collect L0 metrics every 10 seconds)
+### Runtime Parameters and Data Format
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{?RFC6991}})
+
+Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{?RFC6991}})
+
+<!-- KY: C-SMA can see service instance IP when it is co-located with Service contact instance, right? -->
+
+Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)
+### Roles
+C-SMA: Collects L0 service and compute raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.
+
+C-NMA: Collects L0 network performance raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies. 
+
+## Output
+This category specifies all details of the output of measurements using the metric.
+### Type
+Singleton value
+### Reference Definition
+Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.3
+
+Score semantics: 0-3 (Low capability, not recommended for steering), 4-7 (Medium capability, optional for steering), 8-10 (High capability, priority for steering)
+### Metric Units
+Unitless
+### Calibration
+Calibration method: Conduct benchmark calibration based on standard test sets (fixed workload) to ensure the output score deviation of C-SMA and C-NMA is lower than 0.1 (one abnormal score in every ten test rounds). 
+
+<!-- KY: Do we need more details in calibration discussions? -->
+## Administrative Items
+### Status
+Current
+### Requester
+To-be-assgined
+### Revision
+1.0
+### Revision Date
+2026-01-20
+### Comments and Remarks
+None
 
 # Implementation Guidance on Using CATS Metrics
 <Authors Note: This part has been moved to {{I-D.ietf-cats-framework}}, according to he chairs' sugguestion. Since this document is primarily on metric definition, rather than real implementations.>
