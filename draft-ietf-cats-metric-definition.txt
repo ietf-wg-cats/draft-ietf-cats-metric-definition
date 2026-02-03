@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 6 August 2026                               Huawei Technologies
+Expires: 7 August 2026                               Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                  G. Zeng
                                                      Huawei Technologies
-                                                         2 February 2026
+                                                         3 February 2026
 
 
                         CATS Metrics Definition
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 6 August 2026.
+   This Internet-Draft will expire on 7 August 2026.
 
 Copyright Notice
 
@@ -991,35 +991,6 @@ Table of Contents
               October 2025, <https://datatracker.ietf.org/doc/html/
               draft-ietf-cats-metric-definition-04>.
 
-10.2.  Informative References
-
-   [DMTF]     "DMTF", n.d., <https://www.dmtf.org/>.
-
-   [I-D.ietf-cats-usecases-requirements]
-              Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
-              "Computing-Aware Traffic Steering (CATS) Problem
-              Statement, Use Cases, and Requirements", Work in Progress,
-              Internet-Draft, draft-ietf-cats-usecases-requirements-13,
-              28 January 2026, <https://datatracker.ietf.org/doc/html/
-              draft-ietf-cats-usecases-requirements-13>.
-
-   [I-D.rcr-opsawg-operational-compute-metrics]
-              Randriamasy, S., Contreras, L. M., Ros-Giralt, J., and R.
-              Schott, "Joint Exposure of Network and Compute Information
-              for Infrastructure-Aware Service Deployment", Work in
-              Progress, Internet-Draft, draft-rcr-opsawg-operational-
-              compute-metrics-08, 21 October 2024,
-              <https://datatracker.ietf.org/doc/html/draft-rcr-opsawg-
-              operational-compute-metrics-08>.
-
-   [performance-metrics]
-              "performance-metrics", n.d.,
-              <https://www.iana.org/assignments/performance-metrics/
-              performance-metrics.xhtml>.
-
-   [Prometheus]
-              "Prometheus", n.d., <https://prometheus.io/>.
-
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
               (NETCONF)", RFC 6241, DOI 10.17487/RFC6241, June 2011,
@@ -1050,6 +1021,35 @@ Table of Contents
               (ALTO) Performance Cost Metrics", RFC 9439,
               DOI 10.17487/RFC9439, August 2023,
               <https://www.rfc-editor.org/rfc/rfc9439>.
+
+10.2.  Informative References
+
+   [DMTF]     "DMTF", n.d., <https://www.dmtf.org/>.
+
+   [I-D.ietf-cats-usecases-requirements]
+              Yao, K., Contreras, L. M., Shi, H., Zhang, S., and Q. An,
+              "Computing-Aware Traffic Steering (CATS) Problem
+              Statement, Use Cases, and Requirements", Work in Progress,
+              Internet-Draft, draft-ietf-cats-usecases-requirements-13,
+              28 January 2026, <https://datatracker.ietf.org/doc/html/
+              draft-ietf-cats-usecases-requirements-13>.
+
+   [I-D.rcr-opsawg-operational-compute-metrics]
+              Randriamasy, S., Contreras, L. M., Ros-Giralt, J., and R.
+              Schott, "Joint Exposure of Network and Compute Information
+              for Infrastructure-Aware Service Deployment", Work in
+              Progress, Internet-Draft, draft-rcr-opsawg-operational-
+              compute-metrics-08, 21 October 2024,
+              <https://datatracker.ietf.org/doc/html/draft-rcr-opsawg-
+              operational-compute-metrics-08>.
+
+   [performance-metrics]
+              "performance-metrics", n.d.,
+              <https://www.iana.org/assignments/performance-metrics/
+              performance-metrics.xhtml>.
+
+   [Prometheus]
+              "Prometheus", n.d., <https://prometheus.io/>.
 
 Appendix A.  Appendix A
 
