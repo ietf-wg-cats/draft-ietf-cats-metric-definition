@@ -55,40 +55,37 @@ contributor:
   org: Huawei
   email: shihang9@huawei.com
 
-normative:
-  RFC 6241:
-  RFC 6991:
-  RFC 7011:
-  RFC 8911:
-  RFC 8912:
-  RFC 9439:
-  I-D.ietf-cats-framework:
-  I-D.ietf-cats-metric-definition:
-
 informative:
   I-D.ietf-cats-usecases-requirements:
   I-D.rcr-opsawg-operational-compute-metrics:
-
   performance-metrics:
     title: performance-metrics
     author:
     org:
     date:
     target: https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml
-
   DMTF:
     title: DMTF
     author:
     org:
     date:
     target: https://www.dmtf.org/
-
   Prometheus:
     title: Prometheus
     author:
     org:
     date:
     target: https://prometheus.io/
+
+normative:
+  RFC6241:
+  RFC6991:
+  RFC7011:
+  RFC8911:
+  RFC8912:
+  RFC9439:
+  I-D.ietf-cats-framework:
+  I-D.ietf-cats-metric-definition:
 
 --- abstract
 
@@ -157,7 +154,7 @@ L0 metrics serve as foundational data and do not require classification. They pr
 
 L0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).
 
-Regarding network-related information, {{?RFC8911}} and {{?RFC8912}} define various performance metrics and their registries. Additionally, in {{?RFC9439}}, the ALTO WG introduced an extended set of metrics related to network performance, such as throughput and delay. For compute metrics, {{?I-D.rcr-opsawg-operational-compute-metrics}} lists a set of cloud resource metrics.
+Regarding network-related information, {{RFC8911}} and {{RFC8912}} define various performance metrics and their registries. Additionally, in {{RFC9439}}, the ALTO WG introduced an extended set of metrics related to network performance, such as throughput and delay. For compute metrics, {{I-D.rcr-opsawg-operational-compute-metrics}} lists a set of cloud resource metrics.
 
 ## Level 1: Normalized Metrics in Categories
 
@@ -175,7 +172,7 @@ L1 metrics are organized into distinct categories, such as computing, communicat
 
 Editor note: detailed categories can be updated according to the CATS WG discussion.
 
- L0 metrics, such as those defined in {{?RFC8911}}, {{?RFC8912}}, {{?RFC9439}}, and {{?I-D.rcr-opsawg-operational-compute-metrics}}, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.
+ L0 metrics, such as those defined in {{RFC8911}}, {{RFC8912}}, {{RFC9439}}, and {{I-D.rcr-opsawg-operational-compute-metrics}}, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.
 
 ## Level 2: Single Normalized Metric.
 
@@ -212,7 +209,7 @@ The CATS metrics framework is a key component of the CATS architecture. It defin
 
 ## CATS Metric Fields
 
-This section defines the detailed structure used to represent CATS metrics. The design follows principles established in related IETF specifications, such as the network performance metrics outlined in {{?RFC9439}}.
+This section defines the detailed structure used to represent CATS metrics. The design follows principles established in related IETF specifications, such as the network performance metrics outlined in {{RFC9439}}.
 
 Each CATS metric is expressed as a structured set of fields, with each field describing a specific property of the metric. The following definition introduces the fields used in the CATS metric representations.
 
@@ -268,7 +265,7 @@ Next, we describe each field in more detail:
 
 - **Source (source, optional)**: This field describes the origin of the information used to obtain the metric. It may include one or more of the following non-mutually exclusive values:
 
-    - 'nominal'. Similar to {{?RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.
+    - 'nominal'. Similar to {{RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.
 
     - 'estimation'. The 'estimation' source indicates that the metric value is computed through an estimation process.
 
@@ -539,7 +536,7 @@ This category includes columns for references to relevant sections of the RFC(s)
 
 ### Reference Methods
 
-Raw Metrics collection: Collect L0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes). Collect L0 network performance raw metrics using existing standardized protocols (e.g., NETCONF {{?RFC6241}}, IPFIX {{?RFC7011}}).
+Raw Metrics collection: Collect L0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes). Collect L0 network performance raw metrics using existing standardized protocols (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}).
 
 Aggregation logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.1 (e.g., Weighted Average Aggregation).
 
@@ -561,9 +558,9 @@ Sampling method: Continuous sampling (e.g., collect L0 metrics every 10 seconds)
 
 ### Runtime Parameters and Data Format
 
-CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{?RFC6991}})
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
 
-Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{?RFC6991}})
+Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
 
 <!-- KY: C-SMA can see service instance IP when it is co-located with Service contact instance, right? -->
 
