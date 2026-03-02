@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 31 August 2026                              Huawei Technologies
+Expires: 3 September 2026                            Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                  G. Zeng
                                                      Huawei Technologies
-                                                        27 February 2026
+                                                            2 March 2026
 
 
                         CATS Metrics Definition
@@ -55,7 +55,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2026.
+   This Internet-Draft will expire on 3 September 2026.
 
 Copyright Notice
 
