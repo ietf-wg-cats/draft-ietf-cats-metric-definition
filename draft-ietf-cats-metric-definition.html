@@ -14,7 +14,7 @@
        Computing-Aware Traffic Steering (CATS) is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. In order to consider the computing and network resources, a system needs to share information (metrics) that describes the state of the resources. Metrics from network domain have been in use in network systems for a long time. This document defines a set of metrics from the computing domain used for CATS. 
     " name="description">
 <meta content="xml2rfc 3.31.0" name="generator">
-<meta content="CATS, metric" name="keyword">
+<meta content="CATS, metrics" name="keyword">
 <meta content="draft-ietf-cats-metric-definition-latest" name="ietf.draft">
 <!-- Generator version information:
   xml2rfc 3.31.0
@@ -169,7 +169,7 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -177,7 +177,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -1048,11 +1049,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">CATS Metrics</td>
-<td class="right">February 2026</td>
+<td class="right">March 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kehan, et al.</td>
-<td class="center">Expires 7 August 2026</td>
+<td class="center">Expires 3 September 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1065,12 +1066,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-cats-metric-definition-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-02-03" class="published">3 February 2026</time>
+<time datetime="2026-03-02" class="published">2 March 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-08-07">7 August 2026</time></dd>
+<dd class="expires"><time datetime="2026-09-03">3 September 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1131,7 +1132,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 7 August 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 3 September 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1223,99 +1224,105 @@ svg :is([fill="white"], [fill^="#fff"]) {
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-comparison-among-metric-lev" class="internal xref">Comparison among Metric Levels</a></p>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-cats-l2-metric-registry-ent" class="internal xref">CATS L2 Metric Registry Entry</a></p>
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-cats-metric-registry-entrie" class="internal xref">CATS Metric Registry Entries</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-summary" class="internal xref">Summary</a></p>
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-cats-l2-metric-registry-ent" class="internal xref">CATS L2 Metric Registry Entry</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.1">
-                    <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="auto internal xref">6.1.1</a>.  <a href="#name-id-identifier" class="internal xref">ID (Identifier)</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="auto internal xref">6.1.1</a>.  <a href="#name-summary" class="internal xref">Summary</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.2">
-                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="auto internal xref">6.1.2</a>.  <a href="#name-name" class="internal xref">Name</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="auto internal xref">6.1.2</a>.  <a href="#name-metric-definition" class="internal xref">Metric Definition</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.3">
-                    <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="auto internal xref">6.1.3</a>.  <a href="#name-uri" class="internal xref">URI</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="auto internal xref">6.1.3</a>.  <a href="#name-method-of-measurement" class="internal xref">Method of Measurement</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.4">
-                    <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="auto internal xref">6.1.4</a>.  <a href="#name-description" class="internal xref">Description</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.4.1"><a href="#section-6.1.4" class="auto internal xref">6.1.4</a>.  <a href="#name-output" class="internal xref">Output</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.5">
-                    <p id="section-toc.1-1.6.2.1.2.5.1"><a href="#section-6.1.5" class="auto internal xref">6.1.5</a>.  <a href="#name-change-controller" class="internal xref">Change Controller</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1.2.6">
-                    <p id="section-toc.1-1.6.2.1.2.6.1"><a href="#section-6.1.6" class="auto internal xref">6.1.6</a>.  <a href="#name-version" class="internal xref">Version</a></p>
+                    <p id="section-toc.1-1.6.2.1.2.5.1"><a href="#section-6.1.5" class="auto internal xref">6.1.5</a>.  <a href="#name-administrative-items" class="internal xref">Administrative Items</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-metric-definition" class="internal xref">Metric Definition</a></p>
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-cats-l1-metric-registry-ent" class="internal xref">CATS L1 Metric Registry Entry: Compute</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.1">
-                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-reference-definition" class="internal xref">Reference Definition</a></p>
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="auto internal xref">6.2.1</a>.  <a href="#name-summary-2" class="internal xref">Summary</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.2">
-                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-fixed-parameters" class="internal xref">Fixed Parameters</a></p>
+                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="auto internal xref">6.2.2</a>.  <a href="#name-metric-definition-2" class="internal xref">Metric Definition</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.3">
+                    <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="auto internal xref">6.2.3</a>.  <a href="#name-method-of-measurement-2" class="internal xref">Method of Measurement</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.4">
+                    <p id="section-toc.1-1.6.2.2.2.4.1"><a href="#section-6.2.4" class="auto internal xref">6.2.4</a>.  <a href="#name-output-2" class="internal xref">Output</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2.2.5">
+                    <p id="section-toc.1-1.6.2.2.2.5.1"><a href="#section-6.2.5" class="auto internal xref">6.2.5</a>.  <a href="#name-administrative-items-2" class="internal xref">Administrative Items</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-method-of-measurement" class="internal xref">Method of Measurement</a></p>
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-cats-l1-metric-registry-entr" class="internal xref">CATS L1 Metric Registry Entry: Communication</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.1">
-                    <p id="section-toc.1-1.6.2.3.2.1.1"><a href="#section-6.3.1" class="auto internal xref">6.3.1</a>.  <a href="#name-reference-methods" class="internal xref">Reference Methods</a></p>
+                    <p id="section-toc.1-1.6.2.3.2.1.1"><a href="#section-6.3.1" class="auto internal xref">6.3.1</a>.  <a href="#name-summary-3" class="internal xref">Summary</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.2">
-                    <p id="section-toc.1-1.6.2.3.2.2.1"><a href="#section-6.3.2" class="auto internal xref">6.3.2</a>.  <a href="#name-packet-stream-generation" class="internal xref">Packet Stream Generation</a></p>
+                    <p id="section-toc.1-1.6.2.3.2.2.1"><a href="#section-6.3.2" class="auto internal xref">6.3.2</a>.  <a href="#name-metric-definition-3" class="internal xref">Metric Definition</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.3">
-                    <p id="section-toc.1-1.6.2.3.2.3.1"><a href="#section-6.3.3" class="auto internal xref">6.3.3</a>.  <a href="#name-traffic-filtering-observati" class="internal xref">Traffic Filtering (Observation) Details</a></p>
+                    <p id="section-toc.1-1.6.2.3.2.3.1"><a href="#section-6.3.3" class="auto internal xref">6.3.3</a>.  <a href="#name-method-of-measurement-3" class="internal xref">Method of Measurement</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.4">
-                    <p id="section-toc.1-1.6.2.3.2.4.1"><a href="#section-6.3.4" class="auto internal xref">6.3.4</a>.  <a href="#name-sampling-distribution" class="internal xref">Sampling Distribution</a></p>
+                    <p id="section-toc.1-1.6.2.3.2.4.1"><a href="#section-6.3.4" class="auto internal xref">6.3.4</a>.  <a href="#name-output-3" class="internal xref">Output</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.5">
-                    <p id="section-toc.1-1.6.2.3.2.5.1"><a href="#section-6.3.5" class="auto internal xref">6.3.5</a>.  <a href="#name-runtime-parameters-and-data" class="internal xref">Runtime Parameters and Data Format</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3.2.6">
-                    <p id="section-toc.1-1.6.2.3.2.6.1"><a href="#section-6.3.6" class="auto internal xref">6.3.6</a>.  <a href="#name-roles" class="internal xref">Roles</a></p>
+                    <p id="section-toc.1-1.6.2.3.2.5.1"><a href="#section-6.3.5" class="auto internal xref">6.3.5</a>.  <a href="#name-administrative-items-3" class="internal xref">Administrative Items</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4">
-                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-output" class="internal xref">Output</a></p>
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="auto internal xref">6.4</a>.  <a href="#name-cats-l1-metric-registry-entry" class="internal xref">CATS L1 Metric Registry Entry: Service</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4.2.1">
-                    <p id="section-toc.1-1.6.2.4.2.1.1"><a href="#section-6.4.1" class="auto internal xref">6.4.1</a>.  <a href="#name-type" class="internal xref">Type</a></p>
+                    <p id="section-toc.1-1.6.2.4.2.1.1"><a href="#section-6.4.1" class="auto internal xref">6.4.1</a>.  <a href="#name-summary-4" class="internal xref">Summary</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4.2.2">
-                    <p id="section-toc.1-1.6.2.4.2.2.1"><a href="#section-6.4.2" class="auto internal xref">6.4.2</a>.  <a href="#name-reference-definition-2" class="internal xref">Reference Definition</a></p>
+                    <p id="section-toc.1-1.6.2.4.2.2.1"><a href="#section-6.4.2" class="auto internal xref">6.4.2</a>.  <a href="#name-metric-definition-4" class="internal xref">Metric Definition</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4.2.3">
-                    <p id="section-toc.1-1.6.2.4.2.3.1"><a href="#section-6.4.3" class="auto internal xref">6.4.3</a>.  <a href="#name-metric-units" class="internal xref">Metric Units</a></p>
+                    <p id="section-toc.1-1.6.2.4.2.3.1"><a href="#section-6.4.3" class="auto internal xref">6.4.3</a>.  <a href="#name-method-of-measurement-4" class="internal xref">Method of Measurement</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4.2.4">
-                    <p id="section-toc.1-1.6.2.4.2.4.1"><a href="#section-6.4.4" class="auto internal xref">6.4.4</a>.  <a href="#name-calibration" class="internal xref">Calibration</a></p>
+                    <p id="section-toc.1-1.6.2.4.2.4.1"><a href="#section-6.4.4" class="auto internal xref">6.4.4</a>.  <a href="#name-output-4" class="internal xref">Output</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.4.2.5">
+                    <p id="section-toc.1-1.6.2.4.2.5.1"><a href="#section-6.4.5" class="auto internal xref">6.4.5</a>.  <a href="#name-administrative-items-4" class="internal xref">Administrative Items</a></p>
 </li>
                 </ul>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5">
-                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-administrative-items" class="internal xref">Administrative Items</a></p>
+                <p id="section-toc.1-1.6.2.5.1"><a href="#section-6.5" class="auto internal xref">6.5</a>.  <a href="#name-cats-l1-metric-registry-entry-" class="internal xref">CATS L1 Metric Registry Entry: Composed</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5.2.1">
-                    <p id="section-toc.1-1.6.2.5.2.1.1"><a href="#section-6.5.1" class="auto internal xref">6.5.1</a>.  <a href="#name-status" class="internal xref">Status</a></p>
+                    <p id="section-toc.1-1.6.2.5.2.1.1"><a href="#section-6.5.1" class="auto internal xref">6.5.1</a>.  <a href="#name-summary-5" class="internal xref">Summary</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5.2.2">
-                    <p id="section-toc.1-1.6.2.5.2.2.1"><a href="#section-6.5.2" class="auto internal xref">6.5.2</a>.  <a href="#name-requester" class="internal xref">Requester</a></p>
+                    <p id="section-toc.1-1.6.2.5.2.2.1"><a href="#section-6.5.2" class="auto internal xref">6.5.2</a>.  <a href="#name-metric-definition-5" class="internal xref">Metric Definition</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5.2.3">
-                    <p id="section-toc.1-1.6.2.5.2.3.1"><a href="#section-6.5.3" class="auto internal xref">6.5.3</a>.  <a href="#name-revision" class="internal xref">Revision</a></p>
+                    <p id="section-toc.1-1.6.2.5.2.3.1"><a href="#section-6.5.3" class="auto internal xref">6.5.3</a>.  <a href="#name-method-of-measurement-5" class="internal xref">Method of Measurement</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5.2.4">
-                    <p id="section-toc.1-1.6.2.5.2.4.1"><a href="#section-6.5.4" class="auto internal xref">6.5.4</a>.  <a href="#name-revision-date" class="internal xref">Revision Date</a></p>
+                    <p id="section-toc.1-1.6.2.5.2.4.1"><a href="#section-6.5.4" class="auto internal xref">6.5.4</a>.  <a href="#name-output-5" class="internal xref">Output</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.5.2.5">
-                    <p id="section-toc.1-1.6.2.5.2.5.1"><a href="#section-6.5.5" class="auto internal xref">6.5.5</a>.  <a href="#name-comments-and-remarks" class="internal xref">Comments and Remarks</a></p>
+                    <p id="section-toc.1-1.6.2.5.2.5.1"><a href="#section-6.5.5" class="auto internal xref">6.5.5</a>.  <a href="#name-administrative-items-5" class="internal xref">Administrative Items</a></p>
 </li>
                 </ul>
 </li>
@@ -1951,266 +1958,1391 @@ Source:
 <p id="section-5-9">In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.<a href="#section-5-9" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="cats-l2-metric-registry-entry">
+<div id="cats-metric-registry-entries">
 <section id="section-6">
-      <h2 id="name-cats-l2-metric-registry-ent">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-cats-l2-metric-registry-ent" class="section-name selfRef">CATS L2 Metric Registry Entry</a>
+      <h2 id="name-cats-metric-registry-entrie">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-cats-metric-registry-entrie" class="section-name selfRef">CATS Metric Registry Entries</a>
       </h2>
-<p id="section-6-1">This section gives an initial Registry Entry for the CATS L2 metric.<a href="#section-6-1" class="pilcrow">¶</a></p>
-<div id="summary">
+<div id="cats-l2-metric-registry-entry">
 <section id="section-6.1">
-        <h3 id="name-summary">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-summary" class="section-name selfRef">Summary</a>
+        <h3 id="name-cats-l2-metric-registry-ent">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-cats-l2-metric-registry-ent" class="section-name selfRef">CATS L2 Metric Registry Entry</a>
         </h3>
-<p id="section-6.1-1">This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
-<div id="id-identifier">
+<p id="section-6.1-1">This section gives an initial Registry Entry for the CATS L2 metric.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<div id="summary">
 <section id="section-6.1.1">
-          <h4 id="name-id-identifier">
-<a href="#section-6.1.1" class="section-number selfRef">6.1.1. </a><a href="#name-id-identifier" class="section-name selfRef">ID (Identifier)</a>
+          <h4 id="name-summary">
+<a href="#section-6.1.1" class="section-number selfRef">6.1.1. </a><a href="#name-summary" class="section-name selfRef">Summary</a>
           </h4>
-<p id="section-6.1.1-1">IANA has allocated the Identifier 1 for the Named Metric Entry in Section 5. See Section 5.1.2 for mapping to Names.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.1-1">This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
+<div id="id-identifier">
+<section id="section-6.1.1.1">
+            <h5 id="name-id-identifier">
+<a href="#section-6.1.1.1" class="section-number selfRef">6.1.1.1. </a><a href="#name-id-identifier" class="section-name selfRef">ID (Identifier)</a>
+            </h5>
+<p id="section-6.1.1.1-1">IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.<a href="#section-6.1.1.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="name">
-<section id="section-6.1.2">
-          <h4 id="name-name">
-<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-name" class="section-name selfRef">Name</a>
-          </h4>
-<p id="section-6.1.2-1">Norm_Passive_CATS-L2_RFCXXXXsecY_Unitless_Singleton<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.1.2-2">Naming Rule Explanation<a href="#section-6.1.2-2" class="pilcrow">¶</a></p>
+<section id="section-6.1.1.2">
+            <h5 id="name-name">
+<a href="#section-6.1.1.2" class="section-number selfRef">6.1.1.2. </a><a href="#name-name" class="section-name selfRef">Name</a>
+            </h5>
+<p id="section-6.1.1.2-1">Norm_Passive_CATS-L2_RFCXXXXsecY_Unitless_Singleton<a href="#section-6.1.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.1.2-2">Naming Rule Explanation<a href="#section-6.1.1.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-6.1.2-3.1">
-              <p id="section-6.1.2-3.1.1">Norm: Metric type (Normalized Score)<a href="#section-6.1.2-3.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.1.1.2-3.1">
+                <p id="section-6.1.1.2-3.1.1">Norm: Metric type (Normalized Score)<a href="#section-6.1.1.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-6.1.2-3.2">
-              <p id="section-6.1.2-3.2.1">Passive: Measurement method<a href="#section-6.1.2-3.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-6.1.1.2-3.2">
+                <p id="section-6.1.1.2-3.2.1">Passive: Measurement method<a href="#section-6.1.1.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-6.1.2-3.3">
-              <p id="section-6.1.2-3.3.1">CATS-L2: Metric level (CATS Metric Framework Level 2)<a href="#section-6.1.2-3.3.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-6.1.1.2-3.3">
+                <p id="section-6.1.1.2-3.3.1">CATS-L2: Metric level (CATS Metric Framework Level 2)<a href="#section-6.1.1.2-3.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-6.1.2-3.4">
-              <p id="section-6.1.2-3.4.1">RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)<a href="#section-6.1.2-3.4.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-6.1.1.2-3.4">
+                <p id="section-6.1.1.2-3.4.1">RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)<a href="#section-6.1.1.2-3.4.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-6.1.2-3.5">
-              <p id="section-6.1.2-3.5.1">Unitless: Metric has not units<a href="#section-6.1.2-3.5.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-6.1.1.2-3.5">
+                <p id="section-6.1.1.2-3.5.1">Unitless: Metric has not units<a href="#section-6.1.1.2-3.5.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-6.1.2-3.6">
-              <p id="section-6.1.2-3.6.1">Singleton: Metric is a single value<a href="#section-6.1.2-3.6.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-6.1.1.2-3.6">
+                <p id="section-6.1.1.2-3.6.1">Singleton: Metric is a single value<a href="#section-6.1.1.2-3.6.1" class="pilcrow">¶</a></p>
 </li>
-          </ul>
+            </ul>
 </section>
 </div>
 <div id="uri">
-<section id="section-6.1.3">
-          <h4 id="name-uri">
-<a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-uri" class="section-name selfRef">URI</a>
-          </h4>
-<p id="section-6.1.3-1">To-be-assigned.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.1.3">
+            <h5 id="name-uri">
+<a href="#section-6.1.1.3" class="section-number selfRef">6.1.1.3. </a><a href="#name-uri" class="section-name selfRef">URI</a>
+            </h5>
+<p id="section-6.1.1.3-1">To-be-assigned.<a href="#section-6.1.1.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="description">
-<section id="section-6.1.4">
-          <h4 id="name-description">
-<a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-description" class="section-name selfRef">Description</a>
-          </h4>
-<p id="section-6.1.4-1">This metric represents a single normalized score used within CATS. It is derived by aggregating one or more CATS L0 and/or L1 metrics, followed by a normalization process that produces a unitless value. The resulting score provides a concise assessment of the overall capability of a service instance, enabling rapid comparison across instances and supporting efficient traffic steering decisions.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.1.4">
+            <h5 id="name-description">
+<a href="#section-6.1.1.4" class="section-number selfRef">6.1.1.4. </a><a href="#name-description" class="section-name selfRef">Description</a>
+            </h5>
+<p id="section-6.1.1.4-1">This metric represents a single normalized score used within CATS (L2). It is derived by aggregating one or more CATS L0 and/or L1 metrics, followed by a normalization process that produces a unitless value. The resulting score provides a concise assessment of the overall capability of a service instance, enabling rapid comparison across instances and supporting efficient traffic steering decisions.<a href="#section-6.1.1.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="change-controller">
-<section id="section-6.1.5">
-          <h4 id="name-change-controller">
-<a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-change-controller" class="section-name selfRef">Change Controller</a>
-          </h4>
-<p id="section-6.1.5-1">IETF<a href="#section-6.1.5-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.1.5">
+            <h5 id="name-change-controller">
+<a href="#section-6.1.1.5" class="section-number selfRef">6.1.1.5. </a><a href="#name-change-controller" class="section-name selfRef">Change Controller</a>
+            </h5>
+<p id="section-6.1.1.5-1">IETF<a href="#section-6.1.1.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="version">
-<section id="section-6.1.6">
-          <h4 id="name-version">
-<a href="#section-6.1.6" class="section-number selfRef">6.1.6. </a><a href="#name-version" class="section-name selfRef">Version</a>
-          </h4>
-<p id="section-6.1.6-1">1.0<a href="#section-6.1.6-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.1.6">
+            <h5 id="name-version">
+<a href="#section-6.1.1.6" class="section-number selfRef">6.1.1.6. </a><a href="#name-version" class="section-name selfRef">Version</a>
+            </h5>
+<p id="section-6.1.1.6-1">1.0<a href="#section-6.1.1.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="metric-definition">
-<section id="section-6.2">
-        <h3 id="name-metric-definition">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-metric-definition" class="section-name selfRef">Metric Definition</a>
-        </h3>
-<div id="reference-definition">
-<section id="section-6.2.1">
-          <h4 id="name-reference-definition">
-<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-reference-definition" class="section-name selfRef">Reference Definition</a>
+<section id="section-6.1.2">
+          <h4 id="name-metric-definition">
+<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-metric-definition" class="section-name selfRef">Metric Definition</a>
           </h4>
-<p id="section-6.2.1-1"><span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span>
-Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions)<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+<div id="reference-definition">
+<section id="section-6.1.2.1">
+            <h5 id="name-reference-definition">
+<a href="#section-6.1.2.1" class="section-number selfRef">6.1.2.1. </a><a href="#name-reference-definition" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.1.2.1-1"><span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span>
+Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions)<a href="#section-6.1.2.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="fixed-parameters">
-<section id="section-6.2.2">
-          <h4 id="name-fixed-parameters">
-<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-fixed-parameters" class="section-name selfRef">Fixed Parameters</a>
-          </h4>
+<section id="section-6.1.2.2">
+            <h5 id="name-fixed-parameters">
+<a href="#section-6.1.2.2" class="section-number selfRef">6.1.2.2. </a><a href="#name-fixed-parameters" class="section-name selfRef">Fixed Parameters</a>
+            </h5>
 <ul class="normal">
-<li class="normal" id="section-6.2.2-1.1">
-              <p id="section-6.2.2-1.1.1">Normalization score range: 0-10 (0 indicates the poorest capability, 10 indicates the optimal capability)<a href="#section-6.2.2-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.1.2.2-1.1">
+                <p id="section-6.1.2.2-1.1.1">Normalization score range: 0-10 (0 indicates the poorest capability, 10 indicates the optimal capability)<a href="#section-6.1.2.2-1.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li class="normal" id="section-6.2.2-1.2">
-              <p id="section-6.2.2-1.2.1">Data precision: decimal number (unsigned integer)<a href="#section-6.2.2-1.2.1" class="pilcrow">¶</a></p>
+              <li class="normal" id="section-6.1.2.2-1.2">
+                <p id="section-6.1.2.2-1.2.1">Data precision: decimal number (unsigned integer)<a href="#section-6.1.2.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          </ul>
+            </ul>
 </section>
 </div>
 </section>
 </div>
 <div id="method-of-measurement">
-<section id="section-6.3">
-        <h3 id="name-method-of-measurement">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-method-of-measurement" class="section-name selfRef">Method of Measurement</a>
-        </h3>
-<p id="section-6.3-1">This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
-<div id="reference-methods">
-<section id="section-6.3.1">
-          <h4 id="name-reference-methods">
-<a href="#section-6.3.1" class="section-number selfRef">6.3.1. </a><a href="#name-reference-methods" class="section-name selfRef">Reference Methods</a>
+<section id="section-6.1.3">
+          <h4 id="name-method-of-measurement">
+<a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-method-of-measurement" class="section-name selfRef">Method of Measurement</a>
           </h4>
-<p id="section-6.3.1-1">Raw Metrics collection: Collect L0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span> in Kubernetes). Collect L0 network performance raw metrics using existing standardized protocols (e.g., NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>, IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>).<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.1-2">Aggregation logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation).<a href="#section-6.3.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization).<a href="#section-6.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.3.1-4">The reference method aggregates and normalizes L0 metrics to generate L1 metrics in different categories, and further calculates a L2 singleton score for full normalization.<a href="#section-6.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.1.3-1">This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
+<div id="reference-methods">
+<section id="section-6.1.3.1">
+            <h5 id="name-reference-methods">
+<a href="#section-6.1.3.1" class="section-number selfRef">6.1.3.1. </a><a href="#name-reference-methods" class="section-name selfRef">Reference Methods</a>
+            </h5>
+<p id="section-6.1.3.1-1">Raw Metrics collection: Collect L0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span> in Kubernetes). Collect L0 network performance raw metrics using existing standardized protocols (e.g., NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>, IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>).<a href="#section-6.1.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.3.1-2">Aggregation logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation).<a href="#section-6.1.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization).<a href="#section-6.1.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.1.3.1-4">The reference method aggregates and normalizes L0 metrics to generate L1 metrics in different categories, and further calculates a L2 singleton score for full normalization.<a href="#section-6.1.3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="packet-stream-generation">
-<section id="section-6.3.2">
-          <h4 id="name-packet-stream-generation">
-<a href="#section-6.3.2" class="section-number selfRef">6.3.2. </a><a href="#name-packet-stream-generation" class="section-name selfRef">Packet Stream Generation</a>
-          </h4>
-<p id="section-6.3.2-1">N/A<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.3.2">
+            <h5 id="name-packet-stream-generation">
+<a href="#section-6.1.3.2" class="section-number selfRef">6.1.3.2. </a><a href="#name-packet-stream-generation" class="section-name selfRef">Packet Stream Generation</a>
+            </h5>
+<p id="section-6.1.3.2-1">N/A<a href="#section-6.1.3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="traffic-filtering-observation-details">
-<section id="section-6.3.3">
-          <h4 id="name-traffic-filtering-observati">
-<a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-traffic-filtering-observati" class="section-name selfRef">Traffic Filtering (Observation) Details</a>
-          </h4>
-<p id="section-6.3.3-1">N/A<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.3.3">
+            <h5 id="name-traffic-filtering-observati">
+<a href="#section-6.1.3.3" class="section-number selfRef">6.1.3.3. </a><a href="#name-traffic-filtering-observati" class="section-name selfRef">Traffic Filtering (Observation) Details</a>
+            </h5>
+<p id="section-6.1.3.3-1">N/A<a href="#section-6.1.3.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sampling-distribution">
-<section id="section-6.3.4">
-          <h4 id="name-sampling-distribution">
-<a href="#section-6.3.4" class="section-number selfRef">6.3.4. </a><a href="#name-sampling-distribution" class="section-name selfRef">Sampling Distribution</a>
-          </h4>
-<p id="section-6.3.4-1">Sampling method: Continuous sampling (e.g., collect L0 metrics every 10 seconds)<a href="#section-6.3.4-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.3.4">
+            <h5 id="name-sampling-distribution">
+<a href="#section-6.1.3.4" class="section-number selfRef">6.1.3.4. </a><a href="#name-sampling-distribution" class="section-name selfRef">Sampling Distribution</a>
+            </h5>
+<p id="section-6.1.3.4-1">Sampling method: Continuous sampling (e.g., collect L0 metrics every 10 seconds)<a href="#section-6.1.3.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="runtime-parameters-and-data-format">
-<section id="section-6.3.5">
-          <h4 id="name-runtime-parameters-and-data">
-<a href="#section-6.3.5" class="section-number selfRef">6.3.5. </a><a href="#name-runtime-parameters-and-data" class="section-name selfRef">Runtime Parameters and Data Format</a>
-          </h4>
-<p id="section-6.3.5-1">CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.3.5-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.5-2">Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.3.5-2" class="pilcrow">¶</a></p>
-<p id="section-6.3.5-3">Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)<a href="#section-6.3.5-3" class="pilcrow">¶</a></p>
+<section id="section-6.1.3.5">
+            <h5 id="name-runtime-parameters-and-data">
+<a href="#section-6.1.3.5" class="section-number selfRef">6.1.3.5. </a><a href="#name-runtime-parameters-and-data" class="section-name selfRef">Runtime Parameters and Data Format</a>
+            </h5>
+<p id="section-6.1.3.5-1">CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.1.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.3.5-2">Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.1.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.1.3.5-3">Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)<a href="#section-6.1.3.5-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="roles">
-<section id="section-6.3.6">
-          <h4 id="name-roles">
-<a href="#section-6.3.6" class="section-number selfRef">6.3.6. </a><a href="#name-roles" class="section-name selfRef">Roles</a>
-          </h4>
-<p id="section-6.3.6-1">C-SMA: Collects L0 service and compute raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.<a href="#section-6.3.6-1" class="pilcrow">¶</a></p>
-<p id="section-6.3.6-2">C-NMA: Collects L0 network performance raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.<a href="#section-6.3.6-2" class="pilcrow">¶</a></p>
+<section id="section-6.1.3.6">
+            <h5 id="name-roles">
+<a href="#section-6.1.3.6" class="section-number selfRef">6.1.3.6. </a><a href="#name-roles" class="section-name selfRef">Roles</a>
+            </h5>
+<p id="section-6.1.3.6-1">C-SMA: Collects L0 service and compute raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.<a href="#section-6.1.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.3.6-2">C-NMA: Collects L0 network performance raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.<a href="#section-6.1.3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="output">
-<section id="section-6.4">
-        <h3 id="name-output">
-<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-output" class="section-name selfRef">Output</a>
-        </h3>
-<p id="section-6.4-1">This category specifies all details of the output of measurements using the metric.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
-<div id="type">
-<section id="section-6.4.1">
-          <h4 id="name-type">
-<a href="#section-6.4.1" class="section-number selfRef">6.4.1. </a><a href="#name-type" class="section-name selfRef">Type</a>
+<section id="section-6.1.4">
+          <h4 id="name-output">
+<a href="#section-6.1.4" class="section-number selfRef">6.1.4. </a><a href="#name-output" class="section-name selfRef">Output</a>
           </h4>
-<p id="section-6.4.1-1">Singleton value<a href="#section-6.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.4-1">This category specifies all details of the output of measurements using the metric.<a href="#section-6.1.4-1" class="pilcrow">¶</a></p>
+<div id="type">
+<section id="section-6.1.4.1">
+            <h5 id="name-type">
+<a href="#section-6.1.4.1" class="section-number selfRef">6.1.4.1. </a><a href="#name-type" class="section-name selfRef">Type</a>
+            </h5>
+<p id="section-6.1.4.1-1">Singleton value<a href="#section-6.1.4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="reference-definition-1">
-<section id="section-6.4.2">
-          <h4 id="name-reference-definition-2">
-<a href="#section-6.4.2" class="section-number selfRef">6.4.2. </a><a href="#name-reference-definition-2" class="section-name selfRef">Reference Definition</a>
-          </h4>
-<p id="section-6.4.2-1">Output format: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.4.3<a href="#section-6.4.2-1" class="pilcrow">¶</a></p>
-<p id="section-6.4.2-2">Score semantics: 0-3 (Low capability, not recommended for steering), 4-7 (Medium capability, optional for steering), 8-10 (High capability, priority for steering)<a href="#section-6.4.2-2" class="pilcrow">¶</a></p>
+<section id="section-6.1.4.2">
+            <h5 id="name-reference-definition-2">
+<a href="#section-6.1.4.2" class="section-number selfRef">6.1.4.2. </a><a href="#name-reference-definition-2" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.1.4.2-1">Output format: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.4.3<a href="#section-6.1.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.1.4.2-2">Score semantics: 0-3 (Low capability, not recommended for steering), 4-7 (Medium capability, optional for steering), 8-10 (High capability, priority for steering)<a href="#section-6.1.4.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="metric-units">
-<section id="section-6.4.3">
-          <h4 id="name-metric-units">
-<a href="#section-6.4.3" class="section-number selfRef">6.4.3. </a><a href="#name-metric-units" class="section-name selfRef">Metric Units</a>
-          </h4>
-<p id="section-6.4.3-1">Unitless<a href="#section-6.4.3-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.4.3">
+            <h5 id="name-metric-units">
+<a href="#section-6.1.4.3" class="section-number selfRef">6.1.4.3. </a><a href="#name-metric-units" class="section-name selfRef">Metric Units</a>
+            </h5>
+<p id="section-6.1.4.3-1">Unitless<a href="#section-6.1.4.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="calibration">
-<section id="section-6.4.4">
-          <h4 id="name-calibration">
-<a href="#section-6.4.4" class="section-number selfRef">6.4.4. </a><a href="#name-calibration" class="section-name selfRef">Calibration</a>
-          </h4>
-<p id="section-6.4.4-1">Calibration method: Conduct benchmark calibration based on standard test sets (fixed workload) to ensure the output score deviation of C-SMA and C-NMA is lower than 0.1 (one abnormal score in every ten test rounds).<a href="#section-6.4.4-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.4.4">
+            <h5 id="name-calibration">
+<a href="#section-6.1.4.4" class="section-number selfRef">6.1.4.4. </a><a href="#name-calibration" class="section-name selfRef">Calibration</a>
+            </h5>
+<p id="section-6.1.4.4-1">Calibration method: Conduct benchmark calibration based on standard test sets (fixed workload) to ensure the output score deviation of C-SMA and C-NMA is lower than 0.1 (one abnormal score in every ten test rounds).<a href="#section-6.1.4.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="administrative-items">
-<section id="section-6.5">
-        <h3 id="name-administrative-items">
-<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-administrative-items" class="section-name selfRef">Administrative Items</a>
-        </h3>
-<div id="status">
-<section id="section-6.5.1">
-          <h4 id="name-status">
-<a href="#section-6.5.1" class="section-number selfRef">6.5.1. </a><a href="#name-status" class="section-name selfRef">Status</a>
+<section id="section-6.1.5">
+          <h4 id="name-administrative-items">
+<a href="#section-6.1.5" class="section-number selfRef">6.1.5. </a><a href="#name-administrative-items" class="section-name selfRef">Administrative Items</a>
           </h4>
-<p id="section-6.5.1-1">Current<a href="#section-6.5.1-1" class="pilcrow">¶</a></p>
+<div id="status">
+<section id="section-6.1.5.1">
+            <h5 id="name-status">
+<a href="#section-6.1.5.1" class="section-number selfRef">6.1.5.1. </a><a href="#name-status" class="section-name selfRef">Status</a>
+            </h5>
+<p id="section-6.1.5.1-1">Current<a href="#section-6.1.5.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="requester">
-<section id="section-6.5.2">
-          <h4 id="name-requester">
-<a href="#section-6.5.2" class="section-number selfRef">6.5.2. </a><a href="#name-requester" class="section-name selfRef">Requester</a>
-          </h4>
-<p id="section-6.5.2-1">To-be-assgined<a href="#section-6.5.2-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.5.2">
+            <h5 id="name-requester">
+<a href="#section-6.1.5.2" class="section-number selfRef">6.1.5.2. </a><a href="#name-requester" class="section-name selfRef">Requester</a>
+            </h5>
+<p id="section-6.1.5.2-1">To-be-assgined<a href="#section-6.1.5.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="revision">
-<section id="section-6.5.3">
-          <h4 id="name-revision">
-<a href="#section-6.5.3" class="section-number selfRef">6.5.3. </a><a href="#name-revision" class="section-name selfRef">Revision</a>
-          </h4>
-<p id="section-6.5.3-1">1.0<a href="#section-6.5.3-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.5.3">
+            <h5 id="name-revision">
+<a href="#section-6.1.5.3" class="section-number selfRef">6.1.5.3. </a><a href="#name-revision" class="section-name selfRef">Revision</a>
+            </h5>
+<p id="section-6.1.5.3-1">1.0<a href="#section-6.1.5.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="revision-date">
-<section id="section-6.5.4">
-          <h4 id="name-revision-date">
-<a href="#section-6.5.4" class="section-number selfRef">6.5.4. </a><a href="#name-revision-date" class="section-name selfRef">Revision Date</a>
-          </h4>
-<p id="section-6.5.4-1">2026-01-20<a href="#section-6.5.4-1" class="pilcrow">¶</a></p>
+<section id="section-6.1.5.4">
+            <h5 id="name-revision-date">
+<a href="#section-6.1.5.4" class="section-number selfRef">6.1.5.4. </a><a href="#name-revision-date" class="section-name selfRef">Revision Date</a>
+            </h5>
+<p id="section-6.1.5.4-1">2026-01-20<a href="#section-6.1.5.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="comments-and-remarks">
-<section id="section-6.5.5">
-          <h4 id="name-comments-and-remarks">
-<a href="#section-6.5.5" class="section-number selfRef">6.5.5. </a><a href="#name-comments-and-remarks" class="section-name selfRef">Comments and Remarks</a>
+<section id="section-6.1.5.5">
+            <h5 id="name-comments-and-remarks">
+<a href="#section-6.1.5.5" class="section-number selfRef">6.1.5.5. </a><a href="#name-comments-and-remarks" class="section-name selfRef">Comments and Remarks</a>
+            </h5>
+<p id="section-6.1.5.5-1">None<a href="#section-6.1.5.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="cats-l1-metric-registry-entry-compute">
+<section id="section-6.2">
+        <h3 id="name-cats-l1-metric-registry-ent">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-cats-l1-metric-registry-ent" class="section-name selfRef">CATS L1 Metric Registry Entry: Compute</a>
+        </h3>
+<p id="section-6.2-1">This section gives an initial Registry Entry for the CATS L1 metric in the <em>compute</em> category.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<div id="summary-1">
+<section id="section-6.2.1">
+          <h4 id="name-summary-2">
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-summary-2" class="section-name selfRef">Summary</a>
           </h4>
-<p id="section-6.5.5-1">None<a href="#section-6.5.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.1-1">This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+<div id="id-identifier-1">
+<section id="section-6.2.1.1">
+            <h5 id="name-id-identifier-2">
+<a href="#section-6.2.1.1" class="section-number selfRef">6.2.1.1. </a><a href="#name-id-identifier-2" class="section-name selfRef">ID (Identifier)</a>
+            </h5>
+<p id="section-6.2.1.1-1">IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.<a href="#section-6.2.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="name-1">
+<section id="section-6.2.1.2">
+            <h5 id="name-name-2">
+<a href="#section-6.2.1.2" class="section-number selfRef">6.2.1.2. </a><a href="#name-name-2" class="section-name selfRef">Name</a>
+            </h5>
+<p id="section-6.2.1.2-1">Norm_Passive_CATS-L1_Compute_RFCXXXXsecY_Unitless_Singleton<a href="#section-6.2.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.1.2-2">Naming Rule Explanation<a href="#section-6.2.1.2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.2.1.2-3.1">
+                <p id="section-6.2.1.2-3.1.1">Norm: Metric type (Normalized Score)<a href="#section-6.2.1.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.1.2-3.2">
+                <p id="section-6.2.1.2-3.2.1">Passive: Measurement method<a href="#section-6.2.1.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.1.2-3.3">
+                <p id="section-6.2.1.2-3.3.1">CATS-L1: Metric level (CATS Metric Framework Level 1)<a href="#section-6.2.1.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.1.2-3.4">
+                <p id="section-6.2.1.2-3.4.1">Compute: Metric category (Compute)<a href="#section-6.2.1.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.1.2-3.5">
+                <p id="section-6.2.1.2-3.5.1">RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)<a href="#section-6.2.1.2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.1.2-3.6">
+                <p id="section-6.2.1.2-3.6.1">Unitless: Metric has no units<a href="#section-6.2.1.2-3.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.1.2-3.7">
+                <p id="section-6.2.1.2-3.7.1">Singleton: Metric is a single value for the compute category<a href="#section-6.2.1.2-3.7.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+<div id="uri-1">
+<section id="section-6.2.1.3">
+            <h5 id="name-uri-2">
+<a href="#section-6.2.1.3" class="section-number selfRef">6.2.1.3. </a><a href="#name-uri-2" class="section-name selfRef">URI</a>
+            </h5>
+<p id="section-6.2.1.3-1">To-be-assigned.<a href="#section-6.2.1.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description-1">
+<section id="section-6.2.1.4">
+            <h5 id="name-description-2">
+<a href="#section-6.2.1.4" class="section-number selfRef">6.2.1.4. </a><a href="#name-description-2" class="section-name selfRef">Description</a>
+            </h5>
+<p id="section-6.2.1.4-1">This metric represents a single normalized score for the <em>compute</em> category within CATS (L1). It is derived from one or more compute-related L0 metrics (e.g., CPU/GPU/NPU utilization, CPU frequency, memory utilization, or other compute resource indicators) by applying an implementation-specific aggregation function over the selected L0 compute metrics and then applying a normalization function to produce a unitless score.<a href="#section-6.2.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.1.4-2">The resulting score provides a concise indication of the relative compute capability (or headroom) of a service contact instance for the purpose of instance selection and traffic steering. Higher values indicate better compute capability according to the provider's normalization strategy.<a href="#section-6.2.1.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="change-controller-1">
+<section id="section-6.2.1.5">
+            <h5 id="name-change-controller-2">
+<a href="#section-6.2.1.5" class="section-number selfRef">6.2.1.5. </a><a href="#name-change-controller-2" class="section-name selfRef">Change Controller</a>
+            </h5>
+<p id="section-6.2.1.5-1">IETF<a href="#section-6.2.1.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="version-1">
+<section id="section-6.2.1.6">
+            <h5 id="name-version-2">
+<a href="#section-6.2.1.6" class="section-number selfRef">6.2.1.6. </a><a href="#name-version-2" class="section-name selfRef">Version</a>
+            </h5>
+<p id="section-6.2.1.6-1">1.0<a href="#section-6.2.1.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="metric-definition-1">
+<section id="section-6.2.2">
+          <h4 id="name-metric-definition-2">
+<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-metric-definition-2" class="section-name selfRef">Metric Definition</a>
+          </h4>
+<div id="reference-definition-2">
+<section id="section-6.2.2.1">
+            <h5 id="name-reference-definition-3">
+<a href="#section-6.2.2.1" class="section-number selfRef">6.2.2.1. </a><a href="#name-reference-definition-3" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.2.2.1-1"><span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span><a href="#section-6.2.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.2.1-2">Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)<a href="#section-6.2.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="fixed-parameters-1">
+<section id="section-6.2.2.2">
+            <h5 id="name-fixed-parameters-2">
+<a href="#section-6.2.2.2" class="section-number selfRef">6.2.2.2. </a><a href="#name-fixed-parameters-2" class="section-name selfRef">Fixed Parameters</a>
+            </h5>
+<ul class="normal">
+<li class="normal" id="section-6.2.2.2-1.1">
+                <p id="section-6.2.2.2-1.1.1">Normalization score range: 0-10 (0 indicates the poorest compute capability, 10 indicates the optimal compute capability)<a href="#section-6.2.2.2-1.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.2.2-1.2">
+                <p id="section-6.2.2.2-1.2.1">Data precision: decimal number (unsigned integer)<a href="#section-6.2.2.2-1.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.2.2-1.3">
+                <p id="section-6.2.2.2-1.3.1">Metric type: "compute_norm"<a href="#section-6.2.2.2-1.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.2.2-1.4">
+                <p id="section-6.2.2.2-1.4.1">Level: L1<a href="#section-6.2.2.2-1.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.2.2.2-1.5">
+                <p id="section-6.2.2.2-1.5.1">Metric units: Unitless<a href="#section-6.2.2.2-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="method-of-measurement-1">
+<section id="section-6.2.3">
+          <h4 id="name-method-of-measurement-2">
+<a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-method-of-measurement-2" class="section-name selfRef">Method of Measurement</a>
+          </h4>
+<p id="section-6.2.3-1">This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.<a href="#section-6.2.3-1" class="pilcrow">¶</a></p>
+<div id="reference-methods-1">
+<section id="section-6.2.3.1">
+            <h5 id="name-reference-methods-2">
+<a href="#section-6.2.3.1" class="section-number selfRef">6.2.3.1. </a><a href="#name-reference-methods-2" class="section-name selfRef">Reference Methods</a>
+            </h5>
+<p id="section-6.2.3.1-1">Raw Metrics collection: Collect compute-related L0 raw metrics (e.g., CPU/GPU/NPU, memory, and relevant platform counters) using platform-specific management protocols or tools (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span> in Kubernetes or equivalent telemetry systems).<a href="#section-6.2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.1-2">Aggregation logic (within compute category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected L0 compute metrics into a single intermediate value prior to normalization. The selection of L0 compute metrics and any weights used are implementation-specific.<a href="#section-6.2.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) compute value into the fixed score range.<a href="#section-6.2.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.1-4">The reference method aggregates and normalizes L0 compute metrics to generate a single L1 compute score ("compute_norm"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate communication or service metrics).<a href="#section-6.2.3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="packet-stream-generation-1">
+<section id="section-6.2.3.2">
+            <h5 id="name-packet-stream-generation-2">
+<a href="#section-6.2.3.2" class="section-number selfRef">6.2.3.2. </a><a href="#name-packet-stream-generation-2" class="section-name selfRef">Packet Stream Generation</a>
+            </h5>
+<p id="section-6.2.3.2-1">N/A<a href="#section-6.2.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="traffic-filtering-observation-details-1">
+<section id="section-6.2.3.3">
+            <h5 id="name-traffic-filtering-observatio">
+<a href="#section-6.2.3.3" class="section-number selfRef">6.2.3.3. </a><a href="#name-traffic-filtering-observatio" class="section-name selfRef">Traffic Filtering (Observation) Details</a>
+            </h5>
+<p id="section-6.2.3.3-1">N/A<a href="#section-6.2.3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sampling-distribution-1">
+<section id="section-6.2.3.4">
+            <h5 id="name-sampling-distribution-2">
+<a href="#section-6.2.3.4" class="section-number selfRef">6.2.3.4. </a><a href="#name-sampling-distribution-2" class="section-name selfRef">Sampling Distribution</a>
+            </h5>
+<p id="section-6.2.3.4-1">Sampling method: Continuous sampling (e.g., collect underlying L0 compute metrics every 10 seconds)<a href="#section-6.2.3.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="runtime-parameters-and-data-format-1">
+<section id="section-6.2.3.5">
+            <h5 id="name-runtime-parameters-and-data-">
+<a href="#section-6.2.3.5" class="section-number selfRef">6.2.3.5. </a><a href="#name-runtime-parameters-and-data-" class="section-name selfRef">Runtime Parameters and Data Format</a>
+            </h5>
+<p id="section-6.2.3.5-1">CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.2.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.5-2">Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.2.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.5-3">Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)<a href="#section-6.2.3.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="roles-1">
+<section id="section-6.2.3.6">
+            <h5 id="name-roles-2">
+<a href="#section-6.2.3.6" class="section-number selfRef">6.2.3.6. </a><a href="#name-roles-2" class="section-name selfRef">Roles</a>
+            </h5>
+<p id="section-6.2.3.6-1">C-SMA: Collects L0 compute raw metrics and calculates the L1 compute normalized score ("compute_norm") according to service/provider-specific aggregation and normalization strategies.<a href="#section-6.2.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.6-2">C-NMA: Not required for this metric.<a href="#section-6.2.3.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="output-1">
+<section id="section-6.2.4">
+          <h4 id="name-output-2">
+<a href="#section-6.2.4" class="section-number selfRef">6.2.4. </a><a href="#name-output-2" class="section-name selfRef">Output</a>
+          </h4>
+<p id="section-6.2.4-1">This category specifies all details of the output of measurements using the metric.<a href="#section-6.2.4-1" class="pilcrow">¶</a></p>
+<div id="type-1">
+<section id="section-6.2.4.1">
+            <h5 id="name-type-2">
+<a href="#section-6.2.4.1" class="section-number selfRef">6.2.4.1. </a><a href="#name-type-2" class="section-name selfRef">Type</a>
+            </h5>
+<p id="section-6.2.4.1-1">Singleton value<a href="#section-6.2.4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reference-definition-3">
+<section id="section-6.2.4.2">
+            <h5 id="name-reference-definition-4">
+<a href="#section-6.2.4.2" class="section-number selfRef">6.2.4.2. </a><a href="#name-reference-definition-4" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.2.4.2-1">Output format: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.4.2<a href="#section-6.2.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.4.2-2">Score semantics: 0-3 (Low compute capability, not recommended for steering), 4-7 (Medium compute capability, optional for steering), 8-10 (High compute capability, priority for steering)<a href="#section-6.2.4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metric-units-1">
+<section id="section-6.2.4.3">
+            <h5 id="name-metric-units-2">
+<a href="#section-6.2.4.3" class="section-number selfRef">6.2.4.3. </a><a href="#name-metric-units-2" class="section-name selfRef">Metric Units</a>
+            </h5>
+<p id="section-6.2.4.3-1">Unitless<a href="#section-6.2.4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="calibration-1">
+<section id="section-6.2.4.4">
+            <h5 id="name-calibration-2">
+<a href="#section-6.2.4.4" class="section-number selfRef">6.2.4.4. </a><a href="#name-calibration-2" class="section-name selfRef">Calibration</a>
+            </h5>
+<p id="section-6.2.4.4-1">Calibration method: Conduct benchmark calibration based on representative compute workloads (fixed test workload profiles) to align the mapping from L0 compute metrics to the L1 score, such that score deviation across measurement agents within the same administrative domain is minimized (e.g., less than 0.1 over repeated test rounds).<a href="#section-6.2.4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="administrative-items-1">
+<section id="section-6.2.5">
+          <h4 id="name-administrative-items-2">
+<a href="#section-6.2.5" class="section-number selfRef">6.2.5. </a><a href="#name-administrative-items-2" class="section-name selfRef">Administrative Items</a>
+          </h4>
+<div id="status-1">
+<section id="section-6.2.5.1">
+            <h5 id="name-status-2">
+<a href="#section-6.2.5.1" class="section-number selfRef">6.2.5.1. </a><a href="#name-status-2" class="section-name selfRef">Status</a>
+            </h5>
+<p id="section-6.2.5.1-1">Current<a href="#section-6.2.5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requester-1">
+<section id="section-6.2.5.2">
+            <h5 id="name-requester-2">
+<a href="#section-6.2.5.2" class="section-number selfRef">6.2.5.2. </a><a href="#name-requester-2" class="section-name selfRef">Requester</a>
+            </h5>
+<p id="section-6.2.5.2-1">To-be-assgined<a href="#section-6.2.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-1">
+<section id="section-6.2.5.3">
+            <h5 id="name-revision-2">
+<a href="#section-6.2.5.3" class="section-number selfRef">6.2.5.3. </a><a href="#name-revision-2" class="section-name selfRef">Revision</a>
+            </h5>
+<p id="section-6.2.5.3-1">1.0<a href="#section-6.2.5.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-date-1">
+<section id="section-6.2.5.4">
+            <h5 id="name-revision-date-2">
+<a href="#section-6.2.5.4" class="section-number selfRef">6.2.5.4. </a><a href="#name-revision-date-2" class="section-name selfRef">Revision Date</a>
+            </h5>
+<p id="section-6.2.5.4-1">2026-01-20<a href="#section-6.2.5.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="comments-and-remarks-1">
+<section id="section-6.2.5.5">
+            <h5 id="name-comments-and-remarks-2">
+<a href="#section-6.2.5.5" class="section-number selfRef">6.2.5.5. </a><a href="#name-comments-and-remarks-2" class="section-name selfRef">Comments and Remarks</a>
+            </h5>
+<p id="section-6.2.5.5-1">None<a href="#section-6.2.5.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="cats-l1-metric-registry-entry-communication">
+<section id="section-6.3">
+        <h3 id="name-cats-l1-metric-registry-entr">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-cats-l1-metric-registry-entr" class="section-name selfRef">CATS L1 Metric Registry Entry: Communication</a>
+        </h3>
+<p id="section-6.3-1">This section gives an initial Registry Entry for the CATS L1 metric in the <em>communication</em> category.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<div id="summary-2">
+<section id="section-6.3.1">
+          <h4 id="name-summary-3">
+<a href="#section-6.3.1" class="section-number selfRef">6.3.1. </a><a href="#name-summary-3" class="section-name selfRef">Summary</a>
+          </h4>
+<p id="section-6.3.1-1">This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
+<div id="id-identifier-2">
+<section id="section-6.3.1.1">
+            <h5 id="name-id-identifier-3">
+<a href="#section-6.3.1.1" class="section-number selfRef">6.3.1.1. </a><a href="#name-id-identifier-3" class="section-name selfRef">ID (Identifier)</a>
+            </h5>
+<p id="section-6.3.1.1-1">IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.<a href="#section-6.3.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="name-2">
+<section id="section-6.3.1.2">
+            <h5 id="name-name-3">
+<a href="#section-6.3.1.2" class="section-number selfRef">6.3.1.2. </a><a href="#name-name-3" class="section-name selfRef">Name</a>
+            </h5>
+<p id="section-6.3.1.2-1">Norm_Passive_CATS-L1_Communication_RFCXXXXsecY_Unitless_Singleton<a href="#section-6.3.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.1.2-2">Naming Rule Explanation<a href="#section-6.3.1.2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.3.1.2-3.1">
+                <p id="section-6.3.1.2-3.1.1">Norm: Metric type (Normalized Score)<a href="#section-6.3.1.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.1.2-3.2">
+                <p id="section-6.3.1.2-3.2.1">Passive: Measurement method<a href="#section-6.3.1.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.1.2-3.3">
+                <p id="section-6.3.1.2-3.3.1">CATS-L1: Metric level (CATS Metric Framework Level 1)<a href="#section-6.3.1.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.1.2-3.4">
+                <p id="section-6.3.1.2-3.4.1">Communication: Metric category (Communication)<a href="#section-6.3.1.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.1.2-3.5">
+                <p id="section-6.3.1.2-3.5.1">RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)<a href="#section-6.3.1.2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.1.2-3.6">
+                <p id="section-6.3.1.2-3.6.1">Unitless: Metric has no units<a href="#section-6.3.1.2-3.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.1.2-3.7">
+                <p id="section-6.3.1.2-3.7.1">Singleton: Metric is a single value for the communication category<a href="#section-6.3.1.2-3.7.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+<div id="uri-2">
+<section id="section-6.3.1.3">
+            <h5 id="name-uri-3">
+<a href="#section-6.3.1.3" class="section-number selfRef">6.3.1.3. </a><a href="#name-uri-3" class="section-name selfRef">URI</a>
+            </h5>
+<p id="section-6.3.1.3-1">To-be-assigned.<a href="#section-6.3.1.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description-2">
+<section id="section-6.3.1.4">
+            <h5 id="name-description-3">
+<a href="#section-6.3.1.4" class="section-number selfRef">6.3.1.4. </a><a href="#name-description-3" class="section-name selfRef">Description</a>
+            </h5>
+<p id="section-6.3.1.4-1">This metric represents a single normalized score for the <em>communication</em> category within CATS (L1). It is derived from one or more communication-related L0 metrics (e.g., throughput, bandwidth, link utilization, loss, delay, jitter, bytes/packets counters, and other network performance indicators) by applying an implementation-specific aggregation function over the selected L0 communication metrics and then applying a normalization function to produce a unitless score.<a href="#section-6.3.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.1.4-2">The resulting score provides a concise indication of the relative communication capability (or headroom) associated with reaching a service contact instance for the purpose of instance selection and traffic steering. Higher values indicate better communication capability according to the provider's normalization strategy.<a href="#section-6.3.1.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="change-controller-2">
+<section id="section-6.3.1.5">
+            <h5 id="name-change-controller-3">
+<a href="#section-6.3.1.5" class="section-number selfRef">6.3.1.5. </a><a href="#name-change-controller-3" class="section-name selfRef">Change Controller</a>
+            </h5>
+<p id="section-6.3.1.5-1">IETF<a href="#section-6.3.1.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="version-2">
+<section id="section-6.3.1.6">
+            <h5 id="name-version-3">
+<a href="#section-6.3.1.6" class="section-number selfRef">6.3.1.6. </a><a href="#name-version-3" class="section-name selfRef">Version</a>
+            </h5>
+<p id="section-6.3.1.6-1">1.0<a href="#section-6.3.1.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="metric-definition-2">
+<section id="section-6.3.2">
+          <h4 id="name-metric-definition-3">
+<a href="#section-6.3.2" class="section-number selfRef">6.3.2. </a><a href="#name-metric-definition-3" class="section-name selfRef">Metric Definition</a>
+          </h4>
+<div id="reference-definition-4">
+<section id="section-6.3.2.1">
+            <h5 id="name-reference-definition-5">
+<a href="#section-6.3.2.1" class="section-number selfRef">6.3.2.1. </a><a href="#name-reference-definition-5" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.3.2.1-1"><span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span><a href="#section-6.3.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.2.1-2">Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)<a href="#section-6.3.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="fixed-parameters-2">
+<section id="section-6.3.2.2">
+            <h5 id="name-fixed-parameters-3">
+<a href="#section-6.3.2.2" class="section-number selfRef">6.3.2.2. </a><a href="#name-fixed-parameters-3" class="section-name selfRef">Fixed Parameters</a>
+            </h5>
+<ul class="normal">
+<li class="normal" id="section-6.3.2.2-1.1">
+                <p id="section-6.3.2.2-1.1.1">Normalization score range: 0-10 (0 indicates the poorest communication capability, 10 indicates the optimal communication capability)<a href="#section-6.3.2.2-1.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.2.2-1.2">
+                <p id="section-6.3.2.2-1.2.1">Data precision: decimal number (unsigned integer)<a href="#section-6.3.2.2-1.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.2.2-1.3">
+                <p id="section-6.3.2.2-1.3.1">Metric type: "communication_norm"<a href="#section-6.3.2.2-1.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.2.2-1.4">
+                <p id="section-6.3.2.2-1.4.1">Level: L1<a href="#section-6.3.2.2-1.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.3.2.2-1.5">
+                <p id="section-6.3.2.2-1.5.1">Metric units: Unitless<a href="#section-6.3.2.2-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="method-of-measurement-2">
+<section id="section-6.3.3">
+          <h4 id="name-method-of-measurement-3">
+<a href="#section-6.3.3" class="section-number selfRef">6.3.3. </a><a href="#name-method-of-measurement-3" class="section-name selfRef">Method of Measurement</a>
+          </h4>
+<p id="section-6.3.3-1">This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.<a href="#section-6.3.3-1" class="pilcrow">¶</a></p>
+<div id="reference-methods-2">
+<section id="section-6.3.3.1">
+            <h5 id="name-reference-methods-3">
+<a href="#section-6.3.3.1" class="section-number selfRef">6.3.3.1. </a><a href="#name-reference-methods-3" class="section-name selfRef">Reference Methods</a>
+            </h5>
+<p id="section-6.3.3.1-1">Raw Metrics collection: Collect communication-related L0 raw metrics using existing standardized protocols and telemetry systems (e.g., NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>, IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>), and/or using network performance metric definitions and registries such as <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, and <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span> where applicable.<a href="#section-6.3.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.1-2">Aggregation logic (within communication category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected L0 communication metrics into a single intermediate value prior to normalization. The selection of L0 communication metrics and any weights used are implementation-specific.<a href="#section-6.3.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) communication value into the fixed score range.<a href="#section-6.3.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.1-4">The reference method aggregates and normalizes L0 communication metrics to generate a single L1 communication score ("communication_norm"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or service metrics).<a href="#section-6.3.3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="packet-stream-generation-2">
+<section id="section-6.3.3.2">
+            <h5 id="name-packet-stream-generation-3">
+<a href="#section-6.3.3.2" class="section-number selfRef">6.3.3.2. </a><a href="#name-packet-stream-generation-3" class="section-name selfRef">Packet Stream Generation</a>
+            </h5>
+<p id="section-6.3.3.2-1">N/A<a href="#section-6.3.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="traffic-filtering-observation-details-2">
+<section id="section-6.3.3.3">
+            <h5 id="name-traffic-filtering-observation">
+<a href="#section-6.3.3.3" class="section-number selfRef">6.3.3.3. </a><a href="#name-traffic-filtering-observation" class="section-name selfRef">Traffic Filtering (Observation) Details</a>
+            </h5>
+<p id="section-6.3.3.3-1">N/A<a href="#section-6.3.3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sampling-distribution-2">
+<section id="section-6.3.3.4">
+            <h5 id="name-sampling-distribution-3">
+<a href="#section-6.3.3.4" class="section-number selfRef">6.3.3.4. </a><a href="#name-sampling-distribution-3" class="section-name selfRef">Sampling Distribution</a>
+            </h5>
+<p id="section-6.3.3.4-1">Sampling method: Continuous sampling (e.g., collect underlying L0 communication metrics every 10 seconds)<a href="#section-6.3.3.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="runtime-parameters-and-data-format-2">
+<section id="section-6.3.3.5">
+            <h5 id="name-runtime-parameters-and-data-f">
+<a href="#section-6.3.3.5" class="section-number selfRef">6.3.3.5. </a><a href="#name-runtime-parameters-and-data-f" class="section-name selfRef">Runtime Parameters and Data Format</a>
+            </h5>
+<p id="section-6.3.3.5-1">CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.3.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.5-2">Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.3.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.5-3">Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)<a href="#section-6.3.3.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="roles-2">
+<section id="section-6.3.3.6">
+            <h5 id="name-roles-3">
+<a href="#section-6.3.3.6" class="section-number selfRef">6.3.3.6. </a><a href="#name-roles-3" class="section-name selfRef">Roles</a>
+            </h5>
+<p id="section-6.3.3.6-1">C-NMA: Collects L0 communication raw metrics and calculates the L1 communication normalized score ("communication_norm") according to provider-specific aggregation and normalization strategies.<a href="#section-6.3.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.6-2">C-SMA: Not required for this metric.<a href="#section-6.3.3.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="output-2">
+<section id="section-6.3.4">
+          <h4 id="name-output-3">
+<a href="#section-6.3.4" class="section-number selfRef">6.3.4. </a><a href="#name-output-3" class="section-name selfRef">Output</a>
+          </h4>
+<p id="section-6.3.4-1">This category specifies all details of the output of measurements using the metric.<a href="#section-6.3.4-1" class="pilcrow">¶</a></p>
+<div id="type-2">
+<section id="section-6.3.4.1">
+            <h5 id="name-type-3">
+<a href="#section-6.3.4.1" class="section-number selfRef">6.3.4.1. </a><a href="#name-type-3" class="section-name selfRef">Type</a>
+            </h5>
+<p id="section-6.3.4.1-1">Singleton value<a href="#section-6.3.4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reference-definition-5">
+<section id="section-6.3.4.2">
+            <h5 id="name-reference-definition-6">
+<a href="#section-6.3.4.2" class="section-number selfRef">6.3.4.2. </a><a href="#name-reference-definition-6" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.3.4.2-1">Output format: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.4.2<a href="#section-6.3.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.4.2-2">Score semantics: 0-3 (Low communication capability, not recommended for steering), 4-7 (Medium communication capability, optional for steering), 8-10 (High communication capability, priority for steering)<a href="#section-6.3.4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metric-units-2">
+<section id="section-6.3.4.3">
+            <h5 id="name-metric-units-3">
+<a href="#section-6.3.4.3" class="section-number selfRef">6.3.4.3. </a><a href="#name-metric-units-3" class="section-name selfRef">Metric Units</a>
+            </h5>
+<p id="section-6.3.4.3-1">Unitless<a href="#section-6.3.4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="calibration-2">
+<section id="section-6.3.4.4">
+            <h5 id="name-calibration-3">
+<a href="#section-6.3.4.4" class="section-number selfRef">6.3.4.4. </a><a href="#name-calibration-3" class="section-name selfRef">Calibration</a>
+            </h5>
+<p id="section-6.3.4.4-1">Calibration method: Conduct benchmark calibration based on representative network test profiles (e.g., fixed traffic mixes and path conditions) to align the mapping from L0 communication metrics to the L1 score, such that score deviation across measurement agents within the same administrative domain is minimized (e.g., less than 0.1 over repeated test rounds).<a href="#section-6.3.4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="administrative-items-2">
+<section id="section-6.3.5">
+          <h4 id="name-administrative-items-3">
+<a href="#section-6.3.5" class="section-number selfRef">6.3.5. </a><a href="#name-administrative-items-3" class="section-name selfRef">Administrative Items</a>
+          </h4>
+<div id="status-2">
+<section id="section-6.3.5.1">
+            <h5 id="name-status-3">
+<a href="#section-6.3.5.1" class="section-number selfRef">6.3.5.1. </a><a href="#name-status-3" class="section-name selfRef">Status</a>
+            </h5>
+<p id="section-6.3.5.1-1">Current<a href="#section-6.3.5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requester-2">
+<section id="section-6.3.5.2">
+            <h5 id="name-requester-3">
+<a href="#section-6.3.5.2" class="section-number selfRef">6.3.5.2. </a><a href="#name-requester-3" class="section-name selfRef">Requester</a>
+            </h5>
+<p id="section-6.3.5.2-1">To-be-assgined<a href="#section-6.3.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-2">
+<section id="section-6.3.5.3">
+            <h5 id="name-revision-3">
+<a href="#section-6.3.5.3" class="section-number selfRef">6.3.5.3. </a><a href="#name-revision-3" class="section-name selfRef">Revision</a>
+            </h5>
+<p id="section-6.3.5.3-1">1.0<a href="#section-6.3.5.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-date-2">
+<section id="section-6.3.5.4">
+            <h5 id="name-revision-date-3">
+<a href="#section-6.3.5.4" class="section-number selfRef">6.3.5.4. </a><a href="#name-revision-date-3" class="section-name selfRef">Revision Date</a>
+            </h5>
+<p id="section-6.3.5.4-1">2026-01-20<a href="#section-6.3.5.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="comments-and-remarks-2">
+<section id="section-6.3.5.5">
+            <h5 id="name-comments-and-remarks-3">
+<a href="#section-6.3.5.5" class="section-number selfRef">6.3.5.5. </a><a href="#name-comments-and-remarks-3" class="section-name selfRef">Comments and Remarks</a>
+            </h5>
+<p id="section-6.3.5.5-1">None<a href="#section-6.3.5.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="cats-l1-metric-registry-entry-service">
+<section id="section-6.4">
+        <h3 id="name-cats-l1-metric-registry-entry">
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-cats-l1-metric-registry-entry" class="section-name selfRef">CATS L1 Metric Registry Entry: Service</a>
+        </h3>
+<p id="section-6.4-1">This section gives an initial Registry Entry for the CATS L1 metric in the <em>service</em> category.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<div id="summary-3">
+<section id="section-6.4.1">
+          <h4 id="name-summary-4">
+<a href="#section-6.4.1" class="section-number selfRef">6.4.1. </a><a href="#name-summary-4" class="section-name selfRef">Summary</a>
+          </h4>
+<p id="section-6.4.1-1">This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.<a href="#section-6.4.1-1" class="pilcrow">¶</a></p>
+<div id="id-identifier-3">
+<section id="section-6.4.1.1">
+            <h5 id="name-id-identifier-4">
+<a href="#section-6.4.1.1" class="section-number selfRef">6.4.1.1. </a><a href="#name-id-identifier-4" class="section-name selfRef">ID (Identifier)</a>
+            </h5>
+<p id="section-6.4.1.1-1">IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.<a href="#section-6.4.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="name-3">
+<section id="section-6.4.1.2">
+            <h5 id="name-name-4">
+<a href="#section-6.4.1.2" class="section-number selfRef">6.4.1.2. </a><a href="#name-name-4" class="section-name selfRef">Name</a>
+            </h5>
+<p id="section-6.4.1.2-1">Norm_Passive_CATS-L1_Service_RFCXXXXsecY_Unitless_Singleton<a href="#section-6.4.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.1.2-2">Naming Rule Explanation<a href="#section-6.4.1.2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.4.1.2-3.1">
+                <p id="section-6.4.1.2-3.1.1">Norm: Metric type (Normalized Score)<a href="#section-6.4.1.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.1.2-3.2">
+                <p id="section-6.4.1.2-3.2.1">Passive: Measurement method<a href="#section-6.4.1.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.1.2-3.3">
+                <p id="section-6.4.1.2-3.3.1">CATS-L1: Metric level (CATS Metric Framework Level 1)<a href="#section-6.4.1.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.1.2-3.4">
+                <p id="section-6.4.1.2-3.4.1">Service: Metric category (Service)<a href="#section-6.4.1.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.1.2-3.5">
+                <p id="section-6.4.1.2-3.5.1">RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)<a href="#section-6.4.1.2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.1.2-3.6">
+                <p id="section-6.4.1.2-3.6.1">Unitless: Metric has no units<a href="#section-6.4.1.2-3.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.1.2-3.7">
+                <p id="section-6.4.1.2-3.7.1">Singleton: Metric is a single value for the service category<a href="#section-6.4.1.2-3.7.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+<div id="uri-3">
+<section id="section-6.4.1.3">
+            <h5 id="name-uri-4">
+<a href="#section-6.4.1.3" class="section-number selfRef">6.4.1.3. </a><a href="#name-uri-4" class="section-name selfRef">URI</a>
+            </h5>
+<p id="section-6.4.1.3-1">To-be-assigned.<a href="#section-6.4.1.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description-3">
+<section id="section-6.4.1.4">
+            <h5 id="name-description-4">
+<a href="#section-6.4.1.4" class="section-number selfRef">6.4.1.4. </a><a href="#name-description-4" class="section-name selfRef">Description</a>
+            </h5>
+<p id="section-6.4.1.4-1">This metric represents a single normalized score for the <em>service</em> category within CATS (L1). It is derived from one or more service-related L0 metrics that characterize the health and performance of the service instance itself (e.g., service availability, request success rate, admission/overload indicators, tokens per second and/or requests per second, application-level queue depth, and other service KPIs) by applying an implementation-specific aggregation function over the selected L0 service metrics and then applying a normalization function to produce a unitless score.<a href="#section-6.4.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.1.4-2">The resulting score provides a concise indication of the relative service capability (or headroom) of a service contact instance for the purpose of instance selection and traffic steering. Higher values indicate better service capability according to the provider's normalization strategy.<a href="#section-6.4.1.4-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="change-controller-3">
+<section id="section-6.4.1.5">
+            <h5 id="name-change-controller-4">
+<a href="#section-6.4.1.5" class="section-number selfRef">6.4.1.5. </a><a href="#name-change-controller-4" class="section-name selfRef">Change Controller</a>
+            </h5>
+<p id="section-6.4.1.5-1">IETF<a href="#section-6.4.1.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="version-3">
+<section id="section-6.4.1.6">
+            <h5 id="name-version-4">
+<a href="#section-6.4.1.6" class="section-number selfRef">6.4.1.6. </a><a href="#name-version-4" class="section-name selfRef">Version</a>
+            </h5>
+<p id="section-6.4.1.6-1">1.0<a href="#section-6.4.1.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="metric-definition-3">
+<section id="section-6.4.2">
+          <h4 id="name-metric-definition-4">
+<a href="#section-6.4.2" class="section-number selfRef">6.4.2. </a><a href="#name-metric-definition-4" class="section-name selfRef">Metric Definition</a>
+          </h4>
+<div id="reference-definition-6">
+<section id="section-6.4.2.1">
+            <h5 id="name-reference-definition-7">
+<a href="#section-6.4.2.1" class="section-number selfRef">6.4.2.1. </a><a href="#name-reference-definition-7" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.4.2.1-1"><span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span><a href="#section-6.4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.2.1-2">Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)<a href="#section-6.4.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="fixed-parameters-3">
+<section id="section-6.4.2.2">
+            <h5 id="name-fixed-parameters-4">
+<a href="#section-6.4.2.2" class="section-number selfRef">6.4.2.2. </a><a href="#name-fixed-parameters-4" class="section-name selfRef">Fixed Parameters</a>
+            </h5>
+<ul class="normal">
+<li class="normal" id="section-6.4.2.2-1.1">
+                <p id="section-6.4.2.2-1.1.1">Normalization score range: 0-10 (0 indicates the poorest service capability, 10 indicates the optimal service capability)<a href="#section-6.4.2.2-1.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.2.2-1.2">
+                <p id="section-6.4.2.2-1.2.1">Data precision: decimal number (unsigned integer)<a href="#section-6.4.2.2-1.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.2.2-1.3">
+                <p id="section-6.4.2.2-1.3.1">Metric type: "service_norm"<a href="#section-6.4.2.2-1.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.2.2-1.4">
+                <p id="section-6.4.2.2-1.4.1">Level: L1<a href="#section-6.4.2.2-1.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.4.2.2-1.5">
+                <p id="section-6.4.2.2-1.5.1">Metric units: Unitless<a href="#section-6.4.2.2-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="method-of-measurement-3">
+<section id="section-6.4.3">
+          <h4 id="name-method-of-measurement-4">
+<a href="#section-6.4.3" class="section-number selfRef">6.4.3. </a><a href="#name-method-of-measurement-4" class="section-name selfRef">Method of Measurement</a>
+          </h4>
+<p id="section-6.4.3-1">This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.<a href="#section-6.4.3-1" class="pilcrow">¶</a></p>
+<div id="reference-methods-3">
+<section id="section-6.4.3.1">
+            <h5 id="name-reference-methods-4">
+<a href="#section-6.4.3.1" class="section-number selfRef">6.4.3.1. </a><a href="#name-reference-methods-4" class="section-name selfRef">Reference Methods</a>
+            </h5>
+<p id="section-6.4.3.1-1">Raw Metrics collection: Collect service-related L0 raw metrics from the service runtime and service management plane using platform-specific telemetry systems (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span> in Kubernetes or equivalent monitoring/observability tools). These metrics are service-dependent and may include availability/health status, success/error rates, overload or admission control signals, and throughput indicators (e.g., tokens per second for AI inference services), among others.<a href="#section-6.4.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.1-2">Aggregation logic (within service category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected L0 service metrics into a single intermediate value prior to normalization. The selection of L0 service metrics, any weights used, and any gating logic (e.g., forcing the score to a low value when the instance is unhealthy) are implementation-specific.<a href="#section-6.4.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) service value into the fixed score range.<a href="#section-6.4.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.1-4">The reference method aggregates and normalizes L0 service metrics to generate a single L1 service score ("service_norm"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or communication metrics).<a href="#section-6.4.3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="packet-stream-generation-3">
+<section id="section-6.4.3.2">
+            <h5 id="name-packet-stream-generation-4">
+<a href="#section-6.4.3.2" class="section-number selfRef">6.4.3.2. </a><a href="#name-packet-stream-generation-4" class="section-name selfRef">Packet Stream Generation</a>
+            </h5>
+<p id="section-6.4.3.2-1">N/A<a href="#section-6.4.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="traffic-filtering-observation-details-3">
+<section id="section-6.4.3.3">
+            <h5 id="name-traffic-filtering-observation-">
+<a href="#section-6.4.3.3" class="section-number selfRef">6.4.3.3. </a><a href="#name-traffic-filtering-observation-" class="section-name selfRef">Traffic Filtering (Observation) Details</a>
+            </h5>
+<p id="section-6.4.3.3-1">N/A<a href="#section-6.4.3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sampling-distribution-3">
+<section id="section-6.4.3.4">
+            <h5 id="name-sampling-distribution-4">
+<a href="#section-6.4.3.4" class="section-number selfRef">6.4.3.4. </a><a href="#name-sampling-distribution-4" class="section-name selfRef">Sampling Distribution</a>
+            </h5>
+<p id="section-6.4.3.4-1">Sampling method: Continuous sampling (e.g., collect underlying L0 service metrics every 10 seconds)<a href="#section-6.4.3.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="runtime-parameters-and-data-format-3">
+<section id="section-6.4.3.5">
+            <h5 id="name-runtime-parameters-and-data-fo">
+<a href="#section-6.4.3.5" class="section-number selfRef">6.4.3.5. </a><a href="#name-runtime-parameters-and-data-fo" class="section-name selfRef">Runtime Parameters and Data Format</a>
+            </h5>
+<p id="section-6.4.3.5-1">CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.4.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.5-2">Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.4.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.5-3">Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)<a href="#section-6.4.3.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="roles-3">
+<section id="section-6.4.3.6">
+            <h5 id="name-roles-4">
+<a href="#section-6.4.3.6" class="section-number selfRef">6.4.3.6. </a><a href="#name-roles-4" class="section-name selfRef">Roles</a>
+            </h5>
+<p id="section-6.4.3.6-1">C-SMA: Collects L0 service raw metrics and calculates the L1 service normalized score ("service_norm") according to service/provider-specific aggregation and normalization strategies.<a href="#section-6.4.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.6-2">C-NMA: Not required for this metric.<a href="#section-6.4.3.6-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="output-3">
+<section id="section-6.4.4">
+          <h4 id="name-output-4">
+<a href="#section-6.4.4" class="section-number selfRef">6.4.4. </a><a href="#name-output-4" class="section-name selfRef">Output</a>
+          </h4>
+<p id="section-6.4.4-1">This category specifies all details of the output of measurements using the metric.<a href="#section-6.4.4-1" class="pilcrow">¶</a></p>
+<div id="type-3">
+<section id="section-6.4.4.1">
+            <h5 id="name-type-4">
+<a href="#section-6.4.4.1" class="section-number selfRef">6.4.4.1. </a><a href="#name-type-4" class="section-name selfRef">Type</a>
+            </h5>
+<p id="section-6.4.4.1-1">Singleton value<a href="#section-6.4.4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reference-definition-7">
+<section id="section-6.4.4.2">
+            <h5 id="name-reference-definition-8">
+<a href="#section-6.4.4.2" class="section-number selfRef">6.4.4.2. </a><a href="#name-reference-definition-8" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.4.4.2-1">Output format: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.4.2<a href="#section-6.4.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.4.2-2">Score semantics: 0-3 (Low service capability, not recommended for steering), 4-7 (Medium service capability, optional for steering), 8-10 (High service capability, priority for steering)<a href="#section-6.4.4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metric-units-3">
+<section id="section-6.4.4.3">
+            <h5 id="name-metric-units-4">
+<a href="#section-6.4.4.3" class="section-number selfRef">6.4.4.3. </a><a href="#name-metric-units-4" class="section-name selfRef">Metric Units</a>
+            </h5>
+<p id="section-6.4.4.3-1">Unitless<a href="#section-6.4.4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="calibration-3">
+<section id="section-6.4.4.4">
+            <h5 id="name-calibration-4">
+<a href="#section-6.4.4.4" class="section-number selfRef">6.4.4.4. </a><a href="#name-calibration-4" class="section-name selfRef">Calibration</a>
+            </h5>
+<p id="section-6.4.4.4-1">Calibration method: Conduct benchmark calibration based on representative service workload profiles (fixed request mixes and known-good baselines) to align the mapping from L0 service metrics to the L1 score, such that score deviation across measurement agents within the same administrative domain is minimized (e.g., less than 0.1 over repeated test rounds). Calibration MAY include failure/overload scenarios (e.g., simulated dependency failures or saturation) to ensure score behavior is consistent with operational intent.<a href="#section-6.4.4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="administrative-items-3">
+<section id="section-6.4.5">
+          <h4 id="name-administrative-items-4">
+<a href="#section-6.4.5" class="section-number selfRef">6.4.5. </a><a href="#name-administrative-items-4" class="section-name selfRef">Administrative Items</a>
+          </h4>
+<div id="status-3">
+<section id="section-6.4.5.1">
+            <h5 id="name-status-4">
+<a href="#section-6.4.5.1" class="section-number selfRef">6.4.5.1. </a><a href="#name-status-4" class="section-name selfRef">Status</a>
+            </h5>
+<p id="section-6.4.5.1-1">Current<a href="#section-6.4.5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requester-3">
+<section id="section-6.4.5.2">
+            <h5 id="name-requester-4">
+<a href="#section-6.4.5.2" class="section-number selfRef">6.4.5.2. </a><a href="#name-requester-4" class="section-name selfRef">Requester</a>
+            </h5>
+<p id="section-6.4.5.2-1">To-be-assigned<a href="#section-6.4.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-3">
+<section id="section-6.4.5.3">
+            <h5 id="name-revision-4">
+<a href="#section-6.4.5.3" class="section-number selfRef">6.4.5.3. </a><a href="#name-revision-4" class="section-name selfRef">Revision</a>
+            </h5>
+<p id="section-6.4.5.3-1">1.0<a href="#section-6.4.5.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-date-3">
+<section id="section-6.4.5.4">
+            <h5 id="name-revision-date-4">
+<a href="#section-6.4.5.4" class="section-number selfRef">6.4.5.4. </a><a href="#name-revision-date-4" class="section-name selfRef">Revision Date</a>
+            </h5>
+<p id="section-6.4.5.4-1">2026-01-20<a href="#section-6.4.5.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="comments-and-remarks-3">
+<section id="section-6.4.5.5">
+            <h5 id="name-comments-and-remarks-4">
+<a href="#section-6.4.5.5" class="section-number selfRef">6.4.5.5. </a><a href="#name-comments-and-remarks-4" class="section-name selfRef">Comments and Remarks</a>
+            </h5>
+<p id="section-6.4.5.5-1">None<a href="#section-6.4.5.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="cats-l1-metric-registry-entry-composed">
+<section id="section-6.5">
+        <h3 id="name-cats-l1-metric-registry-entry-">
+<a href="#section-6.5" class="section-number selfRef">6.5. </a><a href="#name-cats-l1-metric-registry-entry-" class="section-name selfRef">CATS L1 Metric Registry Entry: Composed</a>
+        </h3>
+<p id="section-6.5-1">This section gives an initial Registry Entry for the CATS L1 metric in the <em>composed</em> category.<a href="#section-6.5-1" class="pilcrow">¶</a></p>
+<div id="summary-4">
+<section id="section-6.5.1">
+          <h4 id="name-summary-5">
+<a href="#section-6.5.1" class="section-number selfRef">6.5.1. </a><a href="#name-summary-5" class="section-name selfRef">Summary</a>
+          </h4>
+<p id="section-6.5.1-1">This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.<a href="#section-6.5.1-1" class="pilcrow">¶</a></p>
+<div id="id-identifier-4">
+<section id="section-6.5.1.1">
+            <h5 id="name-id-identifier-5">
+<a href="#section-6.5.1.1" class="section-number selfRef">6.5.1.1. </a><a href="#name-id-identifier-5" class="section-name selfRef">ID (Identifier)</a>
+            </h5>
+<p id="section-6.5.1.1-1">IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.<a href="#section-6.5.1.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="name-4">
+<section id="section-6.5.1.2">
+            <h5 id="name-name-5">
+<a href="#section-6.5.1.2" class="section-number selfRef">6.5.1.2. </a><a href="#name-name-5" class="section-name selfRef">Name</a>
+            </h5>
+<p id="section-6.5.1.2-1">Norm_Passive_CATS-L1_Composed_RFCXXXXsecY_Unitless_Singleton<a href="#section-6.5.1.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.1.2-2">Naming Rule Explanation<a href="#section-6.5.1.2-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-6.5.1.2-3.1">
+                <p id="section-6.5.1.2-3.1.1">Norm: Metric type (Normalized Score)<a href="#section-6.5.1.2-3.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.1.2-3.2">
+                <p id="section-6.5.1.2-3.2.1">Passive: Measurement method<a href="#section-6.5.1.2-3.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.1.2-3.3">
+                <p id="section-6.5.1.2-3.3.1">CATS-L1: Metric level (CATS Metric Framework Level 1)<a href="#section-6.5.1.2-3.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.1.2-3.4">
+                <p id="section-6.5.1.2-3.4.1">Composed: Metric category (Composed)<a href="#section-6.5.1.2-3.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.1.2-3.5">
+                <p id="section-6.5.1.2-3.5.1">RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)<a href="#section-6.5.1.2-3.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.1.2-3.6">
+                <p id="section-6.5.1.2-3.6.1">Unitless: Metric has no units<a href="#section-6.5.1.2-3.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.1.2-3.7">
+                <p id="section-6.5.1.2-3.7.1">Singleton: Metric is a single value for the composed category<a href="#section-6.5.1.2-3.7.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+<div id="uri-4">
+<section id="section-6.5.1.3">
+            <h5 id="name-uri-5">
+<a href="#section-6.5.1.3" class="section-number selfRef">6.5.1.3. </a><a href="#name-uri-5" class="section-name selfRef">URI</a>
+            </h5>
+<p id="section-6.5.1.3-1">To-be-assigned.<a href="#section-6.5.1.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="description-4">
+<section id="section-6.5.1.4">
+            <h5 id="name-description-5">
+<a href="#section-6.5.1.4" class="section-number selfRef">6.5.1.4. </a><a href="#name-description-5" class="section-name selfRef">Description</a>
+            </h5>
+<p id="section-6.5.1.4-1">This metric represents a single normalized score for the <em>composed</em> category within CATS (L1). A composed metric is derived by combining multiple lower-level metrics that may span different categories (e.g., compute, communication, and service) and/or multiple components along the request path.<a href="#section-6.5.1.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.1.4-2">Typical examples of composed metrics include (but are not limited to) end-to-end delay, application-level response time, or other synthesized indicators that are computed as a function of multiple contributing factors (e.g., the sum of compute processing delay and network transmission delay along the selected path).<a href="#section-6.5.1.4-2" class="pilcrow">¶</a></p>
+<p id="section-6.5.1.4-3">The composed L1 score is obtained by applying an implementation-specific aggregation function over the selected contributing L0 metrics (and/or previously computed L1 category metrics), followed by a normalization function that yields a unitless score. Higher values indicate better composed capability according to the provider's normalization strategy.<a href="#section-6.5.1.4-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="change-controller-4">
+<section id="section-6.5.1.5">
+            <h5 id="name-change-controller-5">
+<a href="#section-6.5.1.5" class="section-number selfRef">6.5.1.5. </a><a href="#name-change-controller-5" class="section-name selfRef">Change Controller</a>
+            </h5>
+<p id="section-6.5.1.5-1">IETF<a href="#section-6.5.1.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="version-4">
+<section id="section-6.5.1.6">
+            <h5 id="name-version-5">
+<a href="#section-6.5.1.6" class="section-number selfRef">6.5.1.6. </a><a href="#name-version-5" class="section-name selfRef">Version</a>
+            </h5>
+<p id="section-6.5.1.6-1">1.0<a href="#section-6.5.1.6-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="metric-definition-4">
+<section id="section-6.5.2">
+          <h4 id="name-metric-definition-5">
+<a href="#section-6.5.2" class="section-number selfRef">6.5.2. </a><a href="#name-metric-definition-5" class="section-name selfRef">Metric Definition</a>
+          </h4>
+<div id="reference-definition-8">
+<section id="section-6.5.2.1">
+            <h5 id="name-reference-definition-9">
+<a href="#section-6.5.2.1" class="section-number selfRef">6.5.2.1. </a><a href="#name-reference-definition-9" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.5.2.1-1"><span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span><a href="#section-6.5.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.2.1-2">Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)<a href="#section-6.5.2.1-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="fixed-parameters-4">
+<section id="section-6.5.2.2">
+            <h5 id="name-fixed-parameters-5">
+<a href="#section-6.5.2.2" class="section-number selfRef">6.5.2.2. </a><a href="#name-fixed-parameters-5" class="section-name selfRef">Fixed Parameters</a>
+            </h5>
+<ul class="normal">
+<li class="normal" id="section-6.5.2.2-1.1">
+                <p id="section-6.5.2.2-1.1.1">Normalization score range: 0-10 (0 indicates the poorest composed capability, 10 indicates the optimal composed capability)<a href="#section-6.5.2.2-1.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.2.2-1.2">
+                <p id="section-6.5.2.2-1.2.1">Data precision: decimal number (unsigned integer)<a href="#section-6.5.2.2-1.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.2.2-1.3">
+                <p id="section-6.5.2.2-1.3.1">Metric type: "composed_norm"<a href="#section-6.5.2.2-1.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.2.2-1.4">
+                <p id="section-6.5.2.2-1.4.1">Level: L1<a href="#section-6.5.2.2-1.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="normal" id="section-6.5.2.2-1.5">
+                <p id="section-6.5.2.2-1.5.1">Metric units: Unitless<a href="#section-6.5.2.2-1.5.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</section>
+</div>
+</section>
+</div>
+<div id="method-of-measurement-4">
+<section id="section-6.5.3">
+          <h4 id="name-method-of-measurement-5">
+<a href="#section-6.5.3" class="section-number selfRef">6.5.3. </a><a href="#name-method-of-measurement-5" class="section-name selfRef">Method of Measurement</a>
+          </h4>
+<p id="section-6.5.3-1">This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.<a href="#section-6.5.3-1" class="pilcrow">¶</a></p>
+<div id="reference-methods-4">
+<section id="section-6.5.3.1">
+            <h5 id="name-reference-methods-5">
+<a href="#section-6.5.3.1" class="section-number selfRef">6.5.3.1. </a><a href="#name-reference-methods-5" class="section-name selfRef">Reference Methods</a>
+            </h5>
+<p id="section-6.5.3.1-1">Raw Metrics collection: Collect contributing L0 raw metrics from the relevant sources across categories. For example, compute- and service-related L0 metrics may be collected by a C-SMA using platform-specific telemetry systems (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span>), while communication-related L0 metrics may be collected by a C-NMA using network telemetry and protocols (e.g., NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>, IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>), and/or using network performance metric definitions and registries such as <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, and <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span> where applicable.<a href="#section-6.5.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.1-2">Aggregation logic (within composed category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected contributing metrics into a single intermediate value prior to normalization. The aggregation function MAY combine L0 metrics directly, and/or MAY take as input one or more L1 category metrics (e.g., "compute_norm" and "communication_norm"). The selection of contributing metrics, any weights used, and the composition model (e.g., sum of delays, bottleneck/maximum, or weighted utility) are implementation-specific.<a href="#section-6.5.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated composed value into the fixed score range.<a href="#section-6.5.3.1-3" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.1-4">The reference method aggregates and normalizes the selected contributing metrics to generate a single L1 composed score ("composed_norm").<a href="#section-6.5.3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="packet-stream-generation-4">
+<section id="section-6.5.3.2">
+            <h5 id="name-packet-stream-generation-5">
+<a href="#section-6.5.3.2" class="section-number selfRef">6.5.3.2. </a><a href="#name-packet-stream-generation-5" class="section-name selfRef">Packet Stream Generation</a>
+            </h5>
+<p id="section-6.5.3.2-1">N/A<a href="#section-6.5.3.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="traffic-filtering-observation-details-4">
+<section id="section-6.5.3.3">
+            <h5 id="name-traffic-filtering-observation-d">
+<a href="#section-6.5.3.3" class="section-number selfRef">6.5.3.3. </a><a href="#name-traffic-filtering-observation-d" class="section-name selfRef">Traffic Filtering (Observation) Details</a>
+            </h5>
+<p id="section-6.5.3.3-1">N/A<a href="#section-6.5.3.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="sampling-distribution-4">
+<section id="section-6.5.3.4">
+            <h5 id="name-sampling-distribution-5">
+<a href="#section-6.5.3.4" class="section-number selfRef">6.5.3.4. </a><a href="#name-sampling-distribution-5" class="section-name selfRef">Sampling Distribution</a>
+            </h5>
+<p id="section-6.5.3.4-1">Sampling method: Continuous sampling (e.g., collect underlying contributing metrics every 10 seconds)<a href="#section-6.5.3.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="runtime-parameters-and-data-format-4">
+<section id="section-6.5.3.5">
+            <h5 id="name-runtime-parameters-and-data-for">
+<a href="#section-6.5.3.5" class="section-number selfRef">6.5.3.5. </a><a href="#name-runtime-parameters-and-data-for" class="section-name selfRef">Runtime Parameters and Data Format</a>
+            </h5>
+<p id="section-6.5.3.5-1">CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to <span>[<a href="#I-D.ietf-cats-framework" class="cite xref">I-D.ietf-cats-framework</a>]</span>, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.5.3.5-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.5-2">Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with <span>[<a href="#RFC6991" class="cite xref">RFC6991</a>]</span>)<a href="#section-6.5.3.5-2" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.5-3">Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)<a href="#section-6.5.3.5-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="roles-4">
+<section id="section-6.5.3.6">
+            <h5 id="name-roles-5">
+<a href="#section-6.5.3.6" class="section-number selfRef">6.5.3.6. </a><a href="#name-roles-5" class="section-name selfRef">Roles</a>
+            </h5>
+<p id="section-6.5.3.6-1">C-SMA: Collects L0 service and compute raw metrics that may contribute to the composed score, and MAY calculate the L1 composed score ("composed_norm") when it has access to the required inputs.<a href="#section-6.5.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.6-2">C-NMA: Collects L0 communication raw metrics that may contribute to the composed score, and MAY calculate the L1 composed score ("composed_norm") when it has access to the required inputs.<a href="#section-6.5.3.6-2" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.6-3">CATS Controller (or other CATS component): MAY compute the L1 composed score when the contributing metrics originate from multiple agents and are combined at a common computation point.<a href="#section-6.5.3.6-3" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="output-4">
+<section id="section-6.5.4">
+          <h4 id="name-output-5">
+<a href="#section-6.5.4" class="section-number selfRef">6.5.4. </a><a href="#name-output-5" class="section-name selfRef">Output</a>
+          </h4>
+<p id="section-6.5.4-1">This category specifies all details of the output of measurements using the metric.<a href="#section-6.5.4-1" class="pilcrow">¶</a></p>
+<div id="type-4">
+<section id="section-6.5.4.1">
+            <h5 id="name-type-5">
+<a href="#section-6.5.4.1" class="section-number selfRef">6.5.4.1. </a><a href="#name-type-5" class="section-name selfRef">Type</a>
+            </h5>
+<p id="section-6.5.4.1-1">Singleton value<a href="#section-6.5.4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="reference-definition-9">
+<section id="section-6.5.4.2">
+            <h5 id="name-reference-definition-10">
+<a href="#section-6.5.4.2" class="section-number selfRef">6.5.4.2. </a><a href="#name-reference-definition-10" class="section-name selfRef">Reference Definition</a>
+            </h5>
+<p id="section-6.5.4.2-1">Output format: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.4.2<a href="#section-6.5.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.4.2-2">Score semantics: 0-3 (Low composed capability, not recommended for steering), 4-7 (Medium composed capability, optional for steering), 8-10 (High composed capability, priority for steering)<a href="#section-6.5.4.2-2" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="metric-units-4">
+<section id="section-6.5.4.3">
+            <h5 id="name-metric-units-5">
+<a href="#section-6.5.4.3" class="section-number selfRef">6.5.4.3. </a><a href="#name-metric-units-5" class="section-name selfRef">Metric Units</a>
+            </h5>
+<p id="section-6.5.4.3-1">Unitless<a href="#section-6.5.4.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="calibration-4">
+<section id="section-6.5.4.4">
+            <h5 id="name-calibration-5">
+<a href="#section-6.5.4.4" class="section-number selfRef">6.5.4.4. </a><a href="#name-calibration-5" class="section-name selfRef">Calibration</a>
+            </h5>
+<p id="section-6.5.4.4-1">Calibration method: Conduct benchmark calibration based on representative end-to-end test profiles (fixed request mixes and controlled network/compute conditions) to align the mapping from contributing metrics to the L1 composed score. The calibration goal is to minimize score deviation across measurement agents and computation points within the same administrative domain (e.g., less than 0.1 over repeated test rounds). Calibration MAY include failure and saturation scenarios (e.g., compute overload, network congestion, and dependency failures) to ensure the composed score behavior is consistent with operational intent.<a href="#section-6.5.4.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="administrative-items-4">
+<section id="section-6.5.5">
+          <h4 id="name-administrative-items-5">
+<a href="#section-6.5.5" class="section-number selfRef">6.5.5. </a><a href="#name-administrative-items-5" class="section-name selfRef">Administrative Items</a>
+          </h4>
+<div id="status-4">
+<section id="section-6.5.5.1">
+            <h5 id="name-status-5">
+<a href="#section-6.5.5.1" class="section-number selfRef">6.5.5.1. </a><a href="#name-status-5" class="section-name selfRef">Status</a>
+            </h5>
+<p id="section-6.5.5.1-1">Current<a href="#section-6.5.5.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="requester-4">
+<section id="section-6.5.5.2">
+            <h5 id="name-requester-5">
+<a href="#section-6.5.5.2" class="section-number selfRef">6.5.5.2. </a><a href="#name-requester-5" class="section-name selfRef">Requester</a>
+            </h5>
+<p id="section-6.5.5.2-1">To-be-assigned<a href="#section-6.5.5.2-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-4">
+<section id="section-6.5.5.3">
+            <h5 id="name-revision-5">
+<a href="#section-6.5.5.3" class="section-number selfRef">6.5.5.3. </a><a href="#name-revision-5" class="section-name selfRef">Revision</a>
+            </h5>
+<p id="section-6.5.5.3-1">1.0<a href="#section-6.5.5.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="revision-date-4">
+<section id="section-6.5.5.4">
+            <h5 id="name-revision-date-5">
+<a href="#section-6.5.5.4" class="section-number selfRef">6.5.5.4. </a><a href="#name-revision-date-5" class="section-name selfRef">Revision Date</a>
+            </h5>
+<p id="section-6.5.5.4-1">2026-01-20<a href="#section-6.5.5.4-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="comments-and-remarks-4">
+<section id="section-6.5.5.5">
+            <h5 id="name-comments-and-remarks-5">
+<a href="#section-6.5.5.5" class="section-number selfRef">6.5.5.5. </a><a href="#name-comments-and-remarks-5" class="section-name selfRef">Comments and Remarks</a>
+            </h5>
+<p id="section-6.5.5.5-1">None<a href="#section-6.5.5.5-1" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 </section>
@@ -2254,11 +3386,11 @@ Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 
 <dl class="references">
 <dt id="I-D.ietf-cats-framework">[I-D.ietf-cats-framework]</dt>
         <dd>
-<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-framework-19</span>, <time datetime="2025-11-20" class="refDate">20 November 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-19">https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-19</a>&gt;</span>. </dd>
+<span class="refAuthor">Li, C.</span>, <span class="refAuthor">Du, Z.</span>, <span class="refAuthor">Boucadair, M.</span>, <span class="refAuthor">Contreras, L. M.</span>, and <span class="refAuthor">J. Drake</span>, <span class="refTitle">"A Framework for Computing-Aware Traffic Steering (CATS)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-framework-20</span>, <time datetime="2026-02-26" class="refDate">26 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-20">https://datatracker.ietf.org/doc/html/draft-ietf-cats-framework-20</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-cats-metric-definition">[I-D.ietf-cats-metric-definition]</dt>
         <dd>
-<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, and <span class="refAuthor">H. Shi</span>, <span class="refTitle">"CATS Metrics Definition"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-metric-definition-04</span>, <time datetime="2025-10-20" class="refDate">20 October 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-04">https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, and <span class="refAuthor">G. Zeng</span>, <span class="refTitle">"CATS Metrics Definition"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-metric-definition-05</span>, <time datetime="2026-02-02" class="refDate">2 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-05">https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6241">[RFC6241]</dt>
         <dd>
@@ -2299,7 +3431,7 @@ Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 
 <dd class="break"></dd>
 <dt id="I-D.ietf-cats-usecases-requirements">[I-D.ietf-cats-usecases-requirements]</dt>
         <dd>
-<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Shi, H.</span>, <span class="refAuthor">Zhang, S.</span>, and <span class="refAuthor">Q. An</span>, <span class="refTitle">"Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-usecases-requirements-13</span>, <time datetime="2026-01-28" class="refDate">28 January 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-13">https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-13</a>&gt;</span>. </dd>
+<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Shi, H.</span>, <span class="refAuthor">Zhang, S.</span>, and <span class="refAuthor">Q. An</span>, <span class="refTitle">"Computing-Aware Traffic Steering (CATS) Problem Statement, Use Cases, and Requirements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-usecases-requirements-14</span>, <time datetime="2026-02-02" class="refDate">2 February 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-14">https://datatracker.ietf.org/doc/html/draft-ietf-cats-usecases-requirements-14</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.rcr-opsawg-operational-compute-metrics">[I-D.rcr-opsawg-operational-compute-metrics]</dt>
         <dd>
