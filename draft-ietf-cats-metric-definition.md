@@ -12,7 +12,7 @@ consensus:
 v: 3
 area: "Routing"
 workgroup: "Computing-Aware Traffic Steering"
-keyword: CATS, metric
+keyword: CATS, metrics
 
 author:
  -
@@ -476,19 +476,21 @@ Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferre
 
 In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.
 
-# CATS L2 Metric Registry Entry
+# CATS Metric Registry Entries
+
+## CATS L2 Metric Registry Entry
 
 This section gives an initial Registry Entry for the CATS L2 metric.
 
-## Summary
+### Summary
 
 This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.
 
-### ID (Identifier)
+#### ID (Identifier)
 
-IANA has allocated the Identifier 1 for the Named Metric Entry in Section 5. See Section 5.1.2 for mapping to Names.
+IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.
 
-### Name
+#### Name
 
 Norm_Passive_CATS-L2_RFCXXXXsecY_Unitless_Singleton
 
@@ -501,40 +503,40 @@ Naming Rule Explanation
 * Unitless: Metric has not units
 * Singleton: Metric is a single value
 
-### URI
+#### URI
 
 To-be-assigned.
 
-###  Description
+####  Description
 
-This metric represents a single normalized score used within CATS. It is derived by aggregating one or more CATS L0 and/or L1 metrics, followed by a normalization process that produces a unitless value. The resulting score provides a concise assessment of the overall capability of a service instance, enabling rapid comparison across instances and supporting efficient traffic steering decisions.
+This metric represents a single normalized score used within CATS (L2). It is derived by aggregating one or more CATS L0 and/or L1 metrics, followed by a normalization process that produces a unitless value. The resulting score provides a concise assessment of the overall capability of a service instance, enabling rapid comparison across instances and supporting efficient traffic steering decisions.
 
-### Change Controller
+#### Change Controller
 
 IETF
 
-### Version
+#### Version
 
 1.0
 
-## Metric Definition
+### Metric Definition
 
-### Reference Definition
+#### Reference Definition
 
 {{I-D.ietf-cats-metric-definition}}
 Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions)
 
-### Fixed Parameters
+#### Fixed Parameters
 
 - Normalization score range: 0-10 (0 indicates the poorest capability, 10 indicates the optimal capability)
 
 - Data precision: decimal number (unsigned integer)
 
-## Method of Measurement
+### Method of Measurement
 
 This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.
 
-### Reference Methods
+#### Reference Methods
 
 Raw Metrics collection: Collect L0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes). Collect L0 network performance raw metrics using existing standardized protocols (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}).
 
@@ -544,19 +546,19 @@ Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 
 
 The reference method aggregates and normalizes L0 metrics to generate L1 metrics in different categories, and further calculates a L2 singleton score for full normalization.
 
-### Packet Stream Generation
+#### Packet Stream Generation
 
 N/A
 
-### Traffic Filtering (Observation) Details
+#### Traffic Filtering (Observation) Details
 
 N/A
 
-### Sampling Distribution
+#### Sampling Distribution
 
 Sampling method: Continuous sampling (e.g., collect L0 metrics every 10 seconds)
 
-### Runtime Parameters and Data Format
+#### Runtime Parameters and Data Format
 
 CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
 
@@ -566,57 +568,654 @@ Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone o
 
 Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)
 
-### Roles
+#### Roles
 
 C-SMA: Collects L0 service and compute raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.
 
 C-NMA: Collects L0 network performance raw metrics, and optionally calculates L1 and L2 metrics according to service-specific strategies.
 
-## Output
+### Output
 
 This category specifies all details of the output of measurements using the metric.
 
-### Type
+#### Type
 
 Singleton value
 
-### Reference Definition
+#### Reference Definition
 
 Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.3
 
 Score semantics: 0-3 (Low capability, not recommended for steering), 4-7 (Medium capability, optional for steering), 8-10 (High capability, priority for steering)
 
-### Metric Units
+#### Metric Units
 
 Unitless
 
-### Calibration
+#### Calibration
 
 Calibration method: Conduct benchmark calibration based on standard test sets (fixed workload) to ensure the output score deviation of C-SMA and C-NMA is lower than 0.1 (one abnormal score in every ten test rounds).
 
 <!-- KY: Do we need more details in calibration discussions? -->
 
-## Administrative Items
+### Administrative Items
 
-### Status
+#### Status
 
 Current
 
-### Requester
+#### Requester
 
 To-be-assgined
 
-### Revision
+#### Revision
 
 1.0
 
-### Revision Date
+#### Revision Date
 
 2026-01-20
 
-### Comments and Remarks
+#### Comments and Remarks
 
 None
+
+## CATS L1 Metric Registry Entry: Compute
+
+This section gives an initial Registry Entry for the CATS L1 metric in the *compute* category.
+
+### Summary
+
+This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.
+
+#### ID (Identifier)
+
+IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.
+
+#### Name
+
+Norm_Passive_CATS-L1_Compute_RFCXXXXsecY_Unitless_Singleton
+
+Naming Rule Explanation
+
+* Norm: Metric type (Normalized Score)
+* Passive: Measurement method
+* CATS-L1: Metric level (CATS Metric Framework Level 1)
+* Compute: Metric category (Compute)
+* RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
+* Unitless: Metric has no units
+* Singleton: Metric is a single value for the compute category
+
+#### URI
+
+To-be-assigned.
+
+#### Description
+
+This metric represents a single normalized score for the *compute* category within CATS (L1). It is derived from one or more compute-related L0 metrics (e.g., CPU/GPU/NPU utilization, CPU frequency, memory utilization, or other compute resource indicators) by applying an implementation-specific aggregation function over the selected L0 compute metrics and then applying a normalization function to produce a unitless score.
+
+The resulting score provides a concise indication of the relative compute capability (or headroom) of a service contact instance for the purpose of instance selection and traffic steering. Higher values indicate better compute capability according to the provider's normalization strategy.
+
+#### Change Controller
+
+IETF
+
+#### Version
+
+1.0
+
+### Metric Definition
+
+#### Reference Definition
+
+{{I-D.ietf-cats-metric-definition}}
+
+Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)
+
+#### Fixed Parameters
+
+- Normalization score range: 0-10 (0 indicates the poorest compute capability, 10 indicates the optimal compute capability)
+
+- Data precision: decimal number (unsigned integer)
+
+- Metric type: "compute_norm"
+
+- Level: L1
+
+- Metric units: Unitless
+
+### Method of Measurement
+
+This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.
+
+#### Reference Methods
+
+Raw Metrics collection: Collect compute-related L0 raw metrics (e.g., CPU/GPU/NPU, memory, and relevant platform counters) using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes or equivalent telemetry systems).
+
+Aggregation logic (within compute category): Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected L0 compute metrics into a single intermediate value prior to normalization. The selection of L0 compute metrics and any weights used are implementation-specific.
+
+Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) compute value into the fixed score range.
+
+The reference method aggregates and normalizes L0 compute metrics to generate a single L1 compute score ("compute_norm"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate communication or service metrics).
+
+#### Packet Stream Generation
+
+N/A
+
+#### Traffic Filtering (Observation) Details
+
+N/A
+
+#### Sampling Distribution
+
+Sampling method: Continuous sampling (e.g., collect underlying L0 compute metrics every 10 seconds)
+
+#### Runtime Parameters and Data Format
+
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)
+
+#### Roles
+
+C-SMA: Collects L0 compute raw metrics and calculates the L1 compute normalized score ("compute_norm") according to service/provider-specific aggregation and normalization strategies.
+
+C-NMA: Not required for this metric.
+
+### Output
+
+This category specifies all details of the output of measurements using the metric.
+
+#### Type
+
+Singleton value
+
+#### Reference Definition
+
+Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
+
+Score semantics: 0-3 (Low compute capability, not recommended for steering), 4-7 (Medium compute capability, optional for steering), 8-10 (High compute capability, priority for steering)
+
+#### Metric Units
+
+Unitless
+
+#### Calibration
+
+Calibration method: Conduct benchmark calibration based on representative compute workloads (fixed test workload profiles) to align the mapping from L0 compute metrics to the L1 score, such that score deviation across measurement agents within the same administrative domain is minimized (e.g., less than 0.1 over repeated test rounds).
+
+### Administrative Items
+
+#### Status
+
+Current
+
+#### Requester
+
+To-be-assgined
+
+#### Revision
+
+1.0
+
+#### Revision Date
+
+2026-01-20
+
+#### Comments and Remarks
+
+None
+
+## CATS L1 Metric Registry Entry: Communication
+
+This section gives an initial Registry Entry for the CATS L1 metric in the *communication* category.
+
+### Summary
+
+This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.
+
+#### ID (Identifier)
+
+IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.
+
+#### Name
+
+Norm_Passive_CATS-L1_Communication_RFCXXXXsecY_Unitless_Singleton
+
+Naming Rule Explanation
+
+* Norm: Metric type (Normalized Score)
+* Passive: Measurement method
+* CATS-L1: Metric level (CATS Metric Framework Level 1)
+* Communication: Metric category (Communication)
+* RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
+* Unitless: Metric has no units
+* Singleton: Metric is a single value for the communication category
+
+#### URI
+
+To-be-assigned.
+
+#### Description
+
+This metric represents a single normalized score for the *communication* category within CATS (L1). It is derived from one or more communication-related L0 metrics (e.g., throughput, bandwidth, link utilization, loss, delay, jitter, bytes/packets counters, and other network performance indicators) by applying an implementation-specific aggregation function over the selected L0 communication metrics and then applying a normalization function to produce a unitless score.
+
+The resulting score provides a concise indication of the relative communication capability (or headroom) associated with reaching a service contact instance for the purpose of instance selection and traffic steering. Higher values indicate better communication capability according to the provider's normalization strategy.
+
+#### Change Controller
+
+IETF
+
+#### Version
+
+1.0
+
+### Metric Definition
+
+#### Reference Definition
+
+{{I-D.ietf-cats-metric-definition}}
+
+Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)
+
+#### Fixed Parameters
+
+- Normalization score range: 0-10 (0 indicates the poorest communication capability, 10 indicates the optimal communication capability)
+
+- Data precision: decimal number (unsigned integer)
+
+- Metric type: "communication_norm"
+
+- Level: L1
+
+- Metric units: Unitless
+
+### Method of Measurement
+
+This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.
+
+#### Reference Methods
+
+Raw Metrics collection: Collect communication-related L0 raw metrics using existing standardized protocols and telemetry systems (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}), and/or using network performance metric definitions and registries such as {{RFC8911}}, {{RFC8912}}, and {{RFC9439}} where applicable.
+
+Aggregation logic (within communication category): Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected L0 communication metrics into a single intermediate value prior to normalization. The selection of L0 communication metrics and any weights used are implementation-specific.
+
+Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) communication value into the fixed score range.
+
+The reference method aggregates and normalizes L0 communication metrics to generate a single L1 communication score ("communication_norm"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or service metrics).
+
+#### Packet Stream Generation
+
+N/A
+
+#### Traffic Filtering (Observation) Details
+
+N/A
+
+#### Sampling Distribution
+
+Sampling method: Continuous sampling (e.g., collect underlying L0 communication metrics every 10 seconds)
+
+#### Runtime Parameters and Data Format
+
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)
+
+#### Roles
+
+C-NMA: Collects L0 communication raw metrics and calculates the L1 communication normalized score ("communication_norm") according to provider-specific aggregation and normalization strategies.
+
+C-SMA: Not required for this metric.
+
+### Output
+
+This category specifies all details of the output of measurements using the metric.
+
+#### Type
+
+Singleton value
+
+#### Reference Definition
+
+Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
+
+Score semantics: 0-3 (Low communication capability, not recommended for steering), 4-7 (Medium communication capability, optional for steering), 8-10 (High communication capability, priority for steering)
+
+#### Metric Units
+
+Unitless
+
+#### Calibration
+
+Calibration method: Conduct benchmark calibration based on representative network test profiles (e.g., fixed traffic mixes and path conditions) to align the mapping from L0 communication metrics to the L1 score, such that score deviation across measurement agents within the same administrative domain is minimized (e.g., less than 0.1 over repeated test rounds).
+
+### Administrative Items
+
+#### Status
+
+Current
+
+#### Requester
+
+To-be-assgined
+
+#### Revision
+
+1.0
+
+#### Revision Date
+
+2026-01-20
+
+#### Comments and Remarks
+
+None
+
+## CATS L1 Metric Registry Entry: Service
+
+This section gives an initial Registry Entry for the CATS L1 metric in the *service* category.
+
+### Summary
+
+This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.
+
+#### ID (Identifier)
+
+IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.
+
+#### Name
+
+Norm_Passive_CATS-L1_Service_RFCXXXXsecY_Unitless_Singleton
+
+Naming Rule Explanation
+
+* Norm: Metric type (Normalized Score)
+* Passive: Measurement method
+* CATS-L1: Metric level (CATS Metric Framework Level 1)
+* Service: Metric category (Service)
+* RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
+* Unitless: Metric has no units
+* Singleton: Metric is a single value for the service category
+
+#### URI
+
+To-be-assigned.
+
+#### Description
+
+This metric represents a single normalized score for the *service* category within CATS (L1). It is derived from one or more service-related L0 metrics that characterize the health and performance of the service instance itself (e.g., service availability, request success rate, admission/overload indicators, tokens per second and/or requests per second, application-level queue depth, and other service KPIs) by applying an implementation-specific aggregation function over the selected L0 service metrics and then applying a normalization function to produce a unitless score.
+
+The resulting score provides a concise indication of the relative service capability (or headroom) of a service contact instance for the purpose of instance selection and traffic steering. Higher values indicate better service capability according to the provider's normalization strategy.
+
+#### Change Controller
+
+IETF
+
+#### Version
+
+1.0
+
+### Metric Definition
+
+#### Reference Definition
+
+{{I-D.ietf-cats-metric-definition}}
+
+Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)
+
+#### Fixed Parameters
+
+- Normalization score range: 0-10 (0 indicates the poorest service capability, 10 indicates the optimal service capability)
+
+- Data precision: decimal number (unsigned integer)
+
+- Metric type: "service_norm"
+
+- Level: L1
+
+- Metric units: Unitless
+
+### Method of Measurement
+
+This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.
+
+#### Reference Methods
+
+Raw Metrics collection: Collect service-related L0 raw metrics from the service runtime and service management plane using platform-specific telemetry systems (e.g., Prometheus {{Prometheus}} in Kubernetes or equivalent monitoring/observability tools). These metrics are service-dependent and may include availability/health status, success/error rates, overload or admission control signals, and throughput indicators (e.g., tokens per second for AI inference services), among others.
+
+Aggregation logic (within service category): Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected L0 service metrics into a single intermediate value prior to normalization. The selection of L0 service metrics, any weights used, and any gating logic (e.g., forcing the score to a low value when the instance is unhealthy) are implementation-specific.
+
+Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) service value into the fixed score range.
+
+The reference method aggregates and normalizes L0 service metrics to generate a single L1 service score ("service_norm"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or communication metrics).
+
+#### Packet Stream Generation
+
+N/A
+
+#### Traffic Filtering (Observation) Details
+
+N/A
+
+#### Sampling Distribution
+
+Sampling method: Continuous sampling (e.g., collect underlying L0 service metrics every 10 seconds)
+
+#### Runtime Parameters and Data Format
+
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)
+
+#### Roles
+
+C-SMA: Collects L0 service raw metrics and calculates the L1 service normalized score ("service_norm") according to service/provider-specific aggregation and normalization strategies.
+
+C-NMA: Not required for this metric.
+
+### Output
+
+This category specifies all details of the output of measurements using the metric.
+
+#### Type
+
+Singleton value
+
+#### Reference Definition
+
+Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
+
+Score semantics: 0-3 (Low service capability, not recommended for steering), 4-7 (Medium service capability, optional for steering), 8-10 (High service capability, priority for steering)
+
+#### Metric Units
+
+Unitless
+
+#### Calibration
+
+Calibration method: Conduct benchmark calibration based on representative service workload profiles (fixed request mixes and known-good baselines) to align the mapping from L0 service metrics to the L1 score, such that score deviation across measurement agents within the same administrative domain is minimized (e.g., less than 0.1 over repeated test rounds). Calibration MAY include failure/overload scenarios (e.g., simulated dependency failures or saturation) to ensure score behavior is consistent with operational intent.
+
+### Administrative Items
+
+#### Status
+
+Current
+
+#### Requester
+
+To-be-assigned
+
+#### Revision
+
+1.0
+
+#### Revision Date
+
+2026-01-20
+
+#### Comments and Remarks
+
+None
+
+## CATS L1 Metric Registry Entry: Composed
+
+This section gives an initial Registry Entry for the CATS L1 metric in the *composed* category.
+
+### Summary
+
+This category includes multiple indexes to the Registry Entry: the element ID, Metric Name, URI, Metric Description, Metric Controller, and Metric Version.
+
+#### ID (Identifier)
+
+IANA has allocated the Identifier XXX for the Named Metric Entry in this section. See the next Section for mapping to Names.
+
+#### Name
+
+Norm_Passive_CATS-L1_Composed_RFCXXXXsecY_Unitless_Singleton
+
+Naming Rule Explanation
+
+* Norm: Metric type (Normalized Score)
+* Passive: Measurement method
+* CATS-L1: Metric level (CATS Metric Framework Level 1)
+* Composed: Metric category (Composed)
+* RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
+* Unitless: Metric has no units
+* Singleton: Metric is a single value for the composed category
+
+#### URI
+
+To-be-assigned.
+
+#### Description
+
+This metric represents a single normalized score for the *composed* category within CATS (L1). A composed metric is derived by combining multiple lower-level metrics that may span different categories (e.g., compute, communication, and service) and/or multiple components along the request path.
+
+Typical examples of composed metrics include (but are not limited to) end-to-end delay, application-level response time, or other synthesized indicators that are computed as a function of multiple contributing factors (e.g., the sum of compute processing delay and network transmission delay along the selected path).
+
+The composed L1 score is obtained by applying an implementation-specific aggregation function over the selected contributing L0 metrics (and/or previously computed L1 category metrics), followed by a normalization function that yields a unitless score. Higher values indicate better composed capability according to the provider's normalization strategy.
+
+#### Change Controller
+
+IETF
+
+#### Version
+
+1.0
+
+### Metric Definition
+
+#### Reference Definition
+
+{{I-D.ietf-cats-metric-definition}}
+
+Core referenced sections: Section 3.3 (L1 Level Metric Definition), Section 4.2 (Aggregation and Normalization Functions), Section 4.4.2 (Level 1 Metric Representations)
+
+#### Fixed Parameters
+
+- Normalization score range: 0-10 (0 indicates the poorest composed capability, 10 indicates the optimal composed capability)
+
+- Data precision: decimal number (unsigned integer)
+
+- Metric type: "composed_norm"
+
+- Level: L1
+
+- Metric units: Unitless
+
+### Method of Measurement
+
+This category includes columns for references to relevant sections of the RFC(s) and any supplemental information needed to ensure an unambiguous method for implementations.
+
+#### Reference Methods
+
+Raw Metrics collection: Collect contributing L0 raw metrics from the relevant sources across categories. For example, compute- and service-related L0 metrics may be collected by a C-SMA using platform-specific telemetry systems (e.g., Prometheus {{Prometheus}}), while communication-related L0 metrics may be collected by a C-NMA using network telemetry and protocols (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}), and/or using network performance metric definitions and registries such as {{RFC8911}}, {{RFC8912}}, and {{RFC9439}} where applicable.
+
+Aggregation logic (within composed category): Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected contributing metrics into a single intermediate value prior to normalization. The aggregation function MAY combine L0 metrics directly, and/or MAY take as input one or more L1 category metrics (e.g., "compute_norm" and "communication_norm"). The selection of contributing metrics, any weights used, and the composition model (e.g., sum of delays, bottleneck/maximum, or weighted utility) are implementation-specific.
+
+Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated composed value into the fixed score range.
+
+The reference method aggregates and normalizes the selected contributing metrics to generate a single L1 composed score ("composed_norm").
+
+#### Packet Stream Generation
+
+N/A
+
+#### Traffic Filtering (Observation) Details
+
+N/A
+
+#### Sampling Distribution
+
+Sampling method: Continuous sampling (e.g., collect underlying contributing metrics every 10 seconds)
+
+#### Runtime Parameters and Data Format
+
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC6991}})
+
+Measurement_Window: Metric measurement time window (Units: seconds, milliseconds; Format: uint64; Default: 10 seconds)
+
+#### Roles
+
+C-SMA: Collects L0 service and compute raw metrics that may contribute to the composed score, and MAY calculate the L1 composed score ("composed_norm") when it has access to the required inputs.
+
+C-NMA: Collects L0 communication raw metrics that may contribute to the composed score, and MAY calculate the L1 composed score ("composed_norm") when it has access to the required inputs.
+
+CATS Controller (or other CATS component): MAY compute the L1 composed score when the contributing metrics originate from multiple agents and are combined at a common computation point.
+
+### Output
+
+This category specifies all details of the output of measurements using the metric.
+
+#### Type
+
+Singleton value
+
+#### Reference Definition
+
+Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
+
+Score semantics: 0-3 (Low composed capability, not recommended for steering), 4-7 (Medium composed capability, optional for steering), 8-10 (High composed capability, priority for steering)
+
+#### Metric Units
+
+Unitless
+
+#### Calibration
+
+Calibration method: Conduct benchmark calibration based on representative end-to-end test profiles (fixed request mixes and controlled network/compute conditions) to align the mapping from contributing metrics to the L1 composed score. The calibration goal is to minimize score deviation across measurement agents and computation points within the same administrative domain (e.g., less than 0.1 over repeated test rounds). Calibration MAY include failure and saturation scenarios (e.g., compute overload, network congestion, and dependency failures) to ensure the composed score behavior is consistent with operational intent.
+
+### Administrative Items
+
+#### Status
+
+Current
+
+#### Requester
+
+To-be-assigned
+
+#### Revision
+
+1.0
+
+#### Revision Date
+
+2026-01-20
+
+#### Comments and Remarks
+
+None
+
 
 # Implementation Guidance on Using CATS Metrics
 
