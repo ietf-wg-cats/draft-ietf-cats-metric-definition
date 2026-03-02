@@ -12,7 +12,7 @@ consensus:
 v: 3
 area: "Routing"
 workgroup: "Computing-Aware Traffic Steering"
-keyword: CATS, metricATS L1 Metric Registry
+keyword: CATS, metrics
 
 author:
  -
