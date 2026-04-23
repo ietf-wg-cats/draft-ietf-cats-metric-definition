@@ -61,19 +61,19 @@ informative:
   performance-metrics:
     title: performance-metrics
     author:
-    org:
+    org: Internet Assigned Numbers Authority
     date:
     target: https://www.iana.org/assignments/performance-metrics/performance-metrics.xhtml
   DMTF:
     title: DMTF
     author:
-    org:
+    org: Distributed Management Task Force
     date:
     target: https://www.dmtf.org/
   Prometheus:
     title: Prometheus
     author:
-    org:
+    org: Cloud Native Computing Foundation
     date:
     target: https://prometheus.io/
 
@@ -123,7 +123,7 @@ This document uses the following terms defined in {{I-D.ietf-cats-framework}}:
 
 ## Three-Level Metrics
 
-As outlined in {{I-D.ietf-cats-usecases-requirements}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. Additionally, it MUST be useful in practice. To that end, a CATS system should select the most appropriate metric(s) for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.
+As outlined in {{I-D.ietf-cats-usecases-requirements}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. Additionally, it MUST be useful in practice. To that end, a CATS system should select the most appropriate metrics for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.
 
 Introducing a definition of metrics requires balancing the following trade-off: if the metrics are too fine-grained, they become unscalable due to the excessive number of metrics that must be communicated through the metrics distribution protocol. (See {{I-D.rcr-opsawg-operational-compute-metrics}} for a discussion of metrics distribution protocols.) Conversely, if the metrics are too coarse-grained, they may not have sufficient information to enable proper operational decisions.
 
@@ -152,7 +152,7 @@ Level 0 metrics encompass detailed, raw metrics, including but not limited to:
 
 L0 metrics serve as foundational data and do not require classification. They provide basic information to support higher-level metrics, as detailed in the following sections.
 
-L0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be solution-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).
+L0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be technology- and implementation-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).
 
 Regarding network-related information, {{RFC8911}} and {{RFC8912}} define various performance metrics and their registries. Additionally, in {{RFC9439}}, the ALTO WG introduced an extended set of metrics related to network performance, such as throughput and delay. For compute metrics, {{I-D.rcr-opsawg-operational-compute-metrics}} lists a set of cloud resource metrics.
 
@@ -172,7 +172,7 @@ L1 metrics are organized into distinct categories, such as computing, communicat
 
 Editor note: detailed categories can be updated according to the CATS WG discussion.
 
- L0 metrics, such as those defined in {{RFC8911}}, {{RFC8912}}, {{RFC9439}}, and {{I-D.rcr-opsawg-operational-compute-metrics}}, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process solution-specific detailed metrics.
+ L0 metrics, such as those defined in {{RFC8911}}, {{RFC8912}}, {{RFC9439}}, and {{I-D.rcr-opsawg-operational-compute-metrics}}, can be categorized into the aforementioned categories. Each category will employ its own aggregation function (e.g., weighted summary) to generate the normalized value. This approach allows the metric distribution protocol to focus solely on the metric categories and their normalized values, thereby avoiding the need to process technology- and implementation-specific detailed metrics.
 
 ## Level 2: Single Normalized Metric.
 
@@ -253,41 +253,41 @@ Each CATS metric is expressed as a structured set of fields, with each field des
 
 Next, we describe each field in more detail:
 
-- **Metric_Type (type)**: This field specifies the category or kind of CATS metric being measured, such as computational resources, storage capacity, or network bandwidth. It acts as a label that enables network devices to identify the purpose of the metric.
+- **Metric_Type**: This field specifies the category or kind of CATS metric being reported, such as computational resources, storage capacity, or network bandwidth. It acts as a label that enables network devices to identify the purpose of the metric.
 
-- **Format (format)**: This field indicates the data encoding format of the metric, such as whether the value is represented as an integer, a floating-point number, or has no specific format.
+- **Format**: This field indicates the data encoding format of the metric, such as whether the value is represented as an integer, a floating-point number, or has no specific format.
 
-- **Format standard (format_std, optional)**: This optional field indicates the standard used to encode and decode the value field according to the format field. It is only required if the value field is encoded using a specific standard, and knowing this standard is necessary to decode the value field. Examples of format standards include ieee_754 and ascii. This field ensures that the value can be accurately interpreted by specifying the encoding method used.
+- **Format_std**: This optional field indicates the standard used to encode and decode the value field according to the format field. It is only required if the value field is encoded using a specific standard, and knowing this standard is necessary to decode the value field. Examples of format standards include ieee_754 and ascii. This field ensures that the value can be accurately interpreted by specifying the encoding method used.
 
-- **Length (length)**: This field indicates the size of the value field measured in octets (bytes). It specifies how many bytes are used to store the value of the metric. Examples include 4, 8, 16, 32, and 64. The length field is important for memory allocation and data handling, ensuring that the value is stored and retrieved correctly.
+- **Length**: This field indicates the size of the value field measured in octets (bytes). It specifies how many bytes are used to store the value of the metric. Examples include 4, 8, 16, 32, and 64. The length field is important for memory allocation and data handling, ensuring that the value is stored and retrieved correctly.
 
-- **Unit (unit)**: This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.
+- **Unit**: This field defines the measurement units for the metric, such as frequency, data size, or data transfer rate. It is usually associated with the metric to provide context for the value.
 
-- **Source (source, optional)**: This field describes the origin of the information used to obtain the metric. It may include one or more of the following non-mutually exclusive values:
+- **Source**: This field describes the origin of the information used to obtain the metric. It may include one or more of the following non-mutually exclusive values:
 
     - 'nominal'. Similar to {{RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.
 
     - 'estimation'. The 'estimation' source indicates that the metric value is computed through an estimation process.
 
-    - 'directly measured'. This source indicates that the metric can be obtained directly from the underlying device and it does not need to be estimated.
+    - 'directly measured'. This source indicates that the metric is obtained directly from the underlying device and it is not estimated.
 
-    - 'normalization'. The 'normalization' source indicates that the metric value was normalized. For instance, a metric could be normalized to take a value from 0 to 1, from 0 to 10, or to take a percentage value. This type of metrics do not have units.
+    - 'normalization'. The 'normalization' source indicates that the metric value was normalized. For instance, a metric could be normalized to take a value from 0 to 1, from 0 to 10, or to take a percentage value. This type of metrics does not have units.
 
     - 'aggregation'. This source indicates that the metric value was obtained by using an aggregation function.
 <!-- JRG: Define aggregation and normalization functions -->
 
     Nominal metrics have inherent physical meanings and specific units without any additional processing. Aggregated metrics may or may not have physical meanings, but they retain their significance relative to the directly measured metrics. Normalized metrics, on the other hand, might have physical meanings but lack units.
 
-- **Statistics (statistics, optional)**: This field provides additional details about the metrics, particularly if there is any pre-computation performed on the metrics before they are collected. It is useful for services that require specific statistics for service instance selection.
+- **Statistics**: This field provides additional details about the metrics, particularly if there is any pre-computation performed on the metrics before they are collected. It is useful for services that require specific statistics for service instance selection.
 
     - 'max'. The maximum value of the data collected over intervals.
     - 'min'. The minimum value of the data collected over intervals.
     - 'mean'. The average value of the data collected over intervals.
     - 'cur'. The current value of the data collected.
 
-- **Level (level)**: This field specifies the level at which the metric is measured. It is used to categorize the metric based on its granularity and scope. Examples include L0, L1, and L2. The level field helps in understanding the level of detail and specificity of the metric being measured.
+- **Level**: This field specifies the level at which the metric is measured. It is used to categorize the metric based on its granularity and scope. Examples include L0, L1, and L2. The level field helps in understanding the level of detail and specificity of the metric being measured.
 
-- **Value (value)**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
+- **Value**: This field represents the actual value of the metric being measured. It provides the specific data point for the metric in question.
 
 ## Aggregation and Normalization Functions
 
@@ -351,6 +351,10 @@ This ambiguity arises because different implementations may apply distinct norma
 To mitigate this, implementors of CATS metrics SHOULD provide clear and precise definitions of their metrics---particularly for unitless scores---and explain how these scores should be interpreted. This documentation should be designed to support operators in making informed decisions, even when comparing metrics from different implementations.
 
 Similarly, operators SHOULD exercise caution when making potentially impactful decisions based on unitless metrics whose definitions are unclear or underspecified. In such cases, especially when decisions are critical or sensitive, operators MAY choose to rely on Level 0 (L0) metrics with units, which typically offer a more direct and unambiguous understanding of resource conditions.
+
+The CATS normalized metrics defined in this document (ranging from 0 to 10, with 10 indicating optimal capability) adopt a "higher-is-better" semantics. This is in contrast to many traditional network IGP metrics (e.g., OSPF cost, IS-IS metric), where a lower value indicates a better path and zero often signifies an unreachable or invalid state. This design choice was made to provide an intuitive and human-readable score for heterogeneous computing and service capabilities, where "higher score = better performance" aligns with common practice in system benchmarking.
+
+However, when these CATS metrics are combined with conventional network path metrics for end-to-end traffic steering decisions, implementations must be aware of this semantic difference. A policy engine or controller performing such joint optimization should explicitly map or transform the metrics into a consistent decision space (e.g., by inverting one set of values) to avoid suboptimal steering outcomes.
 
 ## Level Metric Representations
 
@@ -458,11 +462,11 @@ Metrics are progressively consolidated from L0 to L1 to L2, with each level offe
 |:--------:+:-------------------+--------------+-----------|--------|
 | Level 0  | High               | Low          | Low       |High    |
 | Level 1  | Medium             | Medium       | Medium    |Medium  |
-| Level 2  | Low                | High         | High      |Medium  |
+| Level 2  | Low                | High         | High      |Low  |
 {: #comparison title="Comparison among Metrics Levels"}
 
 
-Since Level 0 metrics are raw and service-specific, different services may define their own sets---potentially resulting in hundreds or even thousands of unique metrics. This diversity introduces significant complexity in protocol encoding and standardization. Consequently, L0 metrics are generally confined to bespoke implementations tailored to specific service needs, rather than being standardized for broad protocol use. In contrast, Level 1 metrics organize raw data into standardized categories, each normalized into a single value. This structure makes them more suitable for protocol encoding and standardization. Level 2 metrics take simplification a step further by consolidating all relevant information into a single normalized value, making them the easiest to encode, transmit, and standardize.
+Since Level 0 metrics are raw and service-specific, different services may define their own sets---potentially resulting in hundreds or even thousands of unique metrics. This diversity introduces significant complexity in protocol encoding and standardization. Consequently, L0 metrics are confined to bespoke implementations tailored to specific service needs, rather than being standardized for broad protocol use. In contrast, Level 1 metrics organize raw data into standardized categories, each normalized into a single value. This structure makes them more suitable for protocol encoding and standardization. Level 2 metrics take simplification a step further by consolidating all relevant information into a single normalized value, making them the easiest to encode, transmit, and standardize.
 
 Therefore, from the perspective of encoding complexity, Level 1 and Level 2 metrics are recommended.
 
@@ -477,6 +481,8 @@ Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferre
 In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.
 
 # CATS Metric Registry Entries
+
+This section defines the formal registry entries for CATS Level-2 and Level-1 metrics, intended for registration with IANA. By providing a common template that specifies the metric's summary, definition, method of measurement, output, and administrative items, this section ensures interoperability among different implementations.
 
 ## CATS L2 Metric Registry Entry
 
@@ -500,7 +506,7 @@ Naming Rule Explanation
 * Passive: Measurement method
 * CATS-L2: Metric level (CATS Metric Framework Level 2)
 * RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
-* Unitless: Metric has not units
+* Unitless: Metric has no units
 * Singleton: Metric is a single value
 
 #### URI
@@ -530,7 +536,7 @@ Core referenced sections: Section 3.4 (L2 Level Metric Definition), Section 4.2 
 
 - Normalization score range: 0-10 (0 indicates the poorest capability, 10 indicates the optimal capability)
 
-- Data precision: decimal number (unsigned integer)
+- Data precision: non-negative integer
 
 ### Method of Measurement
 
@@ -586,7 +592,7 @@ Singleton value
 
 Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.3
 
-Score semantics: 0-3 (Low capability, not recommended for steering), 4-7 (Medium capability, optional for steering), 8-10 (High capability, priority for steering)
+Score semantics: This is a higher-is-better metric. A score of 10 represents the highest priority for steering, and a score of 0 represents the lowest priority for steering.
 
 #### Metric Units
 
@@ -736,7 +742,7 @@ Singleton value
 
 Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
 
-Score semantics: 0-3 (Low compute capability, not recommended for steering), 4-7 (Medium compute capability, optional for steering), 8-10 (High compute capability, priority for steering)
+Score semantics: This is a higher-is-better metric. A score of 10 represents the highest priority for steering, and a score of 0 represents the lowest priority for steering.
 
 #### Metric Units
 
@@ -884,7 +890,7 @@ Singleton value
 
 Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
 
-Score semantics: 0-3 (Low communication capability, not recommended for steering), 4-7 (Medium communication capability, optional for steering), 8-10 (High communication capability, priority for steering)
+Score semantics: This is a higher-is-better metric. A score of 10 represents the highest priority for steering, and a score of 0 represents the lowest priority for steering.
 
 #### Metric Units
 
@@ -1032,7 +1038,7 @@ Singleton value
 
 Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
 
-Score semantics: 0-3 (Low service capability, not recommended for steering), 4-7 (Medium service capability, optional for steering), 8-10 (High service capability, priority for steering)
+Score semantics: This is a higher-is-better metric. A score of 10 represents the highest priority for steering, and a score of 0 represents the lowest priority for steering.
 
 #### Metric Units
 
@@ -1184,7 +1190,7 @@ Singleton value
 
 Output format: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.4.2
 
-Score semantics: 0-3 (Low composed capability, not recommended for steering), 4-7 (Medium composed capability, optional for steering), 8-10 (High composed capability, priority for steering)
+Score semantics: This is a higher-is-better metric. A score of 10 represents the highest priority for steering, and a score of 0 represents the lowest priority for steering.
 
 #### Metric Units
 
@@ -1233,7 +1239,6 @@ TBD
 --- back
 
 
-# Appendix A
 
 ## Level 0 Metric Representation Examples
 
