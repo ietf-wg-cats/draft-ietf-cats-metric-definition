@@ -396,23 +396,54 @@ Unless documented otherwise, implementations should use min-max scaling to map t
 
 ## Level Metric Representations {#level-metric-representations}
 
-This section defines the representation format and constraints for Level 1 and Level 2 metrics respectively, to ensure consistent encoding and interoperability across implementations.
+This section specifies the representation format and constraints for
+Level 1 and Level 2 metrics, ensuring consistent encoding and
+interoperability across implementations.
 
 ### Level 0 Metrics
 
-Level 0 metrics are raw metrics that are not standardized in this document. See {{appendix-level-0}} for examples of Level 0 metrics developed in the compute and communication industries and other standardization organizations such as the {{DMTF}}.
+Level 0 metrics are raw metrics that are not standardized in this
+document. See {{appendix-level-0}} for examples of Level 0 metrics
+defined in the compute and communication industries and by other
+standardization organizations such as the {{DMTF}}.
 
 ### Level 1 Metrics
 
-Level 1 metrics are derived from Level 0 metrics through the application of aggregation functions and, when appropriate, normalization functions. Depending on how they are formed, Level 1 metrics MAY retain physical units inherited from their inputs or MAY be expressed as unitless values.
+Level 1 metrics are derived from Level 0 metrics through the application
+of aggregation functions and, when appropriate, normalization functions.
+Depending on how they are formed, Level 1 metrics MAY retain physical
+units inherited from their inputs or MAY be expressed as unitless values.
 
-Level 1 metrics are organized into semantic categories such as computing, communication, service, and composed metrics. This categorization provides context and meaning to the resulting metrics and enables consistent interpretation across implementations.
+Level 1 metrics are organized into semantic categories such as computing,
+communication, service, and composed metrics. This categorization
+provides context and meaning to the resulting metrics and enables
+consistent interpretation across implementations.
 
-The sources of Level 1 metrics is aggregation and normalization.
+The `Source` field indicates how the metric value is derived. For Level 1
+metrics, typical values include:
+
+- `aggregation`: The value is obtained by combining Level 0 metrics
+  without normalization and MAY retain a physical unit.
+- `normalization`: The value is mapped into a unitless score.
 
 #### Level 1 Computing Metrics
 
-The metric type of combined computing metrics is "level1_computing", and its format is unsigned integer. It has no unit. It will occupy an octet. Example:
+The Metric Type for Level 1 computing metrics is `level1_computing`.
+
+**Example A: Aggregation-derived (with units)**
+
+~~~
+Fields:
+      Metric_type: level1_computing
+      Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: mhz
+      Source: aggregation
+      Value: 2400
+~~~
+
+**Example B: Normalized (unitless)**
 
 ~~~
 Fields:
@@ -423,12 +454,26 @@ Fields:
       Source: normalization
       Value: 5
 ~~~
-{: #fig-combined-compute-metric title="Example of a combined Level 1 computing metric"}
-
+{: #fig-level1-compute-metric title="Examples of Level 1 computing metrics"}
 
 #### Level 1 Communication Metrics
 
-The metric type of combined communication metrics is "level1_communication", and its format is unsigned integer. It has no unit. It will occupy an octet. Example:
+The Metric Type for Level 1 communication metrics is `level1_communication`.
+
+**Example A: Aggregation-derived (with units)**
+
+~~~
+Fields:
+      Metric_type: level1_communication
+      Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: mbps
+      Source: aggregation
+      Value: 800
+~~~
+
+**Example B: Normalized (unitless)**
 
 ~~~
 Fields:
@@ -439,55 +484,88 @@ Fields:
       Source: normalization
       Value: 1
 ~~~
-{: #fig-combined-communication-metric title="Example of a combined Level 1 communication metric"}
+{: #fig-level1-communication-metric title="Examples of Level 1 communication metrics"}
 
 #### Level 1 Service Metrics
 
-The metric type of combined service metrics is "service_comb", and its format is unsigned integer. It has no unit. It will occupy an octet. Example:
+The Metric Type for Level 1 service metrics is `level1_service`.
+
+**Example A: Aggregation-derived (with units)**
 
 ~~~
 Fields:
-      Metric_type: service_comb
+      Metric_type: level1_service
       Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: rps
+      Source: aggregation
+      Value: 45
+~~~
+
+**Example B: Normalized (unitless)**
+
+~~~
+Fields:
+      Metric_type: level1_service
+      Level: Level 1
+      Format: unsigned integer
+      Length: one octet
+      Source: normalization
+      Value: 7
+~~~
+{: #fig-level1-service-metric title="Examples of Level 1 service metrics"}
+
+#### Level 1 Composed Metrics
+
+The Metric Type for Level 1 composed metrics is `level1_composed`.
+
+**Example A: Aggregation-derived (with units)**
+
+~~~
+Fields:
+      Metric_type: level1_composed
+      Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: ms
+      Source: aggregation
+      Value: 20
+~~~
+
+**Example B: Normalized (unitless)**
+
+~~~
+Fields:
+      Metric_type: level1_composed
+      Level: Level 1
+      Format: unsigned integer
+      Length: one octet
+      Source: normalization
+      Value: 8
+~~~
+{: #fig-level1-composed-metric title="Examples of Level 1 composed metrics"}
+
+### Level 2 Global Metric
+
+A Level 2 metric is a single-value, normalized metric that does not
+carry any inherent physical unit. While each provider may employ its own
+internal methods to compute this value, all providers MUST adhere to the
+representation defined in this section to ensure consistent encoding and
+interoperable interpretation of the normalized output.
+
+The Metric Type is `level2_global` and the Source must be `normalization`.
+
+~~~
+Fields:
+      Metric_type: level2_global
+      Level: Level 2
       Format: unsigned integer
       Length: one octet
       Source: normalization
       Value: 1
 ~~~
-{: #fig-combined-service-metric title="Example of a combined Level 1 service metric"}
-
-#### Level 1 Composed Metrics
-
-The metric type of combined composed metrics is "level1_composed", and its format is unsigned integer.  It has no unit.  It will occupy an octet. Example:
-
-~~~
-Fields:
-      Metric type: level1_composed
-      Level: Level 1
-      Format: unsigned integer
-      Length: an octet
-      Source: normalization
-      Value: 8
-~~~
-{: #fig-combined-composed-metric title="Example of a combined Level 1 composed metric"}
-
-### Level 2 Global Metric
-
-A Level 2 metric is a single-value, normalized metric that does not carry any inherent physical unit. While each provider may employ its own internal methods to compute this value, all providers must adhere to the representation guidelines defined in this section to ensure consistency and interoperability of the normalized output.
-
-The Metric Type is "level2_global". The metric value is encoded as an unsigned integer, carries no unit, and is represented using a single octet. An example is shown below.
-
-~~~
-Fields:
-      Metric type: level2_global
-      Level: Level 2
-      Format: unsigned integer
-      Length: an octet
-      Source: normalization
-      Value: 1
-~~~
 {: #fig-level-2-metric title="Example of a normalized Level 2 metric"}
-
 
 # Comparison among Metric Levels
 
@@ -1011,7 +1089,7 @@ Core referenced sections: Section 3.3 (Level 1 Level Metric Definition), Section
 
 - Data precision: non-negative integer
 
-- Metric type: "service_comb"
+- Metric type: "level1_service"
 
 - Level: Level 1
 
@@ -1029,7 +1107,7 @@ Aggregation logic (within service category): Refer to {{I-D.ietf-cats-metric-def
 
 Normalization logic: Refer to {{I-D.ietf-cats-metric-definition}} Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) service value into the fixed score range.
 
-The reference method aggregates and normalizes Level 0 service metrics to generate a single Level 1 service score ("service_comb"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or communication metrics).
+The reference method aggregates and normalizes Level 0 service metrics to generate a single Level 1 service score ("level1_service"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or communication metrics).
 
 #### Packet Stream Generation
 
@@ -1053,7 +1131,7 @@ Measurement_Window: Metric measurement time window (Units: seconds, milliseconds
 
 #### Roles
 
-Service contact instace: Collects Level 0 service raw metrics and calculates the Level 1 service normalized score ("service_comb") according to service/provider-specific aggregation and normalization strategies.
+Service contact instace: Collects Level 0 service raw metrics and calculates the Level 1 service normalized score ("level1_service") according to service/provider-specific aggregation and normalization strategies.
 
 C-NMA: Not required for this metric.
 
