@@ -1055,7 +1055,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Kehan, et al.</td>
-<td class="center">Expires 8 November 2026</td>
+<td class="center">Expires 16 November 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1068,12 +1068,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-ietf-cats-metric-definition-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-05-07" class="published">7 May 2026</time>
+<time datetime="2026-05-15" class="published">15 May 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-11-08">8 November 2026</time></dd>
+<dd class="expires"><time datetime="2026-11-16">16 November 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1136,7 +1136,7 @@ hierarchical abstraction of these metrics to improve interoperability, scalabili
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 November 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 November 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1218,7 +1218,7 @@ hierarchical abstraction of these metrics to improve interoperability, scalabili
                     <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="auto internal xref">4.4.2</a>.  <a href="#name-level-1-metrics" class="internal xref">Level 1 Metrics</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.4.2.3">
-                    <p id="section-toc.1-1.4.2.4.2.3.1"><a href="#section-4.4.3" class="auto internal xref">4.4.3</a>.  <a href="#name-level-2-metrics" class="internal xref">Level 2 Metrics</a></p>
+                    <p id="section-toc.1-1.4.2.4.2.3.1"><a href="#section-4.4.3" class="auto internal xref">4.4.3</a>.  <a href="#name-level-2-global-metric" class="internal xref">Level 2 Global Metric</a></p>
 </li>
                 </ul>
 </li>
@@ -1452,30 +1452,50 @@ or Level 1) and applying normalization to produce a single, unitless Level 2 sco
         <h3 id="name-level-0-raw-metrics">
 <a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-level-0-raw-metrics" class="section-name selfRef">Level 0: Raw Metrics</a>
         </h3>
-<p id="section-3.2-1">Level 0 metrics encompass detailed, raw metrics, including but not limited to:<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-1">Level 0 metrics represent detailed, raw measurements collected from
+underlying resources. These metrics are typically service-specific and
+are not abstracted.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Examples of Level 0 metrics include, but are not limited to:<a href="#section-3.2-2" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-3.2-2.1">
-            <p id="section-3.2-2.1.1">CPU: Base Frequency, boosted frequency, number of cores, core utilization, memory bandwidth, memory size, memory utilization, power consumption.<a href="#section-3.2-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-3.2-3.1">
+            <p id="section-3.2-3.1.1"><strong>CPU:</strong> Base frequency, boosted frequency, number of cores, core
+utilization, memory bandwidth, memory capacity, memory utilization,
+and power consumption.<a href="#section-3.2-3.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.2">
-            <p id="section-3.2-2.2.1">GPU: Frequency, number of render units, memory bandwidth, memory size, memory utilization, core utilization, power consumption.<a href="#section-3.2-2.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.2-3.2">
+            <p id="section-3.2-3.2.1"><strong>GPU:</strong> Frequency, number of processing units, memory bandwidth,
+memory capacity, memory utilization, core utilization, and power
+consumption.<a href="#section-3.2-3.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.3">
-            <p id="section-3.2-2.3.1">NPU: Computing power, utilization, power consumption.<a href="#section-3.2-2.3.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.2-3.3">
+            <p id="section-3.2-3.3.1"><strong>NPU:</strong> Computational capacity, utilization, and power consumption.<a href="#section-3.2-3.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.4">
-            <p id="section-3.2-2.4.1">Communication: Throughput, bandwidth, link utilization, loss, delay, jitter, bytes/packets counters, and other network performance indicators.<a href="#section-3.2-2.4.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.2-3.4">
+            <p id="section-3.2-3.4.1"><strong>Communication:</strong> Throughput, bandwidth, link utilization, packet
+loss, delay, jitter, traffic counters (bytes and packets), and other
+network performance indicators.<a href="#section-3.2-3.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.5">
-            <p id="section-3.2-2.5.1">Storage: Available space, read speed, write speed.<a href="#section-3.2-2.5.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.2-3.5">
+            <p id="section-3.2-3.5.1"><strong>Storage:</strong> Available capacity, read throughput, and write throughput.<a href="#section-3.2-3.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="normal" id="section-3.2-2.6">
-            <p id="section-3.2-2.6.1">Service-specific metrics: Requests per second, output tokens per second.<a href="#section-3.2-2.6.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-3.2-3.6">
+            <p id="section-3.2-3.6.1"><strong>Service-specific metrics:</strong> Request rate (e.g., requests per second),
+output rate (e.g., tokens per second), and other application-level
+performance indicators.<a href="#section-3.2-3.6.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
-<p id="section-3.2-3">Level 0 metrics serve as foundational data. Some of the Level 0 metrics may depend on performance monitoring, some may depend on active state, and some may be static. They provide basic information to support higher-level metrics, as detailed in the following sections.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
-<p id="section-3.2-4">Level 0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be technology- and implementation-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops).<a href="#section-3.2-4" class="pilcrow">¶</a></p>
-<p id="section-3.2-5"><span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span> and <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span> haved defined various network performance metrics and their registries. <span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span> standardizes a set of computing metrics. These Level 0 raw metrics are not standardized in this document, but can be used as foundational data in CATS to derive higher level metrics.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<p id="section-3.2-4">Level 0 metrics serve as the foundational inputs for the metric
+hierarchy. Some metrics are derived from monitoring systems (e.g.,
+telemetry or counters), others reflect dynamic runtime state, and
+others may correspond to relatively static properties of the underlying
+infrastructure. These metrics provide the basic information required to
+derive higher-level metrics, as described in the following sections.<a href="#section-3.2-4" class="pilcrow">¶</a></p>
+<p id="section-3.2-5">Level 0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be technology- and implementation-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops), or be unitless, such as CPU utilization.<a href="#section-3.2-5" class="pilcrow">¶</a></p>
+<p id="section-3.2-6">As examples, <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span> and <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span> define various network performance
+metrics and their associated registries, while <span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span> defines a
+set of computing metrics. These Level 0 metrics are not standardized in
+this document; rather, they serve as foundational inputs that can be used
+within CATS to derive higher-level metrics.<a href="#section-3.2-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="level-1-metrics-combined-in-categories">
@@ -1547,16 +1567,39 @@ may apply different functions to characterize the overall performance of the und
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-cats-metrics-framework-and-" class="section-name selfRef">CATS Metrics Framework and Specification</a>
       </h2>
 <p id="section-4-1">The CATS metrics framework defines how metrics are encoded and transmitted over the network. The representation should be flexible enough to accommodate various types of metrics along with their respective units and precision levels, yet simple enough to enable easy implementation and deployment across heterogeneous edge environments.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">The design of CATS metrics framework has the following principles:<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-2">The design of the CATS metrics framework is guided by the following
+principles:<a href="#section-4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-4-3.1">
-          <p id="section-4-3.1.1">Semantic granularity and extensibility: It adopts a layered metric abstraction.<a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
+          <p id="section-4-3.1.1"><strong>Semantic granularity and extensibility:</strong> The framework adopts a
+layered abstraction of metrics to balance expressiveness and
+scalability. By organizing metrics into multiple levels of increasing
+abstraction (e.g., raw, aggregated, and normalized), it enables
+implementations to select the appropriate level of detail for their
+use case. This approach allows fine-grained metrics to be preserved at
+lower levels while exposing more compact and semantically meaningful
+representations at higher levels. In addition, the layered design
+supports extensibility by allowing new metrics and categories to be
+introduced without disrupting existing deployments.<a href="#section-4-3.1.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-3.2">
-          <p id="section-4-3.2.1">Metric source: It follows <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span> by introducing a 'Source' field to distinguish metric context.<a href="#section-4-3.2.1" class="pilcrow">¶</a></p>
+          <p id="section-4-3.2.1"><strong>Interoperability and flexibility:</strong> The framework allows
+implementation-specific aggregation and normalization functions to
+accommodate diverse deployment scenarios and operational objectives.
+At the same time, it defines common metric structures and introduces
+default policies to guide interpretation, ensuring a consistent
+understanding of metrics across vendors and domains. This combination
+of flexibility and guidance enables interoperability while preserving
+innovation and adaptability in metric computation and usage.<a href="#section-4-3.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-4-3.3">
-          <p id="section-4-3.3.1">Interoperability and flexibility: It allows implementation-specific aggregation and normalization functions, and adds default policies to ensure consistent cross-vendor interpretation.<a href="#section-4-3.3.1" class="pilcrow">¶</a></p>
+          <p id="section-4-3.3.1"><strong>Metric provenance and transparency:</strong> The framework explicitly captures the
+origin and context of metrics by introducing a "Source" field, following the
+model defined in <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span>. This field distinguishes whether a metric
+value is derived from direct measurement, estimation, aggregation, or
+normalization. By identifying the source of each metric, the framework
+improves transparency and enables implementations to better assess the
+reliability, accuracy, and semantics of the reported values.<a href="#section-4-3.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <div id="cats-metric-fields">
@@ -1752,13 +1795,18 @@ Unless documented otherwise, implementations should use min-max scaling to map t
         <h3 id="name-level-metric-representation">
 <a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-level-metric-representation" class="section-name selfRef">Level Metric Representations</a>
         </h3>
-<p id="section-4.4-1">This section defines the representation format and constraints for Level 1 and Level 2 metrics respectively, to ensure consistent encoding and interoperability across implementations.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4-1">This section specifies the representation format and constraints for
+Level 1 and Level 2 metrics, ensuring consistent encoding and
+interoperability across implementations.<a href="#section-4.4-1" class="pilcrow">¶</a></p>
 <div id="level-0-metrics">
 <section id="section-4.4.1">
           <h4 id="name-level-0-metrics">
 <a href="#section-4.4.1" class="section-number selfRef">4.4.1. </a><a href="#name-level-0-metrics" class="section-name selfRef">Level 0 Metrics</a>
           </h4>
-<p id="section-4.4.1-1">Level 0 metrics are raw metrics that are not standardized in this document. See <a href="#appendix-level-0" class="auto internal xref">Appendix A</a> for examples of Level 0 metrics developed in the compute and communication industries and other standardization organizations such as the <span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span>.<a href="#section-4.4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.1-1">Level 0 metrics are raw metrics that are not standardized in this
+document. See <a href="#appendix-level-0" class="auto internal xref">Appendix A</a> for examples of Level 0 metrics
+defined in the compute and communication industries and by other
+standardization organizations such as the <span>[<a href="#DMTF" class="cite xref">DMTF</a>]</span>.<a href="#section-4.4.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="level-1-metrics">
@@ -1766,21 +1814,51 @@ Unless documented otherwise, implementations should use min-max scaling to map t
           <h4 id="name-level-1-metrics">
 <a href="#section-4.4.2" class="section-number selfRef">4.4.2. </a><a href="#name-level-1-metrics" class="section-name selfRef">Level 1 Metrics</a>
           </h4>
-<p id="section-4.4.2-1">Level 1 metrics are derived from Level 0 metrics through the application of aggregation functions and, when appropriate, normalization functions. Depending on how they are formed, Level 1 metrics MAY retain physical units inherited from their inputs or MAY be expressed as unitless values.<a href="#section-4.4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.4.2-2">Level 1 metrics are organized into semantic categories such as computing, communication, service, and composed metrics. This categorization provides context and meaning to the resulting metrics and enables consistent interpretation across implementations.<a href="#section-4.4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.4.2-3">The sources of Level 1 metrics is aggregation and normalization.<a href="#section-4.4.2-3" class="pilcrow">¶</a></p>
-<div id="combined-computing-metrics">
+<p id="section-4.4.2-1">Level 1 metrics are derived from Level 0 metrics through the application
+of aggregation functions and, when appropriate, normalization functions.
+Depending on how they are formed, Level 1 metrics MAY retain physical
+units inherited from their inputs or MAY be expressed as unitless values.<a href="#section-4.4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-2">Level 1 metrics are organized into semantic categories such as computing,
+communication, service, and composed metrics. This categorization
+provides context and meaning to the resulting metrics and enables
+consistent interpretation across implementations.<a href="#section-4.4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.4.2-3">The <code>Source</code> field indicates how the metric value is derived. For Level 1
+metrics, typical values include:<a href="#section-4.4.2-3" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-4.4.2-4.1">
+              <p id="section-4.4.2-4.1.1"><code>aggregation</code>: The value is obtained by combining Level 0 metrics
+without normalization and MAY retain a physical unit.<a href="#section-4.4.2-4.1.1" class="pilcrow">¶</a></p>
+</li>
+            <li class="normal" id="section-4.4.2-4.2">
+              <p id="section-4.4.2-4.2.1"><code>normalization</code>: The value is mapped into a unitless score.<a href="#section-4.4.2-4.2.1" class="pilcrow">¶</a></p>
+</li>
+          </ul>
+<div id="level-1-computing-metrics">
 <section id="section-4.4.2.1">
-            <h5 id="name-combined-computing-metrics">
-<a href="#section-4.4.2.1" class="section-number selfRef">4.4.2.1. </a><a href="#name-combined-computing-metrics" class="section-name selfRef">Combined Computing Metrics</a>
+            <h5 id="name-level-1-computing-metrics">
+<a href="#section-4.4.2.1" class="section-number selfRef">4.4.2.1. </a><a href="#name-level-1-computing-metrics" class="section-name selfRef">Level 1 Computing Metrics</a>
             </h5>
-<p id="section-4.4.2.1-1">The metric type of combined computing metrics is "computing_comb", and its format is unsigned integer. It has no unit. It will occupy an octet. Example:<a href="#section-4.4.2.1-1" class="pilcrow">¶</a></p>
-<span id="name-example-of-a-combined-level"></span><div id="fig-combined-compute-metric">
-<figure id="figure-4">
-              <div class="alignLeft art-text artwork" id="section-4.4.2.1-2.1">
+<p id="section-4.4.2.1-1">The Metric Type for Level 1 computing metrics is <code>level1_computing</code>.<a href="#section-4.4.2.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2.1-2"><strong>Example A: Aggregation-derived (with units)</strong><a href="#section-4.4.2.1-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.4.2.1-3">
 <pre>
 Fields:
-      Metric_type: computing_comb
+      Metric_type: level1_computing
+      Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: mhz
+      Source: aggregation
+      Value: 2400
+</pre><a href="#section-4.4.2.1-3" class="pilcrow">¶</a>
+</div>
+<p id="section-4.4.2.1-4"><strong>Example B: Normalized (unitless)</strong><a href="#section-4.4.2.1-4" class="pilcrow">¶</a></p>
+<span id="name-examples-of-level-1-computi"></span><div id="fig-level1-compute-metric">
+<figure id="figure-4">
+              <div class="alignLeft art-text artwork" id="section-4.4.2.1-5.1">
+<pre>
+Fields:
+      Metric_type: level1_computing
       Level: Level 1
       Format: unsigned integer
       Length: one octet
@@ -1789,23 +1867,37 @@ Fields:
 </pre>
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a>:
-<a href="#name-example-of-a-combined-level" class="selfRef">Example of a combined Level 1 computing metric</a>
+<a href="#name-examples-of-level-1-computi" class="selfRef">Examples of Level 1 computing metrics</a>
               </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="combined-communication-metrics">
+<div id="level-1-communication-metrics">
 <section id="section-4.4.2.2">
-            <h5 id="name-combined-communication-metr">
-<a href="#section-4.4.2.2" class="section-number selfRef">4.4.2.2. </a><a href="#name-combined-communication-metr" class="section-name selfRef">Combined Communication Metrics</a>
+            <h5 id="name-level-1-communication-metri">
+<a href="#section-4.4.2.2" class="section-number selfRef">4.4.2.2. </a><a href="#name-level-1-communication-metri" class="section-name selfRef">Level 1 Communication Metrics</a>
             </h5>
-<p id="section-4.4.2.2-1">The metric type of combined communication metrics is "communication_comb", and its format is unsigned integer. It has no unit. It will occupy an octet. Example:<a href="#section-4.4.2.2-1" class="pilcrow">¶</a></p>
-<span id="name-example-of-a-combined-level-"></span><div id="fig-combined-communication-metric">
-<figure id="figure-5">
-              <div class="alignLeft art-text artwork" id="section-4.4.2.2-2.1">
+<p id="section-4.4.2.2-1">The Metric Type for Level 1 communication metrics is <code>level1_communication</code>.<a href="#section-4.4.2.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2.2-2"><strong>Example A: Aggregation-derived (with units)</strong><a href="#section-4.4.2.2-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.4.2.2-3">
 <pre>
 Fields:
-      Metric_type: communication_comb
+      Metric_type: level1_communication
+      Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: mbps
+      Source: aggregation
+      Value: 800
+</pre><a href="#section-4.4.2.2-3" class="pilcrow">¶</a>
+</div>
+<p id="section-4.4.2.2-4"><strong>Example B: Normalized (unitless)</strong><a href="#section-4.4.2.2-4" class="pilcrow">¶</a></p>
+<span id="name-examples-of-level-1-communi"></span><div id="fig-level1-communication-metric">
+<figure id="figure-5">
+              <div class="alignLeft art-text artwork" id="section-4.4.2.2-5.1">
+<pre>
+Fields:
+      Metric_type: level1_communication
       Level: Level 1
       Format: unsigned integer
       Length: one octet
@@ -1814,79 +1906,111 @@ Fields:
 </pre>
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a>:
-<a href="#name-example-of-a-combined-level-" class="selfRef">Example of a combined Level 1 communication metric</a>
+<a href="#name-examples-of-level-1-communi" class="selfRef">Examples of Level 1 communication metrics</a>
               </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="combined-service-metrics">
+<div id="level-1-service-metrics">
 <section id="section-4.4.2.3">
-            <h5 id="name-combined-service-metrics">
-<a href="#section-4.4.2.3" class="section-number selfRef">4.4.2.3. </a><a href="#name-combined-service-metrics" class="section-name selfRef">Combined Service Metrics</a>
+            <h5 id="name-level-1-service-metrics">
+<a href="#section-4.4.2.3" class="section-number selfRef">4.4.2.3. </a><a href="#name-level-1-service-metrics" class="section-name selfRef">Level 1 Service Metrics</a>
             </h5>
-<p id="section-4.4.2.3-1">The metric type of combined service metrics is "service_comb", and its format is unsigned integer. It has no unit. It will occupy an octet. Example:<a href="#section-4.4.2.3-1" class="pilcrow">¶</a></p>
-<span id="name-example-of-a-combined-level-1"></span><div id="fig-combined-service-metric">
-<figure id="figure-6">
-              <div class="alignLeft art-text artwork" id="section-4.4.2.3-2.1">
+<p id="section-4.4.2.3-1">The Metric Type for Level 1 service metrics is <code>level1_service</code>.<a href="#section-4.4.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2.3-2"><strong>Example A: Aggregation-derived (with units)</strong><a href="#section-4.4.2.3-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.4.2.3-3">
 <pre>
 Fields:
-      Metric_type: service_comb
+      Metric_type: level1_service
+      Level: Level 1
+      Format: unsigned integer
+      Length: two octets
+      Unit: rps
+      Source: aggregation
+      Value: 45
+</pre><a href="#section-4.4.2.3-3" class="pilcrow">¶</a>
+</div>
+<p id="section-4.4.2.3-4"><strong>Example B: Normalized (unitless)</strong><a href="#section-4.4.2.3-4" class="pilcrow">¶</a></p>
+<span id="name-examples-of-level-1-service"></span><div id="fig-level1-service-metric">
+<figure id="figure-6">
+              <div class="alignLeft art-text artwork" id="section-4.4.2.3-5.1">
+<pre>
+Fields:
+      Metric_type: level1_service
       Level: Level 1
       Format: unsigned integer
       Length: one octet
       Source: normalization
-      Value: 1
+      Value: 7
 </pre>
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a>:
-<a href="#name-example-of-a-combined-level-1" class="selfRef">Example of a combined Level 1 service metric</a>
+<a href="#name-examples-of-level-1-service" class="selfRef">Examples of Level 1 service metrics</a>
               </figcaption></figure>
 </div>
 </section>
 </div>
-<div id="combined-composed-metrics">
+<div id="level-1-composed-metrics">
 <section id="section-4.4.2.4">
-            <h5 id="name-combined-composed-metrics">
-<a href="#section-4.4.2.4" class="section-number selfRef">4.4.2.4. </a><a href="#name-combined-composed-metrics" class="section-name selfRef">Combined Composed Metrics</a>
+            <h5 id="name-level-1-composed-metrics">
+<a href="#section-4.4.2.4" class="section-number selfRef">4.4.2.4. </a><a href="#name-level-1-composed-metrics" class="section-name selfRef">Level 1 Composed Metrics</a>
             </h5>
-<p id="section-4.4.2.4-1">The metric type of combined composed metrics is "composed_comb", and its format is unsigned integer.  It has no unit.  It will occupy an octet. Example:<a href="#section-4.4.2.4-1" class="pilcrow">¶</a></p>
-<span id="name-example-of-a-combined-level-1-"></span><div id="fig-combined-composed-metric">
-<figure id="figure-7">
-              <div class="alignLeft art-text artwork" id="section-4.4.2.4-2.1">
+<p id="section-4.4.2.4-1">The Metric Type for Level 1 composed metrics is <code>level1_composed</code>.<a href="#section-4.4.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.2.4-2"><strong>Example A: Aggregation-derived (with units)</strong><a href="#section-4.4.2.4-2" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-4.4.2.4-3">
 <pre>
 Fields:
-      Metric type: composed_comb
+      Metric_type: level1_composed
       Level: Level 1
       Format: unsigned integer
-      Length: an octet
+      Length: two octets
+      Unit: ms
+      Source: aggregation
+      Value: 20
+</pre><a href="#section-4.4.2.4-3" class="pilcrow">¶</a>
+</div>
+<p id="section-4.4.2.4-4"><strong>Example B: Normalized (unitless)</strong><a href="#section-4.4.2.4-4" class="pilcrow">¶</a></p>
+<span id="name-examples-of-level-1-compose"></span><div id="fig-level1-composed-metric">
+<figure id="figure-7">
+              <div class="alignLeft art-text artwork" id="section-4.4.2.4-5.1">
+<pre>
+Fields:
+      Metric_type: level1_composed
+      Level: Level 1
+      Format: unsigned integer
+      Length: one octet
       Source: normalization
       Value: 8
 </pre>
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a>:
-<a href="#name-example-of-a-combined-level-1-" class="selfRef">Example of a combined Level 1 composed metric</a>
+<a href="#name-examples-of-level-1-compose" class="selfRef">Examples of Level 1 composed metrics</a>
               </figcaption></figure>
 </div>
 </section>
 </div>
 </section>
 </div>
-<div id="level-2-metrics">
+<div id="level-2-global-metric">
 <section id="section-4.4.3">
-          <h4 id="name-level-2-metrics">
-<a href="#section-4.4.3" class="section-number selfRef">4.4.3. </a><a href="#name-level-2-metrics" class="section-name selfRef">Level 2 Metrics</a>
+          <h4 id="name-level-2-global-metric">
+<a href="#section-4.4.3" class="section-number selfRef">4.4.3. </a><a href="#name-level-2-global-metric" class="section-name selfRef">Level 2 Global Metric</a>
           </h4>
-<p id="section-4.4.3-1">A Level 2 metric is a single-value, normalized metric that does not carry any inherent physical unit. While each provider may employ its own internal methods to compute this value, all providers must adhere to the representation guidelines defined in this section to ensure consistency and interoperability of the normalized output.<a href="#section-4.4.3-1" class="pilcrow">¶</a></p>
-<p id="section-4.4.3-2">The Metric Type is "norm_fi". The metric value is encoded as an unsigned integer, carries no unit, and is represented using a single octet. An example is shown below.<a href="#section-4.4.3-2" class="pilcrow">¶</a></p>
+<p id="section-4.4.3-1">A Level 2 metric is a single-value, normalized metric that does not
+carry any inherent physical unit. While each provider may employ its own
+internal methods to compute this value, all providers MUST adhere to the
+representation defined in this section to ensure consistent encoding and
+interoperable interpretation of the normalized output.<a href="#section-4.4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.4.3-2">The Metric Type is <code>level2_global</code> and the Source must be <code>normalization</code>.<a href="#section-4.4.3-2" class="pilcrow">¶</a></p>
 <span id="name-example-of-a-normalized-lev"></span><div id="fig-level-2-metric">
 <figure id="figure-8">
             <div class="alignLeft art-text artwork" id="section-4.4.3-3.1">
 <pre>
 Fields:
-      Metric type: norm_fi
+      Metric_type: level2_global
       Level: Level 2
       Format: unsigned integer
-      Length: an octet
+      Length: one octet
       Source: normalization
       Value: 1
 </pre>
@@ -1951,7 +2075,7 @@ Fields:
 <p id="section-5-4">Therefore, from the perspective of encoding complexity, Level 1 and Level 2 metrics are recommended.<a href="#section-5-4" class="pilcrow">¶</a></p>
 <p id="section-5-5">When considering extensibility, Level 0 metrics allow new services to define their own custom metrics. However, this flexibility requires corresponding protocol extensions, and the proliferation of metric types can introduce significant overhead, ultimately reducing the protocol's extensibility. In contrast, Level 1 metrics introduce only a limited set of standardized categories, making protocol extensions more manageable. Level 2 metrics go even further by consolidating all information into a single normalized value, placing the least burden on the protocol.<a href="#section-5-5" class="pilcrow">¶</a></p>
 <p id="section-5-6">Therefore, from an extensibility standpoint, Level 1 and Level 2 metrics are recommended.<a href="#section-5-6" class="pilcrow">¶</a></p>
-<p id="section-5-7">Regarding stability, Level 0 raw metrics may require frequent protocol extensions as new metrics are introduced, leading to an unstable and evolving protocol format. For this reason, standardizing Level 0 metrics within the protocol is not recommended. In contrast, Level 1 metrics involve only a limited set of predefined categories, and Level 2 metrics rely on a single consolidated value, both of which contribute to a more stable and maintainable protocol design.<a href="#section-5-7" class="pilcrow">¶</a></p>
+<p id="section-5-7">Regarding stability, Level 0 raw metrics would require frequent protocol extensions as new metrics are introduced, leading to an unstable and evolving protocol format. For this reason, standardizing Level 0 metrics within the protocol is not recommended. In contrast, Level 1 metrics involve only a limited set of predefined categories, and Level 2 metrics rely on a single consolidated value, both of which contribute to a more stable and maintainable protocol design.<a href="#section-5-7" class="pilcrow">¶</a></p>
 <p id="section-5-8">Therefore, from a stability standpoint, Level 1 and Level 2 metrics are preferred.<a href="#section-5-8" class="pilcrow">¶</a></p>
 <p id="section-5-9">In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity and minimal protocol overhead. If more advanced scheduling capabilities are required, Level 1 metrics offer a balanced approach with manageable complexity. While Level 0 metrics are the most detailed and dynamic, their high overhead makes them unsuitable for direct transmission to network devices and thus not recommended for standard protocol integration.<a href="#section-5-9" class="pilcrow">¶</a></p>
 </section>
@@ -2337,7 +2461,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
                 <p id="section-6.2.2.2-1.2.1">Data precision: non-negative integer<a href="#section-6.2.2.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.2.2.2-1.3">
-                <p id="section-6.2.2.2-1.3.1">Metric type: "computing_comb"<a href="#section-6.2.2.2-1.3.1" class="pilcrow">¶</a></p>
+                <p id="section-6.2.2.2-1.3.1">Metric type: "level1_computing"<a href="#section-6.2.2.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.2.2.2-1.4">
                 <p id="section-6.2.2.2-1.4.1">Level: Level 1<a href="#section-6.2.2.2-1.4.1" class="pilcrow">¶</a></p>
@@ -2364,7 +2488,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
 <p id="section-6.2.3.1-1">Raw Metrics collection: Collect computing-related Level 0 raw metrics (e.g., CPU/GPU/NPU, memory, and relevant platform counters) using platform-specific management protocols or tools (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span> in Kubernetes or equivalent telemetry systems).<a href="#section-6.2.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.3.1-2">Aggregation logic (within computing category): Refer to <a href="#aggregation-function" class="auto internal xref">Section 4.2.1</a> to combine selected Level 0 computing metrics into a single intermediate value prior to normalization. The selection of Level 0 computing metrics and any weights used are implementation-specific.<a href="#section-6.2.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.3.1-3">Normalization logic: Refer to <a href="#normalization-function" class="auto internal xref">Section 4.2.2</a> to map the aggregated (or directly selected) computing value into the fixed score range.<a href="#section-6.2.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.2.3.1-4">The reference method aggregates and normalizes Level 0 computing metrics to generate a single Level 1 computing score ("computing_comb").<a href="#section-6.2.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.1-4">The reference method aggregates and normalizes Level 0 computing metrics to generate a single Level 1 computing score ("level1_computing").<a href="#section-6.2.3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="packet-stream-generation-1">
@@ -2406,7 +2530,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
             <h5 id="name-roles-2">
 <a href="#section-6.2.3.6" class="section-number selfRef">6.2.3.6. </a><a href="#name-roles-2" class="section-name selfRef">Roles</a>
             </h5>
-<p id="section-6.2.3.6-1">C-SMA: Collects Level 0 compute raw metrics and calculates the Level 1 compute normalized score ("computing_comb") according to service/provider-specific aggregation and normalization strategies.<a href="#section-6.2.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.2.3.6-1">C-SMA: Collects Level 0 compute raw metrics and calculates the Level 1 compute normalized score ("level1_computing") according to service/provider-specific aggregation and normalization strategies.<a href="#section-6.2.3.6-1" class="pilcrow">¶</a></p>
 <p id="section-6.2.3.6-2">C-NMA: Not required for this metric.<a href="#section-6.2.3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2616,7 +2740,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
                 <p id="section-6.3.2.2-1.2.1">Data precision: non-negative integer<a href="#section-6.3.2.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.3.2.2-1.3">
-                <p id="section-6.3.2.2-1.3.1">Metric type: "communication_comb"<a href="#section-6.3.2.2-1.3.1" class="pilcrow">¶</a></p>
+                <p id="section-6.3.2.2-1.3.1">Metric type: "level1_communication"<a href="#section-6.3.2.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.3.2.2-1.4">
                 <p id="section-6.3.2.2-1.4.1">Level: Level 1<a href="#section-6.3.2.2-1.4.1" class="pilcrow">¶</a></p>
@@ -2643,7 +2767,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
 <p id="section-6.3.3.1-1">Raw Metrics collection: Collect communication-related Level 0 raw metrics using existing standardized protocols and telemetry systems (e.g., NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>, IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>), and/or using network performance metric definitions and registries such as <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, and <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span> where applicable.<a href="#section-6.3.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.3.1-2">Aggregation logic (within communication category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected Level 0 communication metrics into a single intermediate value prior to normalization. The selection of Level 0 communication metrics and any weights used are implementation-specific.<a href="#section-6.3.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.3.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) communication value into the fixed score range.<a href="#section-6.3.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.3.3.1-4">The reference method aggregates and normalizes Level 0 communication metrics to generate a single Level 1 communication score ("communication_comb"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or service metrics).<a href="#section-6.3.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.1-4">The reference method aggregates and normalizes Level 0 communication metrics to generate a single Level 1 communication score ("level1_communication"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or service metrics).<a href="#section-6.3.3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="packet-stream-generation-2">
@@ -2685,7 +2809,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
             <h5 id="name-roles-3">
 <a href="#section-6.3.3.6" class="section-number selfRef">6.3.3.6. </a><a href="#name-roles-3" class="section-name selfRef">Roles</a>
             </h5>
-<p id="section-6.3.3.6-1">C-NMA: Collects Level 0 communication raw metrics and calculates the Level 1 communication normalized score ("communication_comb") according to provider-specific aggregation and normalization strategies.<a href="#section-6.3.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.3.3.6-1">C-NMA: Collects Level 0 communication raw metrics and calculates the Level 1 communication normalized score ("level1_communication") according to provider-specific aggregation and normalization strategies.<a href="#section-6.3.3.6-1" class="pilcrow">¶</a></p>
 <p id="section-6.3.3.6-2">C-SMA: Not required for this metric.<a href="#section-6.3.3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -2895,7 +3019,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
                 <p id="section-6.4.2.2-1.2.1">Data precision: non-negative integer<a href="#section-6.4.2.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.4.2.2-1.3">
-                <p id="section-6.4.2.2-1.3.1">Metric type: "service_comb"<a href="#section-6.4.2.2-1.3.1" class="pilcrow">¶</a></p>
+                <p id="section-6.4.2.2-1.3.1">Metric type: "level1_service"<a href="#section-6.4.2.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.4.2.2-1.4">
                 <p id="section-6.4.2.2-1.4.1">Level: Level 1<a href="#section-6.4.2.2-1.4.1" class="pilcrow">¶</a></p>
@@ -2922,7 +3046,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
 <p id="section-6.4.3.1-1">Raw Metrics collection: Collect service-related Level 0 raw metrics from the service runtime and service management plane using platform-specific telemetry systems (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span> in Kubernetes or equivalent monitoring/observability tools). These metrics are service-dependent and may include availability/health status, success/error rates, overload or admission control signals, and throughput indicators (e.g., tokens per second for AI inference services), among others.<a href="#section-6.4.3.1-1" class="pilcrow">¶</a></p>
 <p id="section-6.4.3.1-2">Aggregation logic (within service category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected Level 0 service metrics into a single intermediate value prior to normalization. The selection of Level 0 service metrics, any weights used, and any gating logic (e.g., forcing the score to a low value when the instance is unhealthy) are implementation-specific.<a href="#section-6.4.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.4.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated (or directly selected) service value into the fixed score range.<a href="#section-6.4.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.4.3.1-4">The reference method aggregates and normalizes Level 0 service metrics to generate a single Level 1 service score ("service_comb"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or communication metrics).<a href="#section-6.4.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.1-4">The reference method aggregates and normalizes Level 0 service metrics to generate a single Level 1 service score ("level1_service"). No cross-category aggregation is performed for this metric (i.e., it does not incorporate compute or communication metrics).<a href="#section-6.4.3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="packet-stream-generation-3">
@@ -2964,7 +3088,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
             <h5 id="name-roles-4">
 <a href="#section-6.4.3.6" class="section-number selfRef">6.4.3.6. </a><a href="#name-roles-4" class="section-name selfRef">Roles</a>
             </h5>
-<p id="section-6.4.3.6-1">Service contact instace: Collects Level 0 service raw metrics and calculates the Level 1 service normalized score ("service_comb") according to service/provider-specific aggregation and normalization strategies.<a href="#section-6.4.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.4.3.6-1">Service contact instace: Collects Level 0 service raw metrics and calculates the Level 1 service normalized score ("level1_service") according to service/provider-specific aggregation and normalization strategies.<a href="#section-6.4.3.6-1" class="pilcrow">¶</a></p>
 <p id="section-6.4.3.6-2">C-NMA: Not required for this metric.<a href="#section-6.4.3.6-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3175,7 +3299,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
                 <p id="section-6.5.2.2-1.2.1">Data precision: non-negative integer<a href="#section-6.5.2.2-1.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.5.2.2-1.3">
-                <p id="section-6.5.2.2-1.3.1">Metric type: "composed_comb"<a href="#section-6.5.2.2-1.3.1" class="pilcrow">¶</a></p>
+                <p id="section-6.5.2.2-1.3.1">Metric type: "level1_composed"<a href="#section-6.5.2.2-1.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="normal" id="section-6.5.2.2-1.4">
                 <p id="section-6.5.2.2-1.4.1">Level: Level 1<a href="#section-6.5.2.2-1.4.1" class="pilcrow">¶</a></p>
@@ -3200,9 +3324,9 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
 <a href="#section-6.5.3.1" class="section-number selfRef">6.5.3.1. </a><a href="#name-reference-methods-5" class="section-name selfRef">Reference Methods</a>
             </h5>
 <p id="section-6.5.3.1-1">Raw Metrics collection: Collect contributing Level 0 raw metrics from the relevant sources across categories. For example, compute- and service-related Level 0 metrics may be collected by a C-SMA using platform-specific telemetry systems (e.g., Prometheus <span>[<a href="#Prometheus" class="cite xref">Prometheus</a>]</span>), while communication-related Level 0 metrics may be collected by a C-NMA using network telemetry and protocols (e.g., NETCONF <span>[<a href="#RFC6241" class="cite xref">RFC6241</a>]</span>, IPFIX <span>[<a href="#RFC7011" class="cite xref">RFC7011</a>]</span>), and/or using network performance metric definitions and registries such as <span>[<a href="#RFC8911" class="cite xref">RFC8911</a>]</span>, <span>[<a href="#RFC8912" class="cite xref">RFC8912</a>]</span>, and <span>[<a href="#RFC9439" class="cite xref">RFC9439</a>]</span> where applicable.<a href="#section-6.5.3.1-1" class="pilcrow">¶</a></p>
-<p id="section-6.5.3.1-2">Aggregation logic (within composed category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected contributing metrics into a single intermediate value prior to normalization. The aggregation function MAY combine Level 0 metrics directly, and/or MAY take as input one or more Level 1 category metrics (e.g., "computing_comb" and "communication_comb"). The selection of contributing metrics, any weights used, and the composition model (e.g., sum of delays, bottleneck/maximum, or weighted utility) are implementation-specific.<a href="#section-6.5.3.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.1-2">Aggregation logic (within composed category): Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.1 (e.g., Weighted Average Aggregation) to combine selected contributing metrics into a single intermediate value prior to normalization. The aggregation function MAY combine Level 0 metrics directly, and/or MAY take as input one or more Level 1 category metrics (e.g., "level1_computing" and "level1_communication"). The selection of contributing metrics, any weights used, and the composition model (e.g., sum of delays, bottleneck/maximum, or weighted utility) are implementation-specific.<a href="#section-6.5.3.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.5.3.1-3">Normalization logic: Refer to <span>[<a href="#I-D.ietf-cats-metric-definition" class="cite xref">I-D.ietf-cats-metric-definition</a>]</span> Section 4.2.2 (e.g., Sigmoid Normalization or Min-max scaling) to map the aggregated composed value into the fixed score range.<a href="#section-6.5.3.1-3" class="pilcrow">¶</a></p>
-<p id="section-6.5.3.1-4">The reference method aggregates and normalizes the selected contributing metrics to generate a single Level 1 composed score ("composed_comb").<a href="#section-6.5.3.1-4" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.1-4">The reference method aggregates and normalizes the selected contributing metrics to generate a single Level 1 composed score ("level1_composed").<a href="#section-6.5.3.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="packet-stream-generation-4">
@@ -3244,8 +3368,8 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
             <h5 id="name-roles-5">
 <a href="#section-6.5.3.6" class="section-number selfRef">6.5.3.6. </a><a href="#name-roles-5" class="section-name selfRef">Roles</a>
             </h5>
-<p id="section-6.5.3.6-1">C-SMA: Collects Level 0 service and compute raw metrics that may contribute to the composed score, and MAY calculate the Level 1 composed score ("composed_comb") when it has access to the required inputs.<a href="#section-6.5.3.6-1" class="pilcrow">¶</a></p>
-<p id="section-6.5.3.6-2">C-NMA: Collects Level 0 communication raw metrics that may contribute to the composed score, and MAY calculate the Level 1 composed score ("composed_comb") when it has access to the required inputs.<a href="#section-6.5.3.6-2" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.6-1">C-SMA: Collects Level 0 service and compute raw metrics that may contribute to the composed score, and MAY calculate the Level 1 composed score ("level1_composed") when it has access to the required inputs.<a href="#section-6.5.3.6-1" class="pilcrow">¶</a></p>
+<p id="section-6.5.3.6-2">C-NMA: Collects Level 0 communication raw metrics that may contribute to the composed score, and MAY calculate the Level 1 composed score ("level1_composed") when it has access to the required inputs.<a href="#section-6.5.3.6-2" class="pilcrow">¶</a></p>
 <p id="section-6.5.3.6-3">CATS Controller (or other CATS component): MAY compute the Level 1 composed score when the contributing metrics originate from multiple agents and are combined at a common computation point.<a href="#section-6.5.3.6-3" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -3384,7 +3508,7 @@ Core referenced sections: Section 3.4 (Level 2 Level Metric Definition), Section
 <dd class="break"></dd>
 <dt id="I-D.ietf-cats-metric-definition">[I-D.ietf-cats-metric-definition]</dt>
         <dd>
-<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, and <span class="refAuthor">G. Zeng</span>, <span class="refTitle">"CATS Metrics Definition"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-metric-definition-06</span>, <time datetime="2026-03-01" class="refDate">1 March 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-06">https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-06</a>&gt;</span>. </dd>
+<span class="refAuthor">Yao, K.</span>, <span class="refAuthor">Li, C.</span>, <span class="refAuthor">Contreras, L. M.</span>, <span class="refAuthor">Ros-Giralt, J.</span>, and <span class="refAuthor">G. Zeng</span>, <span class="refTitle">"CATS Metrics Definition"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-cats-metric-definition-07</span>, <time datetime="2026-05-08" class="refDate">8 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-07">https://datatracker.ietf.org/doc/html/draft-ietf-cats-metric-definition-07</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
