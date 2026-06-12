@@ -1334,23 +1334,23 @@ None
 
 # Security Considerations
 
-CATS metrics are not merely telemetry data, but are important inputs to the traffic steering selection logic. Incorrect or manipulated metrics can directly affect forwarding behaviour, potentially leading to service disruption or policy violation. CATS metrics are dynamic and sensitive. They may indirectly expose physical locations, health status, or service topology information of CATS service instances. Attackers could sample or correlate metrics to infer internal service instance states and mount targeted attacks. Therefore, the security properties of CATS metric - integrity, authenticity, controllability, freshness, and confidentiality, are of critical importance.
+CATS metrics are not merely telemetry data, but are important inputs to the traffic steering selection logic. Similar to routing metrics, incorrect or manipulated metrics can directly affect the underlying forwarding behaviour, potentially leading to service disruption, denial-of-service, or policy violation. CATS metrics are dynamic and sensitive. They may indirectly expose physical locations, health status, or service topology information of CATS service contact instances. Access to such metric would allow attackers to sample or correlate metrics to infer internal service instance states and mount targeted attacks. Therefore, the security properties of CATS metrics - integrity, authenticity, controllability, freshness, and confidentiality, are of critical importance. Adequate measures are required to prevent these metrics are exposed to non authorized entites.
 
 *Integrity*: ensures that metric values have not been altered by unauthorized entities during collection, distribution, or storage.
 
-SEC-1: All metric messages MUST be protected with cryptographic integrity mechanisms. Receivers MUST verify the integrity of every metric before using it for steering decisions. Any detected integrity violation MUST cause the metric to be discarded and SHOULD trigger an alert.
+SEC-1: All metric messages MUST be protected with cryptographic integrity mechanisms. Receivers MUST verify the integrity of every metric message before using enclosed metrics for traffic steering decisions. Any detected integrity violation MUST cause the relevant metric message to be discarded and SHOULD trigger an alert absent local policy.
 
-*Authenticity*: ensures that a metric genuinely originates from the claimed service instance or trusted publisher.
+*Authenticity*: ensures that a metric message genuinely originates from the claimed service contact instance or a trusted publisher.
 
-SEC-2: Each metric publisher MUST be authenticated using strong cryptographic credentials. Metrics MUST carry a verifiable proof of origin that binds the metric to the publisher's identity. Receivers MUST reject metrics that cannot be authenticated, regardless of their content.
+SEC-2: Each metric publisher MUST be authenticated using strong cryptographic credentials. Metric messages MUST carry a verifiable proof of origin that binds a metric to the publisher's identity. Receivers MUST reject metric messages that cannot be authenticated, regardless of their content.
 
 *Controllability*: ensures that only explicitly authorized entities are allowed to publish metrics.
 
-SEC-3: The CATS system MUST enforce fine-grained control policies that authorize which publishers can report metrics for which service instances. Unauthorized publication attempts MUST be rejected and logged.
+SEC-3: A CATS system MUST enforce fine-grained control policies that authorize which publishers can report metrics for which services. Unauthorized publication attempts MUST be rejected and logged.
 
-*Freshness*: ensures that metrics are not stale or replayed; only sufficiently recent metrics are used for decision-making.
+*Freshness*: ensures that metric values are not stale or replayed; only sufficiently recent metric values are used for decision-making.
 
-SEC-4: Each metric MUST include a precise timestamp and SHOULD include an explicit validity interval or lifetime. Receivers and C-PS MUST enforce freshness checks.
+SEC-4: Each metric message MUST include a precise timestamp and SHOULD include an explicit validity interval or lifetime. Receivers and C-PS MUST enforce freshness checks.
 
 *Confidentiality*: ensures that metric data is not disclosed to unauthorized entities during transmission or storage.
 
