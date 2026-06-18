@@ -1348,14 +1348,13 @@ SEC-2: Each metric publisher MUST be authenticated using strong cryptographic cr
 
 SEC-3: A CATS system MUST enforce fine-grained control policies that authorize which publishers can report metrics for which services. Unauthorized publication attempts MUST be rejected and logged.
 
-*Freshness*: ensures that metric values are not stale or replayed; only sufficiently recent metric values are used for decision-making.
+*Freshness*: ensures that metric values are not stale or replayed. Only sufficiently recent metric values are used for decision-making.
 
-SEC-4: Each metric message MUST include a precise timestamp and SHOULD include an explicit validity interval or lifetime. Receivers and C-PS MUST enforce freshness checks.
+SEC-4: Each metric message MUST be protected against replay and stale value. Receivers and C-PS MUST enforce freshness checks.
 
-*Confidentiality*: ensures that metric data is not disclosed to unauthorized entities during transmission or storage.
+*Confidentiality*: ensures that metric values are not disclosed to unauthorized entities during transmission.
 
-SEC-5: Sensitive metric fields SHOULD be encrypted. Encryption keys MUST be managed securely and rotated periodically. Even when metrics are aggregated, techniques such as differential privacy SHOULD be used to prevent inference of sensitive information.
-
+SEC-5: Metric messages MUST be encrypted during transmission over any network. Encryption keys MUST be managed securely and rotated periodically.
 
 # IANA Considerations
 
