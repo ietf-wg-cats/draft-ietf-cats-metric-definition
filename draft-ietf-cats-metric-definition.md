@@ -285,7 +285,7 @@ Each CATS metric is expressed as a structured set of fields, with each field des
 
 - **Metric_Type**: This field specifies the category or kind of CATS metric being reported, such as computational resources, storage capacity, or network bandwidth. It acts as a label that enables network devices to identify the purpose of the metric.
 
-- **Level**: This field specifies the level at which the metric is measured. It is used to categorize the metric based on its granularity and scope. There are only three valid metric levels defined in  {{three-level-metrics}}. This field can take two values: 1 for Level 1 and 2 for Level 2.
+- **Level**: This field specifies the level at which the metric is measured. It is used to categorize the metric based on its granularity and scope. There are only three valid metric levels defined in  {{three-level-metrics}}. This field can take three values: 0 for Level 0, 1 for Level 1, and 2 for Level 2.
 
 - **Format**: This field indicates the data encoding format of the metric, such as uint, ieee_754_float.
 
@@ -293,7 +293,7 @@ Each CATS metric is expressed as a structured set of fields, with each field des
 
 - **Unit**: This field defines the measurement units for the metric, such as hertz (Hz) for frequency, bytes (B) for data size, or bits per seconds (bps) for data transfer rate. It is usually associated with the metric to provide context for the value.
 
-- **Source**: This field describes the origin of the information used to obtain the metric. This field is optional. It may include one or more of the following non-mutually exclusive values:
+- **Source**: This field describes the origin of the information used to obtain the metric. It may include one or more of the following non-mutually exclusive values:
 
     - 'nominal'. Similar to {{RFC9439}}, "a 'nominal' metric indicates that the metric value is statically configured by the underlying devices.  For example, bandwidth can indicate the maximum transmission rate of the involved device.
 
@@ -1334,7 +1334,27 @@ None
 
 # Security Considerations
 
-The CATS metrics defined in this document are dynamic and potentially sensitive. To prevent stability attacks (e.g., rapid metric churn), implementations MUST support aggregation, dampening, and threshold-triggered updates. To protect against disclosure or tampering, metric collection and distribution MUST use encryption, integrity protection, and authentication among C-SMA, C-NMA, and receivers. C-SMAs MUST authenticate the service instances they report on. False reporting SHOULD be mitigated via secondary validation.
+CATS metrics are not merely telemetry data, but are important inputs to the traffic steering selection logic. Similar to routing metrics, incorrect or manipulated metrics can directly affect the underlying forwarding behaviour, potentially leading to service disruption, denial-of-service, or policy violation. CATS metrics are dynamic and sensitive. They may indirectly expose physical locations, health status, or service topology information of CATS service contact instances. Access to such metric would allow attackers to sample or correlate metrics to infer internal service instance states and mount targeted attacks. Therefore, the security properties of CATS metrics - integrity, authenticity, controllability, freshness, and confidentiality, are of critical importance. Adequate measures are required to prevent these metrics are exposed to non authorized entites.
+
+*Integrity*: ensures that metric values have not been altered by unauthorized entities during collection, distribution, or storage.
+
+SEC-1: All metric messages MUST be protected with cryptographic integrity mechanisms. Receivers MUST verify the integrity of every metric message before using enclosed metrics for traffic steering decisions. Any detected integrity violation MUST cause the relevant metric message to be discarded and SHOULD trigger an alert absent local policy.
+
+*Authenticity*: ensures that a metric message genuinely originates from the claimed service contact instance or a trusted publisher.
+
+SEC-2: Each metric publisher MUST be authenticated using strong cryptographic credentials. Metric messages MUST carry a verifiable proof of origin that binds a metric to the publisher's identity. Receivers MUST reject metric messages that cannot be authenticated, regardless of their content.
+
+*Controllability*: ensures that only explicitly authorized entities are allowed to publish metrics.
+
+SEC-3: A CATS system MUST enforce fine-grained control policies that authorize which publishers can report metrics for which services. Unauthorized publication attempts MUST be rejected and logged.
+
+*Freshness*: ensures that metric values are not stale or replayed. Only sufficiently recent metric values are used for decision-making.
+
+SEC-4: Each metric message MUST be protected against replay and stale value. Receivers and C-PS MUST enforce freshness checks.
+
+*Confidentiality*: ensures that metric values are not disclosed to unauthorized entities during transmission.
+
+SEC-5: Metric messages MUST be encrypted during transmission over any network. Encryption keys MUST be managed securely and rotated periodically.
 
 # IANA Considerations
 
@@ -1414,3 +1434,9 @@ Fields:
       Value: 231.5
 ~~~
 {: #fig-delay-raw-metric title="An Example for Delay Raw Metrics"}
+
+# Acknowledgements
+
+Authors would like to give special thanks to Adrian Farrel for detailed review as working group chair.
+
+Special thanks to Jacqueline McCall for Secdir review.
