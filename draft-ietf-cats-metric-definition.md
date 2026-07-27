@@ -1331,6 +1331,14 @@ To-be-assigned
 
 None
 
+# Operational Considerations
+
+CATS metrics describe dynamic computing, network, and service conditions. Delays in collection, aggregation, normalization, or distribution, as well as missed updates, inconsistent observations, or failures of metric collection components (e.g., C-SMA or C-NMA) or the metric distribution system, but no longer sufficiently reflects the condition relevant to a CATS decision. Freshness should be evaluated where a metric is used for an operational decision. Because metrics change at different rates and serve different purposes, a common update interval or validity threshold may not be appropriate for all metrics. Timestamps, update continuity, and other metadata provide evidence of freshness, but do not by themselves determine whether a metric remains suitable for use.
+
+When a metric is unavailable or insufficiently fresh, the consuming CATS component (e.g., C-PS) should determine whether to use a last-known-good value, use the metric with reduced confidence, de-prioritize the associated service contact instance, invoke fallback behavior, or exclude the metric from the decision. Each metric should be evaluated according to its intended use. A decision may remain operational in a degraded mode.
+
+To make such conditions and handling visible and to support troubleshooting, operational state should expose the status of metric collection, distribution, and consumption, including freshness-related information, detected anomalies, and their impact on CATS decisions. Validation failures and the resulting handling should also be made visible to operators, together with their reason and impact on the CATS decision.
+
 
 # Security Considerations
 
@@ -1350,7 +1358,7 @@ SEC-3: A CATS system MUST enforce fine-grained control policies that authorize w
 
 *Freshness*: ensures that metric values are not stale or replayed. Only sufficiently recent metric values are used for decision-making.
 
-SEC-4: Each metric message MUST be protected against replay and stale value. Receivers and C-PS MUST enforce freshness checks.
+SEC-4: Each metric message MUST be protected against replay. Receivers and C-PS MUST enforce freshness checks to verify that the message has not been replayed and to assess whether the metric values remain sufficiently recent for decision-making. Metric values that are not sufficiently recent MUST be handled according to applicable policy.
 
 *Confidentiality*: ensures that metric values are not disclosed to unauthorized entities during transmission.
 
