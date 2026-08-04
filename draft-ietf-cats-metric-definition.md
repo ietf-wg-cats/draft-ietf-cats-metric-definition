@@ -1385,7 +1385,7 @@ SEC-5: Metric messages MUST be encrypted during transmission over any network. E
 
 # IANA Considerations
 
-This document defines several CATS metric registry entries. IANA is requested to create a new registry titled "CATS Metrics" under a new "Computing-Aware Traffic Steering (CATS)" heading.
+This document defines several CATS metric registry entries. IANA is requested to create a new registry titled "CATS Metrics" under a new "Computing-Aware Traffic Steering (CATS)" registry group.
 
 The initial entries for this registry are defined in {{cats-metrics-registry}} as follows:
 
