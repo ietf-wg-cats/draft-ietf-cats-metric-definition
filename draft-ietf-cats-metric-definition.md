@@ -279,7 +279,7 @@ principles:
   improves transparency and enables implementations to better assess the
   reliability, accuracy, and semantics of the reported values.
 
- ## CATS Metric Fields {#cats-metric-fields}
+## CATS Metric Fields {#cats-metric-fields}
 
 Each CATS metric is expressed as a structured set of fields, with each field describing a specific property of the metric. The following definition introduces the fields used in the CATS metric representations.
 
@@ -1403,17 +1403,20 @@ For each entry, IANA is requested to assign a unique Identifier (defined in each
 
 All metric entries have the following common attributes: Name, URI, Description, Change Controller (IETF), and Version. The naming convention and structure follow the definitions in each respective subsection of {{cats-metrics-registry}}.
 
-IANA is further requested to create a registry titled "CATS Metric Functions"
-{#cats-function-registry} under the same "Computing-Aware Traffic Steering (CATS)"
-heading. Each entry has the following fields: Identifier, Name, Kind (one of
-'aggregation' or 'normalization'), Definitional Reference, and Change Controller.
-New values are assigned by Specification Required {{!RFC8126}}.
+## CATS Metric Functions Registry {#cats-function-registry}
 
- The initial entries are:
+IANA is requested to create a registry titled "CATS Metric Functions" under the
+"Computing-Aware Traffic Steering (CATS)" heading. Each entry has the following
+fields: Identifier, Name, Kind (one of 'aggregation' or 'normalization'),
+Definitional Reference, and Change Controller. New values are assigned by
+Specification Required {{!RFC8126}}.
 
- | Identifier | Name | Kind | Definitional Reference |
- | 1 | min-max | normalization | {{Min-max-sigmoid}} |
- | 2 | sigmoid | normalization | {{Min-max-sigmoid}} |
+The initial entries are:
+
+| Identifier | Name    | Kind          | Definitional Reference | Change Controller |
+|------------|---------|---------------|------------------------|-------------------|
+| 1          | min-max | normalization | {{Min-max-sigmoid}}    | IETF              |
+| 2          | sigmoid | normalization | {{Min-max-sigmoid}}    | IETF              |
 
 --- back
 
