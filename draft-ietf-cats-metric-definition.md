@@ -216,14 +216,14 @@ yield a unitless score reflecting the performance of the underlying resources. T
 
 - **Composed:** A value derived from aggregating a combination of computing, communication, and service metrics.
 
-Refer to {{aggregation-function}} and {{normalization-function}} for the definitions and examples of aggregation functions and normalization functions, respectively. Refer to {{score-meaning}} for the default policies and guidance provided to implementations.
+Refer to {{aggregation-function}} and {{normalization-function}} for the definitions and examples of aggregation functions and normalization functions, respectively. Refer to {{ops-considerations}} for the default policies and guidance provided to implementations.
 
 Level 1 metrics allow to focus solely on the metric categories and their simple values, thereby avoiding the need to process solution-specific Level 0 metrics.
 
 ## Level 2: A Single Normalized Metric
 
 The Level 2 metric is a single, normalized score derived from lower-level metrics (Level 0 and/or Level 1) through the application of aggregation and normalization functions. Different implementations
-may apply different functions to characterize the overall performance of the underlying computing and communication resources. By consolidating multiple lower-level metrics into a single score, the Level 2 metric significantly reduces the complexity associated with metric collection and distribution. {{score-meaning}} further describes default policies for implementations.
+may apply different functions to characterize the overall performance of the underlying computing and communication resources. By consolidating multiple lower-level metrics into a single score, the Level 2 metric significantly reduces the complexity associated with metric collection and distribution. {{ops-considerations}} further describes default policies for implementations.
 
 Figure 1 provides a summary of the logical relationships between metrics across the three levels of abstraction.
 
@@ -320,7 +320,7 @@ Each CATS metric is expressed as a structured set of fields, with each field des
 
 - **Value**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
-- **Observation_Time**: This field indicates the instant to which the value refers, expressed as a date and time in the format defined in {{RFC3339}}. This field is optional. 
+- **Observation_Time**: This field indicates the instant to which the value refers, expressed as a date and time in the format defined in {{RFC3339}}. This field is optional.
 
 - **Validity_Interval**: This field indicates the period, beginning at 'Observation_Time', during which the metric value remains usable for instance selection. This field is optional, and where it is absent, the usable lifetime of the value is determined by local policy.
 
@@ -1338,7 +1338,7 @@ Within a single administrative domain, if CATS components (C-SMA, C-NMA, C-PS) a
 
 - Score range: It is recommended to choose a commonly used range that is easy to read and facilitates subsequent processing, for example, uniformly adopt 0-10.
 
-- Normalization method type: All parties shall agree on using the same type of method, for example, min-max scaling, and specify its key parameters (e.g., upper/lower bounds, reference mean). 
+- Normalization method type: All parties shall agree on using the same type of method, for example, min-max scaling, and specify its key parameters (e.g., upper/lower bounds, reference mean).
 
 ** Key points for aggregation function negotiation: aggregation formula type and weighting coefficients, such as weighted sum, weighted product, harmonic mean, along with their corresponding parameters. The specific form and parameters shall be negotiated and unified among all parties.
 
@@ -1494,4 +1494,4 @@ Authors would like to give special thanks to Adrian Farrel for detailed review a
 
 Special thanks to Jacqueline McCall for Secdir early review, to Fung Lim for Opsdir early review.
 
-Special thanks to Mengfei Zhu for review comments. 
+Special thanks to Mengfei Zhu for review comments.
