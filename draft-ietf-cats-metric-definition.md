@@ -57,6 +57,9 @@ contributor:
 - name: Saumya Dikshit
   org: Aruba Networks, Hewlett Packard Enterprise
   email: saumya.dikshit@hpe.com
+- name: Mengfei Zhu
+  org: zhumengfei@cmdi.chinamobile.com
+  email: China Mobile
 
 informative:
   I-D.ietf-cats-usecases-requirements:
@@ -1494,4 +1497,3 @@ Authors would like to give special thanks to Adrian Farrel for detailed review a
 
 Special thanks to Jacqueline McCall for Secdir early review, to Fung Lim for Opsdir early review.
 
-Special thanks to Mengfei Zhu for review comments.
