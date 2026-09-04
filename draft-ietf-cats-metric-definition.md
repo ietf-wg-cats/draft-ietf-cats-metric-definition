@@ -286,7 +286,7 @@ principles:
   improves transparency and enables implementations to better assess the
   reliability, accuracy, and semantics of the reported values.
 
-## CATS Metric Fields
+## CATS Metric Fields {#cats-metric-fields}
 
 Each CATS metric is expressed as a structured set of fields, with each field describing a specific property of the metric. The following definition introduces the fields used in the CATS metric representations.
 
@@ -320,6 +320,24 @@ Each CATS metric is expressed as a structured set of fields, with each field des
     - 'min'. The minimum value of the data collected over the intervals.
     - 'mean'. The average value of the data collected over the intervals.
     - 'cur'. The current value of the data collected.
+
+- **Function**: This field identifies the aggregation or normalization function that
+produced the value, by reference to its entry in the "CATS Metric Functions" registry
+({{cats-function-registry}}). This field MUST be present when 'Source' is 'normalization'
+or 'aggregation'. Two values of the same metric that were produced by different functions
+are not comparable, and without this field a consumer cannot detect that condition.
+
+- **Observation_Time**: This field indicates the instant to which the value refers,
+expressed as a date and time in the format defined in {{!RFC3339}}. Where the value is
+derived from a sampling interval, this field indicates the end of that interval and is
+used together with the 'Measurement_Window' parameter.
+
+- **Validity_Interval**: This field indicates the period, beginning at 'Observation_Time',
+during which the producer considers the value to remain usable for instance selection.
+This field is optional; where it is absent, the usable lifetime of the value is determined
+by local policy. A consumer that holds a value whose validity interval has elapsed has a
+stale observation rather than a disagreeing one, and the two cases are distinguished by
+this field.
 
 - **Value**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
@@ -380,7 +398,16 @@ Normalization functions are commonly used to transform metric values into a boun
 
 - Min-max scaling: Rescales values based on known minimum and maximum bounds.
 
-These normalization functions are also not standardized in this document. They are implementation-specific and controlled by operator policies.
+The normalization and aggregation functions used by a CATS system are registered in
+the "CATS Metric Functions" registry ({{cats-function-registry}}), which assigns a
+stable identifier and a definitional reference to each. Registration fixes the
+identity and meaning of a function; it does not constrain which function an operator
+chooses to apply, and it does not prevent the use of functions outside the registry.
+Selection of a function remains implementation-specific and controlled by operator
+policy, and the function actually applied is conveyed in the 'Function' field defined
+in {{cats-metric-fields}}. This satisfies the requirement in Section 5.4 of
+{{I-D.ietf-cats-framework}} that a set of normalization and aggregation functions be
+specified, without removing the operator control described here.
 
 ~~~
   +----------+     +------------------------+     +----------+
@@ -1414,7 +1441,7 @@ SEC-5: Metric messages MUST be encrypted during transmission over any network. E
 
 # IANA Considerations
 
-This document defines several CATS metric registry entries. IANA is requested to create a new registry titled "CATS Metrics" under a new "Computing-Aware Traffic Steering (CATS)" heading.
+This document defines several CATS metric registry entries. IANA is requested to create a new registry titled "CATS Metrics" under a new "Computing-Aware Traffic Steering (CATS)" registry group.
 
 The initial entries for this registry are defined in {{cats-metrics-registry}} as follows:
 
@@ -1432,6 +1459,20 @@ For each entry, IANA is requested to assign a unique Identifier (defined in each
 
 All metric entries have the following common attributes: Name, URI, Description, Change Controller (IETF), and Version. The naming convention and structure follow the definitions in each respective subsection of {{cats-metrics-registry}}.
 
+## CATS Metric Functions Registry {#cats-function-registry}
+
+IANA is requested to create a registry titled "CATS Metric Functions" under the
+"Computing-Aware Traffic Steering (CATS)" heading. Each entry has the following
+fields: Identifier, Name, Kind (one of 'aggregation' or 'normalization'),
+Definitional Reference, and Change Controller. New values are assigned by
+Specification Required {{!RFC8126}}.
+
+The initial entries are:
+
+| Identifier | Name    | Kind          | Definitional Reference | Change Controller |
+|------------|---------|---------------|------------------------|-------------------|
+| 1          | min-max | normalization | {{Min-max-sigmoid}}    | IETF              |
+| 2          | sigmoid | normalization | {{Min-max-sigmoid}}    | IETF              |
 
 --- back
 
