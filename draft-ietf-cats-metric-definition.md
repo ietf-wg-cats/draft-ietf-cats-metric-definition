@@ -54,6 +54,12 @@ contributor:
 - name: Hang Shi
   org: Huawei
   email: shihang9@huawei.com
+- name: Saumya Dikshit
+  org: Aruba Networks, Hewlett Packard Enterprise
+  email: saumya.dikshit@hpe.com
+- name: Mengfei Zhu
+  org: zhumengfei@cmdi.chinamobile.com
+  email: China Mobile
 
 informative:
   I-D.ietf-cats-usecases-requirements:
@@ -84,6 +90,7 @@ informative:
 
 normative:
   RFC2119:
+  RFC3339:
   RFC5835:
   RFC6241:
   RFC7011:
@@ -212,14 +219,14 @@ yield a unitless score reflecting the performance of the underlying resources. T
 
 - **Composed:** A value derived from aggregating a combination of computing, communication, and service metrics.
 
-Refer to {{aggregation-function}} and {{normalization-function}} for the definitions and examples of aggregation functions and normalization functions, respectively. Refer to {{score-meaning}} for the default policies and guidance provided to implementations.
+Refer to {{aggregation-function}} and {{normalization-function}} for the definitions and examples of aggregation functions and normalization functions, respectively. Refer to {{ops-considerations}} for the default policies and guidance provided to implementations.
 
 Level 1 metrics allow to focus solely on the metric categories and their simple values, thereby avoiding the need to process solution-specific Level 0 metrics.
 
 ## Level 2: A Single Normalized Metric
 
 The Level 2 metric is a single, normalized score derived from lower-level metrics (Level 0 and/or Level 1) through the application of aggregation and normalization functions. Different implementations
-may apply different functions to characterize the overall performance of the underlying computing and communication resources. By consolidating multiple lower-level metrics into a single score, the Level 2 metric significantly reduces the complexity associated with metric collection and distribution. {{score-meaning}} further describes default policies for implementations.
+may apply different functions to characterize the overall performance of the underlying computing and communication resources. By consolidating multiple lower-level metrics into a single score, the Level 2 metric significantly reduces the complexity associated with metric collection and distribution. {{ops-considerations}} further describes default policies for implementations.
 
 Figure 1 provides a summary of the logical relationships between metrics across the three levels of abstraction.
 
@@ -316,6 +323,10 @@ Each CATS metric is expressed as a structured set of fields, with each field des
 
 - **Value**: This field represents the actual numerical value of the metric being measured. It provides the specific data point for the metric in question.
 
+- **Observation_Time**: This field indicates the instant to which the value refers, expressed as a date and time in the format defined in {{RFC3339}}. This field is optional.
+
+- **Validity_Interval**: This field indicates the period, beginning at 'Observation_Time', during which the metric value remains usable for instance selection. This field is optional, and where it is absent, the usable lifetime of the value is determined by local policy.
+
 The value assignment and encoding rules for these fields are specified in Section {{level-metric-representations}}.
 
 ## Aggregation and Normalization Functions
@@ -380,19 +391,6 @@ These normalization functions are also not standardized in this document. They a
 ~~~
 {: #fig-norm-funct title="Normalization function"}
 
-## On the Meaning of Scores in Heterogeneous Metrics Systems {#score-meaning}
-
-In a system like CATS, where metrics originate from heterogeneous resources---such as compute, communication, and storage---the interpretation of scores requires careful consideration. While normalization functions can convert raw metrics into unitless scores to enable comparison, these scores may not be directly comparable across different implementations. For example, a score of 7 on a scale from 0 to 10 may represent a high-quality resource in one implementation, but only an average one in another.
-
-To achieve consistent cross-vendor behavior, the default normalization policies defined in this document should be followed by all implementations:
-
-* Score directions and semantic mapping:
-A common 0-10 numeric range should be used for all normalized scores. Unless otherwise specified by the implementation in accompanying documentation, scores in the range 0-3 indicate low capability (not recommended for steering), 4-7 indicate medium capability (steering optional), and 8-10 indicate high capability (priority for steering). This mapping is normative for all CATS Level 1 and Level 2 metrics defined in this document.
-
-* Normalization function baseline:
-Unless documented otherwise, implementations should use min-max scaling to map the aggregated raw value into the 0-10 range, based on implementation-specific minimum and maximum expected values. Other functions (e.g., sigmoid) are permitted but their parameters must be documented.
-
-* Measurement window: There is no fixed default measurement window. For illustration, a window of 10 seconds is suggested as an example. Implementations can use their chosen window length, but they must indicate the window length as a parameter (i.e., via the Measurement_Window field defined in the registry entries).
 
 ## Level Metric Representations {#level-metric-representations}
 
@@ -567,7 +565,7 @@ Fields:
 ~~~
 {: #fig-level-2-metric title="Example of a normalized Level 2 metric"}
 
-# Comparison among Metric Levels
+# Comparison among Metric Levels {#comparison-among-levels}
 
 Metrics are progressively consolidated from Level 0 to Level 1 and then to Level 2, with each level offering an increasing degree of abstraction to address the diverse requirements of different services. Table 1 provides a comparative overview of the defined metric levels.
 
@@ -1331,8 +1329,66 @@ To-be-assigned
 
 None
 
+# Operational Considerations {#ops-considerations}
 
-# Security Considerations
+This section describes operational aspects related to the deployment and operation of CATS metrics in the network. Since CATS metrics directly influence instance selection and traffic steering decisions, operators should consider the following topics when planning, deploying, and operating CATS systems.
+
+## Negotiation of Normalization and Aggregation Functions in Multi-Vendor Environments {#negotiation}
+
+Within a single administrative domain, if CATS components (C-SMA, C-NMA, C-PS) are supplied by different vendors, it is essential to ensure that all vendors have a consistent understanding of CATS metric scores, otherwise, steering decisions may be biased. This is also explicitly required in Section 5.4 of {{I-D.ietf-cats-framework}}. This subsection provides operational guidance for negotiating these functions in scenarios where multi-vendor components within the same domain need to interoperate.
+
+** Key points for normalization function negotiation:
+
+- Score range: It is recommended to choose a commonly used range that is easy to read and facilitates subsequent processing, for example, uniformly adopt 0-10.
+
+- Normalization method type: All parties shall agree on using the same type of method, for example, min-max scaling, and specify its key parameters (e.g., upper/lower bounds, reference mean).
+
+** Key points for aggregation function negotiation: aggregation formula type and weighting coefficients, such as weighted sum, weighted product, harmonic mean, along with their corresponding parameters. The specific form and parameters shall be negotiated and unified among all parties.
+
+** Direction of comparison: explicitly specify whether a higher score indicates better performance or a lower score indicates better performance. It is recommended to adopt a uniform direction, or to specify each metric category separately and clearly document it.
+
+All negotiation results described above should be compiled into a formal configuration manifest and synchronised, during the initialisation phase and in an offline manner, to those CATS components that require metrics for decision-making. The manifest should be version-controlled to track changes.
+
+After the system goes live, each component must operate under the default assumption that metric scores received from other vendors have been processed according to the agreed functions and are fully comparable, and no runtime dynamic negotiation is required.
+
+If the parties cannot reach agreement on the normalization and aggregation functions, operators may choose centralised normalization or aggregation of metrics, or agree to use a specific Level 0 metric for steering decisions.
+
+## Metric Level Selection and Update Frequency Trade-offs {#update-frq}
+
+As discussed in {#comparison-among-levels}, the different levels have trade-offs in encoding complexity, scalability, and stability. Level 1 metrics (compute, communication, service, composed) retain independent information per category, making them suitable for scenarios requiring fine-grained visibility and complex steering policies, but they increase signalling overhead and computational complexity. The Level 2 global score provides a single composite value, simplifying policies and reducing overhead, but it hides the contribution of each category. Operators should choose based on policy complexity and the desired granularity of visibility. The choice of metrics and update frequency affect the control plane, and operators should consider their network scale and policy responsiveness requirements to jointly decide on the level and update parameters.
+
+** Advertisement rate limit: it is recommended to limit per-instance metric updates to no more than once per measurement window (e.g., 10 seconds). When scaling to hundreds or thousands of instances, the total control plane load must be evaluated.
+
+** Strategies to reduce overhead: when the control plane becomes a bottleneck, operators may:
+
+- increase the measurement window (e.g., to 30 or 60 seconds) to reduce update frequency.
+
+- advertise only Level 2 global scores rather than full Level 1 category metrics.
+
+- use statistical fields (max, min, mean, cur) to provide summarised information without increasing the number of updates.
+
+## Metric Collection Failures, Fallback Behavior, and Fault Alarms {#fault-alarm}
+
+** When metrics are unavailable or fail freshness checks, the following fallback actions are recommended:
+
+- Use last known good value: C-PS may continue using the most recent valid value for a limited period (e.g., 2 to 3 measurement windows) while waiting for the metric source to recover.
+
+- Downgrade or exclude the instance: if the metric source exceeds the configured staleness threshold without recovery, the associated instance should be downgraded or removed from steering decisions until a fresh metric is received.
+
+- Fallback to network-only steering: as a last resort, affected instances may fall back to traditional network-aware steering (ignoring compute metrics).
+
+** Operators should establish monitoring and alarm mechanisms for the following conditions:
+
+- Metric freshness failures: timeouts or invalid signatures as defined in SEC-4 from {#sec-considerations} should trigger immediate alarms
+
+- Component unavailability: session interruptions or publication failures of C-SMA, C-NMA, or C-PS must trigger alarms.
+
+- Score anomalies: including sudden large drops, stuck values, or significant contradictions between Level 1 category scores and the Level 2 composite score, and these should trigger alarms.
+
+Upon alarm triggering, operators are required to identify root causes, apply temporary mitigation policies, and log the event.
+
+
+# Security Considerations {#sec-considerations}
 
 CATS metrics are not merely telemetry data, but are important inputs to the traffic steering selection logic. Similar to routing metrics, incorrect or manipulated metrics can directly affect the underlying forwarding behaviour, potentially leading to service disruption, denial-of-service, or policy violation. CATS metrics are dynamic and sensitive. They may indirectly expose physical locations, health status, or service topology information of CATS service contact instances. Access to such metric would allow attackers to sample or correlate metrics to infer internal service instance states and mount targeted attacks. Therefore, the security properties of CATS metrics - integrity, authenticity, controllability, freshness, and confidentiality, are of critical importance. Adequate measures are required to prevent these metrics are exposed to non authorized entites.
 
@@ -1439,4 +1495,5 @@ Fields:
 
 Authors would like to give special thanks to Adrian Farrel for detailed review as working group chair.
 
-Special thanks to Jacqueline McCall for Secdir review.
+Special thanks to Jacqueline McCall for Secdir early review, to Fung Lim for Opsdir early review.
+
