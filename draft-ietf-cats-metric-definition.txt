@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 23 December 2026                            Huawei Technologies
+Expires: 8 March 2027                                Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                  G. Zeng
                                                      Huawei Technologies
-                                                            21 June 2026
+                                                        4 September 2026
 
 
                         CATS Metrics Definition
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 23 December 2026.
+   This Internet-Draft will expire on 8 March 2027.
 
 Copyright Notice
 
@@ -88,11 +88,10 @@ Table of Contents
      4.2.  Aggregation and Normalization Functions
        4.2.1.  Aggregation
        4.2.2.  Normalization
-     4.3.  On the Meaning of Scores in Heterogeneous Metrics Systems
-     4.4.  Level Metric Representations
-       4.4.1.  Level 0 Metrics
-       4.4.2.  Level 1 Metrics
-       4.4.3.  Level 2 Global Metric
+     4.3.  Level Metric Representations
+       4.3.1.  Level 0 Metrics
+       4.3.2.  Level 1 Metrics
+       4.3.3.  Level 2 Global Metric
    5.  Comparison among Metric Levels
    6.  CATS Metric Registry Entries
      6.1.  CATS Level 2 Metric Registry Entry
@@ -124,11 +123,17 @@ Table of Contents
        6.5.3.  Method of Measurement
        6.5.4.  Output
        6.5.5.  Administrative Items
-   7.  Security Considerations
-   8.  IANA Considerations
-   9.  References
-     9.1.  Normative References
-     9.2.  Informative References
+   7.  Operational Considerations
+     7.1.  Negotiation of Normalization and Aggregation Functions in
+           Multi-Vendor Environments
+     7.2.  Metric Level Selection and Update Frequency Trade-offs
+     7.3.  Metric Collection Failures, Fallback Behavior, and Fault
+           Alarms
+   8.  Security Considerations
+   9.  IANA Considerations
+   10. References
+     10.1.  Normative References
+     10.2.  Informative References
    Appendix A.  Level 0 Metric Examples
      A.1.  Compute Raw Metrics
      A.2.  Communication Raw Metrics
@@ -329,7 +334,7 @@ Table of Contents
 
    Refer to Section 4.2.1 and Section 4.2.2 for the definitions and
    examples of aggregation functions and normalization functions,
-   respectively.  Refer to Section 4.3 for the default policies and
+   respectively.  Refer to Section 7 for the default policies and
    guidance provided to implementations.
 
    Level 1 metrics allow to focus solely on the metric categories and
@@ -345,7 +350,7 @@ Table of Contents
    of the underlying computing and communication resources.  By
    consolidating multiple lower-level metrics into a single score, the
    Level 2 metric significantly reduces the complexity associated with
-   metric collection and distribution.  Section 4.3 further describes
+   metric collection and distribution.  Section 7 further describes
    default policies for implementations.
 
    Figure 1 provides a summary of the logical relationships between
@@ -499,8 +504,18 @@ Table of Contents
       metric being measured.  It provides the specific data point for
       the metric in question.
 
+   *  *Observation_Time*: This field indicates the instant to which the
+      value refers, expressed as a date and time in the format defined
+      in [RFC3339].  This field is optional.
+
+   *  *Validity_Interval*: This field indicates the period, beginning at
+      'Observation_Time', during which the metric value remains usable
+      for instance selection.  This field is optional, and where it is
+      absent, the usable lifetime of the value is determined by local
+      policy.
+
    The value assignment and encoding rules for these fields are
-   specified in Section Section 4.4.
+   specified in Section Section 4.3.
 
 4.2.  Aggregation and Normalization Functions
 
@@ -601,56 +616,20 @@ Table of Contents
 
                       Figure 3: Normalization function
 
-4.3.  On the Meaning of Scores in Heterogeneous Metrics Systems
-
-   In a system like CATS, where metrics originate from heterogeneous
-   resources---such as compute, communication, and storage---the
-   interpretation of scores requires careful consideration.  While
-   normalization functions can convert raw metrics into unitless scores
-   to enable comparison, these scores may not be directly comparable
-   across different implementations.  For example, a score of 7 on a
-   scale from 0 to 10 may represent a high-quality resource in one
-   implementation, but only an average one in another.
-
-   To achieve consistent cross-vendor behavior, the default
-   normalization policies defined in this document should be followed by
-   all implementations:
-
-   *  Score directions and semantic mapping: A common 0-10 numeric range
-      should be used for all normalized scores.  Unless otherwise
-      specified by the implementation in accompanying documentation,
-      scores in the range 0-3 indicate low capability (not recommended
-      for steering), 4-7 indicate medium capability (steering optional),
-      and 8-10 indicate high capability (priority for steering).  This
-      mapping is normative for all CATS Level 1 and Level 2 metrics
-      defined in this document.
-
-   *  Normalization function baseline: Unless documented otherwise,
-      implementations should use min-max scaling to map the aggregated
-      raw value into the 0-10 range, based on implementation-specific
-      minimum and maximum expected values.  Other functions (e.g.,
-      sigmoid) are permitted but their parameters must be documented.
-
-   *  Measurement window: There is no fixed default measurement window.
-      For illustration, a window of 10 seconds is suggested as an
-      example.  Implementations can use their chosen window length, but
-      they must indicate the window length as a parameter (i.e., via the
-      Measurement_Window field defined in the registry entries).
-
-4.4.  Level Metric Representations
+4.3.  Level Metric Representations
 
    This section specifies the representation format and constraints for
    Level 1 and Level 2 metrics, ensuring consistent encoding and
    interoperability across implementations.
 
-4.4.1.  Level 0 Metrics
+4.3.1.  Level 0 Metrics
 
    Level 0 metrics are raw metrics that are not standardized in this
    document.  See Appendix A for examples of Level 0 metrics defined in
    the compute and communication industries and by other standardization
    organizations such as the [DMTF].
 
-4.4.2.  Level 1 Metrics
+4.3.2.  Level 1 Metrics
 
    Level 1 metrics are derived from Level 0 metrics through the
    application of aggregation functions and, when appropriate,
@@ -671,7 +650,7 @@ Table of Contents
 
    *  normalization: The value is mapped into a unitless score.
 
-4.4.2.1.  Level 1 Computing Metrics
+4.3.2.1.  Level 1 Computing Metrics
 
    The Metric Type for Level 1 computing metrics is level1_computing.
 
@@ -698,7 +677,7 @@ Table of Contents
 
               Figure 4: Examples of Level 1 computing metrics
 
-4.4.2.2.  Level 1 Communication Metrics
+4.3.2.2.  Level 1 Communication Metrics
 
    The Metric Type for Level 1 communication metrics is
    level1_communication.
@@ -726,7 +705,7 @@ Table of Contents
 
             Figure 5: Examples of Level 1 communication metrics
 
-4.4.2.3.  Level 1 Service Metrics
+4.3.2.3.  Level 1 Service Metrics
 
    The Metric Type for Level 1 service metrics is level1_service.
 
@@ -753,7 +732,7 @@ Table of Contents
 
                Figure 6: Examples of Level 1 service metrics
 
-4.4.2.4.  Level 1 Composed Metrics
+4.3.2.4.  Level 1 Composed Metrics
 
    The Metric Type for Level 1 composed metrics is level1_composed.
 
@@ -780,7 +759,7 @@ Table of Contents
 
                Figure 7: Examples of Level 1 composed metrics
 
-4.4.3.  Level 2 Global Metric
+4.3.3.  Level 2 Global Metric
 
    A Level 2 metric is a single-value, normalized metric that does not
    carry any inherent physical unit.  While each provider may employ its
@@ -1922,7 +1901,133 @@ Table of Contents
 
    None
 
-7.  Security Considerations
+7.  Operational Considerations
+
+   This section describes operational aspects related to the deployment
+   and operation of CATS metrics in the network.  Since CATS metrics
+   directly influence instance selection and traffic steering decisions,
+   operators should consider the following topics when planning,
+   deploying, and operating CATS systems.
+
+7.1.  Negotiation of Normalization and Aggregation Functions in Multi-
+      Vendor Environments
+
+   Within a single administrative domain, if CATS components (C-SMA,
+   C-NMA, C-PS) are supplied by different vendors, it is essential to
+   ensure that all vendors have a consistent understanding of CATS
+   metric scores, otherwise, steering decisions may be biased.  This is
+   also explicitly required in Section 5.4 of [I-D.ietf-cats-framework].
+   This subsection provides operational guidance for negotiating these
+   functions in scenarios where multi-vendor components within the same
+   domain need to interoperate.
+
+   ** Key points for normalization function negotiation:
+
+   *  Score range: It is recommended to choose a commonly used range
+      that is easy to read and facilitates subsequent processing, for
+      example, uniformly adopt 0-10.
+
+   *  Normalization method type: All parties shall agree on using the
+      same type of method, for example, min-max scaling, and specify its
+      key parameters (e.g., upper/lower bounds, reference mean).
+
+   ** Key points for aggregation function negotiation: aggregation
+   formula type and weighting coefficients, such as weighted sum,
+   weighted product, harmonic mean, along with their corresponding
+   parameters.  The specific form and parameters shall be negotiated and
+   unified among all parties.
+
+   ** Direction of comparison: explicitly specify whether a higher score
+   indicates better performance or a lower score indicates better
+   performance.  It is recommended to adopt a uniform direction, or to
+   specify each metric category separately and clearly document it.
+
+   All negotiation results described above should be compiled into a
+   formal configuration manifest and synchronised, during the
+   initialisation phase and in an offline manner, to those CATS
+   components that require metrics for decision-making.  The manifest
+   should be version-controlled to track changes.
+
+   After the system goes live, each component must operate under the
+   default assumption that metric scores received from other vendors
+   have been processed according to the agreed functions and are fully
+   comparable, and no runtime dynamic negotiation is required.
+
+   If the parties cannot reach agreement on the normalization and
+   aggregation functions, operators may choose centralised normalization
+   or aggregation of metrics, or agree to use a specific Level 0 metric
+   for steering decisions.
+
+7.2.  Metric Level Selection and Update Frequency Trade-offs
+
+   As discussed in {#comparison-among-levels}, the different levels have
+   trade-offs in encoding complexity, scalability, and stability.  Level
+   1 metrics (compute, communication, service, composed) retain
+   independent information per category, making them suitable for
+   scenarios requiring fine-grained visibility and complex steering
+   policies, but they increase signalling overhead and computational
+   complexity.  The Level 2 global score provides a single composite
+   value, simplifying policies and reducing overhead, but it hides the
+   contribution of each category.  Operators should choose based on
+   policy complexity and the desired granularity of visibility.  The
+   choice of metrics and update frequency affect the control plane, and
+   operators should consider their network scale and policy
+   responsiveness requirements to jointly decide on the level and update
+   parameters.
+
+   ** Advertisement rate limit: it is recommended to limit per-instance
+   metric updates to no more than once per measurement window (e.g., 10
+   seconds).  When scaling to hundreds or thousands of instances, the
+   total control plane load must be evaluated.
+
+   ** Strategies to reduce overhead: when the control plane becomes a
+   bottleneck, operators may:
+
+   *  increase the measurement window (e.g., to 30 or 60 seconds) to
+      reduce update frequency.
+
+   *  advertise only Level 2 global scores rather than full Level 1
+      category metrics.
+
+   *  use statistical fields (max, min, mean, cur) to provide summarised
+      information without increasing the number of updates.
+
+7.3.  Metric Collection Failures, Fallback Behavior, and Fault Alarms
+
+   ** When metrics are unavailable or fail freshness checks, the
+   following fallback actions are recommended:
+
+   *  Use last known good value: C-PS may continue using the most recent
+      valid value for a limited period (e.g., 2 to 3 measurement
+      windows) while waiting for the metric source to recover.
+
+   *  Downgrade or exclude the instance: if the metric source exceeds
+      the configured staleness threshold without recovery, the
+      associated instance should be downgraded or removed from steering
+      decisions until a fresh metric is received.
+
+   *  Fallback to network-only steering: as a last resort, affected
+      instances may fall back to traditional network-aware steering
+      (ignoring compute metrics).
+
+   ** Operators should establish monitoring and alarm mechanisms for the
+   following conditions:
+
+   *  Metric freshness failures: timeouts or invalid signatures as
+      defined in SEC-4 from {#sec-considerations} should trigger
+      immediate alarms
+
+   *  Component unavailability: session interruptions or publication
+      failures of C-SMA, C-NMA, or C-PS must trigger alarms.
+
+   *  Score anomalies: including sudden large drops, stuck values, or
+      significant contradictions between Level 1 category scores and the
+      Level 2 composite score, and these should trigger alarms.
+
+   Upon alarm triggering, operators are required to identify root
+   causes, apply temporary mitigation policies, and log the event.
+
+8.  Security Considerations
 
    CATS metrics are not merely telemetry data, but are important inputs
    to the traffic steering selection logic.  Similar to routing metrics,
@@ -1978,7 +2083,7 @@ Table of Contents
    network.  Encryption keys MUST be managed securely and rotated
    periodically.
 
-8.  IANA Considerations
+9.  IANA Considerations
 
    This document defines several CATS metric registry entries.  IANA is
    requested to create a new registry titled "CATS Metrics" under a new
@@ -2005,9 +2110,9 @@ Table of Contents
    convention and structure follow the definitions in each respective
    subsection of Section 6.
 
-9.  References
+10.  References
 
-9.1.  Normative References
+10.1.  Normative References
 
    [I-D.ietf-cats-framework]
               Li, C., Du, Z., Boucadair, M., Contreras, L. M., and J.
@@ -2020,14 +2125,18 @@ Table of Contents
    [I-D.ietf-cats-metric-definition]
               Yao, K., Li, C., Contreras, L. M., Ros-Giralt, J., and G.
               Zeng, "CATS Metrics Definition", Work in Progress,
-              Internet-Draft, draft-ietf-cats-metric-definition-08, 15
-              May 2026, <https://datatracker.ietf.org/doc/html/draft-
-              ietf-cats-metric-definition-08>.
+              Internet-Draft, draft-ietf-cats-metric-definition-10, 22
+              June 2026, <https://datatracker.ietf.org/doc/html/draft-
+              ietf-cats-metric-definition-10>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC3339]  Klyne, G. and C. Newman, "Date and Time on the Internet:
+              Timestamps", RFC 3339, DOI 10.17487/RFC3339, July 2002,
+              <https://www.rfc-editor.org/rfc/rfc3339>.
 
    [RFC5835]  Morton, A., Ed. and S. Van den Berghe, Ed., "Framework for
               Metric Composition", RFC 5835, DOI 10.17487/RFC5835, April
@@ -2073,7 +2182,7 @@ Table of Contents
               DOI 10.17487/RFC9911, December 2025,
               <https://www.rfc-editor.org/rfc/rfc9911>.
 
-9.2.  Informative References
+10.2.  Informative References
 
    [DMTF]     "DMTF", 1998, <https://www.dmtf.org/>.
 
@@ -2171,7 +2280,8 @@ Appendix B.  Acknowledgements
    Authors would like to give special thanks to Adrian Farrel for
    detailed review as working group chair.
 
-   Special thanks to Jacqueline McCall for Secdir review.
+   Special thanks to Jacqueline McCall for Secdir early review, to Fung
+   Lim for Opsdir early review.
 
 Contributors
 
@@ -2188,6 +2298,16 @@ Contributors
    Hang Shi
    Huawei
    Email: shihang9@huawei.com
+
+
+   Saumya Dikshit
+   Aruba Networks, Hewlett Packard Enterprise
+   Email: saumya.dikshit@hpe.com
+
+
+   Mengfei Zhu
+   zhumengfei@cmdi.chinamobile.com
+   Email: China Mobile
 
 
 Authors' Addresses
