@@ -2404,8 +2404,8 @@ Contributors
 
 
    Mengfei Zhu
-   zhumengfei@cmdi.chinamobile.com
-   Email: China Mobile
+   China Mobile
+   Email: zhumengfei@cmdi.chinamobile.com
 
 
 Authors' Addresses
