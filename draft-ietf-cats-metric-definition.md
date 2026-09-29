@@ -58,8 +58,8 @@ contributor:
   org: Aruba Networks, Hewlett Packard Enterprise
   email: saumya.dikshit@hpe.com
 - name: Mengfei Zhu
-  org: zhumengfei@cmdi.chinamobile.com
-  email: China Mobile
+  org: China Mobile
+  email: zhumengfei@cmdi.chinamobile.com
 
 informative:
   I-D.ietf-cats-usecases-requirements:
