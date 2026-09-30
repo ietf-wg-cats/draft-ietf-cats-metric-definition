@@ -5,14 +5,14 @@
 Computing-Aware Traffic Steering                                Y. Kehan
 Internet-Draft                                              China Mobile
 Intended status: Standards Track                                   C. Li
-Expires: 2 April 2027                                Huawei Technologies
+Expires: 3 April 2027                                Huawei Technologies
                                                          L. M. Contreras
                                                               Telefonica
                                                            J. Ros-Giralt
                                                    Qualcomm Europe, Inc.
                                                                  G. Zeng
                                                      Huawei Technologies
-                                                       29 September 2026
+                                                       30 September 2026
 
 
                         CATS Metrics Definition
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 April 2027.
+   This Internet-Draft will expire on 3 April 2027.
 
 Copyright Notice
 
@@ -404,12 +404,12 @@ Table of Contents
    *  *Interoperability and flexibility:* The framework allows
       implementation-specific aggregation and normalization functions to
       accommodate diverse deployment scenarios and operational
-      objectives.  At the same time, it defines common metric structures
-      and introduces default policies to guide interpretation, ensuring
-      a consistent understanding of metrics across vendors and domains.
-      This combination of flexibility and guidance enables
-      interoperability while preserving innovation and adaptability in
-      metric computation and usage.
+      objectives within a single administrative domain.  At the same
+      time, it defines common metric structures and introduces default
+      policies to guide interpretation, ensuring a consistent
+      understanding of metrics across vendors.  This combination of
+      flexibility and guidance enables interoperability while preserving
+      innovation and adaptability in metric computation and usage.
 
    *  *Metric provenance and transparency:* The framework explicitly
       captures the origin and context of metrics by introducing a
