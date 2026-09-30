@@ -271,10 +271,10 @@ principles:
 
 * **Interoperability and flexibility:** The framework allows
   implementation-specific aggregation and normalization functions to
-  accommodate diverse deployment scenarios and operational objectives.
+  accommodate diverse deployment scenarios and operational objectives within a single administrative domain.
   At the same time, it defines common metric structures and introduces
   default policies to guide interpretation, ensuring a consistent
-  understanding of metrics across vendors and domains. This combination
+  understanding of metrics across vendors. This combination
   of flexibility and guidance enables interoperability while preserving
   innovation and adaptability in metric computation and usage.
 
