@@ -62,7 +62,7 @@ contributor:
   email: zhumengfei@cmdi.chinamobile.com
 
 informative:
-  I-D.ietf-cats-usecases-requirements:
+  RFC10054:
   I-D.ietf-cats-data-model:
   performance-metrics:
     title: performance-metrics
@@ -92,16 +92,20 @@ informative:
 normative:
   RFC2119:
   RFC3339:
+  RFC5357:
+  RFC5644:
   RFC5835:
   RFC6241:
   RFC7011:
   RFC7471:
+  RFC7799:
   RFC8174:
+  RFC8762:
   RFC8911:
   RFC8912:
   RFC9439:
   RFC9911:
-  I-D.ietf-cats-framework:
+  RFC10053:
 
 --- abstract
 
@@ -113,7 +117,7 @@ hierarchical abstraction of these metrics to improve interoperability, scalabili
 
 # Introduction {#introduction}
 
-Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application. To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in {{I-D.ietf-cats-framework}}.
+Service providers are deploying computing capabilities across the network for hosting applications such as distributed AI workloads, AR/VR and driverless vehicles, among others. In these deployments, multiple service instances are replicated across various sites to ensure sufficient capacity for maintaining the required Quality of Experience (QoE) expected by the application. To support the selection of these instances, a framework called Computing-Aware Traffic Steering (CATS) is introduced in {{RFC10053}}.
 
 CATS is a traffic engineering approach that optimizes the steering of traffic to a given service instance by considering the dynamic nature of computing and network resources. To achieve this, CATS components require performance metrics for both communication and compute resources. Since these resources are deployed by multiple providers, standardized metrics are essential to ensure interoperability and enable precise traffic steering decisions, thereby optimizing resource utilization and enhancing overall system performance.
 
@@ -123,7 +127,7 @@ This document does not attempt to standardize low-level fine-grained performance
 
 # Conventions and Definitions {#conventions-definitions}
 
-This document uses the following terms defined in {{I-D.ietf-cats-framework}}:
+This document uses the following terms defined in {{RFC10053}}:
 
 - Computing-Aware Traffic Steering (CATS)
 
@@ -147,13 +151,13 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 ## Three-Level Metrics {#three-level-metrics}
 
-As outlined in {{I-D.ietf-cats-usecases-requirements}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. To that end, a CATS system should select the most appropriate metrics for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.
+As outlined in {{RFC10054}}, the resource model that defines CATS metrics MUST be scalable, ensuring that its implementation remains within a reasonable and sustainable cost. To that end, a CATS system should select the most appropriate metrics for instance selection, recognizing that different metrics may influence outcomes in distinct ways depending on the specific use case.
 
 Defining metrics requires carefully balancing multiple considerations, including metric diversity, granularity, and rate of change (e.g., update frequency or advertisement churn). An excessive number of
 metrics, overly fine granularity, or high update frequency can lead to significant signaling overhead, reducing scalability of the metric distribution protocol. In contrast, metrics that are too few, too
 coarse-grained, or updated too infrequently may fail to provide sufficient information to support effective operational decisions.
 
-Conceptually, it is necessary to define at least two fundamental levels of metrics: one comprising all raw metrics, and the other representing a simplified form---consisting of a single value that encapsulates the overall capability of a service instance.
+Conceptually, it is necessary to define at least two fundamental levels of metrics: one comprising all raw metrics, and the other representing a simplified form - consisting of a single value that encapsulates the overall capability of a service instance.
 
 However, such a definition may reduce implementation flexibility across diverse CATS use cases. Implementers typically seek balanced approaches that carefully manage trade-offs among encoding complexity, accuracy, scalability, and extensibility.
 
@@ -184,7 +188,8 @@ Examples of Level 0 metrics include, but are not limited to:
 - **NPU:** Computational capacity, utilization, and power consumption.
 - **Communication:** Throughput, bandwidth, link utilization, packet
   loss, delay, jitter, traffic counters (bytes and packets), and other
-  network performance indicators.
+  network performance indicators. Network performance metrics and their
+  measurement methods are classified in {{RFC7799}}.
 - **Storage:** Available capacity, read throughput, and write throughput.
 - **Service-specific metrics:** Request rate (e.g., requests per second),
   output rate (e.g., tokens per second), and other application-level
@@ -197,14 +202,14 @@ others may correspond to relatively static properties of the underlying
 infrastructure. These metrics provide the basic information required to
 derive higher-level metrics, as described in the following sections.
 
-
 Level 0 metrics can be encoded and exposed using an Application Programming Interface (API), such as a RESTful API, and can be technology- and implementation-specific. Different resources can have their own metrics, each conveying unique information about their status. These metrics can generally have units, such as bits per second (bps) or floating point instructions per second (flops), or be unitless, such as CPU utilization.
 
-As examples, [RFC8911] and [RFC8912] define various network performance
+As examples, {{RFC8911}} and {{RFC8912}} define various network performance
 metrics and their associated registries, while {{DMTF}} defines a
 set of computing metrics. These Level 0 metrics are not standardized in
 this document; rather, they serve as foundational inputs that can be used
 within CATS to derive higher-level metrics.
+
 
 ## Level 1: Metrics Combined in Categories {#level-1-metrics}
 
@@ -294,6 +299,8 @@ Each CATS metric is expressed as a structured set of fields, with each field des
 
 - **Level**: This field specifies the level at which the metric is measured. It is used to categorize the metric based on its granularity and scope. There are only three valid metric levels defined in  {{three-level-metrics}}. This field can take three values: 0 for Level 0, 1 for Level 1, and 2 for Level 2.
 
+- **Measurement_Method**: This optional field indicates the measurement method of the metric as classified in {{RFC7799}} ('active', 'passive', or 'hybrid'). Registry entries in {{cats-metrics-registry}} are separated by measurement method. When this field is present, its value must match the measurement method of the selected registry entry. For Level 1 and Level 2 metrics, the method is inherited from the contributing Level 0 metrics: a derived metric is 'passive' only if all inputs are passively collected, otherwise it is 'active' or 'hybrid'.
+
 - **Format**: This field indicates the data encoding format of the metric, such as uint, ieee_754_float.
 
 - **Length**: This field indicates the size of the value field measured in octets (bytes). It specifies how many bytes are used to store the value of the metric. The length field is important for memory allocation and data handling, ensuring that the value is stored and retrieved correctly.
@@ -335,7 +342,7 @@ In the context of CATS metric processing, aggregation and normalization are two 
 
 ### Aggregation {#aggregation-function}
 
-Aggregation functions combine multiple values into a single representative value. Aggregation functions can be applied at all metric levels. This document supports the spatial aggregation and temporal aggregation that are defined in {{RFC5835}}, and further defines cross-category aggregation which can aggregate metrics from different types into a single value. The following are aggregation examples supported by CATS:
+Aggregation functions combine multiple values into a single representative value. Aggregation functions can be applied at all metric levels. This document supports the spatial aggregation and temporal aggregation that are defined in {{RFC5835}} and {{RFC5644}}, and further defines cross-category aggregation which can aggregate metrics from different types into a single value. The following are aggregation examples supported by CATS:
 
 - Spatial or temporal aggregation of multiple metrics of the same type to produce a derived metric. In this case, because the input metrics are homogeneous, the resulting metric may retain the same units as the inputs. For example, CPU utilization measurements (expressed in percentage) collected from multiple service instances (spatial aggregation) or averaged over consecutive time intervals (temporal aggregation) can be aggregated to produce a representative CPU utilization metric. Such aggregation concepts are consistent with those described in {{RFC5835}}.
 
@@ -417,16 +424,16 @@ communication, service, and composed metrics. This categorization
 provides context and meaning to the resulting metrics and enables
 consistent interpretation across implementations.
 
-The `Source` field indicates how the metric value is derived. For Level 1
+The 'Source' field indicates how the metric value is derived. For Level 1
 metrics, typical values include:
 
-- `aggregation`: The value is obtained by combining Level 0 metrics
+- 'aggregation': The value is obtained by combining Level 0 metrics
   without normalization and MAY retain a physical unit.
-- `normalization`: The value is mapped into a unitless score.
+- 'normalization': The value is mapped into a unitless score.
 
 #### Level 1 Computing Metrics
 
-The Metric Type for Level 1 computing metrics is `level1_computing`.
+The Metric Type for Level 1 computing metrics is 'level1_computing'.
 
 **Example A: Aggregation-derived (with units)**
 
@@ -434,6 +441,7 @@ The Metric Type for Level 1 computing metrics is `level1_computing`.
 Fields:
       Metric_type: level1_computing
       Level: Level 1
+      Measurement_Method: passive
       Format: unsigned integer
       Length: two octets
       Unit: mhz
@@ -447,6 +455,7 @@ Fields:
 Fields:
       Metric_type: level1_computing
       Level: Level 1
+      Measurement_Method: passive
       Format: unsigned integer
       Length: one octet
       Source: normalization
@@ -456,7 +465,7 @@ Fields:
 
 #### Level 1 Communication Metrics
 
-The Metric Type for Level 1 communication metrics is `level1_communication`.
+The Metric Type for Level 1 communication metrics is 'level1_communication'.
 
 **Example A: Aggregation-derived (with units)**
 
@@ -464,6 +473,7 @@ The Metric Type for Level 1 communication metrics is `level1_communication`.
 Fields:
       Metric_type: level1_communication
       Level: Level 1
+      Measurement_Method: active
       Format: unsigned integer
       Length: two octets
       Unit: mbps
@@ -477,6 +487,7 @@ Fields:
 Fields:
       Metric_type: level1_communication
       Level: Level 1
+      Measurement_Method: hybrid
       Format: unsigned integer
       Length: one octet
       Source: normalization
@@ -486,7 +497,7 @@ Fields:
 
 #### Level 1 Service Metrics
 
-The Metric Type for Level 1 service metrics is `level1_service`.
+The Metric Type for Level 1 service metrics is 'level1_service'.
 
 **Example A: Aggregation-derived (with units)**
 
@@ -494,6 +505,7 @@ The Metric Type for Level 1 service metrics is `level1_service`.
 Fields:
       Metric_type: level1_service
       Level: Level 1
+      Measurement_Method: passive
       Format: unsigned integer
       Length: two octets
       Unit: rps
@@ -507,6 +519,7 @@ Fields:
 Fields:
       Metric_type: level1_service
       Level: Level 1
+      Measurement_Method: passive
       Format: unsigned integer
       Length: one octet
       Source: normalization
@@ -516,7 +529,7 @@ Fields:
 
 #### Level 1 Composed Metrics
 
-The Metric Type for Level 1 composed metrics is `level1_composed`.
+The Metric Type for Level 1 composed metrics is 'level1_composed'.
 
 **Example A: Aggregation-derived (with units)**
 
@@ -524,6 +537,7 @@ The Metric Type for Level 1 composed metrics is `level1_composed`.
 Fields:
       Metric_type: level1_composed
       Level: Level 1
+      Measurement_Method: hybrid
       Format: unsigned integer
       Length: two octets
       Unit: ms
@@ -537,6 +551,7 @@ Fields:
 Fields:
       Metric_type: level1_composed
       Level: Level 1
+      Measurement_Method: passive
       Format: unsigned integer
       Length: one octet
       Source: normalization
@@ -552,12 +567,13 @@ internal methods to compute this value, all providers MUST adhere to the
 representation defined in this section to ensure consistent encoding and
 interoperable interpretation of the normalized output.
 
-The Metric Type is `level2_global` and the Source must be `normalization`.
+The Metric Type is 'level2_global' and the Source must be 'normalization'.
 
 ~~~
 Fields:
       Metric_type: level2_global
       Level: Level 2
+      Measurement_Method: hybrid
       Format: unsigned integer
       Length: one octet
       Source: normalization
@@ -592,7 +608,10 @@ In conclusion, for CATS, Level 2 metrics are recommended due to their simplicity
 
 # CATS Metric Registry Entries {#cats-metrics-registry}
 
-This section defines the formal registry entries for one CATS Level 2 metric and four Level 1 metrics, intended for registration with IANA. The Level 1 registry entries in this section register only the unitless representations of the Level 1 category metrics. As described in {{level-1-representations}}, Level 1 metrics may be unitless or may retain physical units. Unitless Level 1 metrics may result from normalization or cross-category aggregation. Level 1 metrics that retain physical units (e.g., those derived from spatial or temporal aggregation of Level 0 metrics) are implementation-specific and are not registered by this document.
+This section defines the formal registry entries for CATS Level 1 and Level 2 metrics, intended for registration with IANA. The Level 1 registry entries in this section register only the unitless representations of the Level 1 category metrics. As described in {{level-1-representations}}, Level 1 metrics may be unitless or may retain physical units. Unitless Level 1 metrics may result from normalization or cross-category aggregation. Level 1 metrics that retain physical units (e.g., those derived from spatial or temporal aggregation of Level 0 metrics) are implementation-specific and are not registered by this document.
+
+Registry entries are separated by measurement method as classified in {{RFC7799}}. The Level 1 communication metric supports 'active',
+'passive', and 'hybrid' measurement, and therefore three entries are registered for it. The Level 1 computing, service, and composed metrics, as well as the Level 2 metric, support 'passive' and 'hybrid' measurement, and therefore two entries are registered for each of them. Pure active measurement is not defined for these categories because their values cannot be inferred solely from probe traffic. The detailed measurement procedures for each method are described in the method of measurement subsections of the corresponding registry entries, {{level-2-measurement}}, {{level-1-computing-measurement}}, {{level-1-communication-measurement}}, {{level-1-service-measurement}}, and {{level-1-composed-measurement}}.
 
 By providing a common template that specifies the metric's summary, definition, method of measurement, output, and administrative items, this section ensures interoperability among different implementations.
 
@@ -606,16 +625,20 @@ This category includes multiple indexes to the Registry Entry: the element ID, M
 
 #### ID (Identifier)
 
-IANA has allocated the Identifier TBD_1 for the Named Metric Entry in this section. See the next Section for mapping to Names.
+IANA has allocated the Identifier TBD_1 and TBD_2 for the Named Metric Entries in this section. See the next Section for mapping to Names.
 
 #### Name
 
 Norm_Passive_CATS-Level 2_RFCXXXXsecY_Unitless_Singleton
 
+and
+
+Norm_Hybrid_CATS-Level 2_RFCXXXXsecY_Unitless_Singleton
+
 Naming Rule Explanation
 
 * Norm: Metric type (Normalized Score)
-* Passive: Measurement method
+* Passive or Hybrid: Measurement method
 * CATS-Level 2: Metric level (CATS Metric Framework Level 2)
 * RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
 * Unitless: Metric has no units
@@ -655,7 +678,9 @@ This category includes columns for references to relevant sections of the RFC(s)
 
 #### Reference Methods
 
-Raw Metrics collection: Collect Level 0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes). Collect Level 0 network performance raw metrics using existing standardized protocols (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}).
+Passive measurement: Collect Level 0 service and compute raw metrics using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes). Collect Level 0 network performance raw metrics using existing standardized protocols (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}). Aggregate and normalize the collected Level 0 metrics to generate Level 1 category metrics, and further calculate the Level 2 singleton score. No active probe is used.
+
+Hybrid measurement: In addition to passive collection, a C-PS may initiate a probe using an extended network performance measurement protocol such as TWAMP {{RFC5357}} or STAMP {{RFC8762}} toward a C-SMA. The receiving agent acts as a reflector: it parses the probe, computes or attaches the relevant Level 1 category scores from locally collected Level 0 metrics, and returns them to the C-PS. The C-PS then aggregates and normalizes these scores to derive the Level 2 metric.
 
 Aggregation logic: Refer to {{aggregation-function}}.
 
@@ -665,7 +690,9 @@ The reference method aggregates and normalizes Level 0 metrics to generate Level
 
 #### Packet Stream Generation
 
-N/A
+Passive measurement: N/A.
+
+Hybrid measurement: The C-PS generates probe packets using an extended TWAMP {{RFC5357}} or STAMP {{RFC8762}} mechanism. The C-SMA reflects the probe packets and returns the relevant Level 1 scores.
 
 #### Traffic Filtering (Observation) Details
 
@@ -673,11 +700,13 @@ N/A
 
 #### Sampling Distribution
 
-Sampling method: Continuous sampling (e.g., collect Level 0 metrics every 10 seconds)
+Passive measurement: continuous sampling (e.g., every 10 seconds).
+
+Hybrid measurement: on-demand, triggered by C-PS probes.
 
 #### Runtime Parameters and Data Format
 
-CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{RFC10053}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
 Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
@@ -685,11 +714,11 @@ Measurement_Window: Metric measurement time window (Units: seconds, milliseconds
 
 #### Roles
 
-C-SMA: Collects Level 0 service and compute raw metrics, and optionally calculates Level 1 metrics according to service-specific strategies.
+C-SMA: Collects Level 0 service and compute raw metrics, and optionally calculates Level 1 metrics according to service-specific strategies. In hybrid measurement, it may act as a reflector and return the relevant Level 1 scores.
 
 C-NMA: Collects Level 0 network performance raw metrics, and optionally calculates Level 1 metrics according to service-specific strategies.
 
-C-PS: Aggregate all Level 1 metrics collected from C-NMA and C-SMA to calculate the Level 2 metric.
+C-PS: Aggregate all Level 1 metrics collected from C-NMA and C-SMA to calculate the Level 2 metric. In hybrid measurement, it may initiate probes to obtain the relevant Level 1 scores.
 
 ### Output {#level-2-output}
 
@@ -737,7 +766,7 @@ None
 
 ## CATS Level 1 Metric Registry Entry: Computing {#cats-level-1-computing-metric}
 
-This section gives an initial Registry Entry for the CATS Level 1 metric in the *computing* category.
+This section gives initial Registry Entries for the CATS Level 1 metric in the *computing* category.
 
 ### Summary {#level-1-computing-summary}
 
@@ -745,16 +774,18 @@ This category includes multiple indexes to the Registry Entry: the element ID, M
 
 #### ID (Identifier)
 
-IANA has allocated the Identifier TBD_2 for the Named Metric Entry in this section. See the next Section for mapping to Names.
+IANA has allocated the Identifier TBD_3 and TBD_4 for the Named Metric Entries in this section. See the next Section for mapping to Names.
 
 #### Name
 
-Comb_Passive_CATS-Level 1_Computing_RFCXXXXsecY_Unitless_Singleton
+TBD_3: Comb_Passive_CATS-Level 1_Computing_RFCXXXXsecY_Unitless_Singleton
+
+TBD_4: Comb_Hybrid_CATS-Level 1_Computing_RFCXXXXsecY_Unitless_Singleton
 
 Naming Rule Explanation
 
 * Comb: Metric type (Combined Score)
-* Passive: Measurement method
+* Passive or Hybrid: Measurement method
 * CATS-Level 1: Metric level (CATS Metric Framework Level 1)
 * Computing: Metric category (Computing)
 * RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
@@ -805,6 +836,10 @@ This category includes columns for references to relevant sections of the RFC(s)
 
 Raw Metrics collection: Collect computing-related Level 0 raw metrics (e.g., CPU/GPU/NPU, memory, and relevant platform counters) using platform-specific management protocols or tools (e.g., Prometheus {{Prometheus}} in Kubernetes or equivalent telemetry systems).
 
+Passive measurement: C-SMA collects Level 0 computing metrics (e.g., CPU/GPU/NPU utilization, frequency, memory utilization) using platform telemetry such as Prometheus {{Prometheus}} in Kubernetes. The metrics are aggregated and normalized according to {{aggregation-function}} and {{normalization-function}} to derive the Level 1 computing score. No active probe is used.
+
+Hybrid measurement: A C-PS initiates a probe using an extended network performance measurement protocol such as TWAMP {{RFC5357}} or STAMP {{RFC8762}} toward a C-SMA. The C-SMA acts as a reflector: it parses the probe, collects the required Level 0 computing metrics locally, computes the Level 1 computing score, and returns the score to the C-PS.
+
 Aggregation logic (within computing category): Refer to {{aggregation-function}} to combine selected Level 0 computing metrics into a single intermediate value prior to normalization. The selection of Level 0 computing metrics and any weights used are implementation-specific.
 
 Normalization logic: Refer to {{normalization-function}} to map the aggregated (or directly selected) computing value into the fixed score range.
@@ -813,7 +848,9 @@ The reference method aggregates and normalizes Level 0 computing metrics to gene
 
 #### Packet Stream Generation
 
-N/A
+Passive measurement: N/A.
+
+Hybrid measurement: The C-PS generates probe packets using the extended TWAMP {{RFC5357}} or STAMP {{RFC8762}} mechanism. The C-SMA reflects the probe packets and returns the Level 1 computing score.
 
 #### Traffic Filtering (Observation) Details
 
@@ -821,11 +858,13 @@ N/A
 
 #### Sampling Distribution
 
-Sampling method: Continuous sampling (e.g., collect underlying Level 0 computing metrics every 10 seconds)
+Passive measurement: continuous sampling (e.g., every 10 seconds).
+
+Hybrid measurement: on-demand, triggered by C-PS probes.
 
 #### Runtime Parameters and Data Format
 
-CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{RFC10053}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
 Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
@@ -833,7 +872,9 @@ Measurement_Window: Metric measurement time window (Units: seconds, milliseconds
 
 #### Roles
 
-C-SMA: Collects Level 0 compute raw metrics and calculates the Level 1 compute normalized score ("level1_computing") according to service/provider-specific aggregation and normalization strategies.
+C-SMA: In passive mode, collects Level 0 computing metrics and calculates the Level 1 computing score. In hybrid mode, acts as a reflector and returns the Level 1 computing score.
+
+C-PS: In passive mode, uses the Level 1 computing score for steering decisions. In hybrid mode, initiates probes to obtain the Level 1 computing score.
 
 C-NMA: Not required for this metric.
 
@@ -891,16 +932,20 @@ This category includes multiple indexes to the Registry Entry: the element ID, M
 
 #### ID (Identifier)
 
-IANA has allocated the Identifier TBD_3 for the Named Metric Entry in this section. See the next Section for mapping to Names.
+IANA has allocated the Identifier TBD_5, TBD_6, and TBD_7 for the Named Metric Entries in this section. See the next Section for mapping to Names.
 
 #### Name
 
-Comb_Passive_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton
+TBD_5: Comb_Active_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton
+
+TBD_6: Comb_Passive_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton
+
+TBD_7: Comb_Hybrid_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton
 
 Naming Rule Explanation
 
 * Comb: Metric type (Combined Score)
-* Passive: Measurement method
+* Active, Passive, or Hybrid: Measurement method
 * CATS-Level 1: Metric level (CATS Metric Framework Level 1)
 * Communication: Metric category (Communication)
 * RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
@@ -949,7 +994,11 @@ This category includes columns for references to relevant sections of the RFC(s)
 
 #### Reference Methods
 
-Raw Metrics collection: Collect communication-related Level 0 raw metrics using existing standardized protocols and telemetry systems (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}), and/or using network performance metric definitions and registries such as {{RFC8911}}, {{RFC8912}}, and {{RFC9439}} where applicable.
+Passive measurement: C-NMA collects Level 0 communication metrics using existing standardized protocols and telemetry systems (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}). The metrics are aggregated and normalized according to {{aggregation-function}} and {{normalization-function}} to derive the Level 1 communication score. No active probe is used.
+
+Active measurement: A C-PS or C-NMA initiates active probes using TWAMP {{RFC5357}} or STAMP {{RFC8762}} toward a C-NMA. The C-NMA acts as a measurement endpoint or reflector and returns the measured communication metrics. The Level 1 communication score is derived according to {{aggregation-function}} and {{normalization-function}}.
+
+Hybrid measurement: C-PS or C-NMA initiates probes using TWAMP {{RFC5357}} or STAMP {{RFC8762}}, and the active measurement results are combined with passively collected Level 0 communication metrics. The combined metrics are aggregated and normalized to derive the Level 1 communication score.
 
 Aggregation logic (within communication category): Refer to {{aggregation-function}} (e.g., Weighted Average Aggregation) to combine selected Level 0 communication metrics into a single intermediate value prior to normalization. The selection of Level 0 communication metrics and any weights used are implementation-specific.
 
@@ -959,7 +1008,9 @@ The reference method aggregates and normalizes Level 0 communication metrics to 
 
 #### Packet Stream Generation
 
-N/A
+Passive measurement: N/A.
+
+Active and hybrid measurement: The C-PS or C-NMA generates probe packets using TWAMP {{RFC5357}} or STAMP {{RFC8762}}. The C-NMA acts as the measurement endpoint or reflector for the active portion.
 
 #### Traffic Filtering (Observation) Details
 
@@ -967,11 +1018,13 @@ N/A
 
 #### Sampling Distribution
 
-Sampling method: Continuous sampling (e.g., collect underlying Level 0 communication metrics every 10 seconds)
+Passive measurement: continuous sampling (e.g., every 10 seconds).
+
+Active and hybrid measurement: on-demand or periodic active probing, as configured by operator policy.
 
 #### Runtime Parameters and Data Format
 
-CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{RFC10053}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
 Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
@@ -979,7 +1032,9 @@ Measurement_Window: Metric measurement time window (Units: seconds, milliseconds
 
 #### Roles
 
-C-NMA: Collects Level 0 communication raw metrics and calculates the Level 1 communication normalized score ("level1_communication") according to provider-specific aggregation and normalization strategies.
+C-NMA: In passive mode, collects Level 0 communication metrics and calculates the Level 1 communication score. In active and hybrid modes, acts as a measurement endpoint or reflector and returns the Level 1 communication score.
+
+C-PS: In passive mode, uses the Level 1 communication score for steering decisions. In active and hybrid modes, initiates probes to obtain the Level 1 communication score.
 
 C-SMA: Not required for this metric.
 
@@ -1029,7 +1084,7 @@ None
 
 ## CATS Level 1 Metric Registry Entry: Service {#cats-level-1-service-metric}
 
-This section gives an initial Registry Entry for the CATS Level 1 metric in the *service* category.
+This section gives initial Registry Entries for the CATS Level 1 metric in the *service* category.
 
 ### Summary {#level-1-service-summary}
 
@@ -1037,16 +1092,18 @@ This category includes multiple indexes to the Registry Entry: the element ID, M
 
 #### ID (Identifier)
 
-IANA has allocated the Identifier TBD_4 for the Named Metric Entry in this section. See the next Section for mapping to Names.
+IANA has allocated the Identifier TBD_8 and TBD_9 for the Named Metric Entry in this section. See the next Section for mapping to Names.
 
 #### Name
 
-Comb_Passive_CATS-Level 1_Service_RFCXXXXsecY_Unitless_Singleton
+TBD_8: Comb_Passive_CATS-Level 1_Service_RFCXXXXsecY_Unitless_Singleton
+
+TBD_9: Comb_Hybrid_CATS-Level 1_Service_RFCXXXXsecY_Unitless_Singleton
 
 Naming Rule Explanation
 
 * Comb: Metric type (Combined Score)
-* Passive: Measurement method
+* Passive or Hybrid: Measurement method
 * CATS-Level 1: Metric level (CATS Metric Framework Level 1)
 * Service: Metric category (Service)
 * RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
@@ -1095,7 +1152,9 @@ This category includes columns for references to relevant sections of the RFC(s)
 
 #### Reference Methods
 
-Raw Metrics collection: Collect service-related Level 0 raw metrics from the service runtime and service management plane using platform-specific telemetry systems (e.g., Prometheus {{Prometheus}} in Kubernetes or equivalent monitoring/observability tools). These metrics are service-dependent and may include availability/health status, success/error rates, overload or admission control signals, and throughput indicators (e.g., tokens per second for AI inference services), among others.
+Passive measurement: C-SMA collects Level 0 service metrics (e.g., availability, requests per second, tokens per second) using platform telemetry. The metrics are aggregated and normalized according to {{aggregation-function}} and {{normalization-function}} to derive the Level 1 service score. No active probe is used.
+
+Hybrid measurement: A C-PS initiates a probe using TWAMP {{RFC5357}} or STAMP {{RFC8762}} toward a C-SMA. The C-SMA acts as a reflector: it parses the probe, collects the required Level 0 service metrics locally, computes the Level 1 service score, and returns the score to the C-PS.
 
 Aggregation logic (within service category): Refer to {{aggregation-function}} (e.g., Weighted Average Aggregation) to combine selected Level 0 service metrics into a single intermediate value prior to normalization. The selection of Level 0 service metrics, any weights used, and any gating logic (e.g., forcing the score to a low value when the instance is unhealthy) are implementation-specific.
 
@@ -1105,7 +1164,9 @@ The reference method aggregates and normalizes Level 0 service metrics to genera
 
 #### Packet Stream Generation
 
-N/A
+Passive measurement: N/A.
+
+Hybrid measurement: The C-PS generates probe packets using TWAMP {{RFC5357}} or STAMP {{RFC8762}}. The C-SMA reflects the probe packets and returns the Level 1 service score.
 
 #### Traffic Filtering (Observation) Details
 
@@ -1113,11 +1174,13 @@ N/A
 
 #### Sampling Distribution
 
-Sampling method: Continuous sampling (e.g., collect underlying Level 0 service metrics every 10 seconds)
+Passive measurement: continuous sampling (e.g., every 10 seconds).
+
+Hybrid measurement: on-demand, triggered by C-PS probes.
 
 #### Runtime Parameters and Data Format
 
-CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{RFC10053}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
 Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
@@ -1125,7 +1188,9 @@ Measurement_Window: Metric measurement time window (Units: seconds, milliseconds
 
 #### Roles
 
-C-SMA: Collects Level 0 service raw metrics and calculates the Level 1 service normalized score ("level1_service") according to service/provider-specific aggregation and normalization strategies.
+C-SMA: In passive mode, collects Level 0 service metrics and calculates the Level 1 service score. In hybrid mode, acts as a reflector and returns the Level 1 service score.
+
+C-PS: In passive mode, uses the Level 1 service score for steering decisions. In hybrid mode, initiates probes to obtain the Level 1 service score.
 
 C-NMA: Not required for this metric.
 
@@ -1175,7 +1240,7 @@ None
 
 ## CATS Level 1 Metric Registry Entry: Composed {#cats-level-1-composed-metric}
 
-This section gives an initial Registry Entry for the CATS Level 1 metric in the *composed* category.
+This section gives initial Registry Entries for the CATS Level 1 metric in the *composed* category.
 
 ### Summary {#level-1-composed-summary}
 
@@ -1183,16 +1248,18 @@ This category includes multiple indexes to the Registry Entry: the element ID, M
 
 #### ID (Identifier)
 
-IANA has allocated the Identifier TBD_5 for the Named Metric Entry in this section. See the next Section for mapping to Names.
+IANA has allocated the Identifier TBD_10 and TBD_11 for the Named Metric Entries in this section. See the next Section for mapping to Names.
 
 #### Name
 
-Comb_Passive_CATS-Level 1_Composed_RFCXXXXsecY_Unitless_Singleton
+TBD_10: Comb_Passive_CATS-Level 1_Composed_RFCXXXXsecY_Unitless_Singleton
+
+TBD_11: Comb_Hybrid_CATS-Level 1_Composed_RFCXXXXsecY_Unitless_Singleton
 
 Naming Rule Explanation
 
 * Comb: Metric type (Combined Score)
-* Passive: Measurement method
+* Passive or Hybrid: Measurement method
 * CATS-Level 1: Metric level (CATS Metric Framework Level 1)
 * Composed: Metric category (Composed)
 * RFCXXXXsecY: Specification reference (To-be-assigned RFC number and section number)
@@ -1243,7 +1310,9 @@ This category includes columns for references to relevant sections of the RFC(s)
 
 #### Reference Methods
 
-Raw Metrics collection: Collect contributing Level 0 raw metrics from the relevant sources across categories. For example, compute- and service-related Level 0 metrics may be collected by a C-SMA using platform-specific telemetry systems (e.g., Prometheus {{Prometheus}}), while communication-related Level 0 metrics may be collected by a C-NMA using network telemetry and protocols (e.g., NETCONF {{RFC6241}}, IPFIX {{RFC7011}}), and/or using network performance metric definitions and registries such as {{RFC8911}}, {{RFC8912}}, and {{RFC9439}} where applicable.
+Passive measurement: C-PS aggregates passively collected Level 0 and/or Level 1 metrics and applies normalization according to {{aggregation-function}} and {{normalization-function}} to derive the Level 1 composed score. No active probe is used.
+
+Hybrid measurement: A C-PS initiates a probe using TWAMP {{RFC5357}} or STAMP {{RFC8762}} toward a C-SMA and/or C-NMA. The receiving agent acts as a reflector and returns the relevant contributing Level 1 scores. The C-PS aggregates and normalizes these scores according to {{aggregation-function}} and {{normalization-function}} to derive the Level 1 composed score.
 
 Aggregation logic (within composed category): Refer to {{aggregation-function}} (e.g., Weighted Average Aggregation) to combine selected contributing metrics into a single intermediate value prior to normalization. The aggregation function MAY combine Level 0 metrics directly, and/or MAY take as input one or more Level 1 category metrics (e.g., "level1_computing" and "level1_communication"). The selection of contributing metrics, any weights used, and the composition model (e.g., sum of delays, bottleneck/maximum, or weighted utility) are implementation-specific.
 
@@ -1253,7 +1322,9 @@ The reference method aggregates and normalizes the selected contributing metrics
 
 #### Packet Stream Generation
 
-N/A
+Passive measurement: N/A.
+
+Hybrid measurement: The C-PS generates probe packets using TWAMP {{RFC5357}} or STAMP {{RFC8762}}. The C-SMA/C-NMA reflects the probe packets and returns the contributing Level 1 scores.
 
 #### Traffic Filtering (Observation) Details
 
@@ -1261,11 +1332,13 @@ N/A
 
 #### Sampling Distribution
 
-Sampling method: Continuous sampling (e.g., collect underlying contributing metrics every 10 seconds)
+Passive measurement: continuous sampling (e.g., every 10 seconds).
+
+Hybrid measurement: on-demand, triggered by C-PS probes.
 
 #### Runtime Parameters and Data Format
 
-CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{I-D.ietf-cats-framework}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
+CATS Service Contact Instance ID (CSCI-ID): an identifier of CATS service contact instance. According to {{RFC10053}}, a unicast IP address can be an example of identifier. (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
 Service_Instance_IP: Service instance IP address (format: ipv4-address-no-zone or ipv6-address-no-zone, complying with {{RFC9911}})
 
@@ -1273,11 +1346,9 @@ Measurement_Window: Metric measurement time window (Units: seconds, milliseconds
 
 #### Roles
 
-C-SMA: Collects Level 0 service and compute raw metrics that may contribute to the composed score, and MAY calculate the Level 1 composed score ("level1_composed") when it has access to the required inputs.
+C-SMA/C-NMA: In passive mode, collect passively contributing metrics. In hybrid mode, act as a reflector for hybrid probes and return the relevant contributing Level 1 scores.
 
-C-NMA: Collects Level 0 communication raw metrics that may contribute to the composed score, and MAY calculate the Level 1 composed score ("level1_composed") when it has access to the required inputs.
-
-CATS Controller (or other CATS component): MAY compute the Level 1 composed score when the contributing metrics originate from multiple agents and are combined at a common computation point.
+C-PS: In passive mode, computes the Level 1 composed score from passively collected inputs. In hybrid mode, initiates probes and computes the Level 1 composed score from returned contributing scores.
 
 ### Output {#level-1-composed-output}
 
@@ -1329,7 +1400,7 @@ This section describes operational aspects related to the deployment and operati
 
 ## Negotiation of Normalization and Aggregation Functions in Multi-Vendor Environments {#negotiation}
 
-Within a single administrative domain, if CATS components (C-SMA, C-NMA, C-PS) are supplied by different vendors, it is essential to ensure that all vendors have a consistent understanding of CATS metric scores, otherwise, steering decisions may be biased. This is also explicitly required in Section 5.4 of {{I-D.ietf-cats-framework}}. This subsection provides operational guidance for negotiating these functions in scenarios where multi-vendor components within the same domain need to interoperate.
+Within a single administrative domain, if CATS components (C-SMA, C-NMA, C-PS) are supplied by different vendors, it is essential to ensure that all vendors have a consistent understanding of CATS metric scores, otherwise, steering decisions may be biased. This is also explicitly required in Section 5.4 of {{RFC10053}}. This subsection provides operational guidance for negotiating these functions in scenarios where multi-vendor components within the same domain need to interoperate.
 
 ** Key points for normalization function negotiation:
 
@@ -1443,11 +1514,17 @@ The initial entries for this registry are defined in {{cats-metrics-registry}} a
 
 | Registry ID | Metric Name | Description | Reference |
 |:---:|:---|:---|:---|
-| TBD_1 | Norm_Passive_CATS-Level 2_RFCXXXXsecY_Unitless_Singleton | Single normalized score aggregating Level 0 and/or Level 1 metrics | {{cats-level-2-metric-registry}} |
-| TBD_2 | Comb_Passive_CATS-Level 1_Computing_RFCXXXXsecY_Unitless_Singleton | Normalized score for the computing category | {{cats-level-1-computing-metric}} |
-| TBD_3 | Comb_Passive_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton | Normalized score for the communication category | {{cats-level-1-communication-metric}} |
-| TBD_4 | Comb_Passive_CATS-Level 1_Service_RFCXXXXsecY_Unitless_Singleton | Normalized score for the service category | {{cats-level-1-service-metric}} |
-| TBD_5 | Comb_Passive_CATS-Level 1_Composed_RFCXXXXsecY_Unitless_Singleton | Normalized score for the composed category | {{cats-level-1-composed-metric}} |
+| TBD_1 | Norm_Passive_CATS-Level 2_RFCXXXXsecY_Unitless_Singleton | Passive variant of the Level 2 normalized score | {{cats-level-2-metric-registry}} |
+| TBD_2 | Norm_Hybrid_CATS-Level 2_RFCXXXXsecY_Unitless_Singleton | Hybrid variant of the Level 2 normalized score | {{cats-level-2-metric-registry}} |
+| TBD_3 | Comb_Passive_CATS-Level 1_Computing_RFCXXXXsecY_Unitless_Singleton | Passive variant of the Level 1 computing score | {{cats-level-1-computing-metric}} |
+| TBD_4 | Comb_Hybrid_CATS-Level 1_Computing_RFCXXXXsecY_Unitless_Singleton | Hybrid variant of the Level 1 computing score | {{cats-level-1-computing-metric}} |
+| TBD_5 | Comb_Active_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton | Active variant of the Level 1 communication score | {{cats-level-1-communication-metric}} |
+| TBD_6 | Comb_Passive_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton | Passive variant of the Level 1 communication score | {{cats-level-1-communication-metric}} |
+| TBD_7 | Comb_Hybrid_CATS-Level 1_Communication_RFCXXXXsecY_Unitless_Singleton | Hybrid variant of the Level 1 communication score | {{cats-level-1-communication-metric}} |
+| TBD_8 | Comb_Passive_CATS-Level 1_Service_RFCXXXXsecY_Unitless_Singleton | Passive variant of the Level 1 service score | {{cats-level-1-service-metric}} |
+| TBD_9 | Comb_Hybrid_CATS-Level 1_Service_RFCXXXXsecY_Unitless_Singleton | Hybrid variant of the Level 1 service score | {{cats-level-1-service-metric}} |
+| TBD_10 | Comb_Passive_CATS-Level 1_Composed_RFCXXXXsecY_Unitless_Singleton | Passive variant of the Level 1 composed score | {{cats-level-1-composed-metric}} |
+| TBD_11 | Comb_Hybrid_CATS-Level 1_Composed_RFCXXXXsecY_Unitless_Singleton | Hybrid variant of the Level 1 composed score | {{cats-level-1-composed-metric}} |
 {: #iana-cats-metrics-table title="Initial Contents of the CATS Metrics Registry"}
 
 For each entry, IANA is requested to assign a unique Identifier (defined in each subsection) from the registry's assignment pool.
@@ -1470,6 +1547,7 @@ This section uses CPU frequency as an example to illustrate the representation o
 Fields:
       Metric_Type: compute_CPU_frequency
       Level: Level 0
+      Measurement_Method: passive
       Format: floating point
       Length: four octets
       Unit: GHz
@@ -1487,6 +1565,7 @@ This section takes the total transmitted bytes (TxBytes) as an example to show t
 Fields:
       Metric_Type: "communication type_TXBytes"
       Level: Level 0
+      Measurement_Method: active
       Format: unsigned integer
       Length: four octets
       Unit: MB
@@ -1504,6 +1583,7 @@ Delay is a kind of synthesized metric which is influenced by computing, storage 
 Fields:
       Metric_Type: "delay_raw"
       Level: Level 0
+      Measurement_Method: hybrid
       Format: floating point
       Length: four octets
       Unit: microsecond
@@ -1513,9 +1593,64 @@ Fields:
 ~~~
 {: #fig-delay-raw-metric title="An Example for Delay Raw Metrics"}
 
-# Acknowledgements
+# Examples on Implementations of Normalization and Aggregation Functions {#appendix-examples-norm-agg}
+
+This section provides some examples on how to apply normalization functions and aggregation functions to derive Level 1 and Level 2 metric values in CATS system.
+
+## Implementations of Normalization Functions
+
+This example shows how a C-PS derives a Level 2 metric from Level 1 scores using a sigmoid function. The weights and sigmoid parameters are implementation-specific and should be agreed in multi-vendor deployments as described in {{negotiation}}.
+
+Assume the C-PS receives:
+
+- 'level1_computing': 8
+- 'level1_communication': 6
+- 'level1_service': 9
+
+Using a weighted sum with weights 0.4, 0.3, and 0.3:
+
+A = 0.4 * 8 + 0.3 * 6 + 0.3 * 9 = 7.7
+
+Apply a sigmoid function with midpoint 'mu = 5' and slope 'k = 2':
+
+N(A) = 10 / (1 + exp(-(A - mu) / k))
+= 10 / (1 + exp(-(7.7 - 5) / 2))
+= 7.94
+
+After rounding and clamping to 0-10, the Level 2 metric value is 8.
+
+## Implementations of Aggregation Functions
+
+The following examples illustrate spatial, temporal, and cross-category aggregation. The functions and parameters are examples only.
+
+### Spatial Aggregation Using Arithmetic Mean
+
+A C-SMA collects CPU utilization from four service instances: 40%, 60%, 80%, and 20%. Using the arithmetic mean:
+
+** Spatial_CPU = (40 + 60 + 80 + 20) / 4 = 50% **
+
+The result retains the input unit (percent) because the inputs are homogeneous. This value may be used as an implementation-specific aggregation-derived Level 1 computing metric, or as an input to a later normalization function.
+
+### Temporal Aggregation Using Weighted Average
+
+A C-NMA collects delay samples over three measurement windows: 20 ms, 30 ms, and 40 ms. Using a weighted average with weights 0.2, 0.3, and
+0.5:
+
+** Temporal_delay = 0.2 * 20 + 0.3 * 30 + 0.5 * 40 = 33 ms **
+
+Alternatively, 'max(20, 30, 40) = 40 ms' may be used for the worst-case temporal aggregation.
+
+### Cross-Category Aggregation Using Weighted Sum
+
+After normalization, a C-PS has a computing score of 8, a communication score of 6, and a service score of 9. Using a weighted sum with weights 0.5, 0.3, and 0.2:
+
+** Combined_score = 0.5 * 8 + 0.3 * 6 + 0.2 * 9 = 7.6 **
+
+The result is unitless and can be further normalized to produce a Level 2 global metric. Other functions, such as weighted geometric mean and harmonic mean, may be used according to operator policy.
+
+# Acknowledgements {#acknowledgements}
 
 Authors would like to give special thanks to Adrian Farrel for detailed review as working group chair.
 
-Special thanks to Jacqueline McCall for Secdir early review, to Fung Lim for Opsdir early review.
+Special thanks to Jacqueline McCall for Secdir early review, to Fung Lim for Opsdir early review, to Giuseppe Fioccola for Perfmetrdir early review.
 
